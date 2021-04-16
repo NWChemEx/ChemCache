@@ -51,7 +51,7 @@ Different constants and physical constants from multiple sources and in case spe
 - Element names (source CIAAW, except for [ElementZero (Ez)](https://masseffect.fandom.com/wiki/Element_Zero)
   which was proposed in the "Mass Effect" video game series). Note, for non-atom centers the label
   "Bq" from "Banquo" has been used in the past. See: [NICS](https://doi.org/10.1021/cr030088+), 
-  [QLST]("https://doi.org/10.1016/S0065-3276(08)00402-4"), [Tapia](: 10.1103/PhysRevA.84.012115),
+  [QLST](https://doi.org/10.1016/S0065-3276\(08\)00402-4), [Tapia](10.1103/PhysRevA.84.012115),
   [Gastreich](http://shakespeare.nowheres.com/qandr/others/3.15.97/messages/199.html),
   [CCL](http://www.ccl.net/chemistry/resources/messages/2009/03/06.011-dir/index.html),
   [NWChem](https://github.com/nwchemgit/nwchem/tree/master/QA/tests/dft_bsse),
