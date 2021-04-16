@@ -64,11 +64,17 @@ Different constants and physical constants from multiple sources and in case spe
   [GAMESS](https://www.msg.chem.iastate.edu/gamess/GAMESS_Manual/docs-input.txt) uses "Bq".)
 - Covalent radii 
 - van der Waals radii
-- Atomic electron configurations [NIST](http://www.nist.gov/pml/data/ion_energy.cfm)
-- Physical constants [NIST](http://physics.nist.gov/constants)
+- Atomic electron configurations (source[NIST](http://www.nist.gov/pml/data/ion_energy.cfm))
+- Physical constants (source[NIST](http://physics.nist.gov/constants))
 
 ## Transformer scripts
 
+Python scripts to turn the data collections into source code.
+
 ## Source code
 
+The generated and stored source code. 
+
 ## Binary library files
+
+Compiled libraries for linking to codes and libraries that depend on it.
