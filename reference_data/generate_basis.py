@@ -3,8 +3,10 @@ This script will loop over a series of basis sets and write out a file that will
 fill them in.  The format of the resulting basis sets is suitable for use with
 the BasisSetExchange class
 """
+
+import argparse
+import glob
 import os
-import fnmatch
 import re
 from generate_atomicinfo import parse_symbols
 
@@ -160,42 +162,119 @@ def write_bases(out_dir, bases):
             g.write("} //end namespace\n")
         print_pimpl_footer(f)
 
-def parse_bases(basis_sets, sym2Z, l2num):
+def parse_bases(basis_set_filepaths, sym2Z, l2num):
+    """Parses basis set files from the filepaths given.
+
+    :param basis_set_filepaths: Full paths to basis set files.
+    :type basis_set_filepaths: list
+    :param sym2Z: Dictionary associating atomic symbols to atomic numbers
+    :type sym2Z: dict
+    :param l2num: Lambda function associating orbital letters with a number
+    :type l2num: lambda
+    :return: Collection of basis sets and the supported elements of each.
+    :rtype: dict
+    """
     new_atom = re.compile("^\s*\D{1,2}\s*0\s*$")
     new_shell = re.compile("^\s*[a-zA-Z]+\s*\d+\s*1.00\s*$")
     same_shell = re.compile("^\s*(?:-?\d+.\d+(?:(E|e|D|d)(\+|-)\d\d)*\s*)+")
+
     bases = {}
-    for bs in basis_sets:
-        bases[bs] = {}
-        with open(os.path.join("basis_sets","default",bs+".gbs"),'r') as f:
+    for filepath in basis_set_filepaths:
+        # Extract file name without extension
+        basis_set = os.path.splitext(os.path.basename(filepath))[0]
+
+        bases[basis_set] = {}
+        with open(filepath, 'r') as fin:
             atom_z = 0
-            for line in f:
+        
+            for line in fin:
                 if re.search(new_atom, line):
                     atom_z = sym2Z[line.split()[0].lower()]
-                    bases[bs][atom_z] = []
+                    bases[basis_set][atom_z] = []
                 elif re.search(new_shell, line):
                     ls = [ l2num(l.lower()) for l in line.split()[0]]
-                    bases[bs][atom_z].append(Shell(ls))
+                    bases[basis_set][atom_z].append(Shell(ls))
                 elif re.search(same_shell, line):
                     prim = line.split()
-                    bases[bs][atom_z][-1].add_prim(prim[0], prim[1:])
+                    bases[basis_set][atom_z][-1].add_prim(prim[0], prim[1:])
+
     return bases
 
-def main(args):
+def find_basis_sets(source_root, extensions=[".gbs"]):
+    """Recursively find all basis set files in the given directory. Basis set
+    files are identified using the given extensions list.
 
-    basis_sets = [f.replace(".gbs","") for f in os.listdir("basis_sets/default") if os.path.isfile(os.path.join("basis_sets","default",f))]
-    my_dir = os.path.dirname(os.path.realpath(__file__))
-    out_dir = os.path.join(os.path.dirname(my_dir), "libchemist",
-                           "defaults")
+    :param source_root: Root directory containing basis set files.
+    :type source_root: str
+    :param extensions: Possible extensions for basis sets, defaults to [".gbs"]
+    :type extensions: list, optional
+    :return: Full paths to basis set files
+    :rtype: list
+    """
+    basis_sets = []
+
+    for extension in extensions:
+        # Recursively search for basis set files of the given extension
+        for dirpath, _, filenames in os.walk(source_root):
+            for filename in filenames:
+                _, ext = os.path.splitext(filename)
+
+                # Case insensitive comparison of extensions
+                if (ext.lower() == extension.lower()):
+                    basis_sets.append(os.path.join(dirpath, filename))
+
+    return basis_sets
+
+def main(args):
+    """Entry point function to generate basis set files.
+
+    :param args: Command line argument namespace
+    :type args: Namespace
+    """
+
+    basis_set_dir       = os.path.abspath(args.basis_set_source)
+    basis_set_filepaths = find_basis_sets(basis_set_dir)
+
+    my_dir    = os.path.dirname(os.path.realpath(__file__))
     out_dir   = os.path.abspath(args.destination)
     test_dir  = os.path.abspath(args.test_path)
-    atoms = parse_symbols(os.path.join(my_dir, "physical_data",
-                                       "ElementNames.txt"), {})
-    sym2Z = {ai.sym.lower() : ai.Z for ai in atoms.values()}
+    name_file = os.path.join(my_dir, "physical_data", "ElementNames.txt")
+
+
+    atoms = {}
+    parse_symbols(name_file, atoms)
+
+    sym2Z = { ai.sym.lower() : ai.Z for ai in atoms.values() }
     l2num = lambda l: "spdfghijklmnoqrtuvwxyzabce".find(l.lower())
-    bases = parse_bases(basis_sets, sym2Z, l2num)
-    write_bases(out_dir, bases)
+    bases = parse_bases(basis_set_filepaths, sym2Z, l2num)
 
+    for basis, value in bases.items():
+        print("{}: {}".format(basis, value))
+    print(len(bases))
 
-if __name__ == "__main__":
+    #write_bases(out_dir, bases)
+
+def parse_args():
+    """Parse command line arguments.
+
+    :return: Values of command line arguments.
+    :rtype: Namespace
+    """
+    parser = argparse.ArgumentParser()
+    
+    parser.add_argument('basis_set_source', type=str,
+                        help="""Directory containing basis set files (*.gbs). 
+                             This directory will be searched recursively for 
+                             basis set files.
+                             """)
+    parser.add_argument('destination', type=str,
+                        help="Destination directory for generated files.")
+    parser.add_argument('test_path', type=str,
+                        help="Destination directory for generated unit tests.")
+
+    return parser.parse_args()
+
+if __name__ == '__main__' :
+    args = parse_args()
+
     main(args)
