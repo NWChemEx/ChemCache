@@ -16,6 +16,11 @@
 .idea/
 .vscode/
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
 # These are common Python virtual enviornment directory names
 venv/
 docs/venv/
