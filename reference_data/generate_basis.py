@@ -171,41 +171,6 @@ def print_atom_basis(f, z, atom):
     f.write("{}return rv;\n".format(tab*3))
     f.write("{}}} //End case\n".format(tab*2))
 
-def sanitize_name(bs_name):
-    """Sanitizes the basis set name. For example, replace numbers with the
-    corresponding word and hyphens, plus-signs, and other symbols with 
-    underscores.
-
-    :param bs_name: Basis set name
-    :type bs_name: str
-
-    :return: Sanitized basis set name
-    :rtype: str
-    """
-
-    temp = bs_name.replace("6-", "six_dash_")
-    temp = temp.replace("3-", "three_dash_")
-    temp = temp.replace("-", "_dash_")
-    temp = temp.replace("-", "_dash_")
-    temp = temp.replace("+", "_plus_")
-
-    return temp
-
-def desanitize_name(bs_name):
-    """\"Desanitizes\" the basis set name. For example, replace "_star" with
-    an asterisk character '*'.
-
-    :param bs_name: Sanitized basis set name
-    :type bs_name: str
-
-    :return: Unsanitized basis set name
-    :rtype: str
-    """
-
-    temp = bs_name.replace("_star", "*")
-    
-    return temp
-
 def write_bases(inc_dir, src_dir, bases):
     """Writes basis set data to C++ files.
 
@@ -226,8 +191,8 @@ def write_bases(inc_dir, src_dir, bases):
             print_basis_list(g)
             f.write("{}".format(tab*2))
             for bs_name, bs in sorted(bases.items()):
-                s_name = sanitize_name(bs_name)
-                d_name = desanitize_name(bs_name)
+                s_name = helpers.sanitize_basis_name(bs_name)
+                d_name = helpers.desanitize_basis_name(bs_name)
                 f.write("if(name == \"{}\") {{ ".format(d_name))
                 f.write("return {}(Z); ".format(s_name))
                 g.write("Center<double> {}(std::size_t Z);\n".format(s_name))
@@ -475,9 +440,11 @@ def main(args):
 
     # Discover basis set files
     basis_set_dir       = os.path.abspath(args.basis_set_source)
-    basis_set_filepaths = find_basis_sets(basis_set_dir, 
-                                          formats=formats,
-                                          recursive=args.recursive)
+    basis_set_filepaths = helpers.find_files(
+        basis_set_dir, 
+        [ helpers.lookup_extension(format) for format in formats ],
+        recursive=args.recursive
+    )
 
     # Parse element information
     atoms = {}
@@ -486,13 +453,20 @@ def main(args):
     sym2Z = { ai.sym.lower() : ai.Z for ai in atoms.values() }
     l2num = lambda l: "spdfghijklmnoqrtuvwxyzabce".find(l.lower())
 
-    # If more than one file format is being parsed, the basis_set_filepaths
-    # list could be filtered by file extension and each format parsed
-    # separately by separate calls to parse_bases. File extensions for formats
-    # can be looked up with helpers.lookup_extension(format)
-    bases = parse_bases(basis_set_filepaths, sym2Z, l2num, format=formats[0])
+    basis_sets = {}
+    for format in formats:
+        extension = helpers.lookup_extension(format)
 
-    write_bases(inc_dir, src_dir, bases)
+        # NOTE: Format order CAN matter!
+        #       If the same basis set exists in basis_sets
+        #       and the new dict returned from parse_bases(), the 
+        #       basis_sets version will be replaced by the 
+        #       parse_bases() version.
+        basis_sets.update(parse_bases(
+            basis_set_filepaths[extension], sym2Z, l2num, format=format
+        ))
+
+    write_bases(inc_dir, src_dir, basis_sets)
 
 def parse_args():
     """Parse command line arguments.

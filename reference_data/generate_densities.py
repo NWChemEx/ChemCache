@@ -81,11 +81,11 @@ def print_atom_basis(f, z, density):
         f.write("},\n")
     f.write("{}}}; //End atomic density\n{}}} //End case\n".format(tab*3, tab*2))
 
-def write_bases(out_dir, bases):
+def write_bases(inc_dir, src_dir, bases):
     tab = "    "
-    with open(os.path.join(out_dir,"nwx_atomic_densities.cpp"),'w') as f:
+    with open(os.path.join(src_dir,"nwx_atomic_densities.cpp"),'w') as f:
         print_pimpl_header(f)
-        with open(os.path.join(out_dir, "nwx_atomic_densities.hpp"), 'w') as g:
+        with open(os.path.join(inc_dir, "nwx_atomic_densities.hpp"), 'w') as g:
             print_basis_list(g)
             f.write("{}".format(tab*2))
             for bs_name, bs in sorted(bases.items()):
@@ -95,7 +95,7 @@ def write_bases(out_dir, bases):
                 f.write("return {}_density(Z); ".format(s_name))
                 g.write("std::vector<std::vector<double>> {}_density(std::size_t Z);\n".format(s_name))
                 bs_file_name = "{}.cpp".format(bs_name)
-                bs_path = os.path.join(out_dir,"atomic_densities", bs_file_name)
+                bs_path = os.path.join(src_dir,"atomic_densities", bs_file_name)
                 with open(bs_path, 'w') as h:
                     print_basis_header(h, s_name)
                     for z in sorted([int(x) for x in bs.keys()]):
@@ -104,7 +104,7 @@ def write_bases(out_dir, bases):
                 f.write("}}\n{}else ".format(tab*2))
             g.write("} //end namespace\n")
         print_pimpl_footer(f)
-    with open(os.path.join(out_dir,"atomic_densities", "add_density.cmake"), "w") as f:
+    with open(os.path.join(src_dir,"atomic_densities", "add_density.cmake"), "w") as f:
         f.write("set(LIBCHEMIST_DENSITY_SOURCE\n")
         for bs_name, bs in sorted(bases.items()):
             f.write("    defaults/atomic_densities/{}.cpp\n".format(bs_name))
@@ -174,9 +174,14 @@ def main(args):
 
     extensions = [ ".xml" ]
 
+    # Set include directory to default src_dir path if no path is specified
+    if (args.inc == ""):
+        args.inc = args.src_dir
+
     # Create some paths
     my_dir    = os.path.dirname(os.path.realpath(__file__))
     name_file = os.path.join(my_dir, "physical_data", "ElementNames.txt")
+    inc_dir   = os.path.abspath(args.inc)
     src_dir   = os.path.abspath(args.src_dir)
     test_dir  = os.path.abspath(args.test_dir)
 
@@ -201,10 +206,10 @@ def main(args):
         #       atomic_densities version will be replaced by the 
         #       parse_densities() version.
         basis_sets.update(parse_densities(
-            atomic_density_filepaths[extension], sym2Z, extension)
-        )
+            atomic_density_filepaths[extension], sym2Z, extension
+        ))
 
-    write_bases(src_dir, basis_sets)
+    write_bases(inc_dir, src_dir, basis_sets)
 
 def parse_args():
     """Parse command line arguments.
