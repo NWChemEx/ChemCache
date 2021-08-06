@@ -1,6 +1,19 @@
+"""Reads files with atomic densities and write to cpp files.
+
+This script creates the following files based on the include and source
+directories given. The directories are not created by this script and must
+be present before running it.
+
++---include
+|       nwx_atomic_densities.hpp
+|
++---src
+|   \---atomic_densities
+|           add_density.cmake
+|           <all_basis_set_files>
+|       nwx_atomic_densities.cpp
 """
-Reads xml files with atomic densities and write to cpp files
-"""
+
 import argparse
 import os
 import xml.etree.ElementTree as ET
