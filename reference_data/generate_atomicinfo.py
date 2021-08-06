@@ -17,6 +17,15 @@ script:
 - Z the atomic number of an atom
 - Sym the atomic symbol of an atom (e.g. H for hydrogen, He for helium)
  
+This script creates the following files:
+
+chemcache_root
+|
++---src
+|       nwx_periodic_table_pimpl.cpp
+|
++---tests
+|       periodic_table.cpp
 """
 
 class AtomicData:
@@ -372,14 +381,10 @@ def main(args):
     :type args: Namespace
     """
 
-    # Create the destination if possible
-    if (not os.path.exists(args.destination)):
-        os.mkdir(args.destination)
-
     # Get and set some paths
     my_dir    = os.path.dirname(os.path.realpath(__file__))
     data_dir  = os.path.join(my_dir, "physical_data") #Dir w/ files
-    out_dir   = os.path.abspath(args.destination)
+    out_dir   = os.path.abspath(args.src_dir)
     test_dir  = os.path.abspath(args.test_path)
     name_file = os.path.join(data_dir, "ElementNames.txt")
     iso_file  = os.path.join(data_dir, "CIAAW-ISOTOPEMASSES.txt")
@@ -405,8 +410,8 @@ def parse_args():
     """
     parser = argparse.ArgumentParser()
     
-    parser.add_argument('destination', type=str,
-                        help="Destination directory for generated files.")
+    parser.add_argument('src_dir', type=str,
+                        help="Destination directory for generated source files.")
     parser.add_argument('test_path', type=str,
                         help="Destination directory for generated unit tests.")
     parser.add_argument('--amu2me', type=float,
