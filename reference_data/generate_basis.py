@@ -1,12 +1,11 @@
-"""
-This script will loop over a series of basis sets and write out a file that will
-fill them in.  The format of the resulting basis sets is suitable for use with
-the BasisSetExchange class.
+"""This script will loop over a series of basis sets and write out a file 
+that will fill them in.  The format of the resulting basis sets is suitable 
+for use with the BasisSetExchange class.
 
-This script creates the following files:
+This script creates the following files based on the include and source
+directories given. The directories are not created by this script and must
+be present before running it.
 
-chemcache_root
-|
 +---include
 |       nwx_basis_list.hpp
 |
@@ -28,7 +27,7 @@ class Shell:
     """Class representing a shell for an element.
     """
 
-    def __init__(self, ls):
+    def __init__(self, ls, num_format=".10e"):
         """Initialization function.
 
         :param ls: List of angular momenta
@@ -39,6 +38,7 @@ class Shell:
         self.exp=[]
         self.coefs=[]
         self.gen = 0
+        self.number_format = num_format
 
     def add_prim(self, exp, coefs):
         """Add a primitive for the shell.
@@ -62,15 +62,17 @@ class Shell:
         :param fout: C++ source file opened for writing
         :type fout: class: _io.TextIOWrapper
         """
-        
+
         for i in range(self.gen):
             l = self.ls[i]
             fout.write("{}rv.add_shell(ShellType::pure, {},\n".format(tab, l))
             cs = "std::vector<double>{"
             es = "std::vector<double>{"
             for j,ai in enumerate(self.exp):
-                ci = self.coefs[j][i].replace('D', 'E').replace('E', 'e')
-                ai_f = ai.replace('D', 'E').replace('E', 'e')
+                ci = format(float(self.coefs[j][i].replace('D', 'E')
+                    .replace('E', 'e')), self.number_format)
+                ai_f = format(float(ai.replace('D', 'E')
+                    .replace('E', 'e')), self.number_format)
                 cs += ci
                 es += ai_f
                 if j < len(self.exp) - 1:
