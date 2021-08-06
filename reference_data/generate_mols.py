@@ -1,6 +1,12 @@
-"""
-This script will turn each of the xyz files in "molecules" into the C++ commands
-to make said molecule in a source file
+"""This script will read each molecule file in the provided directory
+and generate a C++ source file with commands to make each molecule.
+
+This script creates the following files based on the include and source
+directories given. The directories are not created by this script and must
+be present before running it.
+
++---src
+|       nwx_molecule_manager_pimpl.cpp
 """
 
 import argparse
@@ -11,16 +17,33 @@ from generate_atomicinfo import parse_symbols
 import helper_fxns as helpers
 
 class Molecule:
+    """Representation of a molecule.
+    """
+
     def __init__(self):
         self.carts = []
         self.atoms = []
 
     def add_atom(self, Z, carts):
+        """Adds an atom at the specified cartesian coordinates.
+
+        :param Z: Atomic number
+        :type Z: int
+        :param carts: Cartesian coordinates
+        :type carts: list of float
+        """
+
         self.atoms.append(Z)
         for q in carts:
             self.carts.append(q)
 
     def __repr__(self):
+        """Text representation of the molecule.
+
+        :return: Text representation of the molecule
+        :rtype: str
+        """
+
         rv = ""
         for i, ai in enumerate(self.atoms):
             rv += ai + " "
@@ -29,19 +52,31 @@ class Molecule:
             rv += "\n"
         return rv
 
-    def cxxify(self, tab, f):
+    def cxxify(self, indent, tab, f):
+        """C++ representation of the molecule.
+
+        :param indent: The current indentation
+        :type indent: str
+
+        :param tab: The current tab character
+        :type tab: str
+
+        :param f: Text IO object to output text.
+        :type f: :class:io.TextIOBase
+        """
+
         for i, ai in enumerate(self.atoms):
             f.write(
 """{}mol.push_back(Atom{{mass_t(ptable_.get_atom({}).mass()), {}ul,
-{}cart_t{{""".format(tab, ai, ai, tab + "     "))
+{}cart_t{{""".format(indent, ai, ai, indent + tab*4 + "   "))
             line = ""
-            line = "{}cart_t{{".format(tab + "     ")
+            line = "{}cart_t{{".format(indent + tab*4 + "   ")
             line+="{}, {},".format(self.carts[i*3], self.carts[i*3+1])
             line +=" {}}},".format(self.carts[i*3+2])            
             f.write("{}, {},".format(self.carts[i*3], self.carts[i*3+1]))
             #Write third coordinate on newline to stay under 80 character column limit
             if(len(line)>80):
-                f.write("\n{}{}".format(tab+tab, self.carts[i*3+2]))
+                f.write("\n{}{}".format(indent + tab*6 + "  ", self.carts[i*3+2]))
             else:
                 f.write(" {}".format(self.carts[i*3+2]))
             f.write("}});")
@@ -49,17 +84,73 @@ class Molecule:
                 f.write("\n")
 
 
-def parse_file(file_name, sym2Z, ang2au):
+def parse_molecules_xyz(filepaths, sym2Z, ang2au):
+    """Parses an XYZ formatted molecule file.
+
+    :param file_name: Full paths to molecule files.
+    :type file_name: list of str
+
+    :param sym2Z: Mapping from lowercased atomic symbols to atomic numbers
+    :type sym2Z: dict
+
+    :param ang2au: Ratio of angstroms to atomic units
+    :type ang2au: float
+
+    :return: Molecule parsed from file.
+    :rtype: :class:Molecule
+    """
+
     an_atom = r"^\s*(\S{1,2})((?:\s+-?\d*.\d+)+)"
-    mol = Molecule()
-    with open(file_name, 'r') as f:
-        for l in f:
-            is_match = re.match(an_atom, l)
-            if is_match:
-                (sym, str_carts) = is_match.groups()
-                Z = sym2Z[sym.lower()]
-                mol.add_atom(Z, [float(x)*ang2au for x in str_carts.split()])                
-    return mol
+
+    molecules = {}
+
+    for filepath in filepaths:
+        # Parse each molecule file
+        molecule = Molecule()
+        with open(filepath, 'r') as fin:
+            for line in fin:
+                is_match = re.match(an_atom, line)
+
+                if is_match:
+                    (sym, str_carts) = is_match.groups()
+                    Z = sym2Z[sym.lower()]
+                    molecule.add_atom(
+                        Z, [float(x)*ang2au for x in str_carts.split()]
+                    )
+
+        # Add the molecule to the dictionary of molecules
+        molecule_name = os.path.splitext(os.path.basename(filepath))[0]
+        molecules[molecule_name] = molecule
+
+    return molecules
+
+def parse_molecules(filepaths, sym2Z, ang2au, extension=".xml"):
+    """Parse molecule files of the specified format.
+
+    :param filepaths: Full paths to molecule files.
+    :type filepaths: list of str
+
+    :param sym2Z: Mapping from lowercased atomic symbols to atomic numbers
+    :type sym2Z: dict
+
+    :param ang2au: Ratio of angstroms to atomic units
+    :type ang2au: float
+
+    :param extension: File format extension to parse, defaults to ".xyz"
+    :type extension: str, optional
+
+    :raises RuntimeError: Unsupported atomic density file format.
+
+    :return: Collection of molecules
+    :rtype: dict of :class:Molecule
+    """
+
+    if (extension == ".xyz"):
+        return parse_molecules_xyz(filepaths, sym2Z, ang2au)
+    else:
+        raise RuntimeError(
+            "Unsupported molecule file format: {}".format(extension)
+        )
 
 def print_source(src_dir, mols):
     tab = "    "
@@ -70,9 +161,10 @@ def print_source(src_dir, mols):
  * lost the next time it is generated.
  */
 
-#include \"libchemist/detail_/molecule_manager_pimpl.hpp\"
+#include <libchemist/managers/detail_/molecule_manager_pimpl.hpp>
+#include <stdexcept>
 
-namespace libchemist::detail_ {
+namespace chemcache::detail_ {
 
 class HardCodedMolsPIMPL : public MoleculeManagerPIMPL {
 public:
@@ -93,7 +185,7 @@ private:
         """)
         for mname, m in sorted(mols.items()):
             f.write("if(name == \"{}\") {{\n{}auto mol = Molecule();\n".format(mname, tab*3))
-            m.cxxify(tab*3, f)
+            m.cxxify(tab*3, tab, f)
             f.write("\n{}return mol;\n{}}} else ".format(tab*3,tab*2))
         f.write("\nthrow std::out_of_range(\"Unknown molecule name\");\n")
         f.write(
@@ -104,7 +196,7 @@ std::unique_ptr<MoleculeManagerPIMPL> nwx_default_mols() {
     return std::make_unique<HardCodedMolsPIMPL>();
 }
 
-} // namespace libchemist::detail_
+} // namespace chemcache::detail_
 """)
 
 
@@ -137,10 +229,14 @@ def main(args):
 
     molecules = {}
     for extension in extensions:
-        for filepath in molecule_filepaths[extension]:
-            molecule = os.path.splitext(os.path.basename(filepath))[0]
-
-            molecules[molecule] = parse_file(filepath, sym2Z, args.ang2au)
+        # NOTE: Extension order CAN matter!
+        #       If the same molecule exists in `molecules`
+        #       and the new dict returned from `parse_molecules()`, the 
+        #       `molecules` version will be replaced by the 
+        #       `parse_molecules()` version.
+        molecules.update(parse_molecules(
+            molecule_filepaths[extension], sym2Z, args.ang2au, extension
+        ))
     
     print_source(src_dir, molecules)
 
