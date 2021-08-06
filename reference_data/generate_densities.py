@@ -1,9 +1,12 @@
 """
 Reads xml files with atomic densities and write to cpp files
 """
+import argparse
 import os
 import xml.etree.ElementTree as ET
+
 from generate_atomicinfo import parse_symbols
+import helper_fxns as helpers
 
 def print_pimpl_header(f):
     f.write(
@@ -78,19 +81,6 @@ def print_atom_basis(f, z, density):
         f.write("},\n")
     f.write("{}}}; //End atomic density\n{}}} //End case\n".format(tab*3, tab*2))
 
-def sanitize_name(bs_name):
-    temp = bs_name.replace("6-", "six_dash_")
-    temp = temp.replace("3-", "three_dash_")
-    temp = temp.replace("-", "_dash_")
-    temp = temp.replace("-", "_dash_")
-    temp = temp.replace("+", "_plus_")
-    return temp
-
-def desanitize_name(bs_name):
-    temp = bs_name.replace("_star", "*")
-    temp = temp.replace("-", "-")
-    return temp
-
 def write_bases(out_dir, bases):
     tab = "    "
     with open(os.path.join(out_dir,"nwx_atomic_densities.cpp"),'w') as f:
@@ -99,8 +89,8 @@ def write_bases(out_dir, bases):
             print_basis_list(g)
             f.write("{}".format(tab*2))
             for bs_name, bs in sorted(bases.items()):
-                s_name = sanitize_name(bs_name)
-                d_name = desanitize_name(bs_name)
+                s_name = helpers.sanitize_basis_name(bs_name)
+                d_name = helpers.desanitize_basis_name(bs_name)
                 f.write("if(name == \"{}\") {{ ".format(d_name))
                 f.write("return {}_density(Z); ".format(s_name))
                 g.write("std::vector<std::vector<double>> {}_density(std::size_t Z);\n".format(s_name))
@@ -120,28 +110,131 @@ def write_bases(out_dir, bases):
             f.write("    defaults/atomic_densities/{}.cpp\n".format(bs_name))
         f.write(")")
 
-def parse_bases(basis_sets, sym2Z):
-    bases = {}
-    for bs in basis_sets:
-        bases[bs] = {}
-        root = ET.parse(os.path.join("atomic_densities","default",bs+".xml"))
+def parse_densities_xml(filepaths, sym2Z):
+    """Parse atomic density files in XML format.
+
+    :param filepaths: Full paths to atomic density files.
+    :type filepaths: list of str
+
+    :param sym2Z: Mapping from lowercased atomic symbols to atomic numbers
+    :type sym2Z: dict
+    
+    :return: Collection of atomic densities sorted by basis set and element
+    :rtype: dict
+    """
+
+    basis_sets = {}
+    for filepath in filepaths:
+        basis_set = os.path.splitext(os.path.basename(filepath))[0]
+
+        basis_sets[basis_set] = {}
+
+        root = ET.parse(filepath)
+
         for atom in root.findall('atomicguess'):
             atom_z = sym2Z[atom.get('symbol').lower()]
-            bases[bs][atom_z] = atom.find('guessdensitymatrix').text
-    return bases
 
-def main():
+            basis_sets[basis_set][atom_z] = atom.find(
+                'guessdensitymatrix'
+            ).text
 
-    basis_sets = [f.replace(".xml","") for f in os.listdir("atomic_densities/default") if os.path.isfile(os.path.join("atomic_densities","default",f))]
-    my_dir = os.path.dirname(os.path.realpath(__file__))
-    out_dir = os.path.join(os.path.dirname(my_dir), "libchemist",
-                           "defaults")
-    atoms = parse_symbols(os.path.join(my_dir, "physical_data",
-                                       "ElementNames.txt"), {})
+    return basis_sets
+
+def parse_densities(filepaths, sym2Z, extension=".xml"):
+    """Parse atomic density files of the specified format.
+
+    :param filepaths: Full paths to atomic density files.
+    :type filepaths: list of str
+
+    :param sym2Z: Mapping from lowercased atomic symbols to atomic numbers
+    :type sym2Z: dict
+
+    :param extension: File format extension to parse, defaults to".xml"
+    :type extension: str, optional
+
+    :raises RuntimeError: Unsupported atomic density file format.
+
+    :return: Collection of atomic densities sorted by basis set and element
+    :rtype: dict
+    """
+
+    if (extension == ".xml"):
+        return parse_densities_xml(filepaths, sym2Z)
+    else:
+        raise RuntimeError(
+            "Unsupported atomic density file format: {}".format(extension)
+        )
+
+def main(args):
+    """Entry point function to generate atomic density files.
+
+    :param args: Command line argument namespace
+    :type args: Namespace
+    """
+
+    extensions = [ ".xml" ]
+
+    # Create some paths
+    my_dir    = os.path.dirname(os.path.realpath(__file__))
+    name_file = os.path.join(my_dir, "physical_data", "ElementNames.txt")
+    src_dir   = os.path.abspath(args.src_dir)
+    test_dir  = os.path.abspath(args.test_dir)
+
+    # Discover atomic density files
+    atomic_density_dir = os.path.abspath(args.atomic_density_dir)
+    atomic_density_filepaths = helpers.find_files(
+        atomic_density_dir, extensions, args.recursive
+    )
+
+    # Parse element information
+    atoms = {}
+    parse_symbols(name_file, atoms)
+
     sym2Z = {ai.sym.lower() : ai.Z for ai in atoms.values()}
-    bases = parse_bases(basis_sets, sym2Z)
-    write_bases(out_dir, bases)
 
+    # Gather atomic densities
+    basis_sets = {}
+    for extension in extensions:
+        # NOTE: Extension order CAN matter!
+        #       If the same basis set exists in atomic_densities
+        #       and the new dict returned from parse_densities(), the 
+        #       atomic_densities version will be replaced by the 
+        #       parse_densities() version.
+        basis_sets.update(parse_densities(
+            atomic_density_filepaths[extension], sym2Z, extension)
+        )
+
+    write_bases(src_dir, basis_sets)
+
+def parse_args():
+    """Parse command line arguments.
+
+    :return: Values of command line arguments.
+    :rtype: Namespace
+    """
+    
+    parser = argparse.ArgumentParser()
+    
+    parser.add_argument('atomic_density_dir', type=str,
+                        help="""Source directory for basis set files. If combined
+                             with the \"-r\" flag, this directory will be
+                             recursively searched for basis sets.""")
+    parser.add_argument('src_dir', type=str,
+                        help="Destination directory for generated source files.")
+    parser.add_argument('test_dir', type=str,
+                        help="Destination directory for generated unit tests.")
+
+    parser.add_argument('-i', '--inc', type=str,
+                        default="",
+                        help="""Destination include directory, if different 
+                             than the required \"destination\" argument.""")
+    parser.add_argument('-r', '--recursive', action="store_true",
+                        help="""Toggle on recursive search through the basis 
+                             set source directory. Default OFF.""")
+
+    return parser.parse_args()
 
 if __name__ == "__main__":
-    main()
+    args = parse_args()
+
+    main(args)
