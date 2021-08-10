@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """This script will read each molecule file in the provided directory
 and generate a C++ source file with commands to make each molecule.
 

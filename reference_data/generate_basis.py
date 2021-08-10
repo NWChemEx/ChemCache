@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """This script will loop over a series of basis sets and write out a file 
 that will fill them in.  The format of the resulting basis sets is suitable 
 for use with the BasisSetExchange class.

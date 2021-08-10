@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+"""This is an incomplete docstring for this script.
+"""
+
 import argparse
 import os # for os.path manipulation
 import requests

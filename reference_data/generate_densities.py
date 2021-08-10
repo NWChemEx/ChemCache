@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Reads files with atomic densities and write to cpp files.
 
 This script creates the following files based on the include and source

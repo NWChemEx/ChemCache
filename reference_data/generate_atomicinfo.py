@@ -1,7 +1,4 @@
-# #!/usr/bin/env python3
-import argparse
-import os
-import re
+#!/usr/bin/env python3
 
 """This script is used to create the experimental data look up tables for the
 atom class.
@@ -27,6 +24,10 @@ chemcache_root
 +---tests
 |       periodic_table.cpp
 """
+
+import argparse
+import os
+import re
 
 class AtomicData:
     def __init__(self):
