@@ -138,15 +138,3 @@ def write_header(io, script_name, nmspace="libchemist"):
 def write_footer(io, nmspace="libchemist"):
     io.write("    return rv;\n")
     io.write("}}\n}} // End namespace {}\n".format(nmspace))
-
-if __name__ == "__main__":
-    import io
-
-    print("Creating io.StringIO")
-    sout = io.StringIO()
-
-    write_warning(sout, "----------")
-
-    print(sout.getvalue(), end='')
-
-    sout.close()
