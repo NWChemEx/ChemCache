@@ -477,7 +477,7 @@ def parse_args():
     :rtype: Namespace
     """
     
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description=__doc__)
     
     parser.add_argument('basis_set_source', type=str,
                         help="""Source directory for basis set files. If combined

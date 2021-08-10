@@ -249,7 +249,7 @@ def parse_args():
     :rtype: Namespace
     """
     
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description=__doc__)
     
     parser.add_argument('molecule_dir', type=str,
                         help="""Source directory for molecule files. If 

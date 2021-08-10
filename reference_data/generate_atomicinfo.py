@@ -409,7 +409,7 @@ def parse_args():
     :return: Values of command line arguments.
     :rtype: Namespace
     """
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description=__doc__)
     
     parser.add_argument('src_dir', type=str,
                         help="Destination directory for generated source files.")
