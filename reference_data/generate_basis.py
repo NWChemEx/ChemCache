@@ -90,10 +90,10 @@ def print_pimpl_header(f):
     helpers.write_warning(f, os.path.basename(__file__))
 
     f.write(
-"""#include <libchemist/detail_/basis_set_manager_pimpl.hpp>
+"""#include <libchemist/managers/detail_/basis_set_manager_pimpl.hpp>
 #include \"chemcache/nwx_basis_list.hpp\"
         
-namespace chemcache::basis_set::detail_ {
+namespace chemcache::detail_ {
        
 class HardCodedBSMan : public BasisSetManagerPIMPL {
 public:
@@ -120,7 +120,7 @@ std::unique_ptr<BasisSetManagerPIMPL> nwx_default_bs() {
     return std::make_unique<HardCodedBSMan>();
 }
         
-} // namespace chemcache::basis_set::detail_
+} // namespace chemcache::detail_
 """)
 
 def print_basis_header(f, bs_name):
@@ -129,7 +129,7 @@ def print_basis_header(f, bs_name):
     f.write(
 """#include \"chemcache/nwx_basis_list.hpp\"
  
-namespace chemcache::basis_set {{
+namespace chemcache::detail_ {{
  
 Center<double> {}(std::size_t Z) {{
     switch(Z) {{         
@@ -141,7 +141,7 @@ def print_basis_list(f):
     f.write(
 """#include <libchemist/basis_set/basis_set.hpp>
 
-namespace chemcache::basis_set {
+namespace chemcache::detail_ {
 
 """)
 
@@ -152,7 +152,7 @@ def print_basis_footer(f):
 {}throw std::out_of_range(\"Basis not available for Z\");
 {}}}\n{}}} // end switch\n
 }} //end function
-}} //end namespace chemcache::basis_set""".format(tab*2, tab*3, tab*2, tab))
+}} //end namespace chemcache::detail_""".format(tab*2, tab*3, tab*2, tab))
 
 def print_atom_basis(f, z, atom):
     tab = "    "

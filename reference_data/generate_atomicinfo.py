@@ -303,8 +303,9 @@ def write_tests(out_dir, amu2me, atoms):
         helpers.write_warning(fout, os.path.basename(__file__))
 
         fout.write(
-"""#include <libchemist/PeriodicTable.hpp>
-#include <catch/catch.hpp>
+"""#include <catch/catch.hpp>
+
+#include <libchemist/managers/periodic_table.hpp>
 
 using namespace libchemist;
 using size_type = typename PeriodicTable::size_type;

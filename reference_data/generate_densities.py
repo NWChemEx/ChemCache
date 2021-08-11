@@ -27,12 +27,12 @@ def print_pimpl_header(f):
     helpers.write_warning(f, os.path.basename(__file__))
 
     f.write(
-"""
-#include \"libchemist/defaults/NWXAtomicDensities.hpp\"
-#include <string>
+"""#include <string>
 #include <stdexcept>
 
-namespace libchemist::detail_ {
+#include \"chemcache/nwx_atomic_densities.hpp\"
+
+namespace chemcache::detail_ {
             
     std::vector<std::vector<double>> get_atomic_density_(const std::string& name, std::size_t Z) {         
 """)
@@ -42,17 +42,18 @@ def print_pimpl_footer(f):
 """throw std::out_of_range(\"Basis not available for SAD guess\");
     }//end get_atomic_density_
      
-} // namespace libchemist::detail_
+} // namespace chemcache::detail_
 """)
 
 def print_basis_header(f, bs_name):
     helpers.write_warning(f, os.path.basename(__file__))
 
     f.write(
-"""#include \"libchemist/defaults/NWXAtomicDensities.hpp\"
-#include <stdexcept>
+"""#include <stdexcept>
  
-namespace libchemist::detail_ {{
+#include \"chemcache/nwx_atomic_densities.hpp\"
+
+namespace chemcache::detail_ {{
  
 std::vector<std::vector<double>> {}_density(std::size_t Z) {{
     switch(Z) {{         
@@ -65,7 +66,7 @@ def print_basis_list(f):
 """#pragma once
 #include <vector>
          
-namespace libchemist::detail_ {
+namespace chemcache::detail_ {
 """)
 
 def print_basis_footer(f):
@@ -75,7 +76,7 @@ def print_basis_footer(f):
 {}throw std::out_of_range(\"Atomic density not available for Z\");
 {}}}\n{}}} // end switch\n
 }} //end function
-}} //end libchemist::detail_""".format(tab*2, tab*3, tab*2, tab))
+}} //end chemcache::detail_""".format(tab*2, tab*3, tab*2, tab))
 
 def print_atom_basis(f, z, density):
     tab = "    "
@@ -114,7 +115,7 @@ def write_bases(inc_dir, src_dir, bases):
     with open(os.path.join(src_dir,"atomic_densities", "add_density.cmake"), "w") as f:
         helpers.write_warning(f, os.path.basename(__file__), prefix = "# ")
 
-        f.write("set(LIBCHEMIST_DENSITY_SOURCE\n")
+        f.write("set(CHEMCACHE_DENSITY_SOURCE\n")
         for bs_name, bs in sorted(bases.items()):
             f.write("    defaults/atomic_densities/{}.cpp\n".format(bs_name))
         f.write(")")
