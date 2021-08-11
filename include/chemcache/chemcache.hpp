@@ -19,8 +19,25 @@
  */
 namespace chemcache {
 
+/**
+ * @brief Creates a basis set manager with NWX default basis sets pre-loaded
+ * 
+ * @return libchemist::BasisSetManager Basis set manager with defaults loaded
+ */
 libchemist::BasisSetManager nwx_basis_set_manager();
+
+/**
+ * @brief Creates a molecule manager with default molecules pre-loaded
+ * 
+ * @return libchemist::MoleculeManager Molecule manager with defaults loaded
+ */
 libchemist::MoleculeManager nwx_molecule_manager();
+
+/**
+ * @brief Creates a periodic table object with default elements pre-loaded
+ * 
+ * @return libchemist::PeriodicTable Periodic table with defaults loaded
+ */
 libchemist::PeriodicTable nwx_periodic_table();
 
 } // namespace chemcache
