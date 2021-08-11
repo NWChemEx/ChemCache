@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-"""This is an incomplete docstring for this script.
+"""This script uses a web scraper to download all basis sets from the Basis 
+Set Exchange (BSE) in the specified output format. 
 """
 
 import argparse
@@ -110,6 +111,7 @@ class BSEBasisSetScraper:
             basis set file.
         :rtype: tuple
         """
+        
         self.validate_basis_set_name(basis_name)
 
         # Let the user know that the download has started
@@ -147,6 +149,7 @@ class BSEBasisSetScraper:
         :return: Collection of basis set names
         :rtype: list
         """
+
         # Let the user know that the download has started
         print("Downloading BSE basis set list...", end='')
         # Print immediately
@@ -169,6 +172,7 @@ class BSEBasisSetScraper:
         :return: Collection of format names
         :rtype: list
         """
+
         # Let the user know that the download has started
         print("Downloading BSE format list...", end='')
         # Print immediately
@@ -256,7 +260,7 @@ class BSEBasisSetScraper:
         if (not format.lower() in self.valid_formats):
             raise RuntimeError("Invalid format option: {}".format(format))
 
-def write_basis_set(basis_name, basis_data, extension):
+def write_basis_set(destination, basis_name, basis_data, extension):
     """Write the basis set out to a file.
 
     :param basis_name: Name of the basis set.
@@ -269,12 +273,13 @@ def write_basis_set(basis_name, basis_data, extension):
         '.' separator if one is needed.
     :type extension: str
     """
+
     # Let the user know that the writing has started
     print("Writing {} to disk...".format(basis_name), end='')
     # Print immediately
     sys.stdout.flush()
 
-    basis_path = os.path.join(args.destination, basis_name + extension)
+    basis_path = os.path.join(destination, basis_name + extension)
     with open(basis_path,'w') as fout:
         fout.write(basis_data)
 
@@ -297,7 +302,8 @@ def main(args):
     for name in scraper.valid_basis_sets:
         clean_name, text = scraper.download_basis_set(name)
 
-        write_basis_set(clean_name, text, scraper.get_extension())
+        write_basis_set(args.destination, clean_name, text, 
+                        scraper.get_extension())
 
         print("---")
 
