@@ -16,11 +16,6 @@
 .idea/
 .vscode/
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
 # These are common Python virtual enviornment directory names
 venv/
 docs/venv/
@@ -41,22 +36,3 @@ Release/
 
 # Users commonly store their specific CMake settings in a toolchain file
 toolchain.cmake
-
-# Ignore basis set files
-**/*.acesii
-**/*.bas
-**/*.bdf
-**/*.bse
-**/*.c4bas
-**/*.cp2k
-**/*.d2k
-**/*.dalton
-**/*.gbs
-**/*.json
-**/*.molcas
-**/*.mpro
-**/*.nw
-**/*.orca
-**/*.pqs
-**/*.qchem
-**/*.tm
