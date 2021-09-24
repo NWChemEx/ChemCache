@@ -240,89 +240,6 @@ void load_elements(libchemist::PeriodicTable& pt) {
         )
 
 
-def write_tests(out_dir: str, amu2me: float, atoms: dict) -> None:
-    """Generate unit tests for the load_elements function.
-
-    :param out_dir: Output directory for the generated header file.
-    :type out_dir: str
-
-    :param amu2me: Ratio of mass of electron to a Dalton.
-    :type amu2me: float
-
-    :param atoms: Collection of atoms.
-    :type atoms: dict of :class:`AtomicData`
-    """
-
-    sorted_keys = sorted([int(x) for x in atoms.keys()])
-    max_Z = sorted_keys[-1]
-
-    out_file = os.path.join(out_dir, "load_elements.cpp")
-    tab = "    "
-    with open(out_file, 'w') as fout:
-        helpers.write_warning(fout, os.path.basename(__file__))
-
-        # Write out header information and define the test
-        fout.write(
-            """#include <catch2/catch.hpp>
-
-#include <libchemist/libchemist.hpp>
-#include <chemcache/chemcache.hpp>
-
-using namespace libchemist;
-using namespace chemcache;
-using size_type = typename PeriodicTable::size_type;
-using isotope_list = typename PeriodicTable::isotope_list;
-
-void test_ptable(const PeriodicTable& ptable);
-
-TEST_CASE("load_elements") {
-    PeriodicTable pt;
-
-    SECTION("Load data into PeriodicTable") {
-        load_elements(pt);
-
-        test_ptable(pt);  
-    }
-}
-
-inline void test_ptable(const PeriodicTable& ptable) {
-""")
-
-        # Test the max Z
-        fout.write("{}REQUIRE(ptable.max_Z() == {});\n\n".format(tab, max_Z))
-
-        # Test each element's atom and isotope list
-        for Z in range(1, max_Z + 1):
-            ai = atoms[str(Z)]
-
-            # Indicate which Z is being handled
-            fout.write("{}// Z = {}\n".format(tab, Z))
-
-            fout.write("{}REQUIRE(ptable.get_atom({}) == Atom{{{}, \"{}\", "
-                       "{}ul}});\n".format(tab, Z, ai.mass*amu2me, ai.sym, Z))
-            fout.write("{}REQUIRE(ptable.sym_2_Z(\"{}\") == {});\n".format(
-                tab, ai.sym, Z))
-            fout.write("{}REQUIRE(ptable.isotopes({}) == isotope_list{{"
-                       "".format(tab, Z))
-            sorted_mn = sorted([int(mn) for mn in ai.isotopes])
-
-            for mn in sorted_mn:
-                fout.write("{}, ".format(mn))
-
-            fout.write("});\n")
-
-            for mn in sorted_mn:
-                mi = ai.isotope_masses[str(mn)]*amu2me
-                fout.write("    REQUIRE(ptable.get_isotope({}, {}) == Atom{{{}ul, "
-                           "\"{}\", {}}});\n".format(Z, mn, Z, ai.sym, mi))
-
-            # White space between atomic numbers being handled
-            fout.write("\n")
-
-        # Close the function
-        fout.write("} // function test_ptable\n")
-
-
 def main(args: argparse.Namespace):
     """Entry point function to generate atomic info files.
 
@@ -348,7 +265,6 @@ def main(args: argparse.Namespace):
     parse_ciaww_mass(mass_file, atoms)
 
     write_load_elements(out_dir, args.amu2me, atoms)
-    write_tests(test_dir, args.amu2me, atoms)
 
 
 def parse_args():
