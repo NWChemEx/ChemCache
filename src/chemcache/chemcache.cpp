@@ -1,7 +1,7 @@
 /**
  * @file chemcache.cpp
  *
- * @brief Implementation of chemcache.hpp API.
+ * @brief Implementation of chemcache.hpp API
  */
 
 #include "chemcache/chemcache.hpp"
@@ -9,18 +9,24 @@
 namespace chemcache {
 
 libchemist::BasisSetManager nwx_basis_set_manager() {
-    // TODO: Update with chemcache defaults
-    return libchemist::BasisSetManager();
+    libchemist::BasisSetManager bsm;
+    load_basis_sets(bsm);
+
+    return bsm;
 }
 
 libchemist::MoleculeManager nwx_molecule_manager() {
-    // TODO: Update with chemcache defaults
-    return libchemist::MoleculeManager();
+    libchemist::MoleculeManager mm;
+    load_molecules(mm);
+
+    return mm;
 }
 
 libchemist::PeriodicTable nwx_periodic_table() {
-    // TODO: Update with chemcache defaults
-    return libchemist::PeriodicTable();
+    libchemist::PeriodicTable pt;
+    load_elements(pt);
+
+    return pt;
 }
 
 } // namespace chemcache
