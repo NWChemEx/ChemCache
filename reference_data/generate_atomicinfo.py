@@ -8,7 +8,7 @@ Modified by: Zachery Crandall
 
 In order to run, this script needs to know the location of the data directory
 to read from and the `src` code directory to output the result into. One can 
-also optionally provide a nondefault conversion electron mass to one Dalton.
+also optionally provide a nondefault value for the electron mass to Dalton ratio.
 
 For readability and convenience we use a few abbreviations throughout this
 script:
