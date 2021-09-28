@@ -99,6 +99,11 @@ def sanitize_basis_name(bs_name):
     temp = temp.replace("-", "_dash_")
     temp = temp.replace("-", "_dash_")
     temp = temp.replace("+", "_plus_")
+    temp = temp.replace(",", "_comma_")
+    temp = temp.replace("(", "_oparen_")
+    temp = temp.replace(")", "_cparen_")
+    temp = temp.replace("!", "_exclamation_")
+    temp = temp.replace("?", "_question_")
 
     return temp
 
