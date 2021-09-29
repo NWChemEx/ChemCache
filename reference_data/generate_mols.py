@@ -8,7 +8,7 @@ directories given. The directories are not created by this script and must
 be present before running it.
 
 +---src
-|       nwx_molecule_manager_pimpl.cpp
+|       load_molecules.cpp
 """
 
 import argparse
@@ -18,15 +18,16 @@ import re
 from generate_atomicinfo import parse_symbols
 import helper_fxns as helpers
 
+
 class Molecule:
     """Representation of a molecule.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.carts = []
         self.atoms = []
 
-    def add_atom(self, Z, carts):
+    def add_atom(self, Z: int, carts: list) -> None:
         """Adds an atom at the specified cartesian coordinates.
 
         :param Z: Atomic number
@@ -39,7 +40,7 @@ class Molecule:
         for q in carts:
             self.carts.append(q)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Text representation of the molecule.
 
         :return: Text representation of the molecule
@@ -54,39 +55,40 @@ class Molecule:
             rv += "\n"
         return rv
 
-    def cxxify(self, indent, tab, f):
+    def cxxify(self, fout, indent: str, tab: str = "    ") -> None:
         """C++ representation of the molecule.
+
+        :param fout: Text IO object to output text.
+        :type fout: :class:io.TextIOBase
 
         :param indent: The current indentation
         :type indent: str
 
         :param tab: The current tab character
         :type tab: str
-
-        :param f: Text IO object to output text.
-        :type f: :class:io.TextIOBase
         """
 
         for i, ai in enumerate(self.atoms):
-            f.write(
-"""{}mol.push_back(Atom{{mass_t(ptable_.get_atom({}).mass()), {}ul,
+            fout.write(
+                """{}mol.push_back(Atom{{mass_t(ptable_.get_atom({}).mass()), {}ul,
 {}cart_t{{""".format(indent, ai, ai, indent + tab*4 + "   "))
             line = ""
             line = "{}cart_t{{".format(indent + tab*4 + "   ")
-            line+="{}, {},".format(self.carts[i*3], self.carts[i*3+1])
-            line +=" {}}},".format(self.carts[i*3+2])            
-            f.write("{}, {},".format(self.carts[i*3], self.carts[i*3+1]))
-            #Write third coordinate on newline to stay under 80 character column limit
-            if(len(line)>80):
-                f.write("\n{}{}".format(indent + tab*6 + "  ", self.carts[i*3+2]))
+            line += "{}, {},".format(self.carts[i*3], self.carts[i*3+1])
+            line += " {}}},".format(self.carts[i*3+2])
+            fout.write("{}, {},".format(self.carts[i*3], self.carts[i*3+1]))
+            # Write third coordinate on newline to stay under 80 character column limit
+            if(len(line) > 80):
+                fout.write("\n{}{}".format(
+                    indent + tab*6 + "  ", self.carts[i*3+2]))
             else:
-                f.write(" {}".format(self.carts[i*3+2]))
-            f.write("}});")
-            if i != len(self.atoms) -1:
-                f.write("\n")
+                fout.write(" {}".format(self.carts[i*3+2]))
+            fout.write("}});")
+            if i != len(self.atoms) - 1:
+                fout.write("\n")
 
 
-def parse_molecules_xyz(filepaths, sym2Z, ang2au):
+def parse_molecules_xyz(filepaths: list, sym2Z: dict, ang2au: float) -> Molecule:
     """Parses an XYZ formatted molecule file.
 
     :param file_name: Full paths to molecule files.
@@ -126,7 +128,9 @@ def parse_molecules_xyz(filepaths, sym2Z, ang2au):
 
     return molecules
 
-def parse_molecules(filepaths, sym2Z, ang2au, extension=".xml"):
+
+def parse_molecules(filepaths: list, sym2Z: dict, ang2au: float, 
+                    extension: str = ".xyz") -> dict:
     """Parse molecule files of the specified format.
 
     :param filepaths: Full paths to molecule files.
@@ -154,13 +158,14 @@ def parse_molecules(filepaths, sym2Z, ang2au, extension=".xml"):
             "Unsupported molecule file format: {}".format(extension)
         )
 
-def print_source(src_dir, mols):
-    tab = "    "
+
+def print_source(src_dir: str, mols: dict, tab: str = "    ") -> None:
+
     with open(os.path.join(src_dir, "nwx_molecule_manager_pimpl.cpp"), 'w') as f:
         helpers.write_warning(f, os.path.basename(__file__))
 
         f.write(
-"""#include <libchemist/managers/detail_/molecule_manager_pimpl.hpp>
+            """#include <libchemist/managers/detail_/molecule_manager_pimpl.hpp>
 #include <stdexcept>
 
 namespace chemcache::detail_ {
@@ -183,12 +188,13 @@ private:
         using mass_t = typename Atom::mass_type;
         """)
         for mname, m in sorted(mols.items()):
-            f.write("if(name == \"{}\") {{\n{}auto mol = Molecule();\n".format(mname, tab*3))
+            f.write(
+                "if(name == \"{}\") {{\n{}auto mol = Molecule();\n".format(mname, tab*3))
             m.cxxify(tab*3, tab, f)
-            f.write("\n{}return mol;\n{}}} else ".format(tab*3,tab*2))
+            f.write("\n{}return mol;\n{}}} else ".format(tab*3, tab*2))
         f.write("\nthrow std::out_of_range(\"Unknown molecule name\");\n")
         f.write(
-"""    } // end at_
+            """    } // end at_
 };    // end HardCodedMolsPIMPL
 
 std::unique_ptr<MoleculeManagerPIMPL> nwx_default_mols() {
@@ -199,20 +205,20 @@ std::unique_ptr<MoleculeManagerPIMPL> nwx_default_mols() {
 """)
 
 
-def main(args):
+def main(args: argparse.Namespace) -> None:
     """Entry point function to generate atomic density files.
 
     :param args: Command line argument namespace
     :type args: Namespace
     """
 
-    extensions = [ ".xyz" ]
+    extensions = [".xyz"]
 
     # Create some paths
-    my_dir    = os.path.dirname(os.path.realpath(__file__))
+    my_dir = os.path.dirname(os.path.realpath(__file__))
     name_file = os.path.join(my_dir, "physical_data", "ElementNames.txt")
-    src_dir   = os.path.abspath(args.src_dir)
-    test_dir  = os.path.abspath(args.test_dir)
+    src_dir = os.path.abspath(args.src_dir)
+    test_dir = os.path.abspath(args.test_dir)
 
     # Discover molecule files
     molecule_dir = os.path.abspath(args.molecule_dir)
@@ -224,30 +230,31 @@ def main(args):
     atoms = {}
     parse_symbols(name_file, atoms)
 
-    sym2Z = {ai.sym.lower() : ai.Z for ai in atoms.values()}
+    sym2Z = {ai.sym.lower(): ai.Z for ai in atoms.values()}
 
     molecules = {}
     for extension in extensions:
         # NOTE: Extension order CAN matter!
         #       If the same molecule exists in `molecules`
-        #       and the new dict returned from `parse_molecules()`, the 
-        #       `molecules` version will be replaced by the 
+        #       and the new dict returned from `parse_molecules()`, the
+        #       `molecules` version will be replaced by the
         #       `parse_molecules()` version.
         molecules.update(parse_molecules(
             molecule_filepaths[extension], sym2Z, args.ang2au, extension
         ))
-    
+
     print_source(src_dir, molecules)
 
-def parse_args():
+
+def parse_args() -> argparse.Namespace:
     """Parse command line arguments.
 
     :return: Values of command line arguments.
     :rtype: Namespace
     """
-    
+
     parser = argparse.ArgumentParser(description=__doc__)
-    
+
     parser.add_argument('molecule_dir', type=str,
                         help="""Source directory for molecule files. If 
                              combined with the \"-r\" flag, this directory 
@@ -266,6 +273,7 @@ def parse_args():
                              set source directory. Default OFF.""")
 
     return parser.parse_args()
+
 
 if __name__ == "__main__":
     args = parse_args()
