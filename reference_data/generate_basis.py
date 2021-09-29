@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-"""This script will loop over a series of basis sets and write out a file 
-that will fill them in. The format of the resulting basis sets is suitable 
+"""This script will loop over a series of basis sets and write out a file
+that will fill them in. The format of the resulting basis sets is suitable
 for use with the BasisSetExchange class.
 
 This script creates the following files based on the include and source
@@ -11,6 +11,7 @@ be present before running it.
 +---src_dir
 |   \---bases
 |           <all_basis_set_files>
+|       basis_set_list.hpp
 |       load_basis_sets.cpp
 """
 
@@ -115,16 +116,84 @@ def print_atom_basis(fout: io._io.TextIOWrapper, bs_name: str, z: int,
     :type tab: str, optional
     """
 
-    fout.write("{}basis_map.at(\"{}\").emplace({}, ".format(tab, bs_name, z))
+    fout.write("{}basis_map.emplace({}, ".format(tab, z))
     fout.write("libchemist::Center<double>(0.0, 0.0, 0.0));\n\n")
 
-    center = "basis_map.at(\"{}\").at({})".format(bs_name, z)
+    center = "basis_map.at({})".format(z)
 
     for shell in basis:
         shell.cxxify(fout, center, tab)
 
 
-def write_bases(src_dir: str, bases: dict, tab: str = "    ") -> None:
+def write_basis_files(out_file: str, bs_name: str, basis_set: dict,
+                      tab: str = "    ") -> None:
+
+    with open(out_file, 'w') as fout:
+        helpers.write_warning(fout, os.path.basename(__file__))
+        s_name = helpers.sanitize_basis_name(bs_name)
+
+        # Start of the file
+        fout.write(
+            """#include "../basis_set_list.hpp"
+# include <libchemist/libchemist.hpp>
+
+namespace chemcache::basis_sets {{
+
+void load_{}(libchemist::BasisSetManager& bsm) {{
+{}libchemist::BasisSetManager::ao_basis_map basis_map;
+
+""".format(s_name, tab)
+        )
+
+        # Write each atomic basis in a basis set
+        for z in sorted([int(x) for x in basis_set.keys()]):
+            # Comment basis set name and atomic number being handled
+            fout.write("{}// Z = {}\n".format(tab, z))
+
+            print_atom_basis(fout, bs_name, z, basis_set[str(z)], tab)
+
+            # White space between bases
+            fout.write("\n")
+
+        # White space between basis sets
+        fout.write("\n")
+
+        # End the file
+        fout.write("""{}bsm.insert(\"{}\", basis_map);
+}} // function load_{}
+
+}} // namespace chemcache::basis_sets
+""".format(tab, bs_name, s_name)
+        )
+
+
+def write_basis_list(src_dir: str, bases: dict, tab="    ") -> None:
+    # Write out the basis list file
+    basis_list_file = os.path.join(src_dir, "basis_set_list.hpp")
+    with open(basis_list_file, 'w') as fout:
+        helpers.write_warning(fout, os.path.basename(__file__))
+
+        # Start of the file the load_basis_file
+        fout.write(
+            """#include <libchemist/libchemist.hpp>
+
+namespace chemcache::basis_sets {
+
+"""
+        )
+
+        # Create function declarations for load_<basis_name> functions
+        for bs_name, _ in sorted(bases.items()):
+            # Make call to load basis set into bsm
+            fout.write(
+                "void load_{}(libchemist::BasisSetManager& bsm);\n"
+                .format(helpers.sanitize_basis_name(bs_name)))
+
+        # End of the file
+        fout.write("\n} // namespace chemcache")
+
+
+def write_bases(src_dir: str, bases: dict, tab="    ") -> None:
     """Writes basis set data to C++ files.
 
     :param src_dir: Source directory for source files.
@@ -134,34 +203,30 @@ def write_bases(src_dir: str, bases: dict, tab: str = "    ") -> None:
     :type bases: dict
     """
 
-    out_file = os.path.join(src_dir, "load_basis_sets.cpp")
-    with open(out_file, 'w') as fout:
+    load_basis_file = os.path.join(src_dir, "load_basis_sets.cpp")
+    with open(load_basis_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
 
-        # Start of the file
+        # Start of the file the load_basis_file
         fout.write(
             """#include "chemcache/chemcache.hpp"
+#include "./basis_set_list.hpp"
 #include <libchemist/libchemist.hpp>
 
-namespace chemcache {{
+namespace chemcache {
 
-void load_basis_sets(libchemist::BasisSetManager& bsm) {{
-{0}libchemist::BasisSetManager::ao_basis_map basis_map;
-
-""".format(tab)
+void load_basis_sets(libchemist::BasisSetManager& bsm) {
+"""
         )
 
         # Add basis sets
         for bs_name, basis_set in sorted(bases.items()):
-            # Write each atomic basis in a basis set
-            for z in sorted([int(x) for x in basis_set.keys()]):
-                # Comment basis set name and atomic number being handled
-                fout.write("{}// {}; Z = {}\n".format(tab, bs_name, z))
+            # Make call to load basis set into bsm
+            fout.write("{}basis_sets::load_{}(bsm);"
+                       .format(tab, helpers.sanitize_basis_name(bs_name)))
 
-                print_atom_basis(fout, bs_name, z, basis_set[str(z)], tab)
-
-                # White space between bases
-                fout.write("\n")
+            basis_file = os.path.join(src_dir, "bases", bs_name + ".cpp")
+            write_basis_files(basis_file, bs_name, basis_set)
 
             # White space between basis sets
             fout.write("\n")
@@ -173,6 +238,8 @@ void load_basis_sets(libchemist::BasisSetManager& bsm) {{
 } // namespace chemcache
 """
         )
+
+    write_basis_list(src_dir, bases, tab)
 
 
 def parse_bases_gbs(basis_set_filenames: list, sym2Z: dict,
@@ -340,9 +407,9 @@ def parse_bases(basis_set_filepaths: list, sym2Z: dict, l2num: "function", forma
 
     This function redirects to the correct parsing function based on the file
     format given. The data structure returned is a dict with basis set
-    names as keys, effectively making a mapping from basis set names to 
+    names as keys, effectively making a mapping from basis set names to
     basis sets. The basis set values are another dict with atomic
-    numbers as keys and a list of Shell as the values. This makes a structure, 
+    numbers as keys and a list of Shell as the values. This makes a structure,
     `basis_sets`, where the basis for `Z` in `basis_name` can be accessed as:
 
     .. code-block:: Python
@@ -482,7 +549,7 @@ def parse_args() -> argparse.Namespace:
                         help="Destination directory for generated source files.")
 
     parser.add_argument('-r', '--recursive', action="store_true",
-                        help="""Toggle on recursive search through the basis 
+                        help="""Toggle on recursive search through the basis
                              set source directory. Default OFF.""")
 
     return parser.parse_args()
