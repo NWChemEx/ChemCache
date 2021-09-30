@@ -10,6 +10,6 @@
 
 namespace chemcache {
 
-void load_basis_sets(libchemist::BasisSetManager bsm) {}
+void load_basis_sets(libchemist::BasisSetManager& bsm) {}
 
 } // namespace chemcache

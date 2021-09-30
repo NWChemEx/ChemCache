@@ -10,6 +10,6 @@
 
 namespace chemcache {
 
-void load_elements(libchemist::PeriodicTable pt) {}
+void load_elements(libchemist::PeriodicTable& pt) {}
 
 } // namespace chemcache

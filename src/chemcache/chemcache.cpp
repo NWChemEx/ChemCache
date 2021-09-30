@@ -17,7 +17,10 @@ libchemist::BasisSetManager nwx_basis_set_manager() {
 
 libchemist::MoleculeManager nwx_molecule_manager() {
     libchemist::MoleculeManager mm;
-    load_molecules(mm);
+    libchemist::PeriodicTable pt;
+
+    load_elements(pt);
+    load_molecules(mm, pt);
 
     return mm;
 }
