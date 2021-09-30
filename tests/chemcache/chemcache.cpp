@@ -15,8 +15,11 @@ TEST_CASE("Load into managers") {
 
     SECTION("load_molecules") {
         libchemist::MoleculeManager mm;
+        libchemist::PeriodicTable pt;
+
+        load_elements(pt);
         
-        REQUIRE_NOTHROW(load_molecules(mm));
+        REQUIRE_NOTHROW(load_molecules(mm, pt));
     }
 
     SECTION("load_elements") {
