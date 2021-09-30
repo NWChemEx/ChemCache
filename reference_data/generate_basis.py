@@ -59,7 +59,7 @@ class Shell:
         self.coefs.append(coefs)
         self.gen = max(len(coefs), self.gen)
 
-    def cxxify(self, fout: io._io.TextIOWrapper, center: str,
+    def cxxify(self, fout: io.TextIOWrapper, center: str,
                tab: str, ) -> None:
         """Create a C++ source representation of the shell.
 
@@ -96,12 +96,12 @@ class Shell:
             fout.write("{}{});\n".format(tab*2, es))
 
 
-def print_atom_basis(fout: io._io.TextIOWrapper, bs_name: str, z: int,
+def print_atom_basis(fout: io.TextIOWrapper, bs_name: str, z: int,
                      basis: list, tab: str = "    ") -> None:
     """Print basis data for the given atom.
 
     :param fout: C++ source file opened for writing
-    :type fout: io._io.TextIOWrapper
+    :type fout: io.TextIOWrapper
 
     :param bs_name: Name of the basis set that this basis belongs to
     :type bs_name: str
@@ -527,8 +527,12 @@ def main(args: argparse.Namespace) -> None:
             basis_set_filepaths[extension], sym2Z, l2num, format=format
         ))
 
-    print("Writing basis sets to file...")
+    print("Writing basis sets to file...", end='')
+    sys.stdout.flush()
+
     write_bases(src_dir, basis_sets)
+
+    print("complete")
 
 
 def parse_args() -> argparse.Namespace:
