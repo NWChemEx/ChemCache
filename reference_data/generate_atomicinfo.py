@@ -4,25 +4,29 @@
 atom class.
 
 Original author: Ben Pritchard
+Modified by: Zachery Crandall
 
-In order to run this script simply needs to know where you want the generated
-files to live.
+In order to run, this script needs to know the location of the data directory
+to read from and the `src` code directory to output the result into. One can 
+also optionally provide a nondefault value for the electron mass to Dalton ratio.
 
 For readability and convenience we use a few abbreviations throughout this
 script:
 
-- Z the atomic number of an atom
-- Sym the atomic symbol of an atom (e.g. H for hydrogen, He for helium)
- 
-This script creates the following files:
+- Z: the atomic number of an atom
+- Sym: the atomic symbol of an atom (e.g. H for hydrogen, He for helium)
 
-chemcache_root
-|
-+---src
-|       nwx_periodic_table_pimpl.cpp
-|
-+---tests
-|       periodic_table.cpp
+This script looks for the following file(s):
+
++---data_dir
+|       ElementNames.txt
+|       CIAAW-ISOTOPEMASSES.txt
+|       CIAAW-MASSES.txt
+
+This script creates the following file(s):
+
++---src_dir
+|       load_elements.hpp
 """
 
 import argparse
@@ -31,6 +35,7 @@ import re
 
 import helper_fxns as helpers
 
+
 class AtomicData:
     def __init__(self):
         self.sym = ""
@@ -38,13 +43,14 @@ class AtomicData:
         self.Z = 0
         self.mass = 0.0
         self.isotopes = []       # List of isotope mass numbers
-        self.isotope_masses = {} # Isotope mass values, indexed by mass number
+        self.isotope_masses = {}  # Isotope mass values, indexed by mass number
 
-    def add_isotope(self, num, mass):
+    def add_isotope(self, num: int, mass: float) -> None:
         """Add a new isotope mass to the list of isotopes for this element.
 
         :param num: Isotope mass number (Z + number of neutrons, N)
         :type num: int
+
         :param mass: Isotope mass value
         :type mass: float
         """
@@ -67,16 +73,16 @@ class AtomicData:
         rv = "{} {} {}[".format(self.Z, self.name, self.mass)
 
         for x in self.isotopes:
-            rv +="{}: {}".format(x, self.isotope_masses[x])
-            if x!= self.isotopes[-1]:
-                rv+=", "
-        
+            rv += "{}: {}".format(x, self.isotope_masses[x])
+            if x != self.isotopes[-1]:
+                rv += ", "
+
         rv += "]"
-        
+
         return rv
 
 
-def parse_symbols(name_file, atoms):
+def parse_symbols(name_file: str, atoms: dict) -> None:
     """Parse the given symbols file and add them to the existing atom 
     collection.
 
@@ -93,30 +99,33 @@ def parse_symbols(name_file, atoms):
 
             if not z in atoms:
                 atoms[z] = AtomicData()
-        
+
             atoms[z].sym = sym
             atoms[z].name = name
             atoms[z].Z = z
 
-def parse_ciaaw_isotopes(iso_file, atoms):
+
+def parse_ciaaw_isotopes(iso_file: str, atoms: dict) -> None:
     """Parses an isotope mass file from the Commission on Isotopic Abundances
     and Atomic Weights (CIAAW) and adds it to a given atomic collection.
 
     :param iso_file: CIAAW isotope mass file
     :type iso_file: str
+
     :param atoms: Collection of atoms. Loaded isotopes will be added here.
     :type atoms: dict of class:`AtomicData`
     """
 
-    new_atom =  r"(\d+)\s+[a-zA-Z]{1,2}\s+[a-zA-Z]+\s+"
+    new_atom = r"(\d+)\s+[a-zA-Z]{1,2}\s+[a-zA-Z]+\s+"
     new_iso = r"(\d+)\**\s+(\d+\.\d+)\s((\d+\s?)+)+"
     new_atom += new_iso
 
-    def par_fxn(match, atom):
+    def par_fxn(match: tuple, atom: AtomicData) -> None:
         """Parse the isotope match and add it to the given atom.
 
         :param match: Regex match groups for an isotope
         :type match: tuple
+
         :param atom: Atom to add the isotope to
         :type atom: class:`AtomicData`
         """
@@ -135,12 +144,14 @@ def parse_ciaaw_isotopes(iso_file, atoms):
                 par_fxn(match, atoms[Z])
             # else: this is not a line containing isotope information
 
-def parse_ciaww_mass(mass_file, atoms):
+
+def parse_ciaww_mass(mass_file: str, atoms: dict) -> None:
     """Parses a mass file from the Commission on Isotopic Abundances
     and Atomic Weights (CIAAW) and adds it to a given atomic collection.
 
     :param iso_file: CIAAW mass file
     :type iso_file: str
+
     :param atoms: Collection of atoms. Loaded masses will be added here.
     :type atoms: dict of class:`AtomicData`
     """
@@ -152,17 +163,19 @@ def parse_ciaww_mass(mass_file, atoms):
             if re.search(mass, line):
                 Z = line.split()[0]
 
-                masses = re.search(mass, line).groups()[0].replace(" ","")
+                masses = re.search(mass, line).groups()[0].replace(" ", "")
 
                 # Split the mass string and convert to floats
-                masses = [ float(mass) for mass in masses.split(',') ]
+                masses = [float(mass) for mass in masses.split(',')]
 
-                # Average masses since it can be single mass or min/max from 
+                # Average masses since it can be single mass or min/max from
                 # error bar
                 atoms[Z].mass = sum(masses) / len(masses)
 
-def write_ptable(out_dir, amu2me, atoms):
-    """Generate periodic table PIMPL class with atom lookup tables.
+
+def write_load_elements(out_dir: str, amu2me: float, atoms: dict) -> None:
+    """Generate a file which will load the atomic info into a 
+    libchemist::PeriodicTable instance.
 
     :param out_dir: Output directory for the generated header file.
     :type out_dir: str
@@ -174,204 +187,61 @@ def write_ptable(out_dir, amu2me, atoms):
     :type atoms: dict of :class:`AtomicData`
     """
 
-    out_file = os.path.join(out_dir, "nwx_periodic_table_pimpl.cpp")
-    in_file = "libchemist/detail_/periodic_table_pimpl.hpp"
-    sorted_keys = sorted([int(x) for x in atoms.keys()])
-    max_Z = sorted_keys[-1]
+    out_file = os.path.join(out_dir, "load_elements.cpp")
+
+    sorted_Z = sorted([int(x) for x in atoms.keys()])
+
     tab = "    "
     with open(out_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
 
+        # Start of the file
         fout.write(
-"""#include <algorithm> // For std::transform
-#include <{}>
-        
-namespace chemcache::detail_ {{
+            """#include "chemcache/chemcache.hpp"
 
-class NWXPeriodicTablePIMPL : public libchemist::detail_::PeriodicTablePIMPL {{
-public:
-    NWXPeriodicTablePIMPL() = default;
-protected:
-    using my_type = NWXPeriodicTablePIMPL;
-    NWXPeriodicTablePIMPL(const my_type& rhs) = default;
-private:    
-    std::unique_ptr<PeriodicTablePIMPL> clone_() const override {{
-        return std::unique_ptr<my_type>(new my_type(*this));
-    }}            
-            
-    size_type max_Z_() const noexcept override {{
-        return {};
-    }}
-            
-    Atom get_atom_(size_type Z) const override {{
-        switch(Z) {{
-""".format(in_file, max_Z))
+namespace chemcache {
 
-        for k in sorted_keys:
-            ai = atoms[str(k)]
-            fout.write("{}case({}): {{ return Atom(".format(tab*3, k))
-            fout.write("{}ul, {}, \"{}\");}}\n".format(k, ai.mass*amu2me, ai.sym))
+void load_elements(libchemist::PeriodicTable& pt) {
+"""
+        )
 
-        fout.write(
-"""            default : {{ throw std::out_of_range(\" Z > {}\"); }}
-        }}
-    }}
-            
-    Atom get_isotope_(size_type Z, size_type mass_num) const override {{
-        switch(Z) {{
-""".format(max_Z))
-
-        for k in sorted_keys:
-            fout.write("{}case({}): {{\n".format(tab*3, k)) #Start case 1
-            fout.write("{}switch(mass_num) {{\n".format(tab*4)) #Start switch 2
-            ai = atoms[str(k)]
-
-            for mn in sorted([int(x) for x in ai.isotopes]):
-                mi = ai.isotope_masses[str(mn)] * amu2me
-                fout.write("{}case({}): {{ return Atom(".format(tab*5, mn))
-                fout.write("{}ul, {}, \"{}\");}}\n".format(k, mi, ai.sym))
-            
-            fout.write("{}default : {{ throw std::out_of_range(\"No isotope "
-                    "data\"); }}\n".format(tab*5))
-            fout.write("{}}}\n".format(tab*4)) #Close switch 2
-            fout.write("{}}}\n".format(tab*3)) #Close case 1
-
-        fout.write(
-"""            default : {{ throw std::out_of_range(\"Z > {}\"); }}
-        }}
-    }}
-    
-    isotope_list isotopes_(size_type Z) const override {{
-        switch(Z) {{
-""".format(max_Z))
-
-        for k in sorted_keys:
-            fout.write("{}case({}) : {{ return {{".format(tab*3, k))
-            ai = atoms[str(k)]
-
-            for mn in sorted([int(x) for x in ai.isotopes]):
-                fout.write("{}, ".format(mn))
-
-            fout.write("}; }\n")
-
-        fout.write(
-"""            default : {{ throw std::out_of_range(\" Z > {}\"); }}
-        }}
-    }}
-    
-    size_type sym_2_Z_(const std::string& sym) const override {{
-        auto ci_sym = sym;
-        std::transform(ci_sym.begin(), ci_sym.end(), ci_sym.begin(), ::tolower);
-        """.format(max_Z))
-
-        for k in sorted_keys:
-            ai = atoms[str(k)]
-
-            fout.write("if(ci_sym == \"{}\") {{ return {}; }}\n".format(
-                ai.sym.lower(), ai.Z))
-
-            fout.write("        else ")
-
-        fout.write(
-"""{{ throw std::out_of_range(\"Unrecognized atomic symbol\"); }}
-    }}
-}};
-        
-std::unique_ptr<PeriodicTablePIMPL> nwx_default_ptable() {{
-    return std::make_unique<NWXPeriodicTablePIMPL>();
-}}
-}} // namespace chemcache::detail_
-""".format())
-
-def write_tests(out_dir, amu2me, atoms):
-    """Generate unit tests for periodic table PIMPL class.
-
-    :param out_dir: Output directory for the generated header file.
-    :type out_dir: str
-
-    :param amu2me: Ratio of mass of electron to a Dalton.
-    :type amu2me: float
-
-    :param atoms: Collection of atoms.
-    :type atoms: dict of :class:`AtomicData`
-    """
-
-    sorted_keys = sorted([int(x) for x in atoms.keys()])
-    max_Z = sorted_keys[-1]
-
-    with open(os.path.join(out_dir, "periodic_table.cpp"), 'w') as fout:
-        helpers.write_warning(fout, os.path.basename(__file__))
-
-        fout.write(
-"""#include <catch/catch.hpp>
-
-#include <libchemist/managers/periodic_table.hpp>
-
-using namespace libchemist;
-using size_type = typename PeriodicTable::size_type;
-using isotope_list = typename PeriodicTable::isotope_list;
-
-void test_ptable(const PeriodicTable& ptable) {{
-    REQUIRE(ptable.max_Z() == {});
-""".format(max_Z))
-
-        for Z in range(1, max_Z + 1):
+        # Add atoms and isotopes to the PeriodicTable
+        for Z in sorted_Z:
             ai = atoms[str(Z)]
-            fout.write("    REQUIRE(ptable.get_atom({}) == Atom{{{}, \"{}\", "
-                    "{}ul}});\n".format(Z, ai.mass*amu2me, ai.sym, Z))
-            fout.write("    REQUIRE(ptable.sym_2_Z(\"{}\") == {});\n".format(
-                ai.sym, Z))
-            fout.write("    REQUIRE(ptable.isotopes({}) == isotope_list{{"
-                    "".format(Z))
-            sorted_mn = sorted([int(mn) for mn in ai.isotopes])
-            
-            for mn in sorted_mn:
-                fout.write("{}, ".format(mn))
-            
-            fout.write("});\n")
-            
-            for mn in sorted_mn:
-                mi = ai.isotope_masses[str(mn)]*amu2me
-                fout.write("    REQUIRE(ptable.get_isotope({}, {}) == Atom{{{}ul, "
-                        "\"{}\", {}}});\n".format(Z, mn, Z, ai.sym, mi))
-        
+
+            # Comment atomic number being handled
+            fout.write("{}// Z = {}\n".format(tab, Z))
+
+            # Add abundance-weighted atom
+            fout.write("{}pt.insert({}, ".format(tab, Z))
+            fout.write("libchemist::Atom({}ul, {}, \"{}\"));\n".format(
+                Z, ai.mass * amu2me, ai.sym
+            ))
+
+            # Add isotope atoms
+            sorted_mass_numbers = sorted([int(x) for x in ai.isotopes])
+            for mn in sorted_mass_numbers:
+                mi = ai.isotope_masses[str(mn)] * amu2me
+
+                fout.write("{}pt.add_isotope({}, {}, ".format(tab, Z, mn, ))
+                fout.write("libchemist::Atom({}ul, {}, \"{}\"));\n"
+                           .format(
+                               Z, mi, ai.sym
+                           ))
+
+            # Extra whitespace between atomic numbers being handled
+            fout.write("\n")
+
+        # End of the file
         fout.write(
-"""}
+            """} // function load_elements
 
-TEST_CASE("PeriodicTable Class") {
-    SECTION("Typedefs") {
-        REQUIRE(std::is_same_v<size_type, std::size_t>);
-        REQUIRE(std::is_same_v<isotope_list, std::vector<size_type>>);
-    }
-    
-    PeriodicTable ptable;
-    SECTION("Default CTor") { 
-        test_ptable(ptable); 
-    }
-    SECTION("Copy CTor") {
-        PeriodicTable ptable2(ptable); 
-        test_ptable(ptable2);  
-    }
-    SECTION("Copy assign") {
-        PeriodicTable ptable2;
-        auto& pptable = (ptable2 = ptable);
-        test_ptable(ptable2);
-        REQUIRE(&pptable == &ptable2);
-    }
-    SECTION("Move CTor") {
-        PeriodicTable ptable2(std::move(ptable)); 
-        test_ptable(ptable2); 
-    }
-    SECTION("Move assign") {
-        PeriodicTable ptable2;
-        auto& pptable = (ptable2 = std::move(ptable));
-        test_ptable(ptable2);
-        REQUIRE(&pptable == &ptable2);
-    }
-}
-""")
+} // namespace chemcache
+"""
+        )
 
-def main(args):
+
+def main(args: argparse.Namespace) -> None:
     """Entry point function to generate atomic info files.
 
     :param args: Command line argument namespace
@@ -379,12 +249,10 @@ def main(args):
     """
 
     # Get and set some paths
-    my_dir    = os.path.dirname(os.path.realpath(__file__))
-    data_dir  = os.path.join(my_dir, "physical_data") #Dir w/ files
-    out_dir   = os.path.abspath(args.src_dir)
-    test_dir  = os.path.abspath(args.test_path)
+    data_dir = os.path.abspath(args.data_dir)
+    out_dir = os.path.abspath(args.src_dir)
     name_file = os.path.join(data_dir, "ElementNames.txt")
-    iso_file  = os.path.join(data_dir, "CIAAW-ISOTOPEMASSES.txt")
+    iso_file = os.path.join(data_dir, "CIAAW-ISOTOPEMASSES.txt")
     mass_file = os.path.join(data_dir, "CIAAW-MASSES.txt")
     #cov_file = os.path.join(data_dir, "CovRadii.txt")
     #vdw_file = os.path.join(data_dir, "VanDerWaalRadius.txt")
@@ -396,29 +264,30 @@ def main(args):
     parse_ciaaw_isotopes(iso_file, atoms)
     parse_ciaww_mass(mass_file, atoms)
 
-    write_ptable(out_dir, args.amu2me, atoms)
-    write_tests(test_dir, args.amu2me, atoms)
+    write_load_elements(out_dir, args.amu2me, atoms)
 
-def parse_args():
+
+def parse_args() -> argparse.Namespace:
     """Parse command line arguments.
 
     :return: Values of command line arguments.
     :rtype: Namespace
     """
     parser = argparse.ArgumentParser(description=__doc__)
-    
+
+    parser.add_argument('data_dir', type=str,
+                        help="Data directory for atomic information files.")
     parser.add_argument('src_dir', type=str,
                         help="Destination directory for generated source files.")
-    parser.add_argument('test_path', type=str,
-                        help="Destination directory for generated unit tests.")
     parser.add_argument('--amu2me', type=float,
                         default=1822.888486192,
-                        help="""Ratio of mass of electron to a Dalton. 
+                        help="""Ratio of mass of electron to one Dalton. 
                              (Default: 1822.888486192)""")
 
     return parser.parse_args()
 
-if __name__ == '__main__' :
+
+if __name__ == '__main__':
     args = parse_args()
 
     main(args)

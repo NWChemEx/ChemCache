@@ -10,6 +10,7 @@
 
 namespace chemcache {
 
-void load_molecules(libchemist::MoleculeManager mm) {}
+void load_molecules(libchemist::MoleculeManager& mm,
+                    const libchemist::PeriodicTable& pt) {}
 
 } // namespace chemcache
