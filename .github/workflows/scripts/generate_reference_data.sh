@@ -34,14 +34,14 @@ mkdir -p "${SRC}/bases"
 . venv/bin/activate
 
 # Call generation scripts
-echo "Calling ${REFERENCE_DATA}/generate_atomicinfo.py"
+echo "Calling ${REFERENCE_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${SRC}"
 ${PYTHON} ${REFERENCE_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${SRC}
 
 # echo "Calling ${REFERENCE_DATA}/generate_densities.py"
 # ${PYTHON} ${REFERENCE_DATA}/generate_densities.py ${DENSITIES} -i ${INC} ${SRC} ${TESTS} -r
 
-echo "Calling ${REFERENCE_DATA}/generate_molecules.py"
+echo "Calling ${REFERENCE_DATA}/generate_molecules.py ${MOLECULES} ${SRC} -r"
 ${PYTHON} ${REFERENCE_DATA}/generate_molecules.py ${MOLECULES} ${SRC} -r
 
-echo "Calling ${REFERENCE_DATA}/generate_basis.py"
+echo "Calling ${REFERENCE_DATA}/generate_basis.py ${BASIS_SETS} ${SRC} -r"
 ${PYTHON} ${REFERENCE_DATA}/generate_basis.py ${BASIS_SETS} ${SRC} -r
