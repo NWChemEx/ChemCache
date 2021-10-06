@@ -7,7 +7,7 @@ on:
       - master
 
 jobs:
-  Download-Reference-Data:
+  Download-and-Generate-Reference-Data:
     runs-on: ubuntu-latest
     
     steps:
