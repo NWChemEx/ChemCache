@@ -5,10 +5,6 @@
 # Usage:
 #   download_reference_data.sh
 #
-# Arguments:
-#   doxygen_target_name: The name of the CMake target which controls building
-#                        the Doxygen documentation. The name of this
-#
 # Notes:
 #   - This script assumes the dependencies in reference_data/requirements.txt 
 #     have been installed using PIP into a virtual environment called "venv"
@@ -27,10 +23,17 @@ BASIS_SETS="${REFERENCE_DATA}/basis_sets/default"
 DENSITIES="${REFERENCE_DATA}/atomic_densities/default"
 MOLECULES="${REFERENCE_DATA}/molecules/default"
 
-# Create necessary data subdirectories
+# Remove existing downloaded data files
+# rm -rf "${ATOMIC_INFO}"
+rm -rf "${BASIS_SETS}"
+# rm -rf "${DENSITIES}"
+# rm -rf "${MOLECULES}"
+
+# Recreate necessary data subdirectories
+# mkdir -p "${ATOMIC_INFO}"
 mkdir -p "${BASIS_SETS}"
-#mkdir -p "${DENSITIES}"
-#mkdir -p "${MOLECULES}"
+# mkdir -p "${DENSITIES}"
+# mkdir -p "${MOLECULES}"
 
 # Activate virtual environment
 . venv/bin/activate

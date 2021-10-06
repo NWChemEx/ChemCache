@@ -26,7 +26,11 @@ BASIS_SETS="${REFERENCE_DATA}/basis_sets"
 DENSITIES="${REFERENCE_DATA}/atomic_densities"
 MOLECULES="${REFERENCE_DATA}/molecules"
 
-# Create necessary src subdirectories
+# Remove existing source files
+rm -rf "${SRC}/atomic_densities"
+rm -rf "${SRC}/bases"
+
+# Recreate necessary src subdirectories
 mkdir -p "${SRC}/atomic_densities"
 mkdir -p "${SRC}/bases"
 
