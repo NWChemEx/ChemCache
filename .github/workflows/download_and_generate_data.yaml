@@ -31,4 +31,8 @@ jobs:
       - name: Generate reference data source code
         run: .github/workflows/scripts/generate_reference_data.sh
 
-      # Todo: Commit and push changes to a branch
+      - name: Commit and push changes to data branch
+        uses: actions-x/commit@v2
+        with:
+          branch: generated_data
+          message: Automatically updated reference data using GitHub Actions
