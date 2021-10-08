@@ -28,7 +28,11 @@ jobs:
       - name: Prepare git state
         run: |
           git fetch
+          git status
+          ls src/chemcache
           git checkout generated_data
+          git status
+          ls src/chemcache
           git merge master
       
       - name: Download reference data
