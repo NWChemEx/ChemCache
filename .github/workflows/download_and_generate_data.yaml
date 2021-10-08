@@ -27,6 +27,7 @@ jobs:
       
       - name: Prepare git state
         run: |
+          git fetch
           git checkout generated_data
           git merge master
       
