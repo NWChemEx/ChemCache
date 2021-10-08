@@ -25,6 +25,11 @@ jobs:
           . venv/bin/activate
           pip install -r reference_data/requirements.txt
       
+      - name: Prepare git state
+        run: |
+          git checkout generated_data
+          git merge master
+      
       - name: Download reference data
         run: .github/workflows/scripts/download_reference_data.sh
 
