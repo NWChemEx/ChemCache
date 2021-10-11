@@ -1,0 +1,44 @@
+name: Download and Generate Reference Data Code
+
+on:
+  # Trigger on push for master branch
+  push:
+    branches:
+      - master
+
+jobs:
+  Download-and-Generate-Reference-Data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Get source
+        uses: actions/checkout@v2
+
+      - name: Python setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      
+      - name: Install venv and dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install -r reference_data/requirements.txt
+      
+      - name: Prepare git state
+        run: |
+          git fetch
+          git checkout generated_data
+          git merge master -m "Merge branch 'master' into generated_data"
+      
+      - name: Download reference data
+        run: .github/workflows/scripts/download_reference_data.sh
+
+      - name: Generate reference data source code
+        run: .github/workflows/scripts/generate_reference_data.sh
+
+      - name: Commit and push changes to data branch
+        uses: actions-x/commit@v2
+        with:
+          branch: generated_data
+          message: Automatically updated reference data using GitHub Actions
