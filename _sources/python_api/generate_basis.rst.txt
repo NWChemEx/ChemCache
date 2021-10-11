@@ -1,0 +1,7 @@
+generate\_basis module
+======================
+
+.. automodule:: generate_basis
+   :members:
+   :undoc-members:
+   :show-inheritance:

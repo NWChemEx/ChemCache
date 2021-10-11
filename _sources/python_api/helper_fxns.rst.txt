@@ -1,0 +1,7 @@
+helper\_fxns module
+===================
+
+.. automodule:: helper_fxns
+   :members:
+   :undoc-members:
+   :show-inheritance:

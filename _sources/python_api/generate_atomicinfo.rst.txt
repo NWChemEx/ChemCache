@@ -1,0 +1,7 @@
+generate\_atomicinfo module
+===========================
+
+.. automodule:: generate_atomicinfo
+   :members:
+   :undoc-members:
+   :show-inheritance:

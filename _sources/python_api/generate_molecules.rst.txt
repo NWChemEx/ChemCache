@@ -1,0 +1,7 @@
+generate\_molecules module
+==========================
+
+.. automodule:: generate_molecules
+   :members:
+   :undoc-members:
+   :show-inheritance:

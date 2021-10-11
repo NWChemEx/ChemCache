@@ -1,0 +1,7 @@
+scrape\_bse module
+==================
+
+.. automodule:: scrape_bse
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>generate_basis module &mdash; ChemCache 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> ChemCache
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://nwchemex-project.github.io/ChemCache/chemcache_cxx_api/index.html">C++ API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ChemCache</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>generate_basis module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/python_api/generate_basis.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-generate_basis">
+<span id="generate-basis-module"></span><h1>generate_basis module<a class="headerlink" href="#module-generate_basis" title="Permalink to this headline"></a></h1>
+<p>This script will loop over a series of basis sets and write out a file
+that will fill them in. The format of the resulting basis sets is suitable
+for use with the BasisSetExchange class.</p>
+<p>This script creates the following files based on the include and source
+directories given. The directories are not created by this script and must
+be present before running it.</p>
+<p>+—src_dir
+|   -–bases
+|           &lt;all_basis_set_files&gt;
+|       basis_set_list.hpp
+|       load_basis_sets.cpp</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="generate_basis.Shell">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">Shell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ls</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_format</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'.10e'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generate_basis.Shell" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class representing a shell for an element.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="generate_basis.Shell.add_prim">
+<span class="sig-name descname"><span class="pre">add_prim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exp</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coefs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#generate_basis.Shell.add_prim" title="Permalink to this definition"></a></dt>
+<dd><p>Add a primitive for the shell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exp</strong> (<em>str</em>) – Primitive exponent</p></li>
+<li><p><strong>coefs</strong> (<em>list of str</em>) – Primitive contraction coefficients</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generate_basis.Shell.cxxify">
+<span class="sig-name descname"><span class="pre">cxxify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fout</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">_io.TextIOWrapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tab</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#generate_basis.Shell.cxxify" title="Permalink to this definition"></a></dt>
+<dd><p>Create a C++ source representation of the shell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fout</strong> (<em>class: _io.TextIOWrapper</em>) – C++ source file opened for writing</p></li>
+<li><p><strong>center</strong> (<em>str</em>) – libchemist::Center to add the shell to</p></li>
+<li><p><strong>tab</strong> (<em>str</em>) – String representing a tab.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.find_basis_sets">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">find_basis_sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_root</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formats</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">['nwchem']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#generate_basis.find_basis_sets" title="Permalink to this definition"></a></dt>
+<dd><p>Recursively find all basis set files in the given directory. Basis set
+files are identified using the given extensions list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_root</strong> (<em>str</em>) – Root directory containing basis set files.</p></li>
+<li><p><strong>extensions</strong> (<em>list</em><em>, </em><em>optional</em>) – Possible extensions for basis sets, defaults to [“nwchem”]</p></li>
+<li><p><strong>recursive</strong> (<em>bool</em>) – Whether or not to recursively search in subdirectories,
+defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Full paths to basis set files found</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.main">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#generate_basis.main" title="Permalink to this definition"></a></dt>
+<dd><p>Entry point function to generate basis set files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>Namespace</em>) – Command line argument namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.parse_args">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">argparse.Namespace</span></span></span><a class="headerlink" href="#generate_basis.parse_args" title="Permalink to this definition"></a></dt>
+<dd><p>Parse command line arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Values of command line arguments.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.parse_bases">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">parse_bases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_set_filepaths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'nwchem'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#generate_basis.parse_bases" title="Permalink to this definition"></a></dt>
+<dd><p>Parse basis set files of the specified format.</p>
+<p>This function redirects to the correct parsing function based on the file
+format given. The data structure returned is a dict with basis set
+names as keys, effectively making a mapping from basis set names to
+basis sets. The basis set values are another dict with atomic
+numbers as keys and a list of Shell as the values. This makes a structure,
+<cite>basis_sets</cite>, where the basis for <cite>Z</cite> in <cite>basis_name</cite> can be accessed as:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">list_of_shells</span> <span class="o">=</span> <span class="n">basis_sets</span><span class="p">[</span><span class="n">basis_name</span><span class="p">][</span><span class="n">Z</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>basis_set_filepaths</strong> (<em>list of str</em>) – Full paths to basis set files.</p></li>
+<li><p><strong>sym2Z</strong> (<em>dict</em>) – Mapping from lowercased atomic symbols to atomic numbers</p></li>
+<li><p><strong>l2num</strong> (<em>function</em>) – Conversion function from shell symbol (s, p, d, f, etc)
+to the corresponding number (0, 1, 2, 3, etc)</p></li>
+<li><p><strong>format</strong> (<em>str</em><em>, </em><em>optional</em>) – File formatting to parse, defaults to “nwchem”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Basis sets parsed</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Unsupported basis file format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.parse_bases_gbs">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">parse_bases_gbs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_set_filenames</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#generate_basis.parse_bases_gbs" title="Permalink to this definition"></a></dt>
+<dd><p>Parses basis set files from the filepaths given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>basis_set_filepaths</strong> (<em>list</em>) – Full paths to basis set files.</p></li>
+<li><p><strong>sym2Z</strong> (<em>dict</em>) – Dictionary associating atomic symbols to atomic numbers</p></li>
+<li><p><strong>l2num</strong> (<em>function</em>) – Function associating orbital letters with a number</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Collection of basis sets and the supported elements of each.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.parse_bases_nw">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">parse_bases_nw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_set_filepaths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#generate_basis.parse_bases_nw" title="Permalink to this definition"></a></dt>
+<dd><p>Parses basis set files from the filepaths given.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>basis_set_filepaths</strong> (<em>list</em>) – Full paths to basis set files.</p></li>
+<li><p><strong>sym2Z</strong> (<em>dict</em>) – Dictionary associating atomic symbols to atomic numbers</p></li>
+<li><p><strong>l2num</strong> (<em>function</em>) – Function associating orbital letters with a number</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Collection of basis sets and the supported elements of each.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.print_atom_basis">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">print_atom_basis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fout</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">_io.TextIOWrapper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bs_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tab</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'</span>&#160;&#160;&#160; <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#generate_basis.print_atom_basis" title="Permalink to this definition"></a></dt>
+<dd><p>Print basis data for the given atom.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fout</strong> (<em>io.TextIOWrapper</em>) – C++ source file opened for writing</p></li>
+<li><p><strong>bs_name</strong> (<em>str</em>) – Name of the basis set that this basis belongs to</p></li>
+<li><p><strong>z</strong> (<em>int</em>) – Atomic number of the element that the basis is assigned to</p></li>
+<li><p><strong>basis</strong> (<em>list</em>) – List of shells representing the basis of an atom</p></li>
+<li><p><strong>tab</strong> (<em>str</em><em>, </em><em>optional</em>) – String representing a tab, defaults to ”    “</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.write_bases">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">write_bases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span>&#160;&#160;&#160; <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#generate_basis.write_bases" title="Permalink to this definition"></a></dt>
+<dd><p>Writes basis set data to C++ files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_dir</strong> (<em>str</em>) – Source directory for source files.</p></li>
+<li><p><strong>bases</strong> (<em>dict</em>) – Collection of basis sets parsed from files</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.write_basis_files">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">write_basis_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bs_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_set</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tab</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'</span>&#160;&#160;&#160; <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#generate_basis.write_basis_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="generate_basis.write_basis_list">
+<span class="sig-prename descclassname"><span class="pre">generate_basis.</span></span><span class="sig-name descname"><span class="pre">write_basis_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span>&#160;&#160;&#160; <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#generate_basis.write_basis_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, NWChemEx Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
