@@ -19,7 +19,10 @@ jobs:
         run: .github/workflows/scripts/get_dependencies.sh cmake doxygen sphinx
 
       - name: Build Python documentation
-        run: sphinx-apidoc -f -o docs/source/python_api/ reference_data
+        run: |
+          . venv/bin/activate
+          sphinx-apidoc -f -o docs/source/python_api/ reference_data
+          deactivate
 
       - name: Build C++ and overall documentation
         run: .github/workflows/scripts/build_docs.sh chemcache_cxx_api
