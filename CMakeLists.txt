@@ -9,7 +9,10 @@ set(
 
 include(get_cpp)
 include(nwx_cxx_api_docs)
-nwx_cxx_api_docs("${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}")
+
+# Work out the project paths
+set(project_inc_dir "${CMAKE_CURRENT_LIST_DIR}/include/${PROJECT_NAME}")
+set(project_src_dir "${CMAKE_CURRENT_LIST_DIR}/src/${PROJECT_NAME}")
 
 ### Options ###
 option(BUILD_TESTING "Should we build the tests?" OFF)
@@ -21,18 +24,8 @@ option(
 
 option(BUILD_PYBINDINGS "Should we build Python3 bindings?" ON)
 
-# Work out the project paths
-set(project_inc_dir "${CMAKE_CURRENT_LIST_DIR}/include/${PROJECT_NAME}")
-set(project_src_dir "${CMAKE_CURRENT_LIST_DIR}/src/${PROJECT_NAME}")
-
-if("${BUILD_DOCS}")
-    find_package(Doxygen REQUIRED)
-    set(DOXYGEN_EXTRA_PACKAGES amsmath) # Extra LaTeX packages for documentation
-    doxygen_add_docs(${PROJECT_NAME}_cxx_api "${project_inc_dir}")
-    if("${ONLY_BUILD_DOCS}")
-        return()
-    endif()
-endif()
+# Generate C++ API documentation, if BUILD_DOCS is set
+nwx_cxx_api_docs("${project_inc_dir}")
 
 cpp_find_or_build_dependency(
     libchemist
