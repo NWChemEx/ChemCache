@@ -25,11 +25,13 @@ jobs:
           . venv/bin/activate
           pip install -r reference_data/requirements.txt
       
-      - name: Prepare git state
-        run: |
-          git fetch
-          git checkout generated_data
-          git merge master -m "Merge branch 'master' into generated_data"
+      - name: Merge master -> generated_data
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: master
+          target_branch: generated_data
+          github_token: ${{ github.token }}
       
       - name: Download reference data
         run: .github/workflows/scripts/download_reference_data.sh
