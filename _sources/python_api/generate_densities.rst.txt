@@ -1,7 +1,0 @@
-generate\_densities module
-==========================
-
-.. automodule:: generate_densities
-   :members:
-   :undoc-members:
-   :show-inheritance:

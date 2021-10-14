@@ -4,9 +4,4 @@ reference_data
 .. toctree::
    :maxdepth: 4
 
-   generate_atomicinfo
-   generate_basis
-   generate_densities
-   generate_molecules
-   helper_fxns
-   scrape_bse
+   reference_data
