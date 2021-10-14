@@ -32,7 +32,10 @@ jobs:
           from_branch: master
           target_branch: generated_data
           github_token: ${{ github.token }}
-      
+
+      - name: Checkout generated_data
+        run: git checkout generated_data
+
       - name: Download reference data
         run: .github/workflows/scripts/download_reference_data.sh
 
