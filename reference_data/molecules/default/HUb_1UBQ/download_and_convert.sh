@@ -1,6 +1,3 @@
-# Clean the directory of old files
-rm ubiquitin_*
-
 # Clone the NWX_TA repo
 git clone git@github.com:NWChemEx-Project/NWX_TA.git nwx_ta
 
