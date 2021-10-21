@@ -9,4 +9,6 @@ obabel ./nwx_ta/HUb_1UBQ/struct_h_added/*.pdb \
 
 # Remove structure not based from [Ruger:2015]
 rm ubiquitin_step1_pdbreader.xyz
+
+# Remove downloaded repo
 rm -rf nwx_ta
