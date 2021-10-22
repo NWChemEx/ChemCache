@@ -90,6 +90,12 @@ void load_basis_sets(libchemist::BasisSetManager& bsm) {
     basis_sets::load_d_dash_aug_dash_cc_dash_pvtz(bsm);
     basis_sets::load_pv6z(bsm);
     basis_sets::load_pv7z(bsm);
+    basis_sets::load_sto_dash_2g(bsm);
+    basis_sets::load_sto_dash_3g(bsm);
+    basis_sets::load_sto_dash_3g_st_(bsm);
+    basis_sets::load_sto_dash_4g(bsm);
+    basis_sets::load_sto_dash_5g(bsm);
+    basis_sets::load_sto_dash_6g(bsm);
 } // function load_basis_sets
 
 } // namespace chemcache

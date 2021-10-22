@@ -87,5 +87,11 @@ void load_d_dash_aug_dash_cc_dash_pvqz(libchemist::BasisSetManager& bsm);
 void load_d_dash_aug_dash_cc_dash_pvtz(libchemist::BasisSetManager& bsm);
 void load_pv6z(libchemist::BasisSetManager& bsm);
 void load_pv7z(libchemist::BasisSetManager& bsm);
+void load_sto_dash_2g(libchemist::BasisSetManager& bsm);
+void load_sto_dash_3g(libchemist::BasisSetManager& bsm);
+void load_sto_dash_3g_st_(libchemist::BasisSetManager& bsm);
+void load_sto_dash_4g(libchemist::BasisSetManager& bsm);
+void load_sto_dash_5g(libchemist::BasisSetManager& bsm);
+void load_sto_dash_6g(libchemist::BasisSetManager& bsm);
 
 } // namespace chemcache
