@@ -27,7 +27,7 @@ MOLECULES="${REFERENCE_DATA}/molecules/default"
 # rm -rf "${ATOMIC_INFO}"
 rm -rf "${BASIS_SETS}"
 # rm -rf "${DENSITIES}"
-rm -f ${MOLECULES}/HUb_1UBQ/ubiquitin_*.xyz
+# rm -f ${MOLECULES}/HUb_1UBQ/ubiquitin_*.xyz
 
 # Recreate necessary data subdirectories
 # mkdir -p "${ATOMIC_INFO}"
@@ -43,7 +43,7 @@ mkdir -p "${BASIS_SETS}"
 echo "Calling ${REFERENCE_DATA}/scrape_bse.py ${BASIS_SETS}"
 ${PYTHON} ${REFERENCE_DATA}/scrape_bse.py ${BASIS_SETS}
 
-echo "Calling ${MOLECULES}/HUb_1UBQ/download_and_convert.sh"
-cd ${MOLECULES}/HUb_1UBQ/
-./download_and_convert.sh
-cd ../../../../
+# echo "Calling ${MOLECULES}/HUb_1UBQ/download_and_convert.sh"
+# cd ${MOLECULES}/HUb_1UBQ/
+# ./download_and_convert.sh
+# cd ../../../../
