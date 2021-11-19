@@ -30,9 +30,9 @@ jobs:
           git fetch
           git checkout --track origin/generated_data
           git checkout master
-          git merge -s ours generated_data -m "Merge branch 'generated_data'"
+          git merge -s ours generated_data -m "Merge branch 'generated_data'" --allow-unrelated-histories
           git checkout generated_data
-          git merge master
+          git merge master -m "Merge master -> generated_data"
 
       - name: Download reference data
         run: .github/workflows/scripts/download_reference_data.sh
