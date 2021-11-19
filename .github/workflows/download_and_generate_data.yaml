@@ -25,6 +25,11 @@ jobs:
           . venv/bin/activate
           pip install -r reference_data/requirements.txt
       
+      - name: Configuring ID
+        run: |
+          git config --global user.name zachcran
+          git config --global user.email zachcran@iastate.edu
+
       - name: Merge master -> generated_data
         run: |
           git fetch
