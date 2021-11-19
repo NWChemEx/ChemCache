@@ -30,7 +30,7 @@ jobs:
           git fetch
           git checkout --track origin/generated_data
           git checkout master
-          git merge -s ours generated_data
+          git merge -s ours generated_data -m "Merge branch 'generated_data'"
           git checkout generated_data
           git merge master
 
