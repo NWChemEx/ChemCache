@@ -26,17 +26,11 @@ jobs:
           pip install -r reference_data/requirements.txt
       
       - name: Merge master -> generated_data
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: master
-          target_branch: generated_data
-          github_token: ${{ github.token }}
-
-      - name: Checkout generated_data
         run: |
-          git fetch
+          git checkout master
+          git merge -s ours generated_data
           git checkout generated_data
+          git merge master
 
       - name: Download reference data
         run: .github/workflows/scripts/download_reference_data.sh
