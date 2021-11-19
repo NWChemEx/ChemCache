@@ -28,7 +28,7 @@ jobs:
           . venv/bin/activate
           pip install -r reference_data/requirements.txt
 
-      - name: Merge master -> generated_data
+      - name: Overwrite 'generated_data' with 'master'
         run: |
           git fetch
           git checkout --track origin/generated_data
