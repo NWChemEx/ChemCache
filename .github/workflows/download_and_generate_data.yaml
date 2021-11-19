@@ -27,6 +27,7 @@ jobs:
       
       - name: Merge master -> generated_data
         run: |
+          git fetch
           git checkout --track origin/generated_data
           git checkout master
           git merge -s ours generated_data
