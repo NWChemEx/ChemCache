@@ -6,10 +6,10 @@
  */
 
 #include "chemcache/chemcache.hpp"
-#include <libchemist/libchemist.hpp>
+#include <chemist/chemist.hpp>
 
 namespace chemcache {
 
-void load_elements(libchemist::PeriodicTable& pt) {}
+void load_elements(chemist::PeriodicTable& pt) {}
 
 } // namespace chemcache

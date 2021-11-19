@@ -8,16 +8,16 @@
 
 namespace chemcache {
 
-libchemist::BasisSetManager nwx_basis_set_manager() {
-    libchemist::BasisSetManager bsm;
+chemist::BasisSetManager nwx_basis_set_manager() {
+    chemist::BasisSetManager bsm;
     load_basis_sets(bsm);
 
     return bsm;
 }
 
-libchemist::MoleculeManager nwx_molecule_manager() {
-    libchemist::MoleculeManager mm;
-    libchemist::PeriodicTable pt;
+chemist::MoleculeManager nwx_molecule_manager() {
+    chemist::MoleculeManager mm;
+    chemist::PeriodicTable pt;
 
     load_elements(pt);
     load_molecules(mm, pt);
@@ -25,8 +25,8 @@ libchemist::MoleculeManager nwx_molecule_manager() {
     return mm;
 }
 
-libchemist::PeriodicTable nwx_periodic_table() {
-    libchemist::PeriodicTable pt;
+chemist::PeriodicTable nwx_periodic_table() {
+    chemist::PeriodicTable pt;
     load_elements(pt);
 
     return pt;

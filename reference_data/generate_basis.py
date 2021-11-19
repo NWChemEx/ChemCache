@@ -66,7 +66,7 @@ class Shell:
         :param fout: C++ source file opened for writing
         :type fout: class: _io.TextIOWrapper
 
-        :param center: libchemist::Center to add the shell to
+        :param center: chemist::Center to add the shell to
         :type center: str
 
         :param tab: String representing a tab.
@@ -76,7 +76,7 @@ class Shell:
         for i in range(self.gen):
             l = self.ls[i]
             fout.write(
-                "{}{}.add_shell(libchemist::ShellType::pure, {},\n".format(tab, center, l))
+                "{}{}.add_shell(chemist::ShellType::pure, {},\n".format(tab, center, l))
             cs = "std::vector<double>{"
             es = "std::vector<double>{"
             for j, ai in enumerate(self.exp):
@@ -117,7 +117,7 @@ def print_atom_basis(fout: io.TextIOWrapper, bs_name: str, z: int,
     """
 
     fout.write("{}basis_map.emplace({}, ".format(tab, z))
-    fout.write("libchemist::Center<double>(0.0, 0.0, 0.0));\n\n")
+    fout.write("chemist::Center<double>(0.0, 0.0, 0.0));\n\n")
 
     center = "basis_map.at({})".format(z)
 
@@ -135,12 +135,12 @@ def write_basis_files(out_file: str, bs_name: str, basis_set: dict,
         # Start of the file
         fout.write(
             """#include "../basis_set_list.hpp"
-# include <libchemist/libchemist.hpp>
+# include <chemist/chemist.hpp>
 
 namespace chemcache::basis_sets {{
 
-void load_{}(libchemist::BasisSetManager& bsm) {{
-{}libchemist::BasisSetManager::ao_basis_map basis_map;
+void load_{}(chemist::BasisSetManager& bsm) {{
+{}chemist::BasisSetManager::ao_basis_map basis_map;
 
 """.format(s_name, tab)
         )
@@ -175,7 +175,7 @@ def write_basis_list(src_dir: str, bases: dict, tab="    ") -> None:
 
         # Start of the file the load_basis_file
         fout.write(
-            """#include <libchemist/libchemist.hpp>
+            """#include <chemist/chemist.hpp>
 
 namespace chemcache::basis_sets {
 
@@ -186,7 +186,7 @@ namespace chemcache::basis_sets {
         for bs_name, _ in sorted(bases.items()):
             # Make call to load basis set into bsm
             fout.write(
-                "void load_{}(libchemist::BasisSetManager& bsm);\n"
+                "void load_{}(chemist::BasisSetManager& bsm);\n"
                 .format(helpers.sanitize_basis_name(bs_name)))
 
         # End of the file
@@ -211,11 +211,11 @@ def write_bases(src_dir: str, bases: dict, tab="    ") -> None:
         fout.write(
             """#include "chemcache/chemcache.hpp"
 #include "./basis_set_list.hpp"
-#include <libchemist/libchemist.hpp>
+#include <chemist/chemist.hpp>
 
 namespace chemcache {
 
-void load_basis_sets(libchemist::BasisSetManager& bsm) {
+void load_basis_sets(chemist::BasisSetManager& bsm) {
 """
         )
 

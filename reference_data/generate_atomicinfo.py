@@ -175,7 +175,7 @@ def parse_ciaww_mass(mass_file: str, atoms: dict) -> None:
 
 def write_load_elements(out_dir: str, amu2me: float, atoms: dict) -> None:
     """Generate a file which will load the atomic info into a 
-    libchemist::PeriodicTable instance.
+    chemist::PeriodicTable instance.
 
     :param out_dir: Output directory for the generated header file.
     :type out_dir: str
@@ -201,7 +201,7 @@ def write_load_elements(out_dir: str, amu2me: float, atoms: dict) -> None:
 
 namespace chemcache {
 
-void load_elements(libchemist::PeriodicTable& pt) {
+void load_elements(chemist::PeriodicTable& pt) {
 """
         )
 
@@ -214,7 +214,7 @@ void load_elements(libchemist::PeriodicTable& pt) {
 
             # Add abundance-weighted atom
             fout.write("{}pt.insert({}, ".format(tab, Z))
-            fout.write("libchemist::Atom({}ul, {}, \"{}\"));\n".format(
+            fout.write("chemist::Atom({}ul, {}, \"{}\"));\n".format(
                 Z, ai.mass * amu2me, ai.sym
             ))
 
@@ -224,7 +224,7 @@ void load_elements(libchemist::PeriodicTable& pt) {
                 mi = ai.isotope_masses[str(mn)] * amu2me
 
                 fout.write("{}pt.add_isotope({}, {}, ".format(tab, Z, mn, ))
-                fout.write("libchemist::Atom({}ul, {}, \"{}\"));\n"
+                fout.write("chemist::Atom({}ul, {}, \"{}\"));\n"
                            .format(
                                Z, mi, ai.sym
                            ))

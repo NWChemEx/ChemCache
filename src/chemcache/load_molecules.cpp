@@ -6,11 +6,11 @@
  */
 
 #include "chemcache/chemcache.hpp"
-#include <libchemist/libchemist.hpp>
+#include <chemist/chemist.hpp>
 
 namespace chemcache {
 
-void load_molecules(libchemist::MoleculeManager& mm,
-                    const libchemist::PeriodicTable& pt) {}
+void load_molecules(chemist::MoleculeManager& mm,
+                    const chemist::PeriodicTable& pt) {}
 
 } // namespace chemcache

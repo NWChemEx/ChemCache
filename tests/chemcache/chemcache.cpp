@@ -1,6 +1,6 @@
 #include <catch2/catch.hpp>
 #include <chemcache/chemcache.hpp>
-#include <libchemist/libchemist.hpp>
+#include <chemist/chemist.hpp>
 
 using namespace chemcache;
 
@@ -8,14 +8,14 @@ TEST_CASE("Load into managers") {
     // These tests are just going to make sure that the code compiles and
     // uses the managers correctly
     SECTION("load_basis_sets") {
-        libchemist::BasisSetManager bsm;
+        chemist::BasisSetManager bsm;
 
         REQUIRE_NOTHROW(load_basis_sets(bsm));
     }
 
     SECTION("load_molecules") {
-        libchemist::MoleculeManager mm;
-        libchemist::PeriodicTable pt;
+        chemist::MoleculeManager mm;
+        chemist::PeriodicTable pt;
 
         load_elements(pt);
         
@@ -23,7 +23,7 @@ TEST_CASE("Load into managers") {
     }
 
     SECTION("load_elements") {
-        libchemist::PeriodicTable pt;
+        chemist::PeriodicTable pt;
 
         REQUIRE_NOTHROW(load_elements(pt));
     }
