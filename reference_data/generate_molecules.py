@@ -194,9 +194,9 @@ def write_load_molecules(src_dir: str, mols: dict, tab: str = "    ") -> None:
 
         # Start of the file
         fout.write("""#include "chemcache/chemcache.hpp"
-#include <libchemist/libchemist.hpp>
+#include <chemist/chemist.hpp>
 
-using namespace libchemist;
+using namespace chemist;
 
 namespace chemcache {
 

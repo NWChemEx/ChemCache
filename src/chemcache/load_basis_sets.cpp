@@ -6,10 +6,10 @@
  */
 
 #include "chemcache/chemcache.hpp"
-#include <libchemist/libchemist.hpp>
+#include <chemist/chemist.hpp>
 
 namespace chemcache {
 
-void load_basis_sets(libchemist::BasisSetManager& bsm) {}
+void load_basis_sets(chemist::BasisSetManager& bsm) {}
 
 } // namespace chemcache
