@@ -14,6 +14,9 @@ jobs:
       - name: Get source
         uses: actions/checkout@v2
 
+      - name: Set up Git User
+        uses: fregante/setup-git-user@v1
+
       - name: Python setup
         uses: actions/setup-python@v2
         with:
@@ -24,19 +27,15 @@ jobs:
           python -m venv venv
           . venv/bin/activate
           pip install -r reference_data/requirements.txt
-      
-      - name: Merge master -> generated_data
-        uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: master
-          target_branch: generated_data
-          github_token: ${{ github.token }}
 
-      - name: Checkout generated_data
+      - name: Overwrite 'generated_data' with 'master'
         run: |
           git fetch
+          git checkout --track origin/generated_data
+          git checkout master
+          git merge -s ours generated_data -m "Merge branch 'generated_data'" --allow-unrelated-histories
           git checkout generated_data
+          git merge master -m "Merge master -> generated_data"
 
       - name: Download reference data
         run: .github/workflows/scripts/download_reference_data.sh
