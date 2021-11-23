@@ -43,6 +43,9 @@ cpp_add_library(
     DEPENDS nwx::chemist
 )
 
+include(nwx_python_mods)
+cppyy_make_python_package(PACKAGE chemcache NAMESPACES chemcache DEPPACKAGES chemist )
+
 if("${BUILD_TESTING}")
     set(project_test_dir "${CMAKE_CURRENT_LIST_DIR}/tests/${PROJECT_NAME}")
     cpp_find_or_build_dependency(
