@@ -117,7 +117,7 @@ def print_atom_basis(fout: io.TextIOWrapper, bs_name: str, z: int,
     """
 
     fout.write("{}basis_map.emplace({}, ".format(tab, z))
-    fout.write("chemist::AtomicBasisSet<double>(0.0, 0.0, 0.0));\n\n")
+    fout.write("chemist::AtomicBasisSet<double>(\"{}\", {}, 0.0, 0.0, 0.0));\n\n".format(bs_name, z))
 
     center = "basis_map.at({})".format(z)
 
