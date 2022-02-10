@@ -6,14 +6,16 @@ This script creates the following files based on the include and source
 directories given. The directories are not created by this script and must
 be present before running it.
 
-+---include
-|       nwx_atomic_densities.hpp
-|
-+---src
-|   \---atomic_densities
-|           add_density.cmake
-|           <all_basis_set_files>
-|       nwx_atomic_densities.cpp
+::
+
+   +---include
+   |       nwx_atomic_densities.hpp
+   |
+   +---src
+   |   \---atomic_densities
+   |           add_density.cmake
+   |           <all_basis_set_files>
+   |       nwx_atomic_densities.cpp
 """
 
 import argparse

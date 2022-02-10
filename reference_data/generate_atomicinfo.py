@@ -3,8 +3,8 @@
 """This script is used to create the experimental data look up tables for the
 atom class.
 
-Original author: Ben Pritchard
-Modified by: Zachery Crandall
+| Original author: Ben Pritchard  
+| Modified by: Zachery Crandall
 
 In order to run, this script needs to know the location of the data directory
 to read from and the `src` code directory to output the result into. One can 
@@ -16,17 +16,17 @@ script:
 - Z: the atomic number of an atom
 - Sym: the atomic symbol of an atom (e.g. H for hydrogen, He for helium)
 
-This script looks for the following file(s):
+This script looks for the following file(s)::
 
-+---data_dir
-|       ElementNames.txt
-|       CIAAW-ISOTOPEMASSES.txt
-|       CIAAW-MASSES.txt
+   +---data_dir  
+   |       ElementNames.txt  
+   |       CIAAW-ISOTOPEMASSES.txt  
+   |       CIAAW-MASSES.txt  
 
-This script creates the following file(s):
+This script creates the following file(s)::
 
-+---src_dir
-|       load_elements.hpp
+   +---src_dir  
+   |       load_elements.hpp  
 """
 
 import argparse

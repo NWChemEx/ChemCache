@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
-
 """This script uses a web scraper to download all basis sets from the Basis 
 Set Exchange (BSE) in the specified output format.
 
-+---destination
-|       <all_basis_set_files>
+::
+
+   +---destination
+   |       <all_basis_set_files>
 """
 
 import argparse

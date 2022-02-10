@@ -6,8 +6,10 @@ This script creates the following files based on the include and source
 directories given. The directories are not created by this script and must
 be present before running it.
 
-+---src
-|       load_molecules.cpp
+::
+
+   +---src
+   |       load_molecules.cpp
 """
 
 import argparse
