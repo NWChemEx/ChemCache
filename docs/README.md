@@ -39,12 +39,13 @@ documentation.
 Building the Python API Documentation
 -------------------------------------
 
-The Python documentation is currently build manually. It can be built by 
+The Python documentation is currently built manually. It can be built by 
 running (from the `docs/` directory, assuming the virtual environment above is 
 active):
 
 ```bash
-$ sphinx-apidoc -f -o ../docs/source/python_api/ ../reference_data
+$ sphinx-apidoc --force --separate --no-toc \
+    -o ../docs/source/python_api/reference_data ../reference_data
 ```
 
 Building the CXX API Documentation
