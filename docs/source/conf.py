@@ -9,8 +9,8 @@
 import os
 import sys
 
-# Ensure that the Python scripts are in the Python path
-sys.path.insert(0, os.path.abspath("../../reference_data"))
+# Ensure that the Python scripts are in the Python path for autodoc
+sys.path.insert(0, os.path.abspath("../../"))
 
 # -- Project information -----------------------------------------------------
 
