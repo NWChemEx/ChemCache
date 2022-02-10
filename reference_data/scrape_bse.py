@@ -1,10 +1,27 @@
-#!/usr/bin/env python3
-
 """This script uses a web scraper to download all basis sets from the Basis 
 Set Exchange (BSE) in the specified output format.
 
-+---destination
-|       <all_basis_set_files>
+Usage
+-----
+
+::
+
+   usage: scrape_bse.py [-h] [-o OUTFORMAT] [-g] destination
+
+   positional arguments:
+     destination           Destination directory for basis set files.
+
+   optional arguments:
+     -h, --help            show this help message and exit
+     -o OUTFORMAT, --outformat OUTFORMAT
+                           Output format. (Default: NWChem)
+     -g, --optimize_general
+                           Toggle on optimizing general contractions. Default OFF.
+
+This script creates the following files in the given destination::
+
+   +---destination
+   |       <all_basis_set_files>
 """
 
 import argparse
@@ -111,9 +128,10 @@ class BSEBasisSetScraper:
         the filtered basis sets must contain at least one of the
         filter values for each metadata key.
 
-        For example:
-        scraper.add_filter("family", ["pople", "dunning"])
-        scraper.add_filter("role", ["orbital", "optri"])
+        For example::
+
+           scraper.add_filter("family", ["pople", "dunning"])
+           scraper.add_filter("role", ["orbital", "optri"])
 
         will filter to all basis sets that are of either the "pople" or 
         "dunning" families, but only if they have a role of "orbital" or 
@@ -355,7 +373,7 @@ class BSEBasisSetScraper:
         return params
 
 
-def write_basis_set(destination: str, basis_name: str, basis_data: str,
+def _write_basis_set(destination: str, basis_name: str, basis_data: str,
                     extension: str) -> None:
     """Write the basis set out to a file.
 
@@ -403,7 +421,7 @@ def main(args: argparse.Namespace) -> None:
     for name in scraper.filtered_basis_sets:
         clean_name, text = scraper.download_basis_set(name)
 
-        write_basis_set(args.destination, clean_name, text,
+        _write_basis_set(args.destination, clean_name, text,
                         scraper.get_extension())
 
         print("---")
@@ -415,7 +433,10 @@ def parse_args() -> argparse.Namespace:
     :return: Values of command line arguments.
     :rtype: Namespace
     """
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=
+        "This script uses a web scraper to download all basis sets from the "
+        "Basis Set Exchange (BSE) in the specified output format."
+    )
 
     parser.add_argument('destination', type=str,
                         help="Destination directory for basis set files.")

@@ -2,12 +2,31 @@
 """This script will read each molecule file in the provided directory
 and generate a C++ source file with commands to make each molecule.
 
+Usage
+-----
+
+::
+   
+   usage: generate_molecules.py [-h] [--ang2au ANG2AU] [-r] molecule_dir src_dir
+
+   positional arguments:
+     atomic_density_dir  Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+     src_dir             Destination directory for generated source files.
+     test_dir            Destination directory for generated unit tests.
+
+   optional arguments:
+     -h, --help          show this help message and exit
+     -i INC, --inc INC   Destination include directory, if different than the required "destination" argument.
+     -r, --recursive     Toggle on recursive search through the basis set source directory. Default OFF.
+
 This script creates the following files based on the include and source
 directories given. The directories are not created by this script and must
 be present before running it.
 
-+---src
-|       load_molecules.cpp
+::
+
+   +---src
+   |       load_molecules.cpp
 """
 
 import argparse
@@ -64,7 +83,7 @@ class Molecule:
         """C++ representation of the molecule.
 
         :param fout: Text stream to output the C++ representation to
-        :type fout: :class:io.TextIOWrapper
+        :type fout: io.TextIOWrapper
 
         :param mol: Molecule instance to fill with this molecule's data.
         :type mol: str
@@ -75,8 +94,8 @@ class Molecule:
         :param indent: The current indentation
         :type indent: str
 
-        :param tab: The current tab character
-        :type tab: str
+        :param tab: The current tab character, defaults to "    "
+        :type tab: str, optional
 
         :return: C++ string representing the molecule
         :rtype: str
@@ -96,7 +115,7 @@ class Molecule:
                 self.carts[i * 3 + 2]))
 
 
-def parse_molecules_xyz(filepaths: list, sym2Z: dict,
+def _parse_molecules_xyz(filepaths: list, sym2Z: dict,
                         ang2au: float) -> Molecule:
     """Parses an XYZ formatted molecule file.
 
@@ -110,7 +129,7 @@ def parse_molecules_xyz(filepaths: list, sym2Z: dict,
     :type ang2au: float
 
     :return: Molecule parsed from file.
-    :rtype: :class:Molecule
+    :rtype: Molecule
     """
 
     an_atom = r"^\s*(\S{1,2})((?:\s+-?\d*.\d+)+)"
@@ -145,7 +164,7 @@ def parse_molecules_xyz(filepaths: list, sym2Z: dict,
     return molecules
 
 
-def parse_molecules(filepaths: list,
+def _parse_molecules(filepaths: list,
                     sym2Z: dict,
                     ang2au: float,
                     extension: str = ".xyz") -> dict:
@@ -166,17 +185,17 @@ def parse_molecules(filepaths: list,
     :raises RuntimeError: Unsupported atomic density file format.
 
     :return: Collection of molecules
-    :rtype: dict of :class:Molecule
+    :rtype: dict of Molecule
     """
 
     if (extension == ".xyz"):
-        return parse_molecules_xyz(filepaths, sym2Z, ang2au)
+        return _parse_molecules_xyz(filepaths, sym2Z, ang2au)
     else:
         raise RuntimeError(
             "Unsupported molecule file format: {}".format(extension))
 
 
-def write_load_molecules(src_dir: str, mols: dict, tab: str = "    ") -> None:
+def _write_load_molecules(src_dir: str, mols: dict, tab: str = "    ") -> None:
     """Write the load_molecules.cpp file with all parsed molecules.
 
     :param src_dir: ``src`` directory to write load_molecules.cpp to
@@ -248,13 +267,13 @@ def main(args: argparse.Namespace) -> None:
         #       `molecules` version will be replaced by the
         #       `parse_molecules()` version.
         molecules.update(
-            parse_molecules(molecule_filepaths[extension], sym2Z, args.ang2au,
+            _parse_molecules(molecule_filepaths[extension], sym2Z, args.ang2au,
                             extension))
 
     print("Writing molecules to file...", end='')
     sys.stdout.flush()
 
-    write_load_molecules(src_dir, molecules)
+    _write_load_molecules(src_dir, molecules)
 
     print("complete")
 
@@ -266,7 +285,10 @@ def parse_args() -> argparse.Namespace:
     :rtype: Namespace
     """
 
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=
+        "This script will read each molecule file in the provided directory"
+        "and generate a C++ source file with commands to make each molecule."
+    )
 
     parser.add_argument('molecule_dir',
                         type=str,

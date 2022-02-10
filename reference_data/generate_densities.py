@@ -2,18 +2,37 @@
 
 """Reads files with atomic densities and write to cpp files.
 
+Usage
+-----
+
+::
+
+   usage: generate_densities.py [-h] [-i INC] [-r] atomic_density_dir src_dir test_dir
+
+   positional arguments:
+     atomic_density_dir  Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+     src_dir             Destination directory for generated source files.
+     test_dir            Destination directory for generated unit tests.
+
+   optional arguments:
+     -h, --help          show this help message and exit
+     -i INC, --inc INC   Destination include directory, if different than the required "destination" argument.
+     -r, --recursive     Toggle on recursive search through the basis set source directory. Default OFF.
+
 This script creates the following files based on the include and source
 directories given. The directories are not created by this script and must
 be present before running it.
 
-+---include
-|       nwx_atomic_densities.hpp
-|
-+---src
-|   \---atomic_densities
-|           add_density.cmake
-|           <all_basis_set_files>
-|       nwx_atomic_densities.cpp
+::
+
+   +---include
+   |       nwx_atomic_densities.hpp
+   |
+   +---src
+   |   \---atomic_densities
+   |           add_density.cmake
+   |           <all_basis_set_files>
+   |       nwx_atomic_densities.cpp
 """
 
 import argparse
@@ -23,7 +42,7 @@ import xml.etree.ElementTree as ET
 from generate_atomicinfo import parse_symbols
 import helper_fxns as helpers
 
-def print_pimpl_header(f):
+def _print_pimpl_header(f):
     helpers.write_warning(f, os.path.basename(__file__))
 
     f.write(
@@ -37,7 +56,7 @@ namespace chemcache::detail_ {
     std::vector<std::vector<double>> get_atomic_density_(const std::string& name, std::size_t Z) {         
 """)
 
-def print_pimpl_footer(f):
+def _print_pimpl_footer(f):
     f.write(
 """throw std::out_of_range(\"Basis not available for SAD guess\");
     }//end get_atomic_density_
@@ -45,7 +64,7 @@ def print_pimpl_footer(f):
 } // namespace chemcache::detail_
 """)
 
-def print_basis_header(f, bs_name):
+def _print_basis_header(f, bs_name):
     helpers.write_warning(f, os.path.basename(__file__))
 
     f.write(
@@ -59,7 +78,7 @@ std::vector<std::vector<double>> {}_density(std::size_t Z) {{
     switch(Z) {{         
 """.format(bs_name))
 
-def print_basis_list(f):
+def _print_basis_list(f):
     helpers.write_warning(f, os.path.basename(__file__))
 
     f.write(
@@ -69,7 +88,7 @@ def print_basis_list(f):
 namespace chemcache::detail_ {
 """)
 
-def print_basis_footer(f):
+def _print_basis_footer(f):
     tab = "    "
     f.write(
 """{}default : {{ 
@@ -78,7 +97,7 @@ def print_basis_footer(f):
 }} //end function
 }} //end chemcache::detail_""".format(tab*2, tab*3, tab*2, tab))
 
-def print_atom_basis(f, z, density):
+def _print_atom_basis(f, z, density):
     tab = "    "
     f.write("{}case({}) : {{\n{}return std::vector<std::vector<double>>{{\n".format(tab*2, z, tab*3))
     for line in density.lstrip().rstrip().splitlines():
@@ -88,12 +107,12 @@ def print_atom_basis(f, z, density):
         f.write("},\n")
     f.write("{}}}; //End atomic density\n{}}} //End case\n".format(tab*3, tab*2))
 
-def write_bases(inc_dir, src_dir, bases):
+def _write_bases(inc_dir, src_dir, bases):
     tab = "    "
     with open(os.path.join(src_dir,"nwx_atomic_densities.cpp"),'w') as f:
-        print_pimpl_header(f)
+        _print_pimpl_header(f)
         with open(os.path.join(inc_dir, "nwx_atomic_densities.hpp"), 'w') as g:
-            print_basis_list(g)
+            _print_basis_list(g)
             f.write("{}".format(tab*2))
             for bs_name, bs in sorted(bases.items()):
                 s_name = helpers.sanitize_basis_name(bs_name)
@@ -104,13 +123,13 @@ def write_bases(inc_dir, src_dir, bases):
                 bs_file_name = "{}.cpp".format(bs_name)
                 bs_path = os.path.join(src_dir,"atomic_densities", bs_file_name)
                 with open(bs_path, 'w') as h:
-                    print_basis_header(h, s_name)
+                    _print_basis_header(h, s_name)
                     for z in sorted([int(x) for x in bs.keys()]):
-                        print_atom_basis(h, z, bs[str(z)])
-                    print_basis_footer(h)
+                        _print_atom_basis(h, z, bs[str(z)])
+                    _print_basis_footer(h)
                 f.write("}}\n{}else ".format(tab*2))
             g.write("} //end namespace\n")
-        print_pimpl_footer(f)
+        _print_pimpl_footer(f)
     
     with open(os.path.join(src_dir,"atomic_densities", "add_density.cmake"), "w") as f:
         helpers.write_warning(f, os.path.basename(__file__), prefix = "# ")
@@ -120,7 +139,7 @@ def write_bases(inc_dir, src_dir, bases):
             f.write("    defaults/atomic_densities/{}.cpp\n".format(bs_name))
         f.write(")")
 
-def parse_densities_xml(filepaths, sym2Z):
+def _parse_densities_xml(filepaths, sym2Z) -> dict:
     """Parse atomic density files in XML format.
 
     :param filepaths: Full paths to atomic density files.
@@ -150,7 +169,7 @@ def parse_densities_xml(filepaths, sym2Z):
 
     return basis_sets
 
-def parse_densities(filepaths, sym2Z, extension=".xml"):
+def _parse_densities(filepaths, sym2Z, extension=".xml") -> dict:
     """Parse atomic density files of the specified format.
 
     :param filepaths: Full paths to atomic density files.
@@ -169,17 +188,17 @@ def parse_densities(filepaths, sym2Z, extension=".xml"):
     """
 
     if (extension == ".xml"):
-        return parse_densities_xml(filepaths, sym2Z)
+        return _parse_densities_xml(filepaths, sym2Z)
     else:
         raise RuntimeError(
             "Unsupported atomic density file format: {}".format(extension)
         )
 
-def main(args):
+def main(args: argparse.Namespace) -> None:
     """Entry point function to generate atomic density files.
 
     :param args: Command line argument namespace
-    :type args: Namespace
+    :type args: argparse.Namespace
     """
 
     extensions = [ ".xml" ]
@@ -215,20 +234,22 @@ def main(args):
         #       and the new dict returned from parse_densities(), the 
         #       atomic_densities version will be replaced by the 
         #       parse_densities() version.
-        basis_sets.update(parse_densities(
+        basis_sets.update(_parse_densities(
             atomic_density_filepaths[extension], sym2Z, extension
         ))
 
-    write_bases(inc_dir, src_dir, basis_sets)
+    _write_bases(inc_dir, src_dir, basis_sets)
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     """Parse command line arguments.
 
     :return: Values of command line arguments.
-    :rtype: Namespace
+    :rtype: argparse.Namespace
     """
     
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=
+        "Reads files with atomic densities and write to cpp files."
+    )
     
     parser.add_argument('atomic_density_dir', type=str,
                         help="""Source directory for basis set files. If combined

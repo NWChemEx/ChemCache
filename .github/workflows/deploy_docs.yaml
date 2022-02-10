@@ -21,7 +21,15 @@ jobs:
       - name: Build Python documentation
         run: |
           . venv/bin/activate
-          sphinx-apidoc -f -o docs/source/python_api/ reference_data
+
+          sphinx-apidoc --force --separate --no-toc \
+            -o docs/source/python_api/reference_data reference_data            
+
+          # Get rid of the duplicate doc object for reference_data that
+          # is generated, since we have a manually created one. This 
+          # gets rid of a warning in the Sphinx build.
+          rm docs/source/python_api/reference_data/reference_data.rst
+
           deactivate
 
       - name: Build C++ and overall documentation
