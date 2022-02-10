@@ -1,7 +1,24 @@
 """This script uses a web scraper to download all basis sets from the Basis 
 Set Exchange (BSE) in the specified output format.
 
+Usage
+-----
+
 ::
+
+   usage: scrape_bse.py [-h] [-o OUTFORMAT] [-g] destination
+
+   positional arguments:
+     destination           Destination directory for basis set files.
+
+   optional arguments:
+     -h, --help            show this help message and exit
+     -o OUTFORMAT, --outformat OUTFORMAT
+                           Output format. (Default: NWChem)
+     -g, --optimize_general
+                           Toggle on optimizing general contractions. Default OFF.
+
+This script creates the following files in the given destination::
 
    +---destination
    |       <all_basis_set_files>
@@ -416,7 +433,10 @@ def parse_args() -> argparse.Namespace:
     :return: Values of command line arguments.
     :rtype: Namespace
     """
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=
+        "This script uses a web scraper to download all basis sets from the "
+        "Basis Set Exchange (BSE) in the specified output format."
+    )
 
     parser.add_argument('destination', type=str,
                         help="Destination directory for basis set files.")

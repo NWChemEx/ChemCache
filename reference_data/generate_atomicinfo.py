@@ -16,6 +16,21 @@ script:
 - Z: the atomic number of an atom
 - Sym: the atomic symbol of an atom (e.g. H for hydrogen, He for helium)
 
+Usage
+-----
+
+::
+
+   usage: generate_atomicinfo.py [-h] [--amu2me AMU2ME] data_dir src_dir
+
+   positional arguments:
+     data_dir         Data directory for atomic information files.
+     src_dir          Destination directory for generated source files.
+
+   optional arguments:
+     -h, --help       show this help message and exit
+     --amu2me AMU2ME  Ratio of mass of electron to one Dalton. (Default: 1822.888486192)
+
 This script looks for the following file(s)::
 
    +---data_dir  
@@ -273,7 +288,10 @@ def parse_args() -> argparse.Namespace:
     :return: Values of command line arguments.
     :rtype: argparse.Namespace
     """
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=
+        "This script is used to create the experimental data look up tables "
+        "for the atom class."
+    )
 
     parser.add_argument('data_dir', type=str,
                         help="Data directory for atomic information files.")

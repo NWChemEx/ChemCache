@@ -2,6 +2,23 @@
 
 """Reads files with atomic densities and write to cpp files.
 
+Usage
+-----
+
+::
+
+   usage: generate_densities.py [-h] [-i INC] [-r] atomic_density_dir src_dir test_dir
+
+   positional arguments:
+     atomic_density_dir  Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+     src_dir             Destination directory for generated source files.
+     test_dir            Destination directory for generated unit tests.
+
+   optional arguments:
+     -h, --help          show this help message and exit
+     -i INC, --inc INC   Destination include directory, if different than the required "destination" argument.
+     -r, --recursive     Toggle on recursive search through the basis set source directory. Default OFF.
+
 This script creates the following files based on the include and source
 directories given. The directories are not created by this script and must
 be present before running it.
@@ -230,7 +247,9 @@ def parse_args() -> argparse.Namespace:
     :rtype: argparse.Namespace
     """
     
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=
+        "Reads files with atomic densities and write to cpp files."
+    )
     
     parser.add_argument('atomic_density_dir', type=str,
                         help="""Source directory for basis set files. If combined

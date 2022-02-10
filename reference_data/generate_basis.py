@@ -4,6 +4,21 @@
 that will fill them in. The format of the resulting basis sets is suitable
 for use with the BasisSetExchange class.
 
+Usage
+-----
+
+::
+
+   usage: generate_basis.py [-h] [-r] basis_set_source src_dir
+
+   positional arguments:
+     basis_set_source  Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+     src_dir           Destination directory for generated source files.
+
+   optional arguments:
+     -h, --help        show this help message and exit
+     -r, --recursive   Toggle on recursive search through the basis set source directory. Default OFF.
+
 This script creates the following files based on the include and source
 directories given. The directories are not created by this script and must
 be present before running it.
@@ -548,7 +563,11 @@ def parse_args() -> argparse.Namespace:
     :rtype: argparse.Namespace
     """
 
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=
+        "This script will loop over a series of basis sets and write out a "
+        "file that will fill them in. The format of the resulting basis sets "
+        "is suitable for use with the BasisSetExchange class."
+    )
 
     parser.add_argument('basis_set_source', type=str,
                         help="""Source directory for basis set files. If combined
