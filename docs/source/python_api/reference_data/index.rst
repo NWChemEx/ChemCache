@@ -18,8 +18,8 @@ Scripts
    generate_molecules.py <reference_data.generate_molecules>
    scrape_bse.py <reference_data.scrape_bse>
 
-Modules
--------
+Submodules
+----------
 
 .. toctree::
    :maxdepth: 1
