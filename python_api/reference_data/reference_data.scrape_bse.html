@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>reference_data.scrape_bse module &mdash; ChemCache 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="reference_data.helper_fxns module" href="reference_data.helper_fxns.html" />
+    <link rel="prev" title="reference_data.generate_molecules module" href="reference_data.generate_molecules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> ChemCache
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://nwchemex-project.github.io/ChemCache/chemcache_cxx_api/index.html">C++ API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">reference_data</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#scripts">Scripts</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="reference_data.generate_atomicinfo.html">generate_atomicinfo.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference_data.generate_basis.html">generate_basis.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference_data.generate_densities.html">generate_densities.py</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference_data.generate_molecules.html">generate_molecules.py</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">scrape_bse.py</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ChemCache</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Python API</a> &raquo;</li>
+          <li><a href="index.html">reference_data</a> &raquo;</li>
+      <li>reference_data.scrape_bse module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/python_api/reference_data/reference_data.scrape_bse.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-reference_data.scrape_bse">
+<span id="reference-data-scrape-bse-module"></span><h1>reference_data.scrape_bse module<a class="headerlink" href="#module-reference_data.scrape_bse" title="Permalink to this headline"></a></h1>
+<p>This script uses a web scraper to download all basis sets from the Basis 
+Set Exchange (BSE) in the specified output format.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">scrape_bse</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTFORMAT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span> <span class="n">destination</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="n">destination</span>           <span class="n">Destination</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">basis</span> <span class="nb">set</span> <span class="n">files</span><span class="o">.</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">OUTFORMAT</span><span class="p">,</span> <span class="o">--</span><span class="n">outformat</span> <span class="n">OUTFORMAT</span>
+                        <span class="n">Output</span> <span class="nb">format</span><span class="o">.</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="n">NWChem</span><span class="p">)</span>
+  <span class="o">-</span><span class="n">g</span><span class="p">,</span> <span class="o">--</span><span class="n">optimize_general</span>
+                        <span class="n">Toggle</span> <span class="n">on</span> <span class="n">optimizing</span> <span class="n">general</span> <span class="n">contractions</span><span class="o">.</span> <span class="n">Default</span> <span class="n">OFF</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This script creates the following files in the given destination:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">destination</span>
+<span class="o">|</span>       <span class="o">&lt;</span><span class="n">all_basis_set_files</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">BSEBasisSetScraper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://www.basissetexchange.org'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'NWChemEx</span> <span class="pre">BSE</span> <span class="pre">Basis</span> <span class="pre">Set</span> <span class="pre">Scraper'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nwchem'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncontract_general</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncontract_segmented</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncontract_spdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize_general</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_general</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_toggle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Web scraper to download basis sets from the Basis Set Exchange (BSE).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.add_filter">
+<span class="sig-name descname"><span class="pre">add_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.add_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Add a metadata filter to the basis set list and update the filtered
+basis set list and metadata.</p>
+<p>This function adds filters to the list of valid basis sets contained
+by this class based on metadata values scraped from BSE. If filters 
+already exist for the metadata key given, the new values will be 
+appended to the existing filter value list. Values must match exactly!</p>
+<p>When multiple filter values exist for a metadata key, basis sets are 
+guaranteed to contain at least one of the filter values, but not 
+necessarily all filter values for the metadata key. However, filter
+values of different metadata keys are applied sequentially, so 
+the filtered basis sets must contain at least one of the
+filter values for each metadata key.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scraper</span><span class="o">.</span><span class="n">add_filter</span><span class="p">(</span><span class="s2">&quot;family&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;pople&quot;</span><span class="p">,</span> <span class="s2">&quot;dunning&quot;</span><span class="p">])</span>
+<span class="n">scraper</span><span class="o">.</span><span class="n">add_filter</span><span class="p">(</span><span class="s2">&quot;role&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;orbital&quot;</span><span class="p">,</span> <span class="s2">&quot;optri&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>will filter to all basis sets that are of either the “pople” or 
+“dunning” families, but only if they have a role of “orbital” or 
+“optri”.</p>
+<p>The filtered basis set names can be retrieved using the data member
+<cite>filtered_basis_sets</cite> or the full filtered metadata can be 
+retrieved with <cite>filtered_metadata</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metadata_key</strong> (<em>str</em>) – Key for the desired value in basis set metadata.</p></li>
+<li><p><strong>values</strong> (<em>list</em>) – Values of the metadata to filter by.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.download_basis_set">
+<span class="sig-name descname"><span class="pre">download_basis_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.download_basis_set" title="Permalink to this definition"></a></dt>
+<dd><p>Download a single basis set. An optional string of elements can be
+provided or left empty to get all elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>basis_name</strong> (<em>str</em>) – BSE basis set name identifier.</p></li>
+<li><p><strong>elements</strong> (<em>str</em><em>, </em><em>optional</em>) – Comma-separated string of atomic numbers, 
+defaults to “”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Basis set could not be obtained from BSE.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Basis set name cleaned to be a file name and the text for the 
+basis set file.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.download_valid_basis_sets">
+<span class="sig-name descname"><span class="pre">download_valid_basis_sets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.download_valid_basis_sets" title="Permalink to this definition"></a></dt>
+<dd><p>Download the list of basis sets available from BSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Collections of basis set names and metadata</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of list and dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.download_valid_formats">
+<span class="sig-name descname"><span class="pre">download_valid_formats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.download_valid_formats" title="Permalink to this definition"></a></dt>
+<dd><p>Download the list of formats available from BSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Collection of format names</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.get_extension">
+<span class="sig-name descname"><span class="pre">get_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.get_extension" title="Permalink to this definition"></a></dt>
+<dd><p>Get the extension for the given BSE format identifier. If no 
+format identifier is given, the class default is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>format</strong> (<em>str</em><em>, </em><em>optional</em>) – BSE format identifier, defaults to “”</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Basis set file extension</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.get_filtered_basis_sets">
+<span class="sig-name descname"><span class="pre">get_filtered_basis_sets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.get_filtered_basis_sets" title="Permalink to this definition"></a></dt>
+<dd><p>Filter the existing valid basis sets based on metadata filters 
+currently set in the class. This function does not change the class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a filtered list of basis set names and the filtered
+metadata dict</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple of list and dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.set_default_format">
+<span class="sig-name descname"><span class="pre">set_default_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.set_default_format" title="Permalink to this definition"></a></dt>
+<dd><p>Set the default format for basis sets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>format</strong> (<em>str</em>) – Valid BSE format identifier for basis sets.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.set_header">
+<span class="sig-name descname"><span class="pre">set_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.set_header" title="Permalink to this definition"></a></dt>
+<dd><p>Generates the header to use in requests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_agent</strong> (<em>str</em><em>, </em><em>optional</em>) – Description of who is pinging the BSE API, 
+defaults to “”</p></li>
+<li><p><strong>email</strong> (<em>str</em><em>, </em><em>optional</em>) – Email to send to BSE (not shared), defaults to “”</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.validate_basis_set_name">
+<span class="sig-name descname"><span class="pre">validate_basis_set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.validate_basis_set_name" title="Permalink to this definition"></a></dt>
+<dd><p>Validate the basis name against the list of valid basis names 
+retrieved from BSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>basis_name</strong> (<em>str</em>) – Name of the basis set</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Invalid basis name was given.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper.validate_format_name">
+<span class="sig-name descname"><span class="pre">validate_format_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.validate_format_name" title="Permalink to this definition"></a></dt>
+<dd><p>Validate the format name against the list of valid format names 
+retrieved from BSE.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>format</strong> (<em>str</em>) – Name of the formatting option</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Invalid format option was given</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.main">
+<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.main" title="Permalink to this definition"></a></dt>
+<dd><p>Entry point function to generate basis set files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>Namespace</em>) – Command line argument namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reference_data.scrape_bse.parse_args">
+<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">argparse.Namespace</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.parse_args" title="Permalink to this definition"></a></dt>
+<dd><p>Parse command line arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Values of command line arguments.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reference_data.generate_molecules.html" class="btn btn-neutral float-left" title="reference_data.generate_molecules module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reference_data.helper_fxns.html" class="btn btn-neutral float-right" title="reference_data.helper_fxns module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, NWChemEx Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+reference\_data.scrape\_bse module
+==================================
+
+.. automodule:: reference_data.scrape_bse
+   :members:
+   :undoc-members:
+   :show-inheritance:

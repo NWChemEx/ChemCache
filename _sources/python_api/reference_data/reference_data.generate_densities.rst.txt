@@ -1,0 +1,7 @@
+reference\_data.generate\_densities module
+==========================================
+
+.. automodule:: reference_data.generate_densities
+   :members:
+   :undoc-members:
+   :show-inheritance:
