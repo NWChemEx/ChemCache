@@ -66,7 +66,7 @@ class Molecule:
         """C++ representation of the molecule.
 
         :param fout: Text stream to output the C++ representation to
-        :type fout: :class:io.TextIOWrapper
+        :type fout: io.TextIOWrapper
 
         :param mol: Molecule instance to fill with this molecule's data.
         :type mol: str
@@ -77,8 +77,8 @@ class Molecule:
         :param indent: The current indentation
         :type indent: str
 
-        :param tab: The current tab character
-        :type tab: str
+        :param tab: The current tab character, defaults to "    "
+        :type tab: str, optional
 
         :return: C++ string representing the molecule
         :rtype: str
@@ -98,7 +98,7 @@ class Molecule:
                 self.carts[i * 3 + 2]))
 
 
-def parse_molecules_xyz(filepaths: list, sym2Z: dict,
+def _parse_molecules_xyz(filepaths: list, sym2Z: dict,
                         ang2au: float) -> Molecule:
     """Parses an XYZ formatted molecule file.
 
@@ -112,7 +112,7 @@ def parse_molecules_xyz(filepaths: list, sym2Z: dict,
     :type ang2au: float
 
     :return: Molecule parsed from file.
-    :rtype: :class:Molecule
+    :rtype: Molecule
     """
 
     an_atom = r"^\s*(\S{1,2})((?:\s+-?\d*.\d+)+)"
@@ -147,7 +147,7 @@ def parse_molecules_xyz(filepaths: list, sym2Z: dict,
     return molecules
 
 
-def parse_molecules(filepaths: list,
+def _parse_molecules(filepaths: list,
                     sym2Z: dict,
                     ang2au: float,
                     extension: str = ".xyz") -> dict:
@@ -168,17 +168,17 @@ def parse_molecules(filepaths: list,
     :raises RuntimeError: Unsupported atomic density file format.
 
     :return: Collection of molecules
-    :rtype: dict of :class:Molecule
+    :rtype: dict of Molecule
     """
 
     if (extension == ".xyz"):
-        return parse_molecules_xyz(filepaths, sym2Z, ang2au)
+        return _parse_molecules_xyz(filepaths, sym2Z, ang2au)
     else:
         raise RuntimeError(
             "Unsupported molecule file format: {}".format(extension))
 
 
-def write_load_molecules(src_dir: str, mols: dict, tab: str = "    ") -> None:
+def _write_load_molecules(src_dir: str, mols: dict, tab: str = "    ") -> None:
     """Write the load_molecules.cpp file with all parsed molecules.
 
     :param src_dir: ``src`` directory to write load_molecules.cpp to
@@ -250,13 +250,13 @@ def main(args: argparse.Namespace) -> None:
         #       `molecules` version will be replaced by the
         #       `parse_molecules()` version.
         molecules.update(
-            parse_molecules(molecule_filepaths[extension], sym2Z, args.ang2au,
+            _parse_molecules(molecule_filepaths[extension], sym2Z, args.ang2au,
                             extension))
 
     print("Writing molecules to file...", end='')
     sys.stdout.flush()
 
-    write_load_molecules(src_dir, molecules)
+    _write_load_molecules(src_dir, molecules)
 
     print("complete")
 

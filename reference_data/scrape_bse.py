@@ -111,9 +111,10 @@ class BSEBasisSetScraper:
         the filtered basis sets must contain at least one of the
         filter values for each metadata key.
 
-        For example:
-        scraper.add_filter("family", ["pople", "dunning"])
-        scraper.add_filter("role", ["orbital", "optri"])
+        For example::
+
+           scraper.add_filter("family", ["pople", "dunning"])
+           scraper.add_filter("role", ["orbital", "optri"])
 
         will filter to all basis sets that are of either the "pople" or 
         "dunning" families, but only if they have a role of "orbital" or 
@@ -355,7 +356,7 @@ class BSEBasisSetScraper:
         return params
 
 
-def write_basis_set(destination: str, basis_name: str, basis_data: str,
+def _write_basis_set(destination: str, basis_name: str, basis_data: str,
                     extension: str) -> None:
     """Write the basis set out to a file.
 
@@ -403,7 +404,7 @@ def main(args: argparse.Namespace) -> None:
     for name in scraper.filtered_basis_sets:
         clean_name, text = scraper.download_basis_set(name)
 
-        write_basis_set(args.destination, clean_name, text,
+        _write_basis_set(args.destination, clean_name, text,
                         scraper.get_extension())
 
         print("---")

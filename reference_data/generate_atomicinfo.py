@@ -105,7 +105,7 @@ def parse_symbols(name_file: str, atoms: dict) -> None:
             atoms[z].Z = z
 
 
-def parse_ciaaw_isotopes(iso_file: str, atoms: dict) -> None:
+def _parse_ciaaw_isotopes(iso_file: str, atoms: dict) -> None:
     """Parses an isotope mass file from the Commission on Isotopic Abundances
     and Atomic Weights (CIAAW) and adds it to a given atomic collection.
 
@@ -113,7 +113,7 @@ def parse_ciaaw_isotopes(iso_file: str, atoms: dict) -> None:
     :type iso_file: str
 
     :param atoms: Collection of atoms. Loaded isotopes will be added here.
-    :type atoms: dict of class:`AtomicData`
+    :type atoms: dict of AtomicData
     """
 
     new_atom = r"(\d+)\s+[a-zA-Z]{1,2}\s+[a-zA-Z]+\s+"
@@ -127,7 +127,7 @@ def parse_ciaaw_isotopes(iso_file: str, atoms: dict) -> None:
         :type match: tuple
 
         :param atom: Atom to add the isotope to
-        :type atom: class:`AtomicData`
+        :type atom: AtomicData
         """
         as_str = match[1].replace(" ", "") + match[2].replace(" ", "")
         atom.add_isotope(match[0], float(as_str))
@@ -145,7 +145,7 @@ def parse_ciaaw_isotopes(iso_file: str, atoms: dict) -> None:
             # else: this is not a line containing isotope information
 
 
-def parse_ciaww_mass(mass_file: str, atoms: dict) -> None:
+def _parse_ciaww_mass(mass_file: str, atoms: dict) -> None:
     """Parses a mass file from the Commission on Isotopic Abundances
     and Atomic Weights (CIAAW) and adds it to a given atomic collection.
 
@@ -153,7 +153,7 @@ def parse_ciaww_mass(mass_file: str, atoms: dict) -> None:
     :type iso_file: str
 
     :param atoms: Collection of atoms. Loaded masses will be added here.
-    :type atoms: dict of class:`AtomicData`
+    :type atoms: dict of AtomicData
     """
 
     mass = r"((?:\d+\.\d+(?:\s\d+)*,*\s?)+)"
@@ -173,7 +173,7 @@ def parse_ciaww_mass(mass_file: str, atoms: dict) -> None:
                 atoms[Z].mass = sum(masses) / len(masses)
 
 
-def write_load_elements(out_dir: str, amu2me: float, atoms: dict) -> None:
+def _write_load_elements(out_dir: str, amu2me: float, atoms: dict) -> None:
     """Generate a file which will load the atomic info into a 
     chemist::PeriodicTable instance.
 
@@ -184,7 +184,7 @@ def write_load_elements(out_dir: str, amu2me: float, atoms: dict) -> None:
     :type amu2me: float
 
     :param atoms: Collection of atoms.
-    :type atoms: dict of :class:`AtomicData`
+    :type atoms: dict of AtomicData
     """
 
     out_file = os.path.join(out_dir, "load_elements.cpp")
@@ -245,7 +245,7 @@ def main(args: argparse.Namespace) -> None:
     """Entry point function to generate atomic info files.
 
     :param args: Command line argument namespace
-    :type args: Namespace
+    :type args: argparse.Namespace
     """
 
     # Get and set some paths
@@ -261,17 +261,17 @@ def main(args: argparse.Namespace) -> None:
     # Parse atomic data
     atoms = dict()
     parse_symbols(name_file, atoms)
-    parse_ciaaw_isotopes(iso_file, atoms)
-    parse_ciaww_mass(mass_file, atoms)
+    _parse_ciaaw_isotopes(iso_file, atoms)
+    _parse_ciaww_mass(mass_file, atoms)
 
-    write_load_elements(out_dir, args.amu2me, atoms)
+    _write_load_elements(out_dir, args.amu2me, atoms)
 
 
 def parse_args() -> argparse.Namespace:
     """Parse command line arguments.
 
     :return: Values of command line arguments.
-    :rtype: Namespace
+    :rtype: argparse.Namespace
     """
     parser = argparse.ArgumentParser(description=__doc__)
 

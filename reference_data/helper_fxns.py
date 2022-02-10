@@ -3,7 +3,6 @@ scripts in this directory.
 """
 
 import os
-from os import TMP_MAX
 
 def find_files(source_root, extensions, recursive=False):
     """Recursively find all files in the given directory with the provided

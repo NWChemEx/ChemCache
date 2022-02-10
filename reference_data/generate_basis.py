@@ -37,8 +37,9 @@ class Shell:
         :param ls: List of angular momenta
         :type ls: list of int
 
-        :param num_format: Format string for numbers being output
-        :type num_format: str
+        :param num_format: Format string for numbers being output, 
+            defaults to ".10e"
+        :type num_format: str, optional
         """
 
         self.ls = ls
@@ -62,7 +63,7 @@ class Shell:
         self.gen = max(len(coefs), self.gen)
 
     def cxxify(self, fout: io.TextIOWrapper, center: str,
-               tab: str, ) -> None:
+               tab: str = "    ") -> None:
         """Create a C++ source representation of the shell.
 
         :param fout: C++ source file opened for writing
@@ -71,8 +72,8 @@ class Shell:
         :param center: chemist::Center to add the shell to
         :type center: str
 
-        :param tab: String representing a tab.
-        :type tab: str
+        :param tab: String representing a tab, defaults to "    "
+        :type tab: str, optional
         """
 
         for i in range(self.gen):
@@ -98,7 +99,7 @@ class Shell:
             fout.write("{}{});\n".format(tab*2, es))
 
 
-def print_atom_basis(fout: io.TextIOWrapper, bs_name: str, z: int,
+def _print_atom_basis(fout: io.TextIOWrapper, bs_name: str, z: int,
                      basis: list, tab: str = "    ") -> None:
     """Print basis data for the given atom.
 
@@ -127,7 +128,7 @@ def print_atom_basis(fout: io.TextIOWrapper, bs_name: str, z: int,
         shell.cxxify(fout, center, tab)
 
 
-def write_basis_files(out_file: str, bs_name: str, basis_set: dict,
+def _write_basis_files(out_file: str, bs_name: str, basis_set: dict,
                       tab: str = "    ") -> None:
 
     with open(out_file, 'w') as fout:
@@ -152,7 +153,7 @@ void load_{}(chemist::BasisSetManager& bsm) {{
             # Comment basis set name and atomic number being handled
             fout.write("{}// Z = {}\n".format(tab, z))
 
-            print_atom_basis(fout, bs_name, z, basis_set[str(z)], tab)
+            _print_atom_basis(fout, bs_name, z, basis_set[str(z)], tab)
 
             # White space between bases
             fout.write("\n")
@@ -169,7 +170,7 @@ void load_{}(chemist::BasisSetManager& bsm) {{
         )
 
 
-def write_basis_list(src_dir: str, bases: dict, tab="    ") -> None:
+def _write_basis_list(src_dir: str, bases: dict, tab="    ") -> None:
     # Write out the basis list file
     basis_list_file = os.path.join(src_dir, "basis_set_list.hpp")
     with open(basis_list_file, 'w') as fout:
@@ -195,7 +196,7 @@ namespace chemcache::basis_sets {
         fout.write("\n} // namespace chemcache")
 
 
-def write_bases(src_dir: str, bases: dict, tab="    ") -> None:
+def _write_bases(src_dir: str, bases: dict, tab="    ") -> None:
     """Writes basis set data to C++ files.
 
     :param src_dir: Source directory for source files.
@@ -203,6 +204,9 @@ def write_bases(src_dir: str, bases: dict, tab="    ") -> None:
 
     :param bases: Collection of basis sets parsed from files
     :type bases: dict
+
+    :param tab: String representing a tab, defaults to "    "
+        :type tab: str, optional
     """
 
     load_basis_file = os.path.join(src_dir, "load_basis_sets.cpp")
@@ -228,7 +232,7 @@ void load_basis_sets(chemist::BasisSetManager& bsm) {
                        .format(tab, helpers.sanitize_basis_name(bs_name)))
 
             basis_file = os.path.join(src_dir, "bases", bs_name + ".cpp")
-            write_basis_files(basis_file, bs_name, basis_set)
+            _write_basis_files(basis_file, bs_name, basis_set)
 
             # White space between basis sets
             fout.write("\n")
@@ -241,10 +245,10 @@ void load_basis_sets(chemist::BasisSetManager& bsm) {
 """
         )
 
-    write_basis_list(src_dir, bases, tab)
+    _write_basis_list(src_dir, bases, tab)
 
 
-def parse_bases_gbs(basis_set_filenames: list, sym2Z: dict,
+def _parse_bases_gbs(basis_set_filenames: list, sym2Z: dict,
                     l2num: "function") -> dict:
     """Parses basis set files from the filepaths given.
 
@@ -297,7 +301,7 @@ def parse_bases_gbs(basis_set_filenames: list, sym2Z: dict,
     return bases
 
 
-def parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -> dict:
+def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -> dict:
     """Parses basis set files from the filepaths given.
 
     :param basis_set_filepaths: Full paths to basis set files.
@@ -404,7 +408,7 @@ def parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") ->
     return bases
 
 
-def parse_bases(basis_set_filepaths: list, sym2Z: dict, l2num: "function", format: str = "nwchem") -> dict:
+def _parse_bases(basis_set_filepaths: list, sym2Z: dict, l2num: "function", format: str = "nwchem") -> dict:
     """Parse basis set files of the specified format.
 
     This function redirects to the correct parsing function based on the file
@@ -441,14 +445,14 @@ def parse_bases(basis_set_filepaths: list, sym2Z: dict, l2num: "function", forma
         format == "psi4" or
             format == "xtron"):
 
-        return parse_bases_gbs(basis_set_filepaths, sym2Z, l2num)
+        return _parse_bases_gbs(basis_set_filepaths, sym2Z, l2num)
     elif (format == "nwchem"):
-        return parse_bases_nw(basis_set_filepaths, sym2Z, l2num)
+        return _parse_bases_nw(basis_set_filepaths, sym2Z, l2num)
     else:
         raise RuntimeError("Unsupported basis file format: {}".format(format))
 
 
-def find_basis_sets(source_root: str, formats: list = ["nwchem"], recursive: bool = False) -> list:
+def _find_basis_sets(source_root: str, formats: list = ["nwchem"], recursive: bool = False) -> list:
     """Recursively find all basis set files in the given directory. Basis set
     files are identified using the given extensions list.
 
@@ -460,7 +464,7 @@ def find_basis_sets(source_root: str, formats: list = ["nwchem"], recursive: boo
 
     :param recursive: Whether or not to recursively search in subdirectories,
         defaults to False
-    :type recursive: bool
+    :type recursive: bool, optional
 
     :return: Full paths to basis set files found
     :rtype: list
@@ -491,7 +495,7 @@ def main(args: argparse.Namespace) -> None:
     """Entry point function to generate basis set files.
 
     :param args: Command line argument namespace
-    :type args: Namespace
+    :type args: argparse.Namespace
     """
 
     formats = ["nwchem"]
@@ -525,14 +529,14 @@ def main(args: argparse.Namespace) -> None:
         #       and the new dict returned from parse_bases(), the
         #       basis_sets version will be replaced by the
         #       parse_bases() version.
-        basis_sets.update(parse_bases(
+        basis_sets.update(_parse_bases(
             basis_set_filepaths[extension], sym2Z, l2num, format=format
         ))
 
     print("Writing basis sets to file...", end='')
     sys.stdout.flush()
 
-    write_bases(src_dir, basis_sets)
+    _write_bases(src_dir, basis_sets)
 
     print("complete")
 
@@ -541,7 +545,7 @@ def parse_args() -> argparse.Namespace:
     """Parse command line arguments.
 
     :return: Values of command line arguments.
-    :rtype: Namespace
+    :rtype: argparse.Namespace
     """
 
     parser = argparse.ArgumentParser(description=__doc__)
