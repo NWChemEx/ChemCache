@@ -7,4 +7,4 @@ ChemCache Documentation
    :caption: API Documentation
 
    C++ API <https://nwchemex-project.github.io/ChemCache/chemcache_cxx_api/index.html>
-   python_api/modules
+   python_api/index
