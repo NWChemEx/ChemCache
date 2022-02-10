@@ -1,5 +1,6 @@
-reference_data package
-======================
+**************
+reference_data
+**************
 
 .. automodule:: reference_data
    :members:
@@ -7,7 +8,7 @@ reference_data package
    :show-inheritance:
 
 Scripts
--------
+=======
 
 .. toctree::
    :maxdepth: 1
@@ -19,7 +20,7 @@ Scripts
    scrape_bse.py <reference_data.scrape_bse>
 
 Submodules
-----------
+==========
 
 .. toctree::
    :maxdepth: 1
