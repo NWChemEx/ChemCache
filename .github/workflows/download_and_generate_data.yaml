@@ -47,7 +47,7 @@ jobs:
         run: find src/ -iname '*.cpp' | xargs clang-format --verbose -i
 
       - name: Commit and push changes to data branch
-        uses: actions-x/commit@v2
+        uses: github-actions-x/commit@v2.9
         with:
           branch: generated_data
           message: Automatically updated reference data using GitHub Actions
