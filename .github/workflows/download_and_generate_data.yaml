@@ -49,5 +49,5 @@ jobs:
       - name: Commit and push changes to data branch
         uses: github-actions-x/commit@v2.9
         with:
-          branch: generated_data
-          message: Automatically updated reference data using GitHub Actions
+          push-branch: generated_data
+          commit-message: Automatically updated reference data using GitHub Actions
