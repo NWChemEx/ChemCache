@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>reference_data.scrape_bse module &mdash; ChemCache 1.0.0 documentation</title>
@@ -14,6 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -87,11 +88,11 @@
            <div itemprop="articleBody">
              
   <section id="module-reference_data.scrape_bse">
-<span id="reference-data-scrape-bse-module"></span><h1>reference_data.scrape_bse module<a class="headerlink" href="#module-reference_data.scrape_bse" title="Permalink to this headline"></a></h1>
+<span id="reference-data-scrape-bse-module"></span><h1>reference_data.scrape_bse module<a class="headerlink" href="#module-reference_data.scrape_bse" title="Permalink to this heading"></a></h1>
 <p>This script uses a web scraper to download all basis sets from the Basis 
 Set Exchange (BSE) in the specified output format.</p>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">scrape_bse</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTFORMAT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span> <span class="n">destination</span>
 
 <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
@@ -142,7 +143,7 @@ filter values for each metadata key.</p>
 <cite>filtered_basis_sets</cite> or the full filtered metadata can be 
 retrieved with <cite>filtered_metadata</cite>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>metadata_key</strong> (<em>str</em>) – Key for the desired value in basis set metadata.</p></li>
 <li><p><strong>values</strong> (<em>list</em>) – Values of the metadata to filter by.</p></li>
@@ -157,21 +158,21 @@ retrieved with <cite>filtered_metadata</cite>.</p>
 <dd><p>Download a single basis set. An optional string of elements can be
 provided or left empty to get all elements.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>basis_name</strong> (<em>str</em>) – BSE basis set name identifier.</p></li>
 <li><p><strong>elements</strong> (<em>str</em><em>, </em><em>optional</em>) – Comma-separated string of atomic numbers, 
 defaults to “”</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>RuntimeError</strong> – Basis set could not be obtained from BSE.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Basis set name cleaned to be a file name and the text for the 
 basis set file.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>tuple</p>
 </dd>
 </dl>
@@ -182,10 +183,10 @@ basis set file.</p>
 <span class="sig-name descname"><span class="pre">download_valid_basis_sets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.download_valid_basis_sets" title="Permalink to this definition"></a></dt>
 <dd><p>Download the list of basis sets available from BSE.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Collections of basis set names and metadata</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>tuple of list and dict</p>
 </dd>
 </dl>
@@ -196,10 +197,10 @@ basis set file.</p>
 <span class="sig-name descname"><span class="pre">download_valid_formats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.download_valid_formats" title="Permalink to this definition"></a></dt>
 <dd><p>Download the list of formats available from BSE.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Collection of format names</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list</p>
 </dd>
 </dl>
@@ -211,13 +212,13 @@ basis set file.</p>
 <dd><p>Get the extension for the given BSE format identifier. If no 
 format identifier is given, the class default is used.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>format</strong> (<em>str</em><em>, </em><em>optional</em>) – BSE format identifier, defaults to “”</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Basis set file extension</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -229,11 +230,11 @@ format identifier is given, the class default is used.</p>
 <dd><p>Filter the existing valid basis sets based on metadata filters 
 currently set in the class. This function does not change the class.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Returns a filtered list of basis set names and the filtered
 metadata dict</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>tuple of list and dict</p>
 </dd>
 </dl>
@@ -244,7 +245,7 @@ metadata dict</p>
 <span class="sig-name descname"><span class="pre">set_default_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.set_default_format" title="Permalink to this definition"></a></dt>
 <dd><p>Set the default format for basis sets.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>format</strong> (<em>str</em>) – Valid BSE format identifier for basis sets.</p>
 </dd>
 </dl>
@@ -255,7 +256,7 @@ metadata dict</p>
 <span class="sig-name descname"><span class="pre">set_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.BSEBasisSetScraper.set_header" title="Permalink to this definition"></a></dt>
 <dd><p>Generates the header to use in requests.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>user_agent</strong> (<em>str</em><em>, </em><em>optional</em>) – Description of who is pinging the BSE API, 
 defaults to “”</p></li>
@@ -271,10 +272,10 @@ defaults to “”</p></li>
 <dd><p>Validate the basis name against the list of valid basis names 
 retrieved from BSE.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>basis_name</strong> (<em>str</em>) – Name of the basis set</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>RuntimeError</strong> – Invalid basis name was given.</p>
 </dd>
 </dl>
@@ -286,10 +287,10 @@ retrieved from BSE.</p>
 <dd><p>Validate the format name against the list of valid format names 
 retrieved from BSE.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>format</strong> (<em>str</em>) – Name of the formatting option</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>RuntimeError</strong> – Invalid format option was given</p>
 </dd>
 </dl>
@@ -299,10 +300,10 @@ retrieved from BSE.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.scrape_bse.main">
-<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.main" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.main" title="Permalink to this definition"></a></dt>
 <dd><p>Entry point function to generate basis set files.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>args</strong> (<em>Namespace</em>) – Command line argument namespace</p>
 </dd>
 </dl>
@@ -310,13 +311,13 @@ retrieved from BSE.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.scrape_bse.parse_args">
-<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">argparse.Namespace</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.parse_args" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Namespace</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.parse_args" title="Permalink to this definition"></a></dt>
 <dd><p>Parse command line arguments.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Values of command line arguments.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Namespace</p>
 </dd>
 </dl>
