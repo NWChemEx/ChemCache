@@ -44,7 +44,7 @@ jobs:
         run: .github/workflows/scripts/generate_reference_data.sh
 
       - name: Format generated code
-        run: find src/ -iname '*.cpp' | xargs clang-format -i
+        run: find src/ -iname '*.cpp' | xargs clang-format --verbose -i
 
       - name: Commit and push changes to data branch
         uses: actions-x/commit@v2
