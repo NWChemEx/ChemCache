@@ -8,9 +8,9859 @@
 #include "chemcache/chemcache.hpp"
 #include <chemist/chemist.hpp>
 
+using namespace chemist;
+
 namespace chemcache {
 
-void load_molecules(chemist::MoleculeManager& mm,
-                    const chemist::PeriodicTable& pt) {}
+void load_molecules(MoleculeManager& mm, const PeriodicTable& pt) {
+    Molecule acetic_acid = Molecule();
+    acetic_acid.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.76677123096111, -0.13152424505839222,
+                            1.3443440795192563}});
+    acetic_acid.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.7629540043085528, -0.2570013983899619,
+                            -0.4669488642805851}});
+    acetic_acid.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.3961978910767603, 1.3245020597906194,
+                            -1.651422956271968}});
+    acetic_acid.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.327979137533543, -2.0231301258550967,
+                            -1.3953664159643222}});
+    acetic_acid.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.036471521977399, -0.15968101591141012,
+                            -0.072943043954798}});
+    acetic_acid.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.6355493404890586, -1.7181299368834801,
+                            -0.6300313692883329}});
+    acetic_acid.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.9025284402282778, 1.964926867984429,
+                            1.0642881439207832}});
+    acetic_acid.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.6907668468196078, 1.8789447824936696,
+                            1.24381117956083}});
+    mm.insert("acetic_acid", acetic_acid);
+
+    Molecule benzene = Molecule();
+    benzene.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.40558978041498167, 1.8488416039910807,
+                            0.6261763483124835}});
+    benzene.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.7242337200952417, 1.2532030688990514,
+                            -1.3291129672323216}});
+    benzene.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.977285611701123, 0.07235723194376205,
+                            -1.9927056956045204}});
+    benzene.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-4.431648966325258, -0.26142333421520086,
+                            -0.559922899580483}});
+    benzene.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-3.3822706829434224, -0.6847008579311388,
+                            -4.477398994671001}});
+    benzene.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.1551267999546475, -1.6140632676971918,
+                            -4.999546468120489}});
+    benzene.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.534449525681243, -0.26095090517404285,
+                            -6.29861294833516}});
+    benzene.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.853169054008088, -0.8567028232359499,
+                            -8.253788880910088}});
+    benzene.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{0.7185834687629918, 0.9197815488113685,
+                            -5.634982425639669}});
+    benzene.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{2.1727200574473713, 1.2530140972825883,
+                            -7.068010884765108}});
+    benzene.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{1.1236252314902302, 1.676877433009562,
+                            -3.150308023734835}});
+    benzene.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{2.896481348501455, 2.6060319739975055,
+                            -2.6280282701538233}});
+    mm.insert("benzene", benzene);
+
+    Molecule c240 = Molecule();
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-4.311088854454061, 8.669955402698514,
+                                         8.68965002456631}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-4.088627688121244, 10.598108394119203,
+                                         6.8231168978419445}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-5.736044446124192, 10.640640235836578,
+                                         4.626743263161873}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-4.909900222986508, 11.754960504932159,
+                                         2.299775123776409}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-6.263403756755736, 11.306867228542274,
+                                         -0.014157753505423486}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.460009826524056, 7.613362183000113,
+                                         6.851086586794664}});
+    c240.push_back(Atom{
+      pt.get_atom(6).mass(), 6ul,
+      Atom::coord_type{-7.94663441551079, 9.09004875467705, 4.66520843569296}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-9.317237990853775, 8.624396235685401,
+                                         2.3027174118447413}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.488064552704184, 9.686669942174687,
+                                         0.022837219849578594}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-6.513949884727314, 7.14658528289051,
+                                         8.730853395819949}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{0.30025700139839, 9.104754525870215,
+                                         9.641369666276127}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{0.3421822442269171, 11.266066366831701,
+                                         8.08613704221626}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-1.790668581579047, 12.01767262557164,
+                                         6.722914698212329}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-2.066905400808799, 7.89239578215352,
+                                         10.108233493329303}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-4.357685475641559, 4.051113042820969,
+                                         11.516177860085415}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-2.1329094070070678, 5.600636834347481,
+                                         11.488208171132696}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-6.573869004875468, 4.823311538606902,
+                                         10.132773347443214}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-10.594994141879889, 5.941003061340187,
+                                         6.800597150308024}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.531202993310405, 3.0050455421595674,
+                                         9.701519331796364}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-10.607912241581316, 3.715448429645867,
+                                         8.149198760346197}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{4.866963982009902, 8.45937488189274,
+                                         8.662428663214786}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{4.710852639933482, 10.414977890320873,
+                                         6.76746475679353}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.251351147057712, 10.373974828980687,
+                                         4.577637098907744}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{5.380974337654484, 11.50092596092067,
+                                         2.210646660871537}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.636900487546771, 11.050092596092068,
+                                         -0.06101515552364035}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.4473222721947168, 11.930911977021053,
+                                         6.715015684644167}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.6703579122415815, 7.786976076193357,
+                                         10.08559847310934}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-9.536756869118259, -1.5021486072791868,
+                            8.728258815525908}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.332040137571337, -0.6925545183113496,
+                            6.844136210741148}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.871106239842778, -2.2252371593786613,
+                            4.670369250538569}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-12.701230205223176, -1.0831210552175063,
+                            2.326618541895008}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-12.70099965985109, -2.5064628292830418,
+                            0.03266941305415927}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.972806984390946, 1.9336029328394875,
+                            6.787274651347368}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-8.135184625269286, 0.35683132393514494,
+                            10.129369968630712}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-5.931977776937904, -0.40184058354435165,
+                            11.52785630598284}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{0.15472806984390944, 2.185012661098303,
+                                         13.590494727691901}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.9617748214218227, 0.7212441891227939,
+                            13.605200498885068}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-4.236751199969765, 1.500071809214256,
+                                         12.404433274122228}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{0.2412600627385767, 4.556413696662762,
+                                         12.387017649948978}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.6002910162893538, 5.483856154805548,
+                                         11.481664084054575}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{7.0297441324313095, 6.829143202690957,
+                                         8.62652972523527}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.910897993121432, 7.215471106239844,
+                                         6.751058241052195}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.435528553611247, 8.761245700895726,
+                                         4.541333761668997}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{9.740014739786083, 8.324976378547943,
+                                         2.2195566725877773}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.888839336331683, 9.450829585396274,
+                                         -0.10143996371744964}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-2.706374012623304, -3.697080388525644,
+                                         12.428914547035037}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.2670282323594997, -1.7812388979175329,
+                            13.662092293737482}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-5.192739710495484, -3.029439888128803,
+                                         11.516841150459202}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-6.5743017498771685, -4.852114592388224,
+                            10.147622737064895}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.794693677009715, -4.085426508938357,
+                                         8.71943573075324}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-9.821096791261953, -5.7630352621036325,
+                            6.866253448732001}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.085502097584945, -4.807536188064553,
+                            4.6614875845647985}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.066009675346763, -6.242238935711857,
+                            2.327803393930232}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.842934351260443, -5.116385728863524,
+                            0.03370875694470691}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.9744415888733515, 4.491794852413168,
+                                         10.066856268188518}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{4.805691825087872, 3.834016780679542,
+                                         11.46545787822669}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{4.548686647265582, 1.2944215578820062,
+                                         12.391112664877735}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.2514777580407426, 0.6291469821232851,
+                                         13.646521032540914}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{1.3896065610945236, -1.8748667750103936,
+                            13.678383536792774}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{10.990175365660079, 5.472466835481311,
+                                         6.655355455610568}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{9.64961638761858, -1.9486828678332515,
+                                         8.631114176650668}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{11.460901772553763, -1.2026115877395216,
+                            6.741715484334254}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{11.889676480592616, -2.700549907403908,
+                                         4.5548282248006355}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.678941003061341, -1.534298348388072,
+                                         2.1856457160134553}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{12.604461619864697, -2.8816905400808803,
+                            -0.07943988812880305}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.217353263539817, 1.4140292528062286,
+                                         6.666975320306891}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{10.93302467969311, 3.223785857364224,
+                                         8.03262028043388}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.878084961638763, 2.5954193280169324,
+                                         9.593359537397484}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-5.520505310102423, -10.872990286858915,
+                            6.749499225216373}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.8113628632979326, -11.065548584602594,
+                            6.812245360746816}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.5383347821157263, -12.04379795154768,
+                            4.610826183907178}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.8753751086586794, -12.453106693374655,
+                            2.290462602517102}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.541305415926528, -12.868415284024339,
+                            -0.02113647530140973}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-1.498140519294002, -9.633153180392306,
+                                         8.674309308741828}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-2.806374012623304, -7.715178200234325,
+                                         10.114375070864357}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-5.480857175252278, -7.299323481613062,
+                                         9.671041989493178}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-6.779893420008316, -9.023903019766431,
+                                         8.13357080766469}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.905593559847311, -8.319987527873314,
+                                         6.781305037983295}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.509250160625874, -5.1574757171472845,
+                                         10.057052420726407}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.750058581201104, -4.493351978532824,
+                                         8.620013983899618}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{8.334549680637968, -0.04466533126724367,
+                            10.058724819532106}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.137713065497563, -0.6954363354624136,
+                                         11.463844060622094}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{5.219556672587777, -3.27914887183945,
+                                         11.459979591065423}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.7260119430061605, -3.8339015079935,
+                                         12.398637514645301}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{1.2102535999092936, -9.699068369930837,
+                                         8.672982727994256}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.609518500321252, -7.84853924940474,
+                                         10.08135983975207}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{1.3267451528780378, -5.957179031709438,
+                                         11.483738992403342}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-1.431155750406289, -5.893540950149288,
+                                         11.498705544427228}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{5.291556748176425, -7.547705884576137,
+                                         9.607373672474395}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.519658717260668, -9.32834007332099,
+                                         8.064885294228807}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.469352583241997, -11.204013757133678,
+                                         6.796243244264712}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{1.1765750784232207, -12.089846555047433,
+                            4.612816055028535}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.526387996522922, -12.506595109414567,
+                                         2.253870138705167}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{1.218730866623833, -12.863311160663669,
+                                         -0.016982879171548435}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{5.193692127442458, -11.121142144449905,
+                                         6.717697191881779}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{9.69918364261688, -6.188289428927776,
+                                         6.754922710608867}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{11.019413054159266, -5.271746853622586,
+                                         4.546005140027968}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{10.990060092974035, -6.666775010393439,
+                                         2.2287274651347366}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{11.779700668959523, -5.518543784723535,
+                                         -0.09377149552137269}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.67701916172191, -8.701674288521865,
+                                         6.685458634113156}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.0133111606636684, 13.160886654824445,
+                            4.448803809667788}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{1.634731093389773, 13.088308326089424,
+                                         4.41841150459201}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.4477550171964175, 12.899988661703013,
+                            2.1248346498355946}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-1.163309270947504, 13.06896141199592,
+                                         -0.23837635587134814}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.9454155485846027, 12.731968328357082,
+                                         2.111253259760384}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{1.589891908235383, 12.973891681469443,
+                                         -0.27159567632941534}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-12.847624626781059, 3.042820968290563,
+                                         4.516593597641634}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-11.97228731244567, 5.541583204202729,
+                                         4.5043954797989345}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-13.046844174005065, 1.6063570051778224,
+                            2.192250274008844}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-12.828738803431726, 2.8983861823954045,
+                            -0.17998601610038173}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.238960278166221, 6.6999924411353415,
+                            2.193172455497184}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-11.895154767753885, 5.481607392569637,
+                                         -0.19022260856419368}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-6.845521372689823, -11.341180694659663,
+                            4.48747118182849}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.954410597528252, -9.735054234853925,
+                                         4.492140670471295}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-5.550982652405609, -11.952159945576174,
+                            2.155398919082354}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-6.713284704637363, -11.332731773687591,
+                            -0.2039778525265505}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-9.834447635965079, -8.665688423598775,
+                                         2.1849843153558335}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.887917154843343, -9.65247174874334,
+                                         -0.19333686080350732}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.708940247174874, -10.105206168033561,
+                                         4.422102120261537}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.517755773082884, -11.607326429570278,
+                                         4.42100608488605}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{9.688775085982087, -9.061704901923731,
+                                         2.0846384972977057}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.735063683434749, -9.966251559015836,
+                                         -0.2678748252012548}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{5.225582977436789, -12.096479458785291,
+                                         2.121317888053215}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.446160096753468, -11.504327450017009,
+                                         -0.26747231565818813}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.315593937790544, 5.080515136626479,
+                                         4.380840167806795}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{13.065529687440948, 2.5332797913753353,
+                                         4.3628179447447}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{11.61251559015836, 6.345755697494237,
+                                         2.0485090139461053}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.155648361616086, 5.169326127215693,
+                                         -0.3072338334782116}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{13.110886654824446, 1.1626478702898824,
+                                         2.062753694395102}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.903359915340717, 2.513037151819797,
+                                         -0.3251407838542651}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-6.529203673608224, 11.42794512264258,
+                                         -4.633517895612079}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.647031255905363, 9.87807551305794,
+                                         -4.604569333686081}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-9.564582939642465, 8.84279073283193,
+                                         -2.366816584149061}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-5.19596923542084, 12.032984995653653,
+                                         -2.3779470123587436}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-5.32647681318266, 11.147959106542197,
+                                         -6.937013870516649}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.847721002305455, 8.603548886957178,
+                                         -6.921501190521185}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-6.722540534411732, 9.313260138327225,
+                                         -8.385241316754223}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-12.993327412222685, -2.705999848822707,
+                            -4.5949374503949505}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-12.189268301901055, -5.233425299520012,
+                            -4.594706905022865}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.400638724063645, -6.421187497637855,
+                            -2.3216315809365433}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-13.106041422578329, -1.2538795872859898,
+                            -2.3423938924373564}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-12.330586945840736, -1.6556634793454026,
+                            -6.904862239691599}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.008513171321667, -5.835496428436449,
+                            -6.9574284742431685}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-11.019210854529652, -3.56646131751011,
+                                         -8.378897539589554}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.4479269813674, -9.166287463622963,
+                                         -4.90534411731358}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-6.272083223099891, -10.809524169469746,
+                            -4.914310820514759}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-5.398909633773007, -11.84068558902453,
+                                         -2.534288899807249}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-9.696847953437393, -8.555279866963982,
+                                         -2.500956196379304}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.92773725386447, -7.652636154049663,
+                                         -7.118615593937791}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-4.611574511508372, -10.831582826259496,
+                            -7.1212385199743}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-4.759354095014929, -8.8936845685778,
+                                         -9.042732151630826}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-11.283481991004951, 5.173277523715938,
+                                         -4.8994047394081415}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-12.187711175781399, 2.6088835556899355,
+                            -4.895050833364829}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-12.917895612079066, 1.4726784836917497,
+                            -2.5061453569673837}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-11.095738690048755, 6.568736535772327,
+                                         -2.497206999508674}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-9.961464907970823, 6.078920216183529,
+                                         -7.097768245209569}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-11.682325484712196, 1.0110623984277562,
+                            -7.096037265202767}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-9.866310140216939, 1.7402660720359804,
+                                         -9.014962772591558}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.4325976038399035, -13.160886654824445,
+                            -4.6317302241203375}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{1.1983729543822519, -13.153821006084888,
+                            -4.628298499565365}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.5589137911485693, -12.831189765297253,
+                            -2.4058581201103593}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-2.84694432896179, -12.846126081862506,
+                                         -2.3757265958653013}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.2585698628066067, -12.259106542197364,
+                            -6.93205336558449}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.0991723043198913, -12.285058014286255,
+                            -6.957572092671682}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.0513549264900412, -11.616725877773158,
+                            -8.404964284364489}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.107494614308932, -10.926391775955253,
+                                         -4.973855776862315}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.356088665482446, -9.378109527948903,
+                                         -4.982389735061794}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{9.613082505007748, -8.873846328281493,
+                                         -2.6106428814392078}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{5.1493159227484036, -11.909686685059905,
+                            -2.5585963188329113}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{4.499956536528214, -10.905285536112476,
+                                         -7.1620979628859756}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.86782002343248, -7.803730299708985,
+                                         -7.1974488831777474}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.966021013643751, -7.346352847802261,
+                                         -9.109569522657697}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.064847499905515, -5.490026078083073,
+                                         -4.706326769719189}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.844308174912129, -2.975547072829661,
+                                         -4.692947579273593}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.95967723647908, -1.5894024717487436,
+                                         -2.4737064892853096}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{11.352944177784497, -6.748578933444198,
+                                         -2.443488038096678}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{10.944240145130202, -5.996914093503156,
+                                         -7.004457840432368}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{12.273292641445256, -1.8483956309762273,
+                            -7.014118069465966}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{10.986513095733022, -3.689986394043615,
+                                         -8.465459767942857}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.209482595714123, 2.3792150119052122,
+                                         -5.0198760346196005}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{11.438555878906989, 5.0000094485808235,
+                                         -5.01382138402812}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{11.375205034203862, 6.351005328999585,
+                                         -2.646398200990211}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{12.868991647454552, 1.161638761857969,
+                                         -2.6105276087531655}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{11.686448845383424, 0.8599682527684342,
+                                         -7.201976643108205}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{10.091422578328736, 5.97629729014702,
+                                         -7.220431611172002}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{9.061098303034886, 4.307196039154919,
+                                         -9.12658263728788}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.92586454514532, 9.752961185229978,
+                                         -4.717859707471938}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.784016780679543, 11.284808571752524,
+                                         -4.685305567103821}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{5.511854189500737, 11.812224573869004,
+                                         -2.452974413243131}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{9.910312181110397, 8.675029290600554,
+                                         -2.4582523904909483}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{9.034657394459353, 8.52047507464379,
+                                         -7.019509429683661}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{5.516468876374769, 11.084751880267584,
+                                         -7.006967383498998}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.855209947465891, 9.279233909066859,
+                                         -8.469755092785064}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{1.4889130352621038, 12.312566612494805,
+                                         -4.97621981178427}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-1.238279980346952, 12.365478665104503,
+                                         -4.950383612381421}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.5391908235383047, 12.704229184776448,
+                            -2.571140254733739}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.863524698590272, 12.560690124343324,
+                                         -2.5699006009297403}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.7616217544124875, 11.353233304357685,
+                                         -7.174439699157187}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.5910068407725158, 11.378636758758834,
+                            -7.150160625873994}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-1.33109905892135, 9.891021958501833,
+                                         -9.070038550209759}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.810036282550361, 7.931956990060094,
+                                         -10.508144676669565}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{1.4286480970558224, 9.885428398654522,
+                                         -9.098267130277032}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{5.53097244793832, 7.507394459352206,
+                                         -10.071845118863147}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.7531917306020635, 5.053613137306777,
+                                         -10.524694810839412}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.470159492044296, -0.2613874296080729,
+                                         -10.527261045390983}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{9.894856192599871, 1.6691862882195094,
+                                         -9.133187195283268}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{8.905304433274122, -2.9864186099247894,
+                                         -10.072449828035829}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.960629653426055, -4.91730980006803,
+                                         -10.516648399410409}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.4426811292943804, -8.18841415019464,
+                                         -10.495109414565933}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{4.719273215163083, -8.956487395593182,
+                                         -9.104149816697532}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.016982879171548435, -9.426319966740996,
+                            -10.021555992289958}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.4498885067462868, -8.159896443554178,
+                            -10.455865678975018}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-6.9578328735024, -4.870626251936959,
+                                         -10.44433274122227}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-6.989060433122946, -7.263798707434144,
+                                         -9.043336860803509}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-8.904323670584679, -2.9230961109641336,
+                            -9.981648966325258}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-8.44833138062663, -0.22675649117502553,
+                            -10.423426811292945}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-6.710372652027666, 5.060072187157489,
+                                         -10.440785743981255}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-8.994548168865037, 4.354686496088288,
+                                         -9.025805963944217}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-5.461105861899544, 7.511576401224536,
+                                         -9.99782493669451}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-2.757470047998791, 7.921346233795684,
+                                         -10.4648909633773}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.757211156884236, 3.728827620091462,
+                                         -12.641658792849315}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{1.4101062020484523, 6.000661400657622,
+                                         -11.828718016553914}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{5.3445840734721655, 3.145183113496353,
+                                         -11.84700102044673}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{1.3021202615367173, 1.7191295967345706,
+                                         -13.642023508069089}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{4.471208284515666, -1.5203994859972032,
+                                         -12.64886617030122}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{6.210435012661098, 0.4721701500434635,
+                                         -11.852161835292339}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{4.715524018292452, -4.16532748781133,
+                                         -11.840944480139083}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.1120620582788465, -0.7578064174760951,
+                            -13.64732794134321}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{0.012341736271212066, -4.766361162553385,
+                            -12.616916739105786}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{2.4441796742129336, -5.812630862844402,
+                                         -11.829844287388035}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.4250047242904116, -5.8003760535167626,
+                            -11.790426697909975}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{0.00818814014135077, -2.2917589478060396,
+                            -13.630488680600175}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-4.450619826902, -1.5236875921236632,
+                                         -12.585084470312559}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-4.693841415019465, -4.149816697532032,
+                                         -11.779872633130504}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-6.1919233531123625, 0.4715635511546166,
+                            -11.766262897312824}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.100614157753505, -0.7643807400128501,
+                            -13.61333194754148}});
+    c240.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.7508673797195664, 3.7143523942703807,
+                            -12.600049132620281}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-5.323045088627688, 3.1342832306587556,
+                                         -11.77632563588949}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-1.3927775048187763, 5.995702785441627,
+                                         -11.804325560300843}});
+    c240.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                        Atom::coord_type{-1.300534789674591, 1.7122378018821576,
+                                         -13.619388487849125}});
+    mm.insert("c240", c240);
+
+    Molecule c60 = Molecule();
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{0.0, 6.577625023621453, 1.314737877470804}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{0.0, -6.577625023621453, 1.314737877470804}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{0.0, 6.577625023621453, -1.314737877470804}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{0.0, -6.577625023621453, -1.314737877470804}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{2.2251672776748936, 5.727686817340036,
+                                        2.689966929967119}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-2.2251672776748936, -5.727686817340036,
+                                        2.689966929967119}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-2.2251672776748936, 5.727686817340036,
+                                        -2.689966929967119}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{2.2251672776748936, -5.727686817340036,
+                                        -2.689966929967119}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-2.2251672776748936, -5.727686817340036,
+                                        -2.689966929967119}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{2.2251672776748936, 5.727686817340036,
+                                        -2.689966929967119}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{2.2251672776748936, -5.727686817340036,
+                                        2.689966929967119}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-2.2251672776748936, 5.727686817340036,
+                                        2.689966929967119}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{1.375229052496315, 4.352457764843721,
+                                        4.915134188744851}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-1.375229052496315, -4.352457764843721,
+                                        4.915134188744851}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-1.375229052496315, 4.352457764843721,
+                                        -4.915134188744851}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{1.375229052496315, -4.352457764843721,
+                                        -4.915134188744851}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-1.375229052496315, -4.352457764843721,
+                                        -4.915134188744851}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{1.375229052496315, 4.352457764843721,
+                                        -4.915134188744851}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{1.375229052496315, -4.352457764843721,
+                                        4.915134188744851}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-1.375229052496315, 4.352457764843721,
+                                        4.915134188744851}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{4.352457764843721, 4.915134188744851,
+                                        1.375229052496315}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-4.352457764843721, -4.915134188744851,
+                                        1.375229052496315}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-4.352457764843721, 4.915134188744851,
+                                        -1.375229052496315}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{4.352457764843721, -4.915134188744851,
+                                        -1.375229052496315}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-4.352457764843721, -4.915134188744851,
+                                        -1.375229052496315}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{4.352457764843721, 4.915134188744851,
+                                        -1.375229052496315}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{4.352457764843721, -4.915134188744851,
+                                        1.375229052496315}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-4.352457764843721, 4.915134188744851,
+                                        1.375229052496315}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{2.689966929967119, 2.2251672776748936,
+                                        5.727686817340036}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-2.689966929967119, -2.2251672776748936,
+                                        5.727686817340036}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-2.689966929967119, 2.2251672776748936,
+                                        -5.727686817340036}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{2.689966929967119, -2.2251672776748936,
+                                        -5.727686817340036}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-2.689966929967119, -2.2251672776748936,
+                                        -5.727686817340036}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{2.689966929967119, 2.2251672776748936,
+                                        -5.727686817340036}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{2.689966929967119, -2.2251672776748936,
+                                        5.727686817340036}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-2.689966929967119, 2.2251672776748936,
+                                        5.727686817340036}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{4.915134188744851, 1.375229052496315,
+                                        4.352457764843721}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-4.915134188744851, -1.375229052496315,
+                                        4.352457764843721}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-4.915134188744851, 1.375229052496315,
+                                        -4.352457764843721}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{4.915134188744851, -1.375229052496315,
+                                        -4.352457764843721}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-4.915134188744851, -1.375229052496315,
+                                        -4.352457764843721}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{4.915134188744851, 1.375229052496315,
+                                        -4.352457764843721}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{4.915134188744851, -1.375229052496315,
+                                        4.352457764843721}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-4.915134188744851, 1.375229052496315,
+                                        4.352457764843721}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{5.727686817340036, 2.689966929967119,
+                                        2.2251672776748936}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-5.727686817340036, -2.689966929967119,
+                                        2.2251672776748936}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-5.727686817340036, 2.689966929967119,
+                                        -2.2251672776748936}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{5.727686817340036, -2.689966929967119,
+                                        -2.2251672776748936}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-5.727686817340036, -2.689966929967119,
+                                        -2.2251672776748936}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{5.727686817340036, 2.689966929967119,
+                                        -2.2251672776748936}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{5.727686817340036, -2.689966929967119,
+                                        2.2251672776748936}});
+    c60.push_back(Atom{pt.get_atom(6).mass(), 6ul,
+                       Atom::coord_type{-5.727686817340036, 2.689966929967119,
+                                        2.2251672776748936}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{6.577625023621453, 1.314737877470804, 0.0}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-6.577625023621453, -1.314737877470804, 0.0}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-6.577625023621453, 1.314737877470804, 0.0}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{6.577625023621453, -1.314737877470804, 0.0}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{1.314737877470804, 0.0, 6.577625023621453}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.314737877470804, 0.0, 6.577625023621453}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.314737877470804, 0.0, -6.577625023621453}});
+    c60.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{1.314737877470804, 0.0, -6.577625023621453}});
+    mm.insert("c60", c60);
+
+    Molecule methane = Molecule();
+    methane.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.462885974526626, 0.24657016516119282,
+                            -3.428852186401603}});
+    methane.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.5591103216296913, 0.24657016516119282,
+                            -3.428852186401603}});
+    methane.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.300899504894365, -0.9465777240258513,
+                            -4.829793265051589}});
+    methane.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.1339430817491216, 2.1386106806757628,
+                            -3.670320117918289}});
+    methane.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.021372689821989, -0.5143807400128501,
+                            -1.6406893684568578}});
+    mm.insert("methane", methane);
+
+    Molecule siosi7 = Molecule();
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.047960996258363, -7.549416077705129,
+                            8.477266714539477}});
+    siosi7.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{6.117011224914019, -7.24895120752863,
+                                           7.934918175290072}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{11.907101553346688, -7.390679919876035,
+                            7.524849767564913}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.685324464265468, -7.880116406515742,
+                            9.886994973355003}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.665709210476586, -7.402018216863827,
+                            10.580520805774974}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.599228995804831, -4.590120563891303,
+                            6.644242034846367}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.35496428436449, -9.488264862617635,
+                            5.41592652783552}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.405986620809555, -4.680826939793643,
+                            6.324880003023546}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.096564496012699, -9.435352810007938,
+                            6.122680373407915}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.701613817604596, -11.865527797724782,
+                            4.393590082769569}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.809327638988624, -2.7211912770701843,
+                            4.425715257568314}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{13.800597150308024, -11.884424959371103,
+                            4.253751086586795}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.1561661438451947, -8.473487282210213,
+                            11.888204391700368}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.30258135228089, -8.375222041649346,
+                            11.27971578668884}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{13.817604595789714, -2.76276503269209,
+                            4.48618617483654}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.691825087871802, -14.320269095581844,
+                            5.782531463774141}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{6.322990286858914, -3.3618050568804567,
+                            1.9029441777844966}});
+    siosi7.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{6.247401640273631, -11.5896292376885,
+                                           1.8311349635284782}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.746135530443329, -14.427982916965872,
+                            5.48017687743301}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.293624097660532, -16.10605087115915,
+                            8.622774859216145}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.4169469745644205, -11.432782796024037,
+                            12.39275860765713}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.704221625911789, -14.96277259155675,
+                            10.325409123549644}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.906761404437054, -3.1237008201368157,
+                            1.649722211723799}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.478287161268378, 0.08692694357307533,
+                            5.300653841792963}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.909482595714124, -15.28213462337957,
+                            10.574851657281076}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.132506897464005, -7.196039154918931,
+                            14.055708832533353}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.347556596999131, -16.164632072262748,
+                            8.065308590649684}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.22835330133414, -16.10605087115915,
+                            7.936807891454705}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.156203938168487, 0.04913262028043388,
+                            5.355455610567293}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.875165350164405, -11.330738123133907,
+                            11.455459389999623}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.21542764276805626, -7.974602214747345,
+                            10.125099210098643}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.735326353981634, -11.604746967005557,
+                            4.832004232964209}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.2865943535281, -11.961903322121017,
+                            1.2831172757851772}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.7838920594126761, -7.056200158736158,
+                            14.535696738349902}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.54756415586379, -7.075097320382479,
+                            9.758494274160022}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.77878982576817, -3.233304357685476,
+                            4.633584035677841}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.8670395706564875, -2.9668543784723536,
+                            3.862579840507956}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.77822291091878, -12.116860047620849,
+                            3.764314599947088}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.861899542688688, -7.447371404814997,
+                            -0.7974602214747345}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.107071317888053, -7.451150837144262,
+                            -0.6821875354321781}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.617786008541517, -10.380210892323975,
+                            -0.9089534751880268}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.632903737858574, -4.522090781964549,
+                            -0.8692694357307533}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.2808874107109114, -14.376960580520805,
+                            11.776711137987075}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.306360784610153, -14.286254204618466,
+                            11.703012207566424}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.404096904644923, -4.510752484976757,
+                            -0.9769832571147814}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.451339808760725, -10.37643145999471,
+                            -1.1640651574133565}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.505272308099325, -10.722249518122378,
+                            -1.7083034128273935}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.509051740428589, -4.1838315884954085,
+                            -1.7612154654370915}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.1882913186439397, -7.4322536754979405,
+                            7.914131297479119}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.7442080199554029, -4.673268075135114,
+                            6.802978192675461}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.340867001776333, 2.8912657318870707,
+                            4.009977701349257}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.406137798102725, 2.8912657318870707,
+                            4.694054952946067}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.8575909898333272, -9.435352810007938,
+                            5.678597074719377}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.286934502437735, 2.8345742469481086,
+                            4.5655542537510865}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{0.03968403945727352, -14.906081106617787,
+                            9.832193204580673}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.42507275407234, -7.078876752711743,
+                            16.763672096451113}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.2094183453645264, -11.920329566499111,
+                            4.132809252050342}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{21.024982047696437, -7.120450508333648,
+                            8.018065686533884}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.090933141842097, -15.076155561434673,
+                            14.611285384935185}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.478287161268378, -18.948183982765787,
+                            7.275407233833479}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.097925091651234, -2.9177217581919197,
+                            3.991080539702937}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{19.738085339581996, -11.869307230054046,
+                            4.752636154049663}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.156203938168487, -18.910389659473147,
+                            7.330209002607809}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{0.8069088022978949, -7.128009372992176,
+                            17.383498998450435}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.960731698098947, -9.518500321251748,
+                            6.192599871499302}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{19.736195623417366, -2.6985146830945994,
+                            4.506973052647492}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.36116255338448, -4.6392531841717375,
+                            18.17340035526664}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.7933406402358365, -15.91329982236668,
+                            14.320269095581844}});
+    siosi7.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{5.890245285158169, 4.571223402244983,
+                                           7.152575683132394}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{21.14592388223289, -4.582561699232775,
+                            6.383461204127141}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.0295551608148457, -9.480705997959108,
+                            18.823462715900074}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.776900109603538, -9.563853509202918,
+                            18.30945991912015}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.604255640802755, -15.78290940700707,
+                            10.446350958086095}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.864129407762954, -3.0934653615027026,
+                            -2.81756680146642}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.875467704750747, -11.778600854151707,
+                            -2.9120526096980233}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.944555727729695, 4.677047507464379,
+                            6.848331380626631}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.647832495559167, -4.563664537586455,
+                            18.713859178351413}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{14.112400317472316, -3.2484220870025324,
+                            -3.104803658490495}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.273328546052383, -14.358063418874485,
+                            5.542537510865868}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.947995011149327, -11.387429608072868,
+                            -3.5791224158131447}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.57900903284327, -14.435541781624401,
+                            6.082996333950641}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.9955402698514686, -0.12094183453645263,
+                            5.155145697116294}});
+    siosi7.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{4.932159189689709, 4.034544011489474,
+                                           2.3073434370157604}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.5435579575947695, -3.9211610416115503,
+                            1.980422540534412}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.72500850372274, 3.7151819796666543,
+                            2.056011187119695}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.412714010355646, -6.880456555425376,
+                            16.395177444347862}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.312559053630146, 0.14739786084130163,
+                            5.3157715711100195}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.981291809970143, -7.609886994973356,
+                            9.051740428587626}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.1788427378207795, -15.981329604293437,
+                            8.08042631996674}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.713178880532144, -11.943006160474697,
+                            1.904833893949129}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.503873918137496, -11.801277448127292,
+                            1.4248459881325826}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.72451717751994, -3.0859064968441743,
+                            1.6894062511810728}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.2147473449487887, -14.41664461997808,
+                            19.01432404852791}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.195850183302468, -7.394459352205299,
+                            17.46286707736498}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.7593257492724594, -7.668468196076949,
+                            -1.175403454401149}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.653199289466722, -11.387429608072868,
+                            21.6826032729884}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.511848520352245, -7.218715748894516,
+                            9.718810234702747}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.53656600778563, -16.079594844854306,
+                            16.62194338410371}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{20.824672134245436, -16.278015042140673,
+                            8.452700404399259}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.030235458634113158, -3.214407196039155,
+                            -2.1845118863146755}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.0956952265769684, -11.876866094712575,
+                            20.648928530934654}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.446199780792924, -11.566952643712916,
+                            20.54499414187989}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{0.8069088022978949, -16.300691636116255,
+                            17.137835897048266}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.8187762198117845, -21.760081635738313,
+                            8.14467666956423}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{13.825163460448241, -21.71850788011641,
+                            8.205147586832458}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.45564836161609, -3.015986998752788,
+                            20.711289164367514}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.3300200309913452, -4.711062398427756,
+                            -0.9278506368343475}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.713859178351413, -11.022714388298878,
+                            -2.505763634302128}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{21.348123511848524, -7.564533807022186,
+                            -0.23810423674364112}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.892172795646093, -14.324048527911108,
+                            19.433841037076235}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.817604595789714, -3.2484220870025324,
+                            22.156922030311048}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.7277296949998115, -22.121017423183037,
+                            10.981140632676972}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.580671983068143, -11.778600854151707,
+                            22.34967307910352}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.190181034808572, -2.7211912770701843,
+                            -4.178162440001512}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.08692694357307533, -11.924108998828375,
+                            -2.87236857024075}});
+    siosi7.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{4.833893949128841, 7.11289164367512,
+                                           8.377111757813976}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.8953853131259684, -2.7211912770701843,
+                            21.083563248800033}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.3904909482595715, -11.876866094712575,
+                            -4.612797157866888}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.3478967459087645, 7.037302997089838,
+                            11.347745568615595}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.569333686080351, -3.0934653615027026,
+                            22.446048603499754}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.313390528742584, -22.361011376091312,
+                            10.727918666616274}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.331909747155977, -10.62398427756151,
+                            -1.3511470577119318}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{0.030235458634113158, 3.214407196039155,
+                            2.1845118863146755}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.214256018745985, -4.1838315884954085,
+                            23.50051022336445}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.21047658641672, -10.722249518122378,
+                            23.55342227597415}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.968970860576743, -4.093125212593069,
+                            -2.7986696398200994}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{21.087342681129297, -10.525719037000643,
+                            -0.7426584527004044}});
+    siosi7.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{13.9347669979969, 7.131788805321441,
+                                           8.237272761631203}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.387089459163233, 7.409577081522356,
+                            10.799727880872293}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{21.212063947995013, -4.620356022525416,
+                            -0.8541517064136968}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.6780679541932804, -18.84991874220492,
+                            7.3150912732907525}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.6426924675913686, -7.037302997089838,
+                            13.91398012018595}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.6988548320042332, 0.12094183453645263,
+                            20.10657999168525}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.956423145243587, -0.14739786084130163,
+                            19.945954117691524}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.8241052193960465, -11.548055482066594,
+                            11.948675308968594}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.740995502475528, -11.566952643712916,
+                            -4.716731546921652}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.750444083298692, -3.015986998752788,
+                            -4.55043652443403}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.190181034808572, 2.7211912770701843,
+                            4.178162440001512}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-6.4798367285233756, -8.620885143051515,
+                            11.466797686987414}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.3300200309913452, 4.711062398427756,
+                            0.9278506368343475}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.596696776144224, 4.093125212593069,
+                            2.7986696398200994}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.353603688725954, 4.620356022525416,
+                            0.8541517064136968}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.8187762198117845, -15.748894516043691,
+                            9.526059185910277}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.156544087078121, -10.37643145999471,
+                            24.09766053138819}});
+    siosi7.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{20.81522355342228, 3.015986998752788,
+                                           4.55043652443403}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.49639064212555, -11.55183491439586,
+                            11.833402622926036}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.501530670093352, -16.03046222457387,
+                            16.49344268490873}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.322990286858914, -10.380210892323975,
+                            24.352772213613516}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.767451528780377, -21.96606069768321,
+                            8.768283003892815}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.855701273668695, -22.232510676896332,
+                            7.997278808722931}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.567103821006086, -7.447371404814997,
+                            24.464265467326808}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.109301182962321, -4.510752484976757,
+                            24.284742431686762}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.630031369288332, -19.12014815374731,
+                            7.475717147284478}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.856268188518087, 6.880456555425376,
+                            8.866548244453684}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.338108016175971, -4.522090781964549,
+                            24.39245625307079}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.1523867115159305, -15.764012245360748,
+                            17.264446880078612}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.9445179334064022, 4.563664537586455,
+                            6.54786651045013}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.326240598662081, -9.480705997959108,
+                            -6.440152689066102}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-5.130579386976076, -7.11289164367512,
+                            16.884613930987566}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.640840545750027, -18.876374768509773,
+                            17.786008541517067}});
+    siosi7.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{6.230394194791943, -23.6800332590045,
+                                           6.305982841377226}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.81227559620545, -7.451150837144262,
+                            24.579538153369366}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{25.254166824143017, -8.61710571072225,
+                            11.721909369212746}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.8991647454552325, 7.394459352205299,
+                            7.798858611436562}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.84115045920103, 3.0859064968441743,
+                            -1.6894062511810728}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{23.336104917041464, -7.131788805321441,
+                            17.02445292717034}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.037151819796668, -23.587437166937526,
+                            5.986620809554405}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.125439359008277, -23.18114819154163,
+                            14.392078309837862}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.49862050719982, -15.905740957708153,
+                            9.815185759098984}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.77036169167391, -22.090781964548924,
+                            15.448429645867193}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.383272232510677, -19.146604180052158,
+                            17.94663441551079}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.5435579575947695, 3.9211610416115503,
+                            -1.980422540534412}});
+    siosi7.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{9.129218791337543, 8.275067084923844,
+                                           14.339166257228165}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.9445179334064022, -4.563664537586455,
+                            -6.54786651045013}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.883782455875128, -7.409577081522356,
+                            14.461997807929249}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.230394194791943, -23.508069088022978,
+                            13.607846101515552}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.001587361578292, -23.519407385010773,
+                            13.500132280131526}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.522090781964549, -22.247628406213387,
+                            15.735666502891267}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.759023394686118, 7.218715748894516,
+                            15.542915454098795}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.90970936165388, 4.6392531841717375,
+                            7.088325333534903}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.9955402698514686, 0.12094183453645263,
+                            -5.155145697116294}});
+    siosi7.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{12.016705090895348, 8.61710571072225,
+                                           13.539816319588798}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.1831512906761406, 8.620885143051515,
+                            13.794928001814128}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.67417513889414, -4.093125212593069,
+                            22.463056048981446}});
+    siosi7.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{6.279526815072376, 9.51094145659322,
+                                           7.214936316565252}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-6.527079632639178, -14.488453834234098,
+                            11.65387958728599}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.38172266525567866, -11.924108998828375,
+                            22.389357118560795}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.1017045239804981, -21.695831286140823,
+                            8.12388979175328}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.41906345666881, -11.022714388298878,
+                            22.755962054499417}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.124948032805474, 4.582561699232775,
+                            18.878264484674403}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{17.071695831286142, -9.563853509202918,
+                            -6.952265769681394}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.511432782796024, -14.41664461997808,
+                            -6.247401640273631}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.4475225821081674, 4.673268075135114,
+                            18.458747496126083}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.655958275067086, -4.6392531841717375,
+                            -7.088325333534903}});
+    siosi7.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{4.686496088287539, 7.609886994973356,
+                                           16.209985260213916}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{17.25310858309082, -0.14739786084130163,
+                            -5.3157715711100195}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{17.1869685173287, -14.324048527911108,
+                            -5.827884651725311}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.537926603424166, 9.563853509202918,
+                            6.508182470992857}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.1035942401451302, 7.128009372992176,
+                            7.880116406515742}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.3269208964813485, -3.214407196039155,
+                            23.077213802486867}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{19.734305907252732, -21.916928077402776,
+                            8.639782304697835}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{25.26739483729544, -14.477115537246306,
+                            11.761593408670018}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.932159189689709, -4.034544011489474,
+                            -2.3073434370157604}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.444310064628294, -21.71850788011641,
+                            16.80902528440228}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.732945311614195, -9.563853509202918,
+                            18.753543217808684}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.532786575456367, 2.6985146830945994,
+                            20.754752636154052}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.097925091651234, 2.9177217581919197,
+                            -3.991080539702937}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-6.024415132847047, -15.87550549907404,
+                            14.280585056124572}});
+    siosi7.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{19.84390944480139, 7.078876752711743,
+                                           8.498053592350429}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.1035942401451302, -7.128009372992176,
+                            -7.880116406515742}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-6.185041006840773, -4.571223402244983,
+                            18.11103972183378}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.949166635171398, -11.117200196530481,
+                            -2.743867871045769}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.8840470161381762, -22.015193317963643,
+                            17.181299368834804}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.7593257492724594, 7.668468196076949,
+                            1.175403454401149}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.864129407762954, 3.0934653615027026,
+                            2.81756680146642}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.596885747760687, -11.597188102347028,
+                            -2.0503420386257987}});
+    siosi7.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{-6.57432253675498, -9.51094145659322,
+                                           18.046789372236294}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.326316187308667, -4.677047507464379,
+                            18.41339430817491}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{0.8031293699686307, 2.9177217581919197,
+                            21.270645149098605}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.08813636191844, -22.083223099890397,
+                            10.9414565932197}});
+    siosi7.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{-2.07868778109528, 7.056200158736158,
+                                           10.726028950451644}});
+    siosi7.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.244000151177293, 7.120450508333648,
+                            17.24366000226766}});
+    siosi7.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.840659132998223, -3.7151819796666543,
+                            -2.056011187119695}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-4.976850976983257, -2.9249593711024606,
+                            17.486583015231115}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-8.598926641218489, -8.984145281378737,
+                            18.474904569333688}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{25.232813031482674, -3.369893042065082,
+                            16.988812880305378}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{21.918061907101553, -10.005196719452739,
+                            19.78854076117767}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.388374466155184, 5.163441551079028,
+                            2.8326278392985373}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.1706413696662765, 8.841717374050418,
+                            11.149571034430629}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.1920518538115576, 9.029800823916249,
+                            16.767092482709096}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.4757058089874902, -1.4305926149892287,
+                            23.318341585093922}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.248270909709363, -1.9239200272119128,
+                            -2.2352129710117543}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.3393363316829814, -20.44181563929098,
+                            11.489549869609586}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-7.6148002570013995, -15.432877281832269,
+                            15.635058014286253}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.494406440152689, -13.656203938168488,
+                            17.2588533202313}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.2244718243319854, -9.964227673003515,
+                            22.481386295778375}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-6.037624248837825, -9.285347140859443,
+                            -2.8831777467024455}});
+    siosi7.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{7.102120261536718, 10.68273555311992,
+                                           8.799255451831135}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{16.636475301409728, -23.497675649117504,
+                            19.031709437242526}});
+    siosi7.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{18.5405911032163, -22.28088741071091,
+                                           14.956536528213462}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{12.652008768283006, -26.296534260554065,
+                            13.41927132544692}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.80653085906497, -22.341736271212067,
+                            11.249782682641067}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.644771155372464, -23.97898635624929,
+                            6.89024528515817}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.8893835745870973, -23.638648474999055,
+                            19.52794890207491}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.17490438036206962, -22.902037114025475,
+                            15.41588873351223}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.280868513549265, -14.828753921161043,
+                            10.988208171132696}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{12.646963226123438, 11.397426206583772,
+                            13.417967421293323}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{18.545031936203184, 7.006991949809139,
+                            15.560017385388715}});
+    siosi7.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{16.37325673683813, 9.458161684115046,
+                                           18.874825201254772}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{16.533315695982466, 3.160191239275861,
+                            23.38731622510299}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.35054234853925, 3.1465474885672173,
+                            20.715068596696778}});
+    siosi7.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{2.386106806757625, 3.939510185570127,
+                                           23.41358327979138}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.962224573869005, 3.160777051286897,
+                            21.93091197702105}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{2.004969953512983, -7.096696776144223,
+                            -10.587304886806002}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.7404399259231265, -7.353735968857478,
+                            -7.8271098680978115}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.2910540836766318, 9.339090668581578,
+                            6.522430930874183}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.473997505574663, -23.522997845723573,
+                            6.41500056691485}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.614308930798594, -14.764295702785443,
+                            -7.163857288635247}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{15.333156959824636, -15.116141955478287,
+                            -6.532011791828868}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{4.839808760724139, -24.455761744585963,
+                            4.883158849540799}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{11.196322612343627, -22.933028459125442,
+                            5.124721266865717}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{14.472542424127896, 11.250103934389056,
+                            7.426263275256057}});
+    siosi7.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{3.581824709928569, 8.763917759552516,
+                                           0.9795551608148456}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{17.51496655202389, -9.760383990324653,
+                            24.221814883404516}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{17.27776937903927, -7.6048036584904946,
+                            -6.127933784345592}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{14.93282059034733, -4.087512755584111,
+                            -8.222438489738842}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{19.050417627272385, 0.5331286140821649,
+                            -4.3850863600287235}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{15.216089043425677, 3.4069503760535174,
+                            -3.03698174534185}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.1486715295362637, 6.753977852526551,
+                            18.834479761139878}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{17.836917494992253, -4.91458482935863,
+                            24.247515023243512}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{23.062662988019202, -12.93667561132318,
+                            -3.625193695906875}});
+    siosi7.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{23.5197853282437, -3.071469065346385,
+                                           -4.066631391964927}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{21.233417740655355, -18.012150874938584,
+                            16.1818284893609}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{21.037076231150085, 7.2814543255603015,
+                            11.082145961676556}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.472806984390946, 9.408329868853698,
+                            6.974753392040516}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{23.280358290184815, 3.0880229789485623,
+                            3.115178200234325}});
+    siosi7.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{16.25205034203863, 7.426886881590385,
+                                           0.3488019199516233}});
+    siosi7.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{5.598208549075929, 11.39260743036396,
+                                           13.451812237801883}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{6.151082807362335, -3.424392456253071,
+                            27.01972863675876}});
+    siosi7.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{5.595203900374164, -26.2855739067992,
+                                           13.451169734305907}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{24.964662307721383, -15.6374012623304,
+                            14.350882497448884}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{27.985751540118674, -14.711629313277147,
+                            10.926074303639593}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{27.99444423447598, -8.270229411542386,
+                            11.00544238255414}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{12.578234249215768, -3.182924524736385,
+                            26.766506670698064}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{5.899542688688159, -11.559979591065423,
+                            26.916172190936923}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.285611701122491, -8.332533353490307,
+                            11.03461960013606}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.2235893268831024, 4.889489398692317,
+                            -6.049869609584641}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.5776200914622625, 2.728315507010847,
+                            -3.017479874522847}});
+    siosi7.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{12.862466457538078, -11.940398352167506,
+                            26.377603084016783}});
+    mm.insert("siosi7", siosi7);
+
+    Molecule tetrahydrofuran = Molecule();
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{0.29611852299784575, 2.4598435315015688,
+                            -0.00680297819267546}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.144449903624476, 0.913677765599607,
+                            0.10393438905476399}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.544653992970256, -1.6880834498658301,
+                            -0.19048338939491288}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{1.099814807815866, -2.0550663290373787,
+                            0.1041233606712272}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.423938924373559, 0.512491023848218,
+                            -0.011905211837182055}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.44313844060622093, 3.7680940322763523,
+                            1.6136286329793266}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.3581012131977777, 3.6669942174685364,
+                            -1.7096262141426357}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.484825579198005, 1.3483124834649838,
+                            -1.4291923353112364}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.152424505839223, 1.1277826070524208,
+                            1.9180619071015532}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.6508560414225786, -3.3546241354548547,
+                            -1.4267357042972146}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.4029252806228505, -3.036584904947277,
+                            1.9197626516497224}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.6127593635435957, 0.6814316489663252,
+                            -1.7202086246645756}});
+    tetrahydrofuran.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.7216070146264033, 0.7742167126497601,
+                            1.6024793076079973}});
+    mm.insert("tetrahydrofuran", tetrahydrofuran);
+
+    Molecule ubiquitin_fragment = Molecule();
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{4.401265202766545, 8.51312523149023,
+                            -3.2900884387165052}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{4.965170433500888, 8.309976265164973,
+                            -0.5992080766468877}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.991731584715976, 7.336434691409351,
+                            1.243926225480933}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{3.713976775388337, 5.994245889867342,
+                            3.0831291998941763}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{5.992167032011792, 10.909527816621944,
+                            0.32223124456706603}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{8.730194527381988, 11.304595638535092,
+                            -0.4178132204542878}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.7787169394157, 13.352173249177975,
+                            0.12407723269964853}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.905363808156016, 9.655011810726029,
+                            -1.591658584980536}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{0.6566974942363657, 8.131217544124873,
+                            0.9689313088174156}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.448493593862202, 7.452235572017083,
+                            2.663209267168072}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.701584583695529, 4.978538852564345,
+                            2.152641426357761}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.260578649986772, 4.070396934880382,
+                            3.6834701235874374}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-2.113784572357232, 3.7154766997996904,
+                            0.06508560414225784}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-3.1655401186741754, 1.1918918137495749,
+                            -0.4977390868891493}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.5151920896481348, -0.7700705431044258,
+                            0.8027077176008164}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{0.6792792055633244, -0.23055026644997922,
+                            1.4906217166181641}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-3.20415782909407, 0.6428222155032315,
+                            -3.336872198495786}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-4.639564779470123, 2.628147643523943,
+                            -4.915170187837788}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-7.484324880003024, 2.2159248648852943,
+                            -4.297717374050418}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-8.256495030046487, 4.494548471219623,
+                            -3.003098227446238}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-9.390050360935787, 5.02612430552931,
+                            -0.8959148115952985}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-10.221961468687404, 3.3680211837182057,
+                            0.7705799160966024}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-9.648335538002193, 7.504714104841454,
+                            -0.2720555576552402}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-2.44791792962697, -3.054711515930307,
+                            0.9873304357685476}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-1.0690254166824142, -5.227169394156998,
+                            2.085840243395442}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.210563154314222, -6.8989024339544205,
+                            -0.153609905892135}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.1133383347821157, -6.582095562946446,
+                            -2.2650966778789825}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.7952453418496543, -6.802378358970484,
+                            3.8785912921879135}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.869488094788164, -7.614194810839412,
+                            2.146609225594316}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-3.9203301712082843, -5.434917003666049,
+                            6.129624588986735}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{1.5380143429456898, -8.588199705204278,
+                            0.3784664008465929}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.4802275974148684, -10.404656355115462,
+                            -1.5086616085263993}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{0.2655310102422616, -12.039116841150461,
+                            -2.3708129558940247}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{0.0731355304433274, -12.522176291621,
+                            -4.580106957934918}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{4.630602762765033, -11.95077525605654,
+                            -0.287264427982917}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{6.977987244415889, -10.564279640198043,
+                            0.6657814354283987}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{8.896154049661742, -12.442322158811747,
+                            1.7770953172833441}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{8.36036694508485, -9.297033825919346,
+                            -1.5275200120941834}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{4.884541176915228, 10.277873086662385,
+                            -4.2059795910654225}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{6.385984787784874, 6.692529196114744,
+                            -0.5448785668392607}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{4.801508201368154, 12.47671038210061,
+                            -0.5533311538606902}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{5.871894232586265, 10.948450149287577,
+                            2.4730561434672516}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{8.750228239918364, 14.783318700631167,
+                            1.0905588646585285}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.24973940814089726, 9.369932329264145,
+                            -0.6080301220756642}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.6827622737064893, 7.399939472391247,
+                            4.67534549680638}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.9628319097471563, 8.948189746400091,
+                            2.3327597792811523}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.8177779205563325, 4.565662666767452,
+                            -1.271370705620016}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.19708573642239, 1.122551986091689,
+                            0.2129298726331305}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.1686792773725387, 0.5644641331871952,
+                            -4.0383077213802485}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-4.245387731962659, -1.2243888468951964,
+                            -3.593364866397067}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-4.02955693714804, 4.617326183907177,
+                            -4.358363090063873}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-4.239100136059564, 2.4164747533920408,
+                            -7.021736630258136}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-8.621526909558186, 1.9484311009486375,
+                            -6.106968649608829}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-7.808811481915416, 0.4529368834801013,
+                            -3.104176820741525}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-7.76626629880192, 6.179503231414642,
+                            -4.055475017952304}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.979348803809668, 1.3656357383121056,
+                            0.42947371404815}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-11.14726342643335, 4.010098473109339,
+                            2.4782466079594845}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-8.918289636796553, 8.954244359197249,
+                            -1.5171472277863864}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-4.346615556143467, -3.3754628481802036,
+                            0.2934397369515099}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.5990142862542047, -4.524956347556597,
+                            3.2551672776748934}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.634397312823614, -8.355876998374844,
+                            4.814022374239389}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-6.702671057107223, -7.36124207264069,
+                            3.092643259382441}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-6.036228580067274, -5.824330454665709,
+                            6.2236752333799465}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.981752579462565, -6.134672474394346,
+                            7.937045863411315}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.5894137911485697, -3.316607846101516,
+                            5.921529933104048}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{2.3111240220718847, -8.64388818549454,
+                            2.2724759817075477}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.287345818058128, -9.432489115234892,
+                            -3.2536833024679694}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.7833739370346575, -12.990967326807514,
+                            1.397681601723421}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{5.370320231301259, -13.175342095317284,
+                            -1.898015231112287}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{6.300418723307759, -9.138923296420877,
+                            2.1327459087645035}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{8.663303658490495, -14.358795022487623,
+                            0.8202844589742622}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{10.89540071431271, -11.710664178540384,
+                            1.4427683019010547}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{8.551997751237765, -12.65130392305076,
+                            3.8947549227106095}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{7.726360501152727, -10.18460385880041,
+                            -3.386115215994558}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{7.902235779885862, -7.191568105370574,
+                            -1.5434729014701993}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{10.484965191428248, -9.568687762198119,
+                            -1.2898825541403682}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{2.50595695226577, 8.24298518462527,
+                            -3.509997486677501}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-10.498673230280811, 7.981410786499868,
+                            1.3115752673948373}});
+    ubiquitin_fragment.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.0365530821270645, -12.713316508560416,
+                            -1.0863754299104276}});
+    mm.insert("ubiquitin_fragment", ubiquitin_fragment);
+
+    Molecule ubiquitin_full = Molecule();
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{51.66483994104086, 46.16576590196153,
+                            4.939718054348237}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.63528478022601, 48.023356891794855,
+                            5.37057333988435}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.85793113874296, 50.340148909633776,
+                            6.672587777315848}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{52.69662496692997, 50.007558864658535,
+                            8.055860009826525}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{47.454552326240595, 47.016138176045956,
+                            6.895574284742432}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{47.90997392191694, 46.97834385275332,
+                            9.70180278922106}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(16).mass(), 16ul,
+           Atom::coord_type{45.22090781964549, 45.27570958841982,
+                            11.156884235987755}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{46.19789107676027, 45.32295249253563,
+                            14.399637174496391}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{49.76567519558563, 52.47741789183265,
+                            6.156695264371292}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.738879020371144, 54.84145281378737,
+                            7.366113609735819}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.32159189689709, 55.279866963982016,
+                            9.83030348841604}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{46.98779243357647, 54.84712196228127,
+                            10.072187157488946}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.517782229109194, 56.97116293132772,
+                            5.48962545825617}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.79934993763937, 59.61298612948335,
+                            6.442042405230734}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.61793718583469, 61.53293775274953,
+                            4.2896556937148045}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{52.50198420197287, 62.66298801919951,
+                            3.5337692278619754}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{48.30492460032504, 61.85607921690162,
+                            3.412827393325523}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{50.73698930420651, 56.041422578328735,
+                            11.748365395517594}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.576703579122416, 56.801088476510834,
+                            14.167202086246647}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.79934993763937, 59.38999962205677,
+                            14.856948486337354}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{52.73441929022261, 59.924789296647646,
+                            13.726898219887374}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.78268264106732, 54.8962545825617,
+                            16.336596243244266}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.55300653841793, 54.32556030084282,
+                            17.00555576552402}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.17075475263616, 52.479307607997285,
+                            15.660077856305985}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.84969197626516, 53.07645791602101,
+                            19.685173286972297}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{49.537019539665145, 60.65421973619563,
+                            16.574700479987907}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.59148115952984, 63.18454968063797,
+                            17.379719566121167}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{51.307683585925396, 63.044710684455204,
+                            20.12547715333157}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{49.79402093805511, 61.94111644431007,
+                            21.533315695982463}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.556256850221104, 65.19142824747723,
+                            16.905400808798518}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{47.78714237121584, 65.4011867417514,
+                            14.17098151857591}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{45.630976227370645, 64.18609924789297,
+                            13.299822366680527}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.38962167882384, 66.79390755508523,
+                            12.54771533315696}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{44.99792131221891, 64.30893079859405,
+                            10.727918666616274}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.773574209153786, 66.88083449865832,
+                            9.953135039117125}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{46.524811973241626, 65.72054877357421,
+                            9.170792546959447}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{53.40337881250237, 64.14263577610643,
+                            20.968290562757474}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{54.05533088930043, 64.18420953172834,
+                            23.6271212063948}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{54.11769152273329, 67.01122491401792,
+                            24.377338523753735}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{55.788200612268035, 68.22442269171171,
+                            23.28130314826713}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.62156544087079, 62.959673457046755,
+                            24.214822933595375}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.09021504969954, 63.10518160172342,
+                            27.030500018897165}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.610227143882994, 60.164783249555924,
+                            23.341774065535358}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{52.44151328470464, 67.77844967685853,
+                            25.964700102044674}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.328130314826716, 70.51475868324577,
+                            26.7262557163914}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.79832949091047, 70.81711326958691,
+                            29.139423258626557}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{53.31456215276466, 69.45273819872256,
+                            31.012131977776942}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.546468120488306, 71.212063947995,
+                            27.03616916739106}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.91341320533656, 73.9616009675347,
+                            27.61820174609774}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(6).mass(), 6ul,
+      Atom::coord_type{46.0108091764617, 74.25828640538191, 27.6692240825428}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{45.0980762689444, 76.95491137231188,
+                            27.871423712158435}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{42.28239918364262, 76.94924222381799,
+                            28.169998866170303}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{55.606787860463356, 72.62179220681054,
+                            29.18855587890699}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.11667107600439, 73.02430174987717,
+                            31.486450735099588}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.0565403076458, 75.28440228277712,
+                            32.94531161419555}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{54.51831134963529, 76.65633621830001,
+                            31.85872481953211}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.987149930080506, 73.47027476473033,
+                            30.800483767338147}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{59.97392191692808, 76.07430363959334,
+                            29.902868589137913}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{60.96224347103065, 71.75063305491516,
+                            28.66888393363317}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{56.94092747269361, 75.71903700064252,
+                            35.22808874107109}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.948826486261765, 77.81851165954873,
+                            36.78710457689255}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.83321365130958, 80.3847462111191,
+                            35.874371669375265}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{55.90914244680449, 82.33493329301939,
+                            36.81734003552667}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.53841792962697, 77.27049397180544,
+                            39.56687705506633}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.14758683245777, 75.06330549151518,
+                            40.781964548924755}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.38380135303677, 75.11621754412488,
+                            43.64299482217771}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.345137760308404, 75.06141577535054,
+                            40.11489474280963}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{58.56419365811256, 80.44710684455195,
+                            34.01111153104804}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.37866132506898, 83.03412827393326,
+                            33.17018783778677}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.118220643259384, 83.81080161759704,
+                            30.758910011716242}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{58.97237234967309, 85.54367134056466,
+                            29.41532181866284}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{62.320949393401115, 82.99255451831135,
+                            32.9660984920065}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{62.689444045504366, 81.38440606220946,
+                            30.736233417740657}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{63.602176953021655, 81.86061453569675,
+                            35.28478022601006}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{56.16425412902982, 82.5295740579765,
+                            30.01814127518047}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{54.760195018708195, 83.0719225972259,
+                            27.737253864469558}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.94315733776787, 82.21588117464756,
+                            25.308968592917346}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{55.21561661438452, 83.11160663668318,
+                            23.24539854113912}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{57.75539513965003, 80.54537208511282,
+                            25.501719641709816}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.94213689103897, 79.39075550852263,
+                            23.302090026078083}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.55886465852829, 76.84719755092785,
+                            22.92225707698704}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{57.169583128614086, 75.5716391398012,
+                            24.817642390113004}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{61.74080653085906, 78.83328923995616,
+                            23.630900638724068}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{62.88975395895537, 77.64087834007333,
+                            21.215843380324277}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{65.6903133149401, 77.09852980082393,
+                            21.67504440832987}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.30035148720663, 77.18923617672627,
+                            19.350693525832423}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{66.32903737858574, 75.72659586530104,
+                            17.198306814316492}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{56.9995086737972, 76.22737064892854,
+                            20.57145016818474}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.825994935560686, 73.73672474394347,
+                            20.131146301825467}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.62500472429041, 72.30243017498772,
+                            18.385048565705432}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{58.2958539627348, 73.41547299595601,
+                            16.45186892928682}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.12559053630145, 73.7915265127178,
+                            18.925507388790205}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{51.551456971162935, 75.06330549151518,
+                            20.779318946294268}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.133489549869616, 71.11946785592804,
+                            18.358592539400583}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{58.19380928984467, 69.94784383385615,
+                            19.07668468196077}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.941796742129334, 68.57590989833328,
+                            17.340035526663897}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.4961638761858, 66.5387958728599,
+                            15.985109036622699}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{56.73872784307797, 65.41819418723308,
+                            17.083034128273933}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{62.351184852035225, 67.80868513549265,
+                            18.772440379455006}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{62.9388865792358, 64.97033145621528,
+                            18.59480705997959}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{62.56661249480329, 68.74976378547943,
+                            21.608904342567747}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{65.26134774556861, 64.30326165010015,
+                            20.257757284855817}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{59.04229184776447, 66.11360973581768,
+                            13.600287236857024}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.64579160210137, 64.03114252239314,
+                            12.305831664084055}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.35409501492876, 61.75592426017612,
+                            12.181110397218339}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{61.64065157413357, 62.005366793907555,
+                            11.574511508371444}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.863449109943694, 64.99300805019087,
+                            9.595978684001665}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{59.41267621603236, 65.21977398994672,
+                            8.479156430704109}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.595449563475576, 67.56869118258437,
+                            9.673457046751578}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{58.36199402849692, 59.497713443440794,
+                            12.596847953437395}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.86053894705016, 57.21115688423599,
+                            12.545825616992328}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.62277485921614, 55.346007029744136,
+                            10.70524207264069}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{56.330549151517445, 55.548206659359764,
+                            10.478476132884841}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.64322158811747, 56.0981140632677,
+                            15.202766544465023}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{61.66332816810915, 55.64080275142674,
+                            17.120828451566577}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{63.89886239086889, 57.42847424316868,
+                            17.06413696662761}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{60.36698287917155, 55.6502513322499,
+                            19.721077894100308}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{60.15722438489739, 53.69061566952644,
+                            9.68479534373937}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.996938659813296, 51.666729657205494,
+                            8.07853660380211}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.41267621603236, 49.28190785743982,
+                            9.599758116330928}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{61.55939377905439, 48.75845647983673,
+                            10.319739975055748}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{60.14399637174497, 51.51744208019956,
+                            5.468838580445218}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.267168071355684, 53.68683623719718,
+                            3.707623115008126}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.849200650062365, 53.46196001360596,
+                            0.941078649986772}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{58.33364828602744, 54.08556634793454,
+                            -0.6916361162553385}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{62.0488302656941, 52.64938206281417,
+                            0.5253410937677162}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{57.27729694999811, 48.1083941192033,
+                            10.174231830379078}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.235723194376206, 45.8161684115046,
+                            11.703012207566424}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.32899958426245, 43.892437355909145,
+                            10.65988888468952}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{53.81533693639216, 44.4499036244756,
+                            8.928908877886542}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.50818247099286, 46.46812048830266,
+                            14.484674401904835}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.32042027287501, 48.18020333345932,
+                            15.852828905098454}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.81155750406289, 47.49801579802714,
+                            14.560263048490118}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{55.51986091689029, 41.681469443289615,
+                            11.776711137987075}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.796439774745835, 39.570656487395595,
+                            11.300502664499794}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.57001398389962, 38.945160436902384,
+                            13.825163460448241}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{53.76053516761783, 39.06799198760346,
+                            15.798027136324125}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.204278317396735, 37.22173929475793,
+                            10.40477720246419}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.17748214218225, 37.33134283230659,
+                            7.672247628406213}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(6).mass(), 6ul,
+      Atom::coord_type{54.33689859783061, 37.909595978684, 5.627574738274312}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{52.05412147095507, 37.77920556332439,
+                            5.640802751426736}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{55.43671340564647, 38.593673230280814,
+                            3.5980195774594654}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{50.18897161646321, 38.2100608488605,
+                            13.772251407838544}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.809478816281796, 37.46362296383084,
+                            16.051249102384823}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.15495672549984, 35.39816319588798,
+                            17.4817642390113}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{49.76189576325636, 35.0277788276201,
+                            19.760761933557582}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{46.23946483238218, 36.531992894667226,
+                            15.02702294115424}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{45.91821308439472, 38.047545258702144,
+                            12.668657167693413}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.59216145734911, 37.99841263842171,
+                            11.476246267810577}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{51.70452398049813, 33.93741260062739,
+                            16.174080653085905}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.01409728258815, 31.81337163158094,
+                            17.404285876261387}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.28931554480517, 32.72610453909823,
+                            18.86692618768661}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{56.55920480743792, 31.13685324464266,
+                            20.042329642087758}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.9003741638006, 29.895309724479386,
+                            15.461657659019616}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{54.69972410143997, 31.076382327374432,
+                            13.165652518991648}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{55.93370875694471, 35.146830945991915,
+                            18.572130466004005}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.1956990060093, 36.06145356967384,
+                            19.966740995502477}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.61933557579652, 36.210741146679766,
+                            22.75218262217015}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{55.49529460675007, 36.89292868211195,
+                            23.509958804187615}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.87410710911222, 38.767527117426965,
+                            18.987868022223065}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{60.32540912354964, 38.61823954042103,
+                            16.544465021353794}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{61.40254733738993, 36.61136097358177,
+                            15.979439888128804}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{60.164783249555924, 40.44370535545561,
+                            15.057258399788353}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{59.54495634755661, 35.78366529347292,
+                            24.286632147851396}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.33330813711781, 36.02554896254583,
+                            26.996485127933784}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.70180278922106, 38.839336331682986,
+                            27.69379039268302}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{60.771382138402814, 40.271741184474095,
+                            26.193355757965158}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{61.40065762122529, 34.379606183151296,
+                            28.336293888657924}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{63.83083260894214, 35.4113912090404,
+                            27.431119845799163}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{61.1360973581768, 31.55825994935561,
+                            27.64654748856722}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{58.79473903019767, 39.42514834271893,
+                            29.970898371064667}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.12543935900828, 41.95358857099664,
+                            31.023470274764737}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{61.93733701198081, 42.55451831134963,
+                            31.32582486110587}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{62.80093729921766, 44.708794739030196,
+                            30.961109641331873}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.674137344570845, 42.140670471295216,
+                            33.56891794852413}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{54.813107071317894, 41.65501341698477,
+                            32.96042934351261}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.26372878793606, 44.784383385615484,
+                            34.69140935031559}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.68116708870328, 43.3652065459768,
+                            30.927094750368497}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{63.39619789107677, 40.67803015986999,
+                            32.030688990513625}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{66.19864696322612, 41.048414528137876,
+                            32.25556521410484}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.30224120337127, 41.93280169318569,
+                            29.78003703843683}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{69.03511092633886, 43.550398730110736,
+                            29.713896972674707}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.40050644393213, 38.51808458369553,
+                            32.96987792433576}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{70.16138176045958, 38.34801012887864,
+                            33.7730072943044}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{70.97962885974528, 35.62303941947919,
+                            34.169847688877134}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{71.3519029441778, 34.060244151328476,
+                            32.493669450848486}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{71.10623984277562, 35.146830945991915,
+                            36.49608828753921}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{66.4027363090064, 40.86322234400393,
+                            27.707018405835445}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.25499829925546, 41.469821232850826,
+                            25.137004421935824}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{66.58981820930497, 44.185343361427115,
+                            24.415132847046376}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{68.15450319362033, 45.55916701311464,
+                            23.305869458407347}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{66.26100759665898, 39.60278166219434,
+                            23.15847159756605}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.16240220718848, 40.47394081408972,
+                            20.54310442571526}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{69.48864280585056, 40.8613326278393,
+                            20.174609773612005}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{65.4370913488794, 40.8084205752296,
+                            18.745984353150156}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{64.26357761064288, 44.87131032918856,
+                            25.038739181374957}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{63.367852148607284, 47.426206583771126,
+                            24.524736384595034}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{65.08371442609321, 49.319702180732456,
+                            25.858875996825276}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{65.91896897086059, 51.19241089988284,
+                            24.742053743527723}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{60.58430023810424, 47.72856117011226,
+                            25.254166824143017}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.87376696020258, 50.548017687743304,
+                            25.21259306852111}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.86843796061832, 46.14875845647984,
+                            23.57798858611437}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{65.6374012623304, 48.79625080312937,
+                            28.249366945084848}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.26633659624324, 50.48376733814581,
+                            29.736573566650293}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{69.87225518727088, 50.69352583241997,
+                            28.547942099096716}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{71.01364375070865, 52.77221361351525,
+                            28.646207339657586}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.49121281983447, 49.51623266185419,
+                            32.45020597906195}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{64.89852224195927, 49.97354397369516,
+                            33.82213991458483}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{65.21221512528818, 49.27812842511055,
+                            36.58490494727692}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{62.7499149627726, 49.72032200763446,
+                            38.02486866472656}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{63.220454287765975, 48.96254582561699,
+                            40.71582448316263}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{70.86246645753809, 48.64696322612344,
+                            27.535054234853927}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.30964889073661, 48.680978117086816,
+                            26.229260365093165}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.1849276238709, 50.24944253373144,
+                            23.831210552175065}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{75.0292906005518, 51.676178238028655,
+                            23.20004535318795}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{74.23749952757096, 45.98813258248611,
+                            25.635889489398696}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{71.11568842359878, 50.1587361578291,
+                            22.425261725688806}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{70.80955440492838, 51.76121546543709,
+                            20.159492044294947}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{70.75286291998943, 54.57878226690352,
+                            20.885143051513662}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{71.84700857931139, 56.26062965342606,
+                            19.619033221210174}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{68.3944971465286, 51.13193998261461,
+                            18.728976907668468}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{68.3189084999433, 48.414528137873695,
+                            17.78033939302317}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{65.68275445028158, 47.77202464189879,
+                            16.818473865225446}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{65.74889451604369, 45.8520730186326,
+                            14.677425450697307}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{65.97755017196418, 47.13708001058241,
+                            12.171661816395178}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{69.56234173627122, 55.12302052231755,
+                            23.039419479194226}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{69.41116444310066, 57.768623152802455,
+                            23.895460901772555}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{72.0888922483843, 58.545296496466236,
+                            24.696700555576555}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{72.83721984957859, 60.754374692921125,
+                            24.294191012509923}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.47798480668203, 58.15790468271666,
+                            26.08942136891039}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{64.68120488302658, 57.88200612268037,
+                            25.169129596734575}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.79167769001097, 60.731698098945536,
+                            27.423560981140636}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{62.897312823613895, 57.643901885936735,
+                            27.499149627725917}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{73.47783362938887, 56.8993537170717,
+                            25.91367776559961}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{76.09698023356891, 57.65146075059526,
+                            26.6733436637817}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{77.65221663706112, 58.21837559998489,
+                            24.284742431686762}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{79.04304773423033, 60.10809176461696,
+                            23.96349068369931}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{77.47080388525644, 55.5557655240183,
+                            28.090630787255755}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{80.20900260780832, 56.40424808193809,
+                            28.689670811444124}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{81.427869533996, 54.47673759401338,
+                            30.414981669753203}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{80.82316036131374, 52.26010053289996,
+                            30.057825314637743}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{82.95476019501872, 55.277977247817375,
+                            32.21966060697684}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{77.48025246607959, 56.46093956687706,
+                            22.546203560225255}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{78.8351789561208, 56.733058694584074,
+                            20.11224914017915}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{78.23235949960316, 59.219925167239886,
+                            18.834801012887866}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{79.85940511735137, 60.53894705015307,
+                            17.72742734041347}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{78.23046978343854, 54.38603121811104,
+                            18.53811557504063}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{80.55104123360671, 53.964624513398086,
+                            16.871385917835145}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{82.51634604482406, 53.40715824483163,
+                            18.026002494425338}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{80.18065686533883, 54.44650213537927,
+                            14.603726520276656}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{75.80974337654484, 59.9984882270683,
+                            18.87448505234514}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{75.22582108167353, 62.3492951358706,
+                            17.447749348047925}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{75.28062285044787, 64.76246267810575,
+                            18.88771306549756}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{75.89856003628256, 66.75044408329869,
+                            17.659397558486717}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{72.97138969726748, 61.98457991609661,
+                            15.722438489738842}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{70.33523564760573, 62.024263955553884,
+                            16.6805245852073}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{68.69307230054046, 63.519029441777846,
+                            14.811595298386184}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{68.63827053176614, 62.254809327638995,
+                            12.239691598321933}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{67.59136777655996, 64.1464152084357,
+                            10.372652027665445}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{74.93669450848483, 64.8834045126422,
+                            21.325446917872938}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{74.9763785479421, 67.17374050417627,
+                            22.812653539438376}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{76.86420499640954, 67.13594618088364,
+                            24.944253373143354}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{77.12687554329341, 69.02755206168034,
+                            26.287841566196757}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{72.35723194376205, 67.67829472013304,
+                            23.995615858498056}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{70.21429381306928, 68.00143618428513,
+                            22.087002532219664}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{70.28232359499603, 70.60168562681885,
+                            20.849238444385655}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{70.90026078083072, 72.4895120752863,
+                            22.005744737140482}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{69.65682754450282, 70.52420726406893,
+                            18.560792169016214}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{78.07740277410333, 64.99300805019087,
+                            25.382667523337997}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{80.02003099134511, 64.75868324577648,
+                            27.270493971805436}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(6).mass(), 6ul,
+      Atom::coord_type{79.2717033901508, 64.3939680260025, 29.93688348010129}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{80.93465361502703, 64.25034959749046,
+                            31.63195887977626}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{76.8018443629767, 64.09161343966136,
+                            30.447106844551946}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{76.01572243848975, 63.71367020673495,
+                            33.087040326542954}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{76.4371291432027, 60.99625836199403,
+                            33.91095657432254}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{75.46770475074644, 59.21614573491062,
+                            32.72043539060434}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.11878755810878, 64.45065951094146,
+                            33.24955591670131}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{72.69927056956045, 67.17185078801164,
+                            32.21021202615368}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{72.08511281605503, 64.12184889829548,
+                            35.95562946445444}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{69.84013001247213, 67.54979402093807,
+                            31.52046562606297}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{77.83551910503043, 60.631543142220046,
+                            35.96318832911297}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{78.34952190181035, 58.11066177860086,
+                            37.02709852980083}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{75.90611890094108, 56.74061755924261,
+                            37.639366567141614}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{74.19781548811369, 57.9424770399486,
+                            38.77886541441476}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{79.73657356665029, 58.849540798971994,
+                            39.51963415095053}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{81.07638232737445, 61.253259760384,
+                            38.839336331682986}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{79.03170943724254, 62.71590007180922,
+                            37.44094636985525}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{75.70013983899618, 54.34445746248914,
+                            37.05166483994104}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.35311236252315, 52.94984693299067,
+                            37.58456479836729}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{72.60478476132886, 53.002758985600366,
+                            40.32843266941306}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{70.32200763445331, 52.980082391624784,
+                            41.0143996371745}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.86900487546771, 50.32125174798746,
+                            36.5187648815148}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{75.74360331078273, 50.840923693261274,
+                            34.38905476397446}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{77.54450281567708, 52.740088438716505,
+                            35.6759514720889}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{74.40568426622322, 53.082127064514914,
+                            42.027287501417284}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.81798253902265, 53.03110472806984,
+                            44.77682452095696}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{72.49896065610946, 55.434823689481846,
+                            45.653652821346235}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(8).mass(), 8ul,
+      Atom::coord_type{71.212063947995, 55.53875807853661, 47.6605313881855}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{76.23115008125781, 52.33002003099135,
+                            46.23757511621755}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{76.64499792131222, 54.01753656600779,
+                            48.51846252692846}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{76.94168335915946, 56.330549151517445,
+                            48.10461468687404}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{76.6261007596659, 53.082127064514914,
+                            50.71998185872482}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{72.60100532899958, 57.396349068369936,
+                            44.1078649986772}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{71.31410862088515, 59.78495030046487,
+                            44.8089496957557}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{68.66094712574173, 59.983370497751245,
+                            43.62787709286066}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{67.22476284062134, 61.63876185796894,
+                            44.376204694054955}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{72.80698439094448, 62.084734872822104,
+                            43.807400128500696}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{75.43557957594768, 62.084734872822104,
+                            45.050833364828605}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{77.02483087040326, 64.31837937941722,
+                            44.2080199554027}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{79.32083601043124, 64.26546732680752,
+                            44.642654673268076}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{75.85320684833138, 66.15329377527496,
+                            43.03828564949544}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{68.02978192675461, 58.31664084054575,
+                            41.89878680222231}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{65.64496012698893, 58.344986583015235,
+                            40.57787520314449}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{63.473676253826675, 57.04864129407763,
+                            41.915794247704}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{63.456668808344986, 54.81877621981179,
+                            42.516723988056995}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{65.90574095770815, 57.13934766997997,
+                            37.919044559507164}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{68.05245852073018, 58.31664084054575,
+                            36.322234400393064}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{68.18662836841906, 57.058089874900794,
+                            33.77867644279829}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{66.23077213802488, 56.12834952190182,
+                            32.86783325144564}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{70.3503533769228, 56.929589175705814,
+                            32.56547866510451}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{61.37420159492045, 58.42435466192978,
+                            42.08208927019162}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.95914433652066, 57.31320155712612,
+                            43.04773423031861}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.08832533353491, 57.653350466759896,
+                            40.91235496428436}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{56.649911183340265, 59.95313503911713,
+                            40.19237310555955}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.292074530405536, 58.45081068823463,
+                            45.57617445859632}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.580331834158514, 58.1956990060093,
+                            46.483238217619714}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.31388185494539, 59.174571979288714,
+                            49.16285573906799}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{52.67583808911902, 59.18024112778261,
+                            49.96976454136589}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{51.27177897879739, 61.270267205865686,
+                            50.217317358932696}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{52.21285762878416, 63.60028723685703,
+                            50.00377943232927}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{48.773574209153786, 61.0359424014513,
+                            50.51589251294456}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{56.113231792584756, 55.625685022109685,
+                            39.78608413016365}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{54.352016327147666, 55.88457613666428,
+                            37.61668997316603}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{51.64783249555917, 55.40080879851847,
+                            38.48217997656752}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{51.21319777769379, 53.565894402660724,
+                            39.86734192524283}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.08711591518954, 54.14981669753204,
+                            35.44162666767451}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.47760686344911, 54.635473751842476,
+                            33.97709664008466}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.08609546846064, 52.33190974715598,
+                            32.355720170830345}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.07887675271174, 57.008957254620356,
+                            32.36894818398277}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{49.95653652821346, 57.12989908915681,
+                            37.80188215729998}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{47.3071544653993, 57.01273668694963,
+                            38.55209947465891}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{45.54404928379758, 56.97305264749235,
+                            36.274991496277266}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{45.72357231943763, 58.482935863033376,
+                            34.55723950262671}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(6).mass(), 6ul,
+      Atom::coord_type{46.56071658036963, 59.3862201897275, 40.2244982803583}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.46366075815413, 59.84731093389774,
+                            42.36932612721569}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{43.80551041233607, 59.16512339846555,
+                            41.24116557693035}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.71310329188556, 57.515401186741755,
+                            44.136210741146684}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{43.72992176575078, 55.155145697116296,
+                            36.3600287236857}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{41.811859858649235, 54.91893117653729,
+                            34.360709021504974}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{39.37223629010923, 54.1006840772516,
+                            35.723194376204695}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{39.34578026380438, 52.4093881099059,
+                            37.320004535318795}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{42.507275407233834, 53.019766431082054,
+                            32.33115386069013}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.528742582864055, 52.664499792131224,
+                            30.284591254393593}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.298197210778945, 54.448391851543896,
+                            28.355191050304246}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{38.99996220567671, 50.521561661438454,
+                            30.33561359083866}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{38.49162855739068, 54.13658868437961,
+                            26.457916021013645}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{37.18394497146529, 50.15117729317057,
+                            28.44211799387732}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{37.02520881363619, 51.901054461619864,
+                            26.49571034430629}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{37.43527722136135, 55.51608148456102,
+                            35.10714690653464}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{34.85203522430931, 55.07199818587249,
+                            36.06145356967384}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{34.87093238595563, 54.6902755206168,
+                            38.91114554593901}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{33.75033070032881, 52.900714312710235,
+                            39.925923126346426}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(6).mass(), 6ul,
+      Atom::coord_type{33.757889564987344, 52.86858913791149, 34.66873275634}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{36.229638308326095, 56.32865943535281,
+                            40.14324048527911}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{36.65860387769757, 56.49117502551117,
+                            42.8115197097396}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{37.95116973430591, 54.289655693714806,
+                            44.070070675384564}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{37.777315847159755, 54.01564684984316,
+                            46.41331871952833}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{39.307985940511735, 52.781662194338416,
+                            42.66601156506293}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.72338334782116, 50.63683434748101,
+                            43.714804036433726}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{43.550398730110736, 51.186741751388944,
+                            43.29906648021468}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{44.18723307759175, 52.20718848029026,
+                            41.328092520503425}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.14135076911448, 48.22366680524585,
+                            42.31263464227673}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{37.34457084545902, 47.38841226047848,
+                            42.43357647681318}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{37.10268717638611, 45.135870592237055,
+                            40.687478740693145}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{35.50965644960127, 45.77081522355343,
+                            38.385804452171286}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{32.95664991118335, 46.590952039003746,
+                            39.35711856079217}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{45.12642201141389, 50.5064439321214,
+                            45.071620242639554}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{47.9024150572584, 50.78045277599305,
+                            44.67855928039609}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.64696322612344, 48.3502777882762,
+                            43.316073925696365}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{47.85706186930723, 46.27725915567482,
+                            44.17778449676859}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.26490041195813, 51.06957934918175,
+                            47.167315469216526}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.06734948410749, 51.69507539967498,
+                            46.66654068558903}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.40715824483163, 52.110812955894026,
+                            49.17041460372652}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{55.158925129445564, 50.71998185872482,
+                            49.76567519558563}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{52.49064590498508, 54.01753656600779,
+                            50.52912052609698}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{50.011338296987795, 48.54491855323331,
+                            41.25817302241203}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.69352583241997, 46.337730072943046,
+                            39.7067160512491}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.900714312710235, 44.939340111115314,
+                            40.89912695113194}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{54.62035602252542, 46.19222192826638,
+                            41.75894780603954}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{51.103594240145135, 47.22778638648475,
+                            36.98363505801429}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.00222986507427, 48.83782455875128,
+                            35.82712876525946}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.51623266185419, 49.28946672209834,
+                            33.01523111228693}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{46.443554178162444, 47.601950187081904,
+                            36.05389470501531}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{52.802449072149365, 42.42034846366076,
+                            40.9085755319551}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{54.83011451679958, 40.92558297743679,
+                            42.11799387731963}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.58188140141351, 39.88434937072452,
+                            40.137571336785214}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{55.68993537170717, 39.07366113609736,
+                            38.15336936392154}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.569673834989985, 38.81477002154276,
+                            43.58819305340338}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.26852866699422, 36.7663176990816,
+                            44.79572168260327}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{54.276427680562385, 35.99342378774708,
+                            47.367625382667526}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{55.06443932121395, 34.26433349710874,
+                            48.65263237461733}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{52.49064590498508, 37.49574813862958,
+                            47.93642994822178}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{59.02150496995352, 39.854113912090405,
+                            40.55141917683964}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{60.96602290335992, 39.060433122944936,
+                            38.76563740126233}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{60.71280093729922, 36.59246381193545,
+                            37.32189425148343}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(8).mass(), 8ul,
+      Atom::coord_type{61.50270229411542, 36.50364715219774, 35.069352583242}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{63.566272345893644, 39.14736006651801,
+                            40.14135076911448}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{64.57916021013644, 41.81752900714313,
+                            40.35299897955327}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{66.61627423560982, 42.18224422691712,
+                            41.49438754299104}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{63.38863902641823, 43.62598737669602,
+                            39.462942666011564}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{59.898333270342796, 34.60259269057788,
+                            38.56154805548206}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{59.654559885105265, 32.053365584489214,
+                            37.46362296383084}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.29619411164443, 31.554480517026345,
+                            36.00098265240561}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{57.06564873955932, 29.587285989644357,
+                            34.70652707963264}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{55.44427227030501, 33.247666200536685,
+                            36.048225556521416}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.11614195547829, 32.95476019501871,
+                            34.53645262481575}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.62069617143506, 34.01300124721267,
+                            31.911636872141806}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{55.41781624400016, 35.50020786877811,
+                            31.53936278770929}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.88249744888318, 34.37582675082203,
+                            35.70051778222911}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.3061340186704, 33.63505801428626,
+                            38.45950338259194}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.151517442080205, 30.934653615027027,
+                            38.32344381873843}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{50.975093540950155, 29.330284591254397,
+                            39.57443591972486}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.1618352923391, 27.25537624248838,
+                            39.03208738047546}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{51.927510487924714, 25.951472088892253,
+                            36.91938470841679}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{53.89281529914207, 26.393665671416155,
+                            40.72338334782116}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{51.986091689028314, 33.42718923617673,
+                            30.148531690540082}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.107033523564766, 34.37771646698666,
+                            27.519936505536872}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{50.04346347178654, 36.433727654106356,
+                            27.27238368797007}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{48.39374126006275, 36.637816999886624,
+                            28.88809100873049}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{51.587361578290945, 32.22910918779999,
+                            25.573528855965833}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{48.990891568086475, 31.390075210703355,
+                            26.291620998526025}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{53.358025624551196, 29.978457235723198,
+                            25.620771760081638}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{50.238104236743645, 37.91337541101326,
+                            25.280622850447866}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.365395517593264, 39.89001851921842,
+                            24.70236970407045}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{45.808609546846064, 38.61823954042103,
+                            24.296080728674553}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{43.96235685400053, 39.59144336520655,
+                            25.188026758380893}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.29135643826297, 41.3621074114668,
+                            22.361011376091312}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{51.82735553119922, 42.737820779318945,
+                            22.491401791450922}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{52.37915265127178, 44.1078649986772,
+                            19.98941758947806}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{51.74042858762614, 44.82595714123739,
+                            24.481272912808496}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{45.80671983068143, 36.34491099436865,
+                            23.14146415208436}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{43.319853358025625, 35.1165954873578,
+                            22.72383687970067}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{42.006500623606335, 34.475981707547525,
+                            25.180467893722362}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{39.61411995918213, 34.492989153029214,
+                            25.31274802524661}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{43.57496504025096, 32.741222268415285,
+                            21.077894100306136}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{45.19067236101138, 30.981896519142825,
+                            22.213613515250014}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{43.457802638043766, 33.9733172077554,
+                            27.14766242110435}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{42.3636569787218, 33.33081371178049,
+                            29.65531577157111}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.55330889300428, 35.407611776711136,
+                            30.543482368948187}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{38.73351222646359, 34.97108734268113,
+                            31.93620318228202}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{44.334630938433044, 32.750670849238446,
+                            31.635738312105524}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{45.70089572546204, 30.265694092747268,
+                            31.40519294002041}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{47.815488113685326, 30.035148720662157,
+                            32.412411655769304}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{44.544389432707206, 28.547942099096716,
+                            30.188215729997356}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{41.282739332552254, 37.707396349068375,
+                            30.05593559847311}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{39.833327034279456, 39.9656071658037,
+                            30.70977739143581}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{38.0626629880192, 40.79897199440644,
+                            28.627310178011264}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{36.84757549416078, 42.79262254809328,
+                            28.95234135832798}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{41.73438149589932, 42.05374352772214,
+                            31.333383725764392}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{43.3595373974829, 41.48115952983862,
+                            33.60860198798141}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{45.86719074794966, 40.71204505083337,
+                            33.34215200876828}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{42.39956158584981, 41.87044105975283,
+                            36.02743867871046}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{47.34116935636268, 40.22260856419366,
+                            35.48131070713179}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{43.84897388412261, 41.39801201859481,
+                            38.15714879625081}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{46.33017120828452, 40.57220605465059,
+                            37.85101477758041}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{47.71155372463056, 40.25473373899241,
+                            40.044975244718245}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{37.78109527948902, 39.4648323821762,
+                            26.548622396915984}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{36.02743867871046, 40.34921954722401,
+                            24.564420424052308}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{36.739861672776755, 42.98159416455649,
+                            23.640349219547225}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{35.09391889338222, 44.61619864696323,
+                            23.222721947163535}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{33.23254847121962, 40.21693941569976,
+                            25.437469292112326}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{31.32393514494123, 40.17158622774859,
+                            23.27185456744397}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{29.177217581919198, 41.23171699610719,
+                            23.390906685815793}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{31.981556370233193, 38.90169696511584,
+                            21.19505650251332}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{39.14924978268264, 43.395442004610906,
+                            23.167920178389206}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.031747231565824, 45.850183302467975,
+                            22.090781964548924}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{39.89190823538305, 45.5629464454439,
+                            19.224082542802073}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{41.27329075172909, 43.83763558713481,
+                            18.303790770626254}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{42.80207112891644, 46.328281492119885,
+                            23.001625155901586}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{42.82474772289202, 46.900865490003405,
+                            25.88722173929476}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{44.17400506443933, 48.46177104198949,
+                            21.559771722287316}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{45.58562303941948, 47.2069995086738,
+                            26.824520956952266}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{38.34423069654938, 47.0066895952228,
+                            17.965531577157112}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{37.94739030197665, 46.81393854643033,
+                            15.180089950489437}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{39.34766997996901, 48.97010469027553,
+                            13.855398919082354}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{40.29441777844968, 50.7010846970785,
+                            15.132847046373634}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{35.146830945991915, 46.74401904833894,
+                            14.601836804112024}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{33.672852337578895, 44.283608601987986,
+                            14.928757700593373}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{31.197324161910885, 44.46313163762803,
+                            13.447220227521827}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{29.18855587890699, 43.42567746324502,
+                            14.046260251710194}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{31.254015646849847, 45.906874787406935,
+                            11.355304433274123}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{39.54042102876148, 48.87183944971465,
+                            11.349635284780227}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.923693261272156, 50.73320987187725,
+                            9.90211270267206}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{39.92403341018179, 53.36558448920972,
+                            10.53327790165917}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{37.714955213726896, 53.79077062625194,
+                            11.039721833780566}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.87645035715636, 50.34581805812767,
+                            7.050531010242262}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{38.191163687214186, 49.931970218073246,
+                            5.99984882270683}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{38.30076722476284, 50.24566310140217,
+                            3.1293699686307117}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{36.286329793265054, 48.862390868891495,
+                            1.6837371026871766}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{33.79568388827998, 50.16062587399373,
+                            2.0314448769794775}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{41.76083752220417, 55.109792509165125,
+                            10.591859102762767}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{41.39801201859481, 57.75539513965003,
+                            11.113420764201217}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.564647189992066, 58.49238444385654,
+                            13.721229071393477}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{39.80876072413923, 60.68256547866511,
+                            14.235231868173402}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{39.72750292906006, 59.0026078083072,
+                            9.040402131599834}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{41.31108507502174, 59.22748403189841,
+                            6.564873955931819}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{39.97883517895612, 58.06341887448505,
+                            4.367134056464719}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{37.684719755092786, 58.190029857515405,
+                            4.100684077251597}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{41.486828678332515, 56.978721795986246,
+                            2.900714312710231}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{40.95770815223553, 56.75573528855966,
+                            15.478665104501307}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.475830530254356, 57.169583128614086,
+                            18.179069503760534}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{42.526172568880156, 59.01205638913036,
+                            19.154163044710685}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{44.557617445859634, 59.18779999244114,
+                            18.05434823689482}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{40.88778865414415, 54.656260629653424,
+                            19.564231452435845}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{38.8223288862013, 53.00086926943573,
+                            19.008654900034013}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{42.02917721758192, 60.230923315318044,
+                            21.242299406629126}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{43.86409161343966, 61.91088098567596,
+                            22.470614913639974}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{44.42533731433539, 60.89421368910389,
+                            25.11432782796024}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{42.60176121546544, 60.36131373067766,
+                            26.520276654446505}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{42.894667220983415, 64.75490381344723,
+                            22.648248233115385}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{42.50916512339847, 65.55425375108659,
+                            20.010204467289014}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{44.83729543822518, 66.38761857968933,
+                            24.040969046449224}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{46.84606372122907, 60.510601307683594,
+                            25.734154729959563}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{47.52447182433199, 59.73203824785518,
+                            28.307948146188444}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{48.561925998715, 62.12630862844401,
+                            29.609962583619943}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{49.431195434445755, 63.740126233039796,
+                            28.145432556030087}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.718432291469824, 57.81397634075363,
+                            28.28338183604823}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.68063796817718, 55.708832533353494,
+                            26.38043765826373}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{51.76499489776636, 53.7473071544654,
+                            26.888771306549756}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{47.13330057825315, 54.43705355455611,
+                            26.365319928946672}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{48.41641785403832, 62.25669904380362,
+                            32.030688990513625}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{49.47087947390302, 64.49034355039873,
+                            33.353490305756075}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{51.91995162326619, 63.590838656033874,
+                            34.58936467742545}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{51.98042254053442, 61.58018065686535,
+                            35.825239049094826}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{47.64730337503307, 65.31803923050758,
+                            35.488869571790325}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{45.31161419554783, 66.36872141804302,
+                            34.25299520012095}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{45.07539967496883, 68.84613930987567,
+                            33.601043123322874}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{43.130881741562426, 65.22166370611136,
+                            33.60293283948751}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{42.84742431686761, 69.21463396197892,
+                            32.50311803167164}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{41.65879284931404, 66.99988661703013,
+                            32.452095695226575}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(7).mass(), 7ul,
+      Atom::coord_type{53.90415359612986, 65.095052723081, 34.37204731849276}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.31543142220038, 64.52435844136211,
+                            35.581465663857294}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.78975017952304, 66.21943384103709,
+                            37.80188215729998}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{56.88990513624854, 68.60614535696739,
+                            37.39370346573945}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{58.43947239124684, 64.82482331153861,
+                            33.54813107071318}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{61.12286934502438, 64.59616765561813,
+                            34.69140935031559}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{61.51970973959712, 61.95056502513323,
+                            35.65894402660721}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{63.04282096829056, 65.1782002343248,
+                            32.58815525908009}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{56.92580974337655, 65.25756831323936,
+                            40.044975244718245}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{57.59665898182093, 66.83737102687176,
+                            42.280509467477984}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{60.28383536792774, 65.96999130730563,
+                            42.94946898975774}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{60.829963339506406, 63.67587588344231,
+                            42.77372538644696}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{55.69371480403644, 66.48210438792093,
+                            44.40455043652444}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{56.353225745493035, 67.94852413167543,
+                            46.798820817113274}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(6).mass(), 6ul,
+      Atom::coord_type{53.004648701765, 66.9979969008655, 43.59764163422655}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{61.912770701840586, 67.71041989493179,
+                            43.63354624135455}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{64.52435844136211, 67.03201179182888,
+                            44.372425261725695}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{64.70199176083752, 66.80713556823765,
+                            47.203220076344536}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{63.696662761253265, 68.40205601118713,
+                            48.61861748365396}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{66.35549340489058, 69.09558184360709,
+                            43.28772818322688}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.88994293057183, 67.99009788729732,
+                            41.07676027060735}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{66.14573491061643, 66.29880191995163,
+                            39.53286216410296}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{69.0370006425035, 70.08390339770968,
+                            39.52719301560906}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{66.00778563059829, 64.97600060470917,
+                            48.095166106050875}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{66.4443100646283, 64.57916021013644,
+                            50.82580596394422}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{69.29778147322273, 64.80970558222155,
+                            51.190521183718204}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{70.49586152159947, 62.80093729921766,
+                            50.63494463131638}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{65.60527608753165, 61.907101553346685,
+                            51.56279526815073}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.56113231792585, 60.57296194111645,
+                            53.21440719603916}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{67.29657205487736, 57.78185116595488,
+                            52.99520012094184}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{66.21565440870782, 57.16769341244945,
+                            50.51211308061529}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{64.88907366113611, 54.99640953928721,
+                            50.360935787444724}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{64.45821837559998, 53.73785857364224,
+                            52.473638459503384}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{64.27680562379531, 54.1535961298613,
+                            48.10650440303867}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{70.2917721758192, 66.89028307948146,
+                            51.99176083752221}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.07154465399297, 67.08870327676784,
+                            52.30734343701576}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.84254884916287, 66.00967534676292,
+                            54.86034997543369}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{72.37045995691447, 66.0380210892324,
+                            56.68392607430364}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.85010771382139, 69.8080048376734,
+                            51.78956120790657}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{74.64756793529612, 70.56200158736159,
+                            49.136399712763144}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{73.10178011262708, 69.25242828527155,
+                            47.09739597112514}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{74.33576476813184, 73.42303186061454,
+                            48.87183944971465}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{76.14422313768472, 65.02891265731887,
+                            54.88680600173854}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{77.23836879700669, 63.87618579689331,
+                            57.169583128614086}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{78.9239956158585, 65.81692429797044,
+                            58.47537699837485}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{81.15386069012435, 66.12872746513474,
+                            57.793189462942664}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{78.70856797309045, 61.47057711931669,
+                            56.5459767942855}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{78.62731017801126, 59.42023508069088,
+                            58.56041422578329}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{79.1715484334253, 56.84266223213273,
+                            57.55319551003439}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{81.84549680637969, 56.19071015533467,
+                            57.75539513965003}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{83.47632185645716, 56.511961903322124,
+                            55.84867152953626}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{82.68264106731169, 57.28107638232738,
+                            53.58479156430705}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{85.93862201897275, 56.17370270985298,
+                            56.24362220794438}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{77.79016591707926, 67.14350504554216,
+                            60.27816621943384}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{79.07517290902906, 69.06912581730224,
+                            61.76726255716392}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{77.95268150723761, 71.69772100230546,
+                            61.58207037302998}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{77.67111379870744, 72.79753581012133,
+                            59.52605918591028}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{77.37631807702483, 72.7011602857251,
+                            63.79114856948486}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{76.29351071469065, 75.2352696624967,
+                            64.14452549227107}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{75.64722778638648, 75.57352885596583,
+                            66.95642314524359}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{73.57231943762048, 76.58074757171472,
+                            67.43830076722476}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{77.21758191919575, 74.78551721531427,
+                            68.50410068407726}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.87794323292642, 44.20811444121093,
+                            5.106768963301712}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.471068445519485, 46.43881099058922,
+                            3.001946407649571}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.76189576325636, 48.54939718054349,
+                            3.4728447787142374}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.73237839676481, 48.250897615178204,
+                            6.507804527759931}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.169620922937376, 44.9689141690918,
+                            6.2884273782077935}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.75520616803357, 45.955459389999625,
+                            10.137401262330398}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.06211497033146, 48.98089496957557,
+                            10.481272912808496}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.41348879398315, 43.30246796931101,
+                            15.115234891719265}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.08503722740845, 46.348577043728035,
+                            14.565913299822366}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{44.71618352923391, 46.348104614686875,
+                            15.58053970293662}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.175705808987495, 52.54729959560074,
+                            4.871518197966666}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.823217052798675, 54.694281718885826,
+                            7.890339770966402}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.03594240145131, 56.66523678143543,
+                            3.992119883593485}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.48170754752637, 56.86501757436034,
+                            4.793907555085227}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.23848217997657, 60.01300124721267,
+                            7.871933935522886}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.74025851317132, 59.801164065157415,
+                            7.357685475641559}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.74845988132583, 60.80265694092748,
+                            4.220454287765977}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.964700102044674, 63.17447749348048,
+                            1.8862012925658567}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.770796326391775, 56.10743036395934,
+                            11.539022638799654}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.443478589515856, 56.92282399183643,
+                            13.892475150232436}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.95733020900261, 55.738293208360105,
+                            18.13955553875808}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.35706186930723, 52.982236668052465,
+                            15.525737934162288}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.61453569673835, 56.19983748440985,
+                            17.039268301901057}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.07349106164254, 52.95339959938018,
+                            15.792773725386448}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.63747685097699, 51.84321024982048,
+                            13.655466948864282}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.63725008503723, 50.89538531312597,
+                            17.043728032049586}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.900941078649986, 52.6884802902604,
+                            20.51747987452285}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.93200801239654, 51.22328886201293,
+                            19.497467780339395}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.93149778903209, 54.41229827279943,
+                            20.98369174949923}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.80942212479686, 59.91560527608754,
+                            17.383650175743604}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.355398919082354, 63.70594126762161,
+                            16.258267508220268}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.8143731811482, 64.68485203522432,
+                            18.067349484107485}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.39334441966817, 67.09227484031898,
+                            17.477228920216184}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{44.42129332174308, 63.12910540836767,
+                            14.623511848520353}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.067368381269134, 67.78084961638763,
+                            13.285195963566274}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{43.332816810915, 63.30755130579387, 9.981348501455082}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.0221096791262, 67.83147511243811,
+                            8.585585245096187}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.94506595109415, 65.95423107449261,
+                            7.1853433614271145}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.66317699081598, 65.03410937677161,
+                            19.625628330624743}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.60937677160891, 63.03660380210892,
+                            24.737594013379194}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.187913375411014, 64.00253221966061,
+                            23.166068256547867}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.225102989530974, 61.113723118787554,
+                            27.840923693261274}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.9345213348955, 64.15612834952191,
+                            27.397879738463285}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.46386862693224, 64.1556370233191,
+                            27.975225821081676}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.576741373445714, 59.4858838202502,
+                            23.129710117540345}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.62315280244908, 60.000302354586346,
+                            21.4476170679164}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.62268037340792, 58.95158547186213,
+                            24.806020635700516}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.105729619411164, 66.44657772402586,
+                            26.756132128954235}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.19760761933558, 71.82699648512795,
+                            25.25556521410484}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.54501303904154, 70.6957368003326,
+                            25.200026456026308}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.90260402887487, 70.12347405419706,
+                            28.780112627083415}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.732208322309994, 74.50464870176499,
+                            29.535375486601914}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.758002947957216, 75.24645678219132,
+                            26.109320080123968}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.216523678143545, 73.41388563437772,
+                            25.853452511432785}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.323406024415135, 73.24524736384596,
+                            29.441834536452628}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.00496995351298, 77.89914584829359,
+                            29.58224044748479}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.64186099247893, 78.04510752484977,
+                            26.094731471333006}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.583808911901436, 74.9527570958842,
+                            28.244075739823877}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.761328848406976, 77.94572735175177,
+                            29.9630371518198}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.943951018557016, 73.77332854605238,
+                            27.53180392305076}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.00090706375903, 71.26391775955253,
+                            32.72279753581012}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.26735704297216, 73.05550096375525,
+                            32.482727994255264}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.011149325371335, 76.7213991458483,
+                            29.679806493064742}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.290354888695724, 70.89759628103859,
+                            27.61149325371329}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.15988888468953, 72.90893457802639,
+                            27.303280547261803}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.159321969840136, 70.17069806115123,
+                            29.512509921009865}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.419214633961985, 74.52076798064931,
+                            35.97866510450131}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.8074001285007, 77.92686798442875,
+                            36.57870667825693}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.650062360633434, 76.87170716958313,
+                            39.71797875959031}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.86768207415247, 79.01519331796365,
+                            40.637892588533205}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.072924146793156, 73.28045277599306,
+                            40.003420386257986}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.446048603499754, 73.09909671567331,
+                            44.396840394572735}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.194319513209116, 76.14499792131222,
+                            44.1948864280585}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.687875581087724, 76.14450659510942,
+                            44.48405079557051}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.64686874031521, 73.03023545863412,
+                            39.948675308968596}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.2388601232095, 76.07666578479912,
+                            41.659662118749765}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.05389470501531, 76.07617445859633,
+                            38.237045995691446}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.32119505650252, 78.74199705204279,
+                            33.17202086246646}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.77119316678635, 84.52445292717034,
+                            34.60225254166824}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.1834158509392, 84.96139309875657,
+                            32.821969840130016}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.839525303299446, 80.82986885369817,
+                            29.967307910351867}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.53609357874448, 79.71068445519484,
+                            35.16518008995049}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.65401186741752, 82.51258550965645,
+                            35.36116255338449}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.574284742431686, 82.51228315507011,
+                            37.062341736271215}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.54767753883367, 80.96042934351262,
+                            31.176650667069804}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{52.83746551268, 82.11495143429457, 27.90534411731358}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.672039759628106, 85.2206621565441,
+                            27.610605087115918}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.397388412260476, 80.00043463471786,
+                            27.365962432442647}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.79490910465248, 80.75781397634076,
+                            21.643656222835332}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.774783627499154, 80.67317358932688,
+                            24.062851959635665}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.96415208435694, 77.42911674666465,
+                            25.249329150761557}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.86346800710534, 75.8025435579576,
+                            20.759590309535508}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.67404285876262, 79.00111493253713,
+                            19.559299293246156}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{66.43877319626593, 78.56037643146, 23.069220303110473}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.808666238331, 75.08190029857515,
+                            22.423447598170757}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.47505574662685, 79.24694810839412,
+                            18.73734835027779}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.18632601383273, 76.29647756906913,
+                            19.88644695566726}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.21285762878415, 75.74670244529273,
+                            17.22788087229298}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.01732869722969, 76.58841981934314,
+                            15.39192713254469}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.38845005480177, 77.50266449979215,
+                            19.020030991345102}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.532181866283686, 72.80375297630297,
+                            22.050568804565557}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.12984239767187, 74.80692769945954,
+                            17.025548962545827}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.56574322536755, 73.64847499905515,
+                            21.940171586227752}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.97928871083563, 71.13643750708644,
+                            18.362183000113387}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.84313466117389, 70.48531690540081,
+                            16.42594202350807}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.842794512264256, 69.75556521410485,
+                            19.867757662799047}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.441834536452625, 69.09240712045052,
+                            20.775898560036282}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.69507539967497, 69.81958879776258,
+                            15.750481877621981}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.867379719566124, 68.89993952908274,
+                            17.699497335500208}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.231357950035914, 63.8474621111909,
+                            19.276295400430858}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.379908537737634, 64.47394081408972,
+                            16.545409879436107}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.59286065233002, 69.02159945576174,
+                            22.428247477228922}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.63131637628029, 67.28275822971389,
+                            22.77304508862769}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.63080615291584, 70.62200007558864,
+                            21.664821043879208}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.45523262405987, 62.16223213273366,
+                            20.396575834309687}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{67.04153596129862, 65.12912430552932, 19.369042669791}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.99287577005934, 65.12872746513474,
+                            22.229411542386337}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.44686118145055, 67.22725726595866,
+                            12.614611285384935}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.857950035904615, 63.468611814505465,
+                            13.36794663441551}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.45249253562115, 63.73326656336219,
+                            8.56487395593182}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.191900676518394, 63.323141464152094,
+                            8.137779205563325}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.455894024717495, 67.3174345213349,
+                            9.66589818209305}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.189859783060584, 68.60784610151556,
+                            11.464473336104918}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.18959522279754, 68.71312218904721,
+                            7.9477115537246315}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.35923504289656, 59.35658944026607,
+                            12.988775085982086}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.898881288030545, 57.58499943308515,
+                            11.95731131184096}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.23793416228882, 57.38612570391928,
+                            16.206300313692886}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.297384632828155, 54.04773423031861,
+                            14.639555538758078}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.57685475641559, 53.747080388525646,
+                            16.651555236403492}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.72797535810122, 56.29131864393968,
+                            17.017744434785897}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.780774027741046, 58.67007445481689,
+                            15.307607997278808}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.87000642503496, 58.66948864280585,
+                            18.824804414376963}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.04319891152349, 53.62188669261877,
+                            20.370554442722707}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.622359121659926, 56.668298121622136,
+                            21.145338070221854}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.47378963679655, 56.66780679541933,
+                            19.57524849767565}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.17799236554671, 53.7814921198836,
+                            9.989455383801355}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.913942325862656, 52.04085566347935,
+                            7.675932574927247}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.28825730375298, 51.60867757662799,
+                            5.655202388601232}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.49181752900715, 49.66502891265732,
+                            4.583317585698628}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{57.12783929853737, 53.847991231717, 3.90298197210779}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.39251294455573, 55.403832344381875,
+                            4.360652330020032}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.26408783400734, 52.20701840583544,
+                            2.063645640424808}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.50916512339847, 48.874560640991724,
+                            9.487754639253186}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.20732076042179, 44.950432745001706,
+                            11.637949280018143}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.63326278392986, 44.61701122491402,
+                            15.579500359046072}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.75441248724442, 46.99168524887562,
+                            16.935428398654523}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.34965418194187, 49.423390906685825,
+                            14.425904229184777}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.22977058845761, 49.42280509467478,
+                            17.23390906685816}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.41600211648211, 45.85734532673193,
+                            14.599380173098002}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.55260969802336, 48.70295551608149,
+                            16.327166559582754}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.454174383007675, 48.7023886012321,
+                            12.810215805586001}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.03531879511698, 41.40664802146718,
+                            13.12296383083261}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.38181715106391, 40.12753694395102,
+                            9.774197815488115}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.89685929173439, 36.92333421520088,
+                            11.703635813900751}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.777126875543296, 35.609206697154086,
+                            10.466986658603878}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.708530178767155, 38.845137760308404,
+                            7.599984882270682}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.82308477266715, 35.318870705620014,
+                            7.255036093578745}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.44274160021165, 38.69190067651839,
+                            3.526153671718508}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.62043161117201, 39.08339317434522,
+                            17.4589175705809}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.296288597452666, 34.42286178615972,
+                            14.592010280055936}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{44.62224573869005, 36.782474772289206,
+                            16.42800181412752}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{44.4702180732454, 37.13940436146491,
+                            11.357364223893573}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.192524282852716, 40.04219736195624,
+                            13.036962848180204}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.89676480592615, 39.66160852639934,
+                            10.141369666276125}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.997883517895616, 36.266279904758306,
+                            10.26132884840697}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.01213197777694, 34.30596394421558,
+                            14.185589024528516}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.60559733927964, 30.89309875656676,
+                            18.74968819683284}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.552590800861715, 28.78438338561548,
+                            16.28440228277713}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.24252617256889, 28.5988888468952,
+                            15.001473978608415}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.03312672436601, 31.644657772402585,
+                            12.060905551986092}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.85229978457236, 36.39530972447938,
+                            17.365301031785027}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.838637136702076, 34.704807437922824,
+                            19.64864507350996}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.05712611965683, 39.878812502362145,
+                            18.66451868929287}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.098945538380136, 39.750784232208325,
+                            20.462281265353944}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.29224460486035, 35.029517366491554,
+                            17.21416153293775}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.34368267886163, 35.23322876903889,
+                            23.482803582901848}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.39668921727957, 35.34082920745304,
+                            27.645753807778075}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.2265013794928, 34.4689141690918,
+                            30.481669753203068}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.1138176045958, 33.847254242412795,
+                            26.953248422087004}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.048527911107755, 31.04153596129861,
+                            27.520219962961566}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.08250500774784, 31.19205185381156,
+                            25.746248913413208}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.08205147586833, 30.356891794852416,
+                            29.164027363090067}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.79853735968858, 38.00478098189652,
+                            31.054745077289393}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.3082127064515, 43.42433576476813,
+                            29.67812464567822}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.254110132658084, 40.690029857515405,
+                            35.052231754790434}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.60856419365812, 39.61345855852451,
+                            32.30382856494954}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.734230318606144, 42.08768283003893,
+                            34.774197815488115}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.41910125099211, 45.808647341169355,
+                            35.12630862844401}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.40303866359273, 44.55620015873616,
+                            36.50546127971579}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.402509543066635, 45.93100646282928,
+                            33.266865716769345}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.531085830908204, 43.27873313428323,
+                            31.02991420688613}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.334252995200124, 45.3926641218489,
+                            31.249215767791682}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.333950640613786, 42.699780792924905,
+                            28.984938962167885}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.574039079330284, 38.85296118522999,
+                            32.45226576968139}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.5963188329113, 42.54036433727654,
+                            33.757851770664054}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.23993726142334, 37.73179258475377,
+                            34.60563513360293}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.39092558297743, 37.4506784081031,
+                            31.098662080955446}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{71.39122793756378, 39.231509127329076,
+                            32.24074983937413}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{70.38669261876866, 39.39869231641408,
+                            35.64014135076912}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{70.66606825654786, 36.575172909029064,
+                            37.83960089194603}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.94181563929098, 39.44722022752183,
+                            27.919573680033263}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.40097887297328, 41.28171888582335,
+                            25.153860690124343}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.02369704070449, 37.63076835859254,
+                            23.571223402244986}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.10843191352659, 39.53955175932575,
+                            23.216202426395558}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.46084508106883, 40.467156733058694,
+                            19.14915529687441}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.00924071204506, 41.42189803091576,
+                            16.88028648097056}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.01634604482407, 43.52229865074266,
+                            25.938262972901473}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.46589062322839, 47.81539362787709,
+                            22.40817869156053}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.30091840205601, 46.986356249291354,
+                            27.25660455799539}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.72890131902189, 50.74912128198345,
+                            25.209626214142638}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.68330246796931, 51.51810348085718,
+                            26.95744359197249}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.68290562757475, 51.46579613742016,
+                            23.439491288408483}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.2378396764806, 44.05729619411165,
+                            23.93882988775086}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.81082051475869, 46.60219585018331,
+                            24.026909558184364}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.26977587966288, 46.601987981405195,
+                            21.510525719037002}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.87917154843343, 47.104557995389094,
+                            29.114157753505424}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.36843796061831, 52.44185343361428,
+                            29.75983597263691}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.94676669564231, 47.41071091122114,
+                            32.437204731849285}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.06974942363658, 50.55873237839677,
+                            33.48089496957557}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{64.33867493102537, 52.046751577913, 33.65104501303904}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.357288635246995, 48.76747042594203,
+                            32.92163347065271}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.75779507917912, 47.19949733550021,
+                            36.73515627952681}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.75316527457576, 50.51453191730603,
+                            37.44381873842549}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.19808004837674, 51.80040817869157,
+                            37.92694357307533}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.140746059941804, 48.57054310442572,
+                            37.1707736497978}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.370308779621304, 48.68394497146529,
+                            41.70518538115575}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.32157299973544, 47.15552364034922,
+                            40.75739823878454}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.83786235307457, 46.88159038512416,
+                            27.669961071847013}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{74.73149023016744, 49.59718810234703,
+                            27.563362183000113}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{72.54215956763295, 44.69008654900034,
+                            25.349862050719985}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{75.42911674666465, 46.01857590989834,
+                            23.841433916625725}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{75.42854983181527, 45.261631202993314,
+                            27.277391435806344}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.61001927510489, 48.87728183226879,
+                            22.950054801768776}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{72.50188971616463, 51.36486639706717,
+                            18.886768207415248}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.71720397596282, 51.44595411769153,
+                            20.043898106504404}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.31745341849656, 52.41747609509052,
+                            17.002021996296158}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.73842548849163, 48.180505688045656,
+                            16.17687743300956}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.81839827657886, 47.08858989379795,
+                            19.403076457916022}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.52910162893534, 46.9581427869534,
+                            18.44561396878189}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.79506028194565, 49.58188140141351,
+                            16.058637892588532}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.43843304735628, 44.54476737594013,
+                            14.955478287161268}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.91158018065686, 44.72765410635323,
+                            14.706942817188859}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.04618466306361, 47.53208738047546,
+                            11.401394610529499}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.02925280622851, 48.9586719074795,
+                            12.406610227143885}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.71283873162251, 53.6309951245323,
+                            24.151517442080202}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.68564571601347, 59.008541517064145,
+                            22.290109225594318}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.91231716996109, 56.5963188329113,
+                            27.508484825579202}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.13010695793491, 59.617445859631886,
+                            24.017838920594127}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.50011338296989, 56.11895763256359,
+                            23.94448013908311}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{65.85010771382139, 61.56037643146, 27.85311236252315}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.87871801655392, 60.458823084772675,
+                            29.26333194754148}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.87820779318947, 62.07770512868967,
+                            26.139574435919727}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.56143467251219, 55.561680335613595,
+                            27.937866132506898}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.80906307872558, 58.59822744623758,
+                            29.201746097736123}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.0157035413281, 58.59779281151972,
+                            27.062644090857553}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{72.75038739181375, 55.040213159983374,
+                            26.359726369099363}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{75.91091877999925, 59.369363921538984,
+                            27.95984353150157}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.43227257265958, 55.134736762538274,
+                            29.930496239464834}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{77.52320571450169, 53.78209682905628,
+                            26.869061566952645}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{81.33618050568805, 56.5496050493216,
+                            26.85957519180619}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{80.17795457122341, 58.32865943535281,
+                            29.657451150837144}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{83.3132771457727, 57.279583506557316,
+                            32.44228806833214}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{83.84759439132242, 53.93300956196379,
+                            33.47603839903246}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.33939302316793, 54.798707434143395,
+                            22.892531841717375}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{80.96815828262595, 56.826996485127935,
+                            20.39944820287993}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{77.90165917079254, 52.684171737405045,
+                            19.81735893268831}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.43939680260026, 54.6438074001285,
+                            17.36913715559923}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{82.49582372727617, 53.25541403681167,
+                            20.029876412562835}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{74.36394043614649, 58.96825276843419,
+                            19.890755508522624}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.93488038096679, 62.669734305907255,
+                            16.175989266412184}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{73.0943157337768, 63.53875807853661,
+                            14.235723194376206}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{73.19770210514382, 59.92953248422087,
+                            15.117086813560604}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.59329528704788, 60.00867379719566,
+                            16.847424316867606}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{70.27200574473714, 62.954212177330966,
+                            18.622718167731207}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.68385048565706, 63.63677765599608,
+                            15.579783816470767}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.53639593333081, 65.48851052571904,
+                            14.586038776975698}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{70.63165652518992, 61.67751993650553,
+                            11.66174080653086}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.41284629048717, 60.48378623530746,
+                            12.291847764465778}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.47617067916399, 64.09386220189728,
+                            10.424524736384596}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.26136664273027, 66.08764503571564,
+                            10.884708416795798}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{74.5937866132507, 63.12604406818096,
+                            22.314713330057828}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{75.54403038663594, 68.72026531614951,
+                            21.42450583922295}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{71.86892928682111, 66.01785781775578,
+                            25.278355191050306}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{72.51704523980499, 69.54782871612684,
+                            25.05402698514683}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{70.4049850712423, 66.49442533731434,
+                            20.559450470539325}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.34232208322311, 67.8015231112287,
+                            23.13420764201217}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.16004006198268, 68.77077742923014,
+                            17.71367020673495}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{77.58694584073473, 63.345874749612605,
+                            24.273177368759214}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{81.23804754525871, 63.06967383498999,
+                            26.718583468762994}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{80.98860501152728, 66.68290562757475,
+                            27.261102082467218}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{75.41609660229034, 64.1255716391398,
+                            28.94274160021165}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{77.18791337541101, 64.94321402925281,
+                            34.411825843758265}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{71.99417967421294, 63.09885105257191,
+                            32.00506443932122}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{73.26924675913679, 68.60748705544427,
+                            33.7118560792169}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{73.90179145092407, 67.45413658868438,
+                            30.44521712838732}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{71.91186363808156, 62.02299784572358,
+                            36.40916134396614}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{73.43287728183226, 65.05011527268604,
+                            37.35660833742772}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{70.14630182546581, 65.04968063796818,
+                            36.100778563059826}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.89517744434785, 65.62729128084962,
+                            31.292509165123402}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{68.86135152500094, 68.64872066215655,
+                            33.09376771608905}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.6867228542273, 68.64819154163045,
+                            29.673608224044752}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{79.4448391851544, 56.79783816470766, 35.7165047809819}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{78.32875392116104, 59.17744434785895,
+                            41.11695453342908}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{81.07203598019578, 57.31359839752069,
+                            40.22553762424884}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{81.72646358516951, 62.31010242261613,
+                            40.6004006198269}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{82.86581125514948, 60.94663441551079,
+                            37.67967421293322}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{79.8716504780982, 64.22472504629805,
+                            36.15297252352697}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{77.6787671491742, 63.80934653615027,
+                            38.71172379908538}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{71.62160323519407, 53.84290789523414,
+                            36.66519898711214}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{74.73404134698968, 49.035186514985455,
+                            38.01498544918553}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{72.08690804641142, 49.31031029139424,
+                            35.85316905400809}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.77971578668885, 49.04850901394611,
+                            33.79354850901395}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{74.84147171094902, 51.56704712952115,
+                            32.572527306398584}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{78.66510450130392, 53.878037718734646,
+                            34.230186326013836}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{79.05550096375525, 51.841244945009265,
+                            36.92089648134851}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.35598473109339, 53.18668505990401,
+                            41.41908235383046}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{72.36412940776296, 51.49977323406024,
+                            45.20371140254734}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.06946596621188, 50.28823840659133,
+                            46.90532522015193}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{77.90732831928644, 52.59004497524472,
+                            44.90953928719907}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.89668921727956, 57.02810007936808,
+                            46.220378699119394}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{73.61927888431158, 57.258702142938134,
+                            42.339052874258286}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{71.18666616274237, 59.77707018405835,
+                            46.959446691107004}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{73.01419176839639, 61.94196681658415,
+                            41.667863486904274}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{71.76342643334971, 63.90855663479346,
+                            44.28236138931933}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{75.1928455346007, 62.171907479496575,
+                            47.18961411995919}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.45313503911713, 60.28219131486451,
+                            44.45389092558298}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{73.83746551268, 66.03497864620734, 42.710703352356475}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.89918364261689, 67.79039268301901,
+                            42.397671869685176}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.37193393552289, 56.84243546619298,
+                            41.44064401526891}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.1546165765902, 60.43994482028799,
+                            40.470085793113874}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.30569938395253, 55.03605578442118,
+                            38.158036962848186}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.05869458407348, 57.499905514191774,
+                            36.87053554556106}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.67001776333196, 60.41993272610455,
+                            36.056181261574515}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.92652783551911, 58.033618050568805,
+                            37.34627159000718}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{72.03870138705167, 57.73056426924676,
+                            33.39763407536188}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{70.44389432707209, 56.02278997694546,
+                            30.7342114214445}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.41445254922711, 60.387089459163235,
+                            41.507086435617374}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.03841792962697, 55.211251370044224,
+                            43.51300124721267}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.55425375108659, 57.51991760837522,
+                            47.05308212706452}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.57946256472278, 60.56937148040365,
+                            45.311576401224535}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.29003363694773, 59.330549151517445,
+                            45.183944971465294}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.03065119619034, 56.113023923806644,
+                            46.44814618844249}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.45030046487018, 57.911825843758265,
+                            50.487584564798375}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.04809327638989, 61.19896821497411,
+                            49.22362901092256}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.79974677803394, 57.381231339052874,
+                            50.394705015306705}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.20265316149515, 63.86775766279905,
+                            49.6117389168147}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.98639404361465, 65.22275974148684,
+                            50.222608564193656}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.91787293548509, 59.17829472013304,
+                            50.55436713405647}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.61179560829964, 53.76042178464795,
+                            40.461941116444315}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.482539022638804, 57.90252844022828,
+                            36.873899240334104}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.25205034203863, 52.1636305226955,
+                            36.259382440757406}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.537019539665145, 54.49777013492574,
+                            33.98662080955441}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.150874938584224, 54.96286707736498,
+                            35.29388865792358}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.25299520012094, 51.40649684417401,
+                            31.704353906043313}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.23046978343853, 52.94591632336823,
+                            30.636909936127598}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.22994066291243, 50.921047658641676,
+                            33.514153974073096}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.968460637212296, 57.36703957065649,
+                            32.12632752560566}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.98603499754337, 58.70004535318795,
+                            33.347840054423834}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.9856003628255, 56.726199024906464,
+                            30.435352810007938}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.573887902037114, 58.69526437129144,
+                            36.638667372160704}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.08439472391247, 55.18795116973431,
+                            39.675233379946334}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.637080010582416, 61.11453569673835,
+                            38.94075739823879}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.391152348917196, 60.277750481877625,
+                            41.508881665973774}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.75033070032881, 61.50323141464153,
+                            43.54832004232964}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.27578517706641, 57.086152159945584,
+                            41.43663781699989}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.67134056464719, 60.124078763369745,
+                            43.165558033183416}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{42.453701953966515, 60.12362523149024,
+                            39.8646396311274}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.750822026531615, 56.806814316489664,
+                            44.67311689784194}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.78612192448694, 55.951831134963534,
+                            43.11408216485884}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.78561170112249, 58.07685475641559,
+                            45.91817529007143}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.69600136059564, 53.85101477758041,
+                            37.935674061755925}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.60552175063306, 56.792112324728826,
+                            33.3169054008088}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{44.33058694584074, 53.67984428738804,
+                            31.39268301901055}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{42.700914622623685, 51.11721909369213,
+                            33.322971389697265}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.54901923731056, 56.11196568275445,
+                            28.329415321818665}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{39.217525227710794, 49.12128198344609,
+                            31.860274386787104}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{38.217525227710794, 55.58008617105711,
+                            24.983502777882762}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{35.910181790695034, 48.50585812011036,
+                            28.498488227068297}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{35.71045768925507, 51.5367549794021,
+                            24.92363656978722}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{37.7452284666843, 57.088344230696556,
+                            33.835745870970186}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{33.60550285347141, 56.792301296345286,
+                            35.70422162591179}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{31.607128009372996, 52.97246683548131,
+                            34.734400393060966}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{34.41660682565479, 52.91658792849314,
+                            32.61820174609774}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{34.41630447106845, 51.03718961411997,
+                            35.59252050342039}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{37.15575040628897, 57.753354246192224,
+                            39.004346347178654}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{37.86815450319362, 58.23831210552175,
+                            43.165633621830004}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{34.688896027816625, 56.542839865452216,
+                            43.68245209569523}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{39.39311765372842, 53.125288181715106,
+                            40.65125288181715}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{40.19577459465589, 50.40048754677048,
+                            45.79005253410938}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{40.66903511092634, 48.50559355984731,
+                            40.243093087418266}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.28349521901811, 46.6700366604936,
+                            43.273177368759214}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{36.81904078007483, 46.83109716920519,
+                            44.447069050228656}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{36.02469859027174, 48.98420197286368,
+                            41.840035526663904}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{39.067349484107496, 44.53637703616917,
+                            40.03817226652557}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{36.13757133678522, 43.539287199062706,
+                            41.76469254318002}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{36.42584753769984, 47.36702067349484,
+                            37.26614762462678}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{35.330397974224276, 44.07095884198194,
+                            37.074587097018025}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{31.787992743489934, 44.88331002683397,
+                            39.801749877168454}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{33.20803885256434, 47.749499225216375,
+                            41.110416115499454}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{44.415491893117654, 49.741694697456445,
+                            46.83068143164897}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.425299520012096, 52.537794323292644,
+                            43.5475263615405}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.3631278581957, 52.66487773536415,
+                            48.29989795532711}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.12470236970407, 49.232378396764815,
+                            48.2835330133414}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.99406629124306, 50.057579651536344,
+                            45.61738916814695}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.20601685626819, 53.47987452284667,
+                            45.468139385464305}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.9193469140935, 55.117597036925055,
+                            49.818171510639104}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.31628179447447, 54.46878188896028,
+                            52.34551570354133}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.66051249102385, 50.395914433652074,
+                            40.677708908122}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.111436562228356, 44.8775274953702,
+                            39.63116519898711}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.917797346838505, 48.38867682074153,
+                            36.939963717449636}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.16502891265733, 45.430326165010015,
+                            35.79776257606108}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.98575154011868, 50.69394156997619,
+                            36.920499640953935}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.700952416946976, 47.395857742167124,
+                            32.004743187573226}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.88493518273555, 50.40475830530255,
+                            32.15739445935221}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.345874749612605, 50.404229184776455,
+                            32.79029819721078}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.67506330549152, 45.46024037189615,
+                            36.0333723874674}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.51585471862126, 48.20601685626819,
+                            37.90196152537889}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.20577119316679, 48.20573339884349,
+                            34.39733172077555}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.225934464643416, 41.4629993574965,
+                            40.023904909482596}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.01041233606712, 42.147133300578254,
+                            43.44298726331305}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.442930571828114, 39.729751691295974,
+                            45.180108847651084}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{52.417929626970036, 37.75006614006576, 42.11145545939}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.3112740466382, 35.038852564344836,
+                            43.5092596092067}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.24997165425753, 37.57566423523187,
+                            45.04015646849844}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.96694886428059, 38.96127971578669,
+                            46.6648588382025}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.655561434672514, 40.47728561170113,
+                            42.39374126006274}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{60.73048868060018, 40.480346951887825,
+                            37.16274235609812}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.33276011943006, 38.33302467969312,
+                            42.12207566423523}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{64.969972410144, 37.99293246154428, 38.98469329906648}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.60949015457878, 40.63095733020901,
+                            42.29812162213236}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.370233190974716, 34.850882497448886,
+                            40.52216637061114}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.32716655958276, 31.742979704448395,
+                            36.14189878680222}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.59210476586417, 30.703560225254172,
+                            39.14142635776106}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.64813485014552, 34.9003741638006,
+                            37.23630900638724}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.601836804112025, 30.86386484749991,
+                            34.469140935031554}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.31907857439813, 36.48463660758154,
+                            35.643712914320275}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.14314599947088, 33.8536603802109,
+                            34.54168713859179}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.115178200234325, 33.62222684152841,
+                            39.629143202690955}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.9617332476662, 35.03254091235496,
+                            39.397860841301636}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.25577308288295, 30.867871045768926,
+                            39.34453305113573}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.77788276200915, 30.312048830265695,
+                            36.295230356400474}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.47518802675839, 30.037794323292644,
+                            41.427510487924714}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.654238633357274, 26.597660531388186,
+                            35.45453342907896}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.008560414225784, 24.235685400052912,
+                            36.651158396008924}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.23957821535206, 27.432348161306173,
+                            42.45122642579085}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.4506784081031, 32.16952643712914,
+                            30.64386409161344}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.07337767867267, 35.15522128576288,
+                            27.107751615707322}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.85658944026607, 32.98758456479837,
+                            23.575248497675652}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.9139612230243, 29.312918099701427,
+                            26.312899202539782}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.2064703881477, 28.158188140141352,
+                            25.6589818209305}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.600154956725504, 30.00525341093768,
+                            23.860860198798143}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.599569144714465, 30.079065724328206,
+                            27.378415661967576}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.832419970520434, 37.66797686987415,
+                            24.02265769681394}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.13830832608942, 41.30365849049473,
+                            26.31202993310405}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.419592577194905, 39.952020106579994,
+                            20.737405041762727}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.85065573150913, 42.94871310329189,
+                            22.142031066933747}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.316621943384106, 41.24749612608186,
+                            22.94077629540043}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.52197739899468, 44.63220454287766,
+                            19.031879511697344}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.51271778978798, 45.89651914282475,
+                            20.385256434483544}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.512169772100236, 42.81042367436411,
+                            18.69566121168601}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.688971616463206, 45.30203333459315,
+                            24.934937072451717}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.73406024415133, 44.1540874560641,
+                            26.27073963490684}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.73358781511018, 46.58101213197778,
+                            23.723440039306098}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.5480554820666, 35.453116141955476,
+                            22.543992592312637}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{42.09881325824861, 36.55081446766696,
+                            21.678370308779623}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.63103291885559, 31.85001322801315,
+                            20.81752900714313}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{44.401148947428105, 33.30758910011717,
+                            19.170660266827923}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{44.0631921085453, 29.514701991760838,
+                            23.160739256963605}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.49098605389471, 34.03029215011905,
+                            26.929721455837335}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.24770399485997, 31.507483276011946,
+                            29.38886579235799}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.81333383725765, 34.31546921652368,
+                            31.55975282512567}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.245549718432294, 32.62192448694206,
+                            33.48998450432745}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.625250387391816, 31.578177557730832,
+                            33.41356438262973}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.07645791602102, 37.9622623681923,
+                            29.10610756264409}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{38.56785970747194, 39.52462300162516,
+                            32.396500245663105}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.02286556559205, 42.33196643864092,
+                            29.629464454438946}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{40.597074719377154, 43.822782418080806,
+                            31.800181412751805}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.6885180845837, 40.48962545825618,
+                            31.442495937110245}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{40.45105635133603, 42.56714161532938,
+                            36.252579462564725}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.303034884160404, 39.5600929740353,
+                            35.26941683359159}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.05228844627537, 41.67096262141426,
+                            40.060697683207984}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.6453947617068, 39.71678823840659,
+                            39.94584073472164}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{38.82950980762689, 37.72699270569561,
+                            26.29317056578102}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{36.217185078801165, 39.00542348539249,
+                            22.891360217695304}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{32.97259911561284, 38.42616878944783,
+                            26.606409917230433}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{32.84838807211157, 42.01022336445066,
+                            26.56770853017877}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{33.797233455534986, 37.964076495710344,
+                            21.101477758040744}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{30.699383952530333, 38.809119770210515,
+                            19.60382100608489}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{40.51608148456102, 41.92715144185344,
+                            23.568445519482975}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{38.835311236252316, 47.52685286669942,
+                            22.72183378056616}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.890793302845914, 44.51806568653389,
+                            22.578857855550098}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.737480630409316, 48.72245738690049,
+                            26.26210363203447}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.896216788238405, 45.267205865678974,
+                            26.940719603915493}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{42.71992516723988, 49.77873313428323,
+                            20.669734305907255}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.407970822782424, 49.575872104009974,
+                            22.92981594164557}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.407385010771385, 47.60574851657281,
+                            20.01479647756907}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.46364186099248, 45.2624815752674,
+                            27.122604784761332}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.72667145394762, 48.292112324728826,
+                            25.35434067803016}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.59533618050569, 48.29160210136438,
+                            28.685815790468272}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{37.2886730413092, 48.423296420877584,
+                            18.99682527684342}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{38.77210023054538, 44.97569825012283,
+                            14.417457197928872}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{34.21038210060849, 48.20573339884349,
+                            15.877508598208552}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{35.067840810310294, 47.09361653879587,
+                            12.477587966287466}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{34.843191352658835, 42.63632412411656,
+                            14.181998563815716}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{33.248951207528634, 43.962092293737484,
+                            17.016308250500774}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{32.98365395517593, 46.855323330435766,
+                            10.813692883328924}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{29.569995086737972, 46.12007256510072,
+                            10.213745795381534}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{38.62502362145206, 47.336879700668966,
+                            10.354416266676745}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{42.98680978117087, 50.50347707774292,
+                            10.478041498166975}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.72104009977702, 52.088797762576064,
+                            6.107354775312748}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{42.01521221512529, 48.5675573528856,
+                            6.624003174723157}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{37.509864318379385, 47.948826486261765,
+                            6.493650553686837}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{36.822385577686234, 51.35702407498394,
+                            6.858082316036132}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{38.120015873615785, 52.34502437733853,
+                            2.681110397218338}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{40.17733096488908, 49.390717714199326,
+                            2.5060659888884693}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{36.79541932801693, 48.840148909633776,
+                            -0.4094070070675385}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{36.14427982916966, 46.841792962697006,
+                            2.4171737405041767}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{32.26754601458861, 48.711912770701844,
+                            2.2447749348047923}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{33.86732302808119, 51.3708379001474,
+                            3.7662988019199517}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.6700366604936, 54.47819267546015,
+                            10.21690162137647}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.40048754677048, 58.547242904115805,
+                            11.050228655655921}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{37.987527873313425, 57.78444007710042,
+                            8.68058127669224}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{39.09038512415435, 60.95657432253675,
+                            9.68613704221626}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.660493593862206, 61.3115575040629,
+                            6.145999470879474}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{43.16948864280585, 58.1779545712234, 6.85762878415662}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.454986960958465, 56.97284477871424,
+                            3.3072867455308215}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.673400355266644, 54.93125212593069,
+                            14.89245625307079}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{38.48372954382252, 57.92558297743679,
+                            18.49671189387354}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{42.7313957443592, 53.759571412373866,
+                            18.902433954420047}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{40.994954457840436, 55.00230545372086,
+                            21.68783778676443}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{39.45056502513322, 51.02660720359802,
+                            19.177633319475415}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{40.18863146755357, 59.99259231263465,
+                            22.102611587739524}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.65028912657319, 61.939661362863305,
+                            21.26662005366794}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{41.06765183869383, 64.9550814467667,
+                            23.772005744737143}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{40.47248573264296, 65.67483653955176,
+                            19.612268037340794}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.250784232208325, 65.11636872141806,
+                            25.054329339733172}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.878302278997694, 67.6312407876337,
+                            22.623001625155904}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{43.82830038928153, 67.63063607846102,
+                            25.48240674250728}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.31082051475869, 60.77565289693488,
+                            24.3310215805586}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{45.81352280887411, 58.85352810007937,
+                            29.278392985373596}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.53070788767528, 58.93111984579917,
+                            27.95389092558298}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.54387920934276, 56.80305378132205,
+                            30.177708908122003}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.05871348123512, 56.58227824180808,
+                            24.447806039532864}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{50.949374503949514, 51.76335084470313,
+                            26.689859783060584}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.36231528024491, 54.01256661249481,
+                            25.467818133716317}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{52.52813787369137, 54.012434332363284,
+                            28.88582334933293}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.396972674704266, 52.29897199440644,
+                            26.36688839336332}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.026947352507655, 55.02517101931291,
+                            28.117748214218228}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.048338939491295, 55.02488756188821,
+                            24.599474658906235}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.532106277637105, 60.749574813862964,
+                            33.094221247968555}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{49.77081522355343, 66.13207226274614,
+                            31.991250614157757}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{47.13248800030235, 63.62354964284364,
+                            36.715465437091346}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{48.573698930420655, 66.80018141275181,
+                            36.748214218224426}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{46.4849011678446, 70.29243357647682,
+                            33.926773498620506}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{42.63229902868589, 63.22856117011226,
+                            33.937110246041044}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{42.11871196946219, 71.02139158698364,
+                            31.77007823424922}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.73373899240334, 66.80437658263729,
+                            33.26130995124533}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.28986356249291, 62.50946747798481,
+                            36.34336142711365}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.1905589780415, 63.290430477342305,
+                            32.05663479345403}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{58.256207717600816, 66.79449336709627,
+                            32.69507539967497}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.37057333988436, 65.9740919913829,
+                            36.328753921161045}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{59.6091689028308, 61.01576023281303,
+                            36.00081257795079}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.62562833062475, 60.81191655013417,
+                            34.20246418987868}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.62509921009865, 62.02059790619449,
+                            37.50667069806116}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.79196114743566, 63.33260894213689,
+                            31.76748932310367}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{62.08076646887638, 66.31709437242526,
+                            31.033070032881064}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.67908840092218, 66.31654635473753,
+                            33.405268528666994}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{56.544861861748366, 63.26461695453343,
+                            40.304943497486676}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.54095014928758, 68.95706564873956,
+                            41.90007180921426}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{55.82556030084282, 64.38922483842927,
+                            44.897898635624934}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{54.540761177671115, 68.55669148493897,
+                            47.79180997014249}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.50617937185835, 66.69222192826638,
+                            48.11536717185079}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{57.50563135417061, 69.69241089988284,
+                            46.27758040742281}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.97569825012283, 65.13069276994595,
+                            43.28888091008731}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{51.99869609584641, 68.12672436600023,
+                            45.13222344003931}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{53.01014777580408, 68.12617634831248,
+                            41.76240598662081}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{61.33759779281152, 69.67336256094336,
+                            43.65792357987831}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.08849540798973, 65.11822064325939,
+                            43.55997959106542}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.20407044861861, 70.77680562379531,
+                            42.58870327676783}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{67.7054877357421, 69.7344192902226, 44.84024339544201}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.53454401148947, 66.80091840205601,
+                            41.799293246154434}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.60342416569031, 64.23305869458407,
+                            39.937979515476776}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.09807626894441, 66.69894931781246,
+                            40.06940927472694}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.43045844514154, 66.69876034619601,
+                            37.43527722136135}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.46830945991913, 71.27075853206848,
+                            38.64883404512643}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{70.25586756869119, 71.32930193884879,
+                            40.7937752749537}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{70.2553006538418, 69.23623341774066,
+                            37.96575834309687}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.83663403756755, 63.64711440341661,
+                            46.77924335764768}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.34989984504328, 65.99202539778526,
+                            52.028704788540765}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.74989606561094, 62.03639593333082,
+                            52.649873389016975}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{65.37200952416947, 60.76163120299332, 49.753259760384}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.53718961411997, 61.14976000604709,
+                            52.579235798783024}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{67.24466155183492, 61.14352394270381,
+                            55.26750822026532}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.23183037907707, 56.85558789069882,
+                            53.18942514834272}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.00205979061944, 57.04917041460373,
+                            54.55351676178238}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{66.47014248459881, 58.391114554593905,
+                            48.892550738879024}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{65.16329037378587, 54.456668808344986,
+                            54.254299104274544}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{63.4001285006992, 51.987849125061416,
+                            52.42403341018179}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{64.83663403756756, 55.196228126535395,
+                            46.43796061831513}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{69.09629993574966, 68.49040024188368,
+                            52.43338750519673}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{74.15550474318758, 65.89100117162403,
+                            50.88204391700367}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{72.17374050417628, 71.05304433274124,
+                            52.31924864885294}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{75.6479647756907, 70.05306322990288,
+                            52.95084848255792}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.69751313352735, 69.95878529044937,
+                            48.863014475225825}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{73.27398994671, 67.1170868135606, 47.32455875127556}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{71.03446842284289, 69.82954760195018,
+                            47.28204013757134}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{73.83850485657055, 69.82928304168715,
+                            45.1569409274727}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{72.23933255225066, 73.91675800294797,
+                            48.826183907177146}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{75.268112929438, 74.40472051097925,
+                            50.547526361540505}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{75.26765939755849, 74.0803696284818, 47.0441815639291}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{77.25873993726142, 65.07640122453608,
+                            53.17211534827469}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{75.64435541781624, 63.29723345553498,
+                            58.49805359235043}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{77.89782304697835, 60.6484183075702, 54.7272761631203}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{80.77370648928532, 62.06169923277525,
+                            56.38257303752977}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{80.0911788049435, 59.88716504780982, 60.0703730299709}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{76.62468347254243, 59.38493518273555,
+                            59.35360368872596}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{78.0197853282437, 55.40385124154352,
+                            58.66863827053177}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{78.6402169394157, 56.82111946785593,
+                            55.46558826864205}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{82.53652821346233, 55.416474545523265,
+                            59.5182357609887}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{80.69619033221211, 57.654484296458676,
+                            53.26988926263276}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{84.02462300162516, 57.53218186628369,
+                            52.06143467251219}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{86.61309951245323, 55.641407460599424,
+                            58.100041573755625}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{75.8143731811482, 66.7760686344911, 60.65994557617446}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{79.01821686382706, 68.46313163762804,
+                            63.83376166899732}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{81.0713556823765, 69.21149703314563,
+                            60.969821232850826}});
+    ubiquitin_full.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{77.72610453909824, 71.577100419517, 65.46407649571034}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{77.72502740088439, 76.7283344041725,
+                            63.54249971654257}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{74.51708303412828, 75.45436335462414,
+                            62.94568955742849}});
+    ubiquitin_full.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{78.9160021164821, 73.92388223288862,
+                            67.86229638308326}});
+    mm.insert("ubiquitin_full", ubiquitin_full);
+
+    Molecule uracil = Molecule();
+    uracil.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{0.06449601269889263, -1.864977890320874, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-2.2173872784307798, 1.8555500963755245, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.3031955100343926, -0.7713141086208852, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.013798707434143393, 3.216586038776976, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.2604784761328847, 2.092000831475113, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.436004762084735, -0.653662269927057, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.365682754450282, -1.8838089119014325, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.265166861937337, -1.939784194413999, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.09321780868513549, -3.77557919800446, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.9128425110548397, 2.7156166143845195, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.23744472580218454, 5.2467666956423145, 0.0}});
+    uracil.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.9904588230847726, 3.163534147171095, 0.0}});
+    mm.insert("uracil", uracil);
+
+    Molecule uracil_dimer = Molecule();
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{0.06449601269889263, -1.864977890320874, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-2.2173872784307798, 1.8555500963755245, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.3031955100343926, -0.7713141086208852, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.013798707434143393, 3.216586038776976, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.2604784761328847, 2.092000831475113, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.436004762084735, -0.653662269927057, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.365682754450282, -1.8838089119014325, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.265166861937337, -1.939784194413999, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.09321780868513549, -3.77557919800446, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.9128425110548397, 2.7156166143845195, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.23744472580218454, 5.2467666956423145, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.9904588230847726, 3.163534147171095, 0.0}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{0.06449601269889263, -1.864977890320874,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-2.2173872784307798, 1.8555500963755245,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.3031955100343926, -0.7713141086208852,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.013798707434143393, 3.216586038776976,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.2604784761328847, 2.092000831475113,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.436004762084735, -0.653662269927057,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.365682754450282, -1.8838089119014325,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.265166861937337, -1.939784194413999,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.09321780868513549, -3.77557919800446,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.9128425110548397, 2.7156166143845195,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.23744472580218454, 5.2467666956423145,
+                            37.79432329264145}});
+    uracil_dimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.9904588230847726, 3.163534147171095,
+                            37.79432329264145}});
+    mm.insert("uracil_dimer", uracil_dimer);
+
+    Molecule uracil_trimer = Molecule();
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{0.06449601269889263, -1.864977890320874, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-2.2173872784307798, 1.8555500963755245, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.3031955100343926, -0.7713141086208852, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.013798707434143393, 3.216586038776976, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.2604784761328847, 2.092000831475113, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.436004762084735, -0.653662269927057, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.365682754450282, -1.8838089119014325, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.265166861937337, -1.939784194413999, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.09321780868513549, -3.77557919800446, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.9128425110548397, 2.7156166143845195, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.23744472580218454, 5.2467666956423145, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.9904588230847726, 3.163534147171095, 0.0}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{0.06449601269889263, -1.864977890320874,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-2.2173872784307798, 1.8555500963755245,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.3031955100343926, -0.7713141086208852,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.013798707434143393, 3.216586038776976,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.2604784761328847, 2.092000831475113,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.436004762084735, -0.653662269927057,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.365682754450282, -1.8838089119014325,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.265166861937337, -1.939784194413999,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.09321780868513549, -3.77557919800446,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.9128425110548397, 2.7156166143845195,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.23744472580218454, 5.2467666956423145,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.9904588230847726, 3.163534147171095,
+                            18.897161646320725}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{0.06449601269889263, -1.864977890320874,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(7).mass(), 7ul,
+           Atom::coord_type{-2.2173872784307798, 1.8555500963755245,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-2.3031955100343926, -0.7713141086208852,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{-0.013798707434143393, 3.216586038776976,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.2604784761328847, 2.092000831475113,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(6).mass(), 6ul,
+           Atom::coord_type{2.436004762084735, -0.653662269927057,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.365682754450282, -1.8838089119014325,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.265166861937337, -1.939784194413999,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.09321780868513549, -3.77557919800446,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-3.9128425110548397, 2.7156166143845195,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.23744472580218454, 5.2467666956423145,
+                            37.79432329264145}});
+    uracil_trimer.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.9904588230847726, 3.163534147171095,
+                            37.79432329264145}});
+    mm.insert("uracil_trimer", uracil_trimer);
+
+    Molecule water = Molecule();
+    water.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                         Atom::coord_type{0.0, -0.1432223429807816, 0.0}});
+    water.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.6380335020342418, 1.1365568803584036, 0.0}});
+    water.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.6380335020342418, 1.1365568803584036, 0.0}});
+    mm.insert("water", water);
+
+    Molecule zsm5_8 = Molecule();
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.047960996258363, -7.549416077705129,
+                            8.477266714539477}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{6.117011224914019, -7.24895120752863,
+                                           7.934918175290072}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{11.907101553346688, -7.390679919876035,
+                            7.524849767564913}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.685324464265468, -7.880116406515742,
+                            9.886994973355003}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.665709210476586, -7.402018216863827,
+                            10.580520805774974}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.599228995804831, -4.590120563891303,
+                            6.644242034846367}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.35496428436449, -9.488264862617635,
+                            5.41592652783552}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.405986620809555, -4.680826939793643,
+                            6.324880003023546}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.096564496012699, -9.435352810007938,
+                            6.122680373407915}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.701613817604596, -11.865527797724782,
+                            4.393590082769569}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.809327638988624, -2.7211912770701843,
+                            4.425715257568314}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{13.800597150308024, -11.884424959371103,
+                            4.253751086586795}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.1561661438451947, -8.473487282210213,
+                            11.888204391700368}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.30258135228089, -8.375222041649346,
+                            11.27971578668884}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{13.817604595789714, -2.76276503269209,
+                            4.48618617483654}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.691825087871802, -14.320269095581844,
+                            5.782531463774141}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{6.322990286858914, -3.3618050568804567,
+                            1.9029441777844966}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{6.247401640273631, -11.5896292376885,
+                                           1.8311349635284782}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.746135530443329, -14.427982916965872,
+                            5.48017687743301}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.293624097660532, -16.10605087115915,
+                            8.622774859216145}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.4169469745644205, -11.432782796024037,
+                            12.39275860765713}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.704221625911789, -14.96277259155675,
+                            10.325409123549644}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.906761404437054, -3.1237008201368157,
+                            1.649722211723799}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.478287161268378, 0.08692694357307533,
+                            5.300653841792963}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.909482595714124, -15.28213462337957,
+                            10.574851657281076}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.132506897464005, -7.196039154918931,
+                            14.055708832533353}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.347556596999131, -16.164632072262748,
+                            8.065308590649684}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.22835330133414, -16.10605087115915,
+                            7.936807891454705}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.156203938168487, 0.04913262028043388,
+                            5.355455610567293}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.875165350164405, -11.330738123133907,
+                            11.455459389999623}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.21542764276805626, -7.974602214747345,
+                            10.125099210098643}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.735326353981634, -11.604746967005557,
+                            4.832004232964209}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.2865943535281, -11.961903322121017,
+                            1.2831172757851772}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.7838920594126761, -7.056200158736158,
+                            14.535696738349902}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.54756415586379, -7.075097320382479,
+                            9.758494274160022}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.77878982576817, -3.233304357685476,
+                            4.633584035677841}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.8670395706564875, -2.9668543784723536,
+                            3.862579840507956}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.77822291091878, -12.116860047620849,
+                            3.764314599947088}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.861899542688688, -7.447371404814997,
+                            -0.7974602214747345}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.107071317888053, -7.451150837144262,
+                            -0.6821875354321781}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.617786008541517, -10.380210892323975,
+                            -0.9089534751880268}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.632903737858574, -4.522090781964549,
+                            -0.8692694357307533}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.2808874107109114, -14.376960580520805,
+                            11.776711137987075}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.306360784610153, -14.286254204618466,
+                            11.703012207566424}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.404096904644923, -4.510752484976757,
+                            -0.9769832571147814}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.451339808760725, -10.37643145999471,
+                            -1.1640651574133565}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.505272308099325, -10.722249518122378,
+                            -1.7083034128273935}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.509051740428589, -3.7794323292641447, 0.0}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.1882913186439397, -7.4322536754979405,
+                            7.914131297479119}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.7442080199554029, -4.673268075135114,
+                            6.802978192675461}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.340867001776333, 2.8912657318870707,
+                            4.009977701349257}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.406137798102725, 2.8912657318870707,
+                            4.694054952946067}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.8575909898333272, -9.435352810007938,
+                            5.678597074719377}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.286934502437735, 2.8345742469481086,
+                            4.5655542537510865}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{0.03968403945727352, -14.906081106617787,
+                            9.832193204580673}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.42507275407234, -7.078876752711743,
+                            16.763672096451113}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.2094183453645264, -11.920329566499111,
+                            4.132809252050342}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{21.024982047696437, -7.120450508333648,
+                            8.018065686533884}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.090933141842097, -15.076155561434673,
+                            14.611285384935185}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.478287161268378, -18.948183982765787,
+                            7.275407233833479}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.097925091651234, -2.9177217581919197,
+                            3.991080539702937}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{19.738085339581996, -11.869307230054046,
+                            4.752636154049663}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.156203938168487, -18.910389659473147,
+                            7.330209002607809}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{0.8069088022978949, -7.128009372992176,
+                            17.383498998450435}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.960731698098947, -9.518500321251748,
+                            6.192599871499302}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{19.736195623417366, -2.6985146830945994,
+                            4.506973052647492}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.36116255338448, -4.6392531841717375,
+                            18.17340035526664}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.7933406402358365, -15.91329982236668,
+                            14.320269095581844}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{5.890245285158169, 4.571223402244983,
+                                           7.152575683132394}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{21.14592388223289, -4.582561699232775,
+                            6.383461204127141}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.0295551608148457, -9.480705997959108,
+                            18.823462715900074}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.776900109603538, -9.563853509202918,
+                            18.30945991912015}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.604255640802755, -15.78290940700707,
+                            10.446350958086095}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.864129407762954, -3.0934653615027026,
+                            -2.81756680146642}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.875467704750747, -11.778600854151707,
+                            -2.9120526096980233}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.944555727729695, 4.677047507464379,
+                            6.848331380626631}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.647832495559167, -4.563664537586455,
+                            18.713859178351413}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{14.112400317472316, -3.2484220870025324,
+                            -3.104803658490495}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.273328546052383, -14.358063418874485,
+                            5.542537510865868}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.947995011149327, -11.387429608072868,
+                            -3.5791224158131447}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.57900903284327, -14.435541781624401,
+                            6.082996333950641}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.9955402698514686, -0.12094183453645263,
+                            5.155145697116294}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{4.932159189689709, 4.034544011489474,
+                                           2.3073434370157604}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.5435579575947695, -3.9211610416115503,
+                            1.980422540534412}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.72500850372274, 3.7151819796666543,
+                            2.056011187119695}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.412714010355646, -6.880456555425376,
+                            16.395177444347862}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.312559053630146, 0.14739786084130163,
+                            5.3157715711100195}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.981291809970143, -7.609886994973356,
+                            9.051740428587626}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.1788427378207795, -15.981329604293437,
+                            8.08042631996674}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.713178880532144, -11.943006160474697,
+                            1.904833893949129}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.503873918137496, -11.801277448127292,
+                            1.4248459881325826}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.72451717751994, -3.0859064968441743,
+                            1.6894062511810728}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.2147473449487887, -14.41664461997808,
+                            19.01432404852791}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.195850183302468, -7.394459352205299,
+                            17.46286707736498}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.7593257492724594, -7.668468196076949,
+                            -1.175403454401149}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.653199289466722, -11.387429608072868,
+                            21.6826032729884}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.511848520352245, -7.218715748894516,
+                            9.718810234702747}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.53656600778563, -16.079594844854306,
+                            16.62194338410371}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{20.824672134245436, -16.278015042140673,
+                            8.452700404399259}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.030235458634113158, -3.214407196039155,
+                            -2.1845118863146755}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.0956952265769684, -11.876866094712575,
+                            20.648928530934654}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.446199780792924, -11.566952643712916,
+                            20.54499414187989}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{0.8069088022978949, -16.300691636116255,
+                            17.137835897048266}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.8187762198117845, -21.760081635738313,
+                            8.14467666956423}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{13.825163460448241, -21.71850788011641,
+                            8.205147586832458}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.45564836161609, -3.015986998752788,
+                            20.711289164367514}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.3300200309913452, -4.711062398427756,
+                            -0.9278506368343475}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.713859178351413, -11.022714388298878,
+                            -2.505763634302128}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{21.348123511848524, -7.564533807022186,
+                            -0.23810423674364112}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.892172795646093, -14.324048527911108,
+                            19.433841037076235}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.817604595789714, -3.2484220870025324,
+                            22.156922030311048}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.7277296949998115, -22.121017423183037,
+                            10.981140632676972}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.580671983068143, -11.778600854151707,
+                            22.34967307910352}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.190181034808572, -2.7211912770701843,
+                            -4.178162440001512}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.08692694357307533, -11.924108998828375,
+                            -2.87236857024075}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{4.833893949128841, 7.11289164367512,
+                                           8.377111757813976}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.8953853131259684, -2.7211912770701843,
+                            21.083563248800033}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.3904909482595715, -11.876866094712575,
+                            -4.612797157866888}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.3478967459087645, 7.037302997089838,
+                            11.347745568615595}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.569333686080351, -3.0934653615027026,
+                            22.446048603499754}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.313390528742584, -22.361011376091312,
+                            10.727918666616274}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.331909747155977, -10.62398427756151,
+                            -1.3511470577119318}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{0.030235458634113158, 3.214407196039155,
+                            2.1845118863146755}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.21047658641672, -10.722249518122378,
+                            23.55342227597415}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.968970860576743, -4.093125212593069,
+                            -2.7986696398200994}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{21.087342681129297, -10.525719037000643,
+                            -0.7426584527004044}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{13.9347669979969, 7.131788805321441,
+                                           8.237272761631203}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.387089459163233, 7.409577081522356,
+                            10.799727880872293}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{21.212063947995013, -4.620356022525416,
+                            -0.8541517064136968}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.6780679541932804, -18.84991874220492,
+                            7.3150912732907525}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.6426924675913686, -7.037302997089838,
+                            13.91398012018595}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.6988548320042332, 0.12094183453645263,
+                            20.10657999168525}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.956423145243587, -0.14739786084130163,
+                            19.945954117691524}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.8241052193960465, -11.548055482066594,
+                            11.948675308968594}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.740995502475528, -11.566952643712916,
+                            -4.716731546921652}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.750444083298692, -3.015986998752788,
+                            -4.55043652443403}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.190181034808572, 2.7211912770701843,
+                            4.178162440001512}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-6.4798367285233756, -8.620885143051515,
+                            11.466797686987414}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.3300200309913452, 4.711062398427756,
+                            0.9278506368343475}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.596696776144224, 4.093125212593069,
+                            2.7986696398200994}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.353603688725954, 4.620356022525416,
+                            0.8541517064136968}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.8187762198117845, -15.748894516043691,
+                            9.526059185910277}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.156544087078121, -10.37643145999471,
+                            24.09766053138819}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{20.81522355342228, 3.015986998752788,
+                                           4.55043652443403}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.49639064212555, -11.55183491439586,
+                            11.833402622926036}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.501530670093352, -16.03046222457387,
+                            16.49344268490873}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.322990286858914, -10.380210892323975,
+                            24.352772213613516}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.767451528780377, -21.96606069768321,
+                            8.768283003892815}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.855701273668695, -22.232510676896332,
+                            7.997278808722931}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.567103821006086, -7.447371404814997,
+                            24.464265467326808}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.109301182962321, -4.510752484976757,
+                            24.284742431686762}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.630031369288332, -19.12014815374731,
+                            7.475717147284478}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.856268188518087, 6.880456555425376,
+                            8.866548244453684}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.338108016175971, -4.522090781964549,
+                            24.39245625307079}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.1523867115159305, -15.764012245360748,
+                            17.264446880078612}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.9445179334064022, 4.563664537586455,
+                            6.54786651045013}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.326240598662081, -9.480705997959108,
+                            -6.440152689066102}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-5.130579386976076, -7.11289164367512,
+                            16.884613930987566}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.640840545750027, -18.876374768509773,
+                            17.786008541517067}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{6.230394194791943, -23.6800332590045,
+                                           6.305982841377226}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.81227559620545, -7.451150837144262,
+                            24.579538153369366}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{25.254166824143017, -8.61710571072225,
+                            11.721909369212746}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.8991647454552325, 7.394459352205299,
+                            7.798858611436562}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.84115045920103, 3.0859064968441743,
+                            -1.6894062511810728}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{23.336104917041464, -7.131788805321441,
+                            17.02445292717034}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.037151819796668, -23.587437166937526,
+                            5.986620809554405}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.125439359008277, -23.18114819154163,
+                            14.392078309837862}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.49862050719982, -15.905740957708153,
+                            9.815185759098984}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.77036169167391, -22.090781964548924,
+                            15.448429645867193}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.383272232510677, -19.146604180052158,
+                            17.94663441551079}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.5435579575947695, 3.9211610416115503,
+                            -1.980422540534412}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{9.129218791337543, 8.275067084923844,
+                                           14.339166257228165}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.9445179334064022, -4.563664537586455,
+                            -6.54786651045013}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.883782455875128, -7.409577081522356,
+                            14.461997807929249}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.230394194791943, -23.508069088022978,
+                            13.607846101515552}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.001587361578292, -23.519407385010773,
+                            13.500132280131526}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.522090781964549, -22.247628406213387,
+                            15.735666502891267}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.759023394686118, 7.218715748894516,
+                            15.542915454098795}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.90970936165388, 4.6392531841717375,
+                            7.088325333534903}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.9955402698514686, 0.12094183453645263,
+                            -5.155145697116294}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{12.016705090895348, 8.61710571072225,
+                                           13.539816319588798}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.1831512906761406, 8.620885143051515,
+                            13.794928001814128}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.67417513889414, -4.093125212593069,
+                            22.463056048981446}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{6.279526815072376, 9.51094145659322,
+                                           7.214936316565252}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-6.527079632639178, -14.488453834234098,
+                            11.65387958728599}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.38172266525567866, -11.924108998828375,
+                            22.389357118560795}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.1017045239804981, -21.695831286140823,
+                            8.12388979175328}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.41906345666881, -11.022714388298878,
+                            22.755962054499417}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.124948032805474, 4.582561699232775,
+                            18.878264484674403}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{17.071695831286142, -9.563853509202918,
+                            -6.952265769681394}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.511432782796024, -14.41664461997808,
+                            -6.247401640273631}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.4475225821081674, 4.673268075135114,
+                            18.458747496126083}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.655958275067086, -4.6392531841717375,
+                            -7.088325333534903}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{4.686496088287539, 7.609886994973356,
+                                           16.209985260213916}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{17.25310858309082, -0.14739786084130163,
+                            -5.3157715711100195}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{17.1869685173287, -14.324048527911108,
+                            -5.827884651725311}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.537926603424166, 9.563853509202918,
+                            6.508182470992857}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.1035942401451302, 7.128009372992176,
+                            7.880116406515742}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.3269208964813485, -3.214407196039155,
+                            23.077213802486867}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{19.734305907252732, -21.916928077402776,
+                            8.639782304697835}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{25.26739483729544, -14.477115537246306,
+                            11.761593408670018}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.932159189689709, -4.034544011489474,
+                            -2.3073434370157604}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.444310064628294, -21.71850788011641,
+                            16.80902528440228}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.732945311614195, -9.563853509202918,
+                            18.753543217808684}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.532786575456367, 2.6985146830945994,
+                            20.754752636154052}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.097925091651234, 2.9177217581919197,
+                            -3.991080539702937}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-6.024415132847047, -15.87550549907404,
+                            14.280585056124572}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{19.84390944480139, 7.078876752711743,
+                                           8.498053592350429}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.1035942401451302, -7.128009372992176,
+                            -7.880116406515742}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-6.185041006840773, -4.571223402244983,
+                            18.11103972183378}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.949166635171398, -11.117200196530481,
+                            -2.743867871045769}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.8840470161381762, -22.015193317963643,
+                            17.181299368834804}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.7593257492724594, 7.668468196076949,
+                            1.175403454401149}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-4.864129407762954, 3.0934653615027026,
+                            2.81756680146642}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.596885747760687, -11.597188102347028,
+                            -2.0503420386257987}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{-6.57432253675498, -9.51094145659322,
+                                           18.046789372236294}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.326316187308667, -4.677047507464379,
+                            18.41339430817491}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{0.8031293699686307, 2.9177217581919197,
+                            21.270645149098605}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.08813636191844, -22.083223099890397,
+                            10.9414565932197}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{-2.07868778109528, 7.056200158736158,
+                                           10.726028950451644}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.244000151177293, 7.120450508333648,
+                            17.24366000226766}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.840659132998223, -3.7151819796666543,
+                            -2.056011187119695}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.66661627423561, -22.213613515250014,
+                            14.815374730715448}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.217544124872447, 7.564533807022186,
+                            0.23810423674364112}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-9.425904229184777, -8.275067084923844,
+                            10.92255943157338}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-5.113571941494388, -16.236441286518765,
+                            17.11704901923731}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.829472013303604, 2.6985146830945994,
+                            -4.506973052647492}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.45326731924865, 3.2484220870025324,
+                            3.104803658490495}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.8934955969613365, 7.4322536754979405,
+                            17.347594391322424}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.957481386295782, -15.635511546165764,
+                            14.533807022185268}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{18.72141804300994, 7.075097320382479,
+                                           15.503231414641522}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{23.44381873842549, -16.278015042140673,
+                            17.056578101969084}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.991798631845498, -11.961903322121017,
+                            26.54484296458672}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.721758191919577, -7.078876752711743,
+                            -8.498053592350429}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.054121470955063, -7.668468196076949,
+                            24.086322234400395}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.07936807891454704, 7.974602214747345,
+                            15.1366264787029}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{28.13976340753619, -8.275067084923844,
+                            10.92255943157338}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{21.138365017574362, 7.196039154918931,
+                            11.206016856268189}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.72927926225481, -26.387996522922258,
+                            5.106013076835859}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.611965682754452, -3.1237008201368157,
+                            26.911447900525342}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{5.952605918591027, -11.5896292376885,
+                                           27.09286065233002}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{6.026304849011679, -3.3618050568804567,
+                            27.164669866586042}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.517479874522847, -26.248157526739487,
+                            4.695944669110699}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-0.3344797611398768, -23.09044181563929,
+                            15.42953248422087}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.586530103178504, 11.447900525341094,
+                            4.153596129861295}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.586530103178504, -26.548622396915984,
+                            4.153596129861295}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.8670395706564875, 2.9668543784723536,
+                            -3.862579840507956}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{6.72927926225481, 11.60852639933482,
+                                           5.106013076835859}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.6267054688385802, -10.62398427756151,
+                            23.910578631089614}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.8991647454552325, -7.394459352205299,
+                            -7.798858611436562}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{21.178049057031636, -22.920367360822404,
+                            10.65044030386636}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.5274197815488115, -26.448467440190484,
+                            13.31305037983295}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.233720095241697, -14.409085755319552,
+                            19.275104879247138}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{20.49208208927019, 3.233304357685476,
+                                           20.628141653123702}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.37869911939227, -23.67247439434597,
+                            5.827884651725311}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.772591556748178, -26.44468800786122,
+                            13.428323065875507}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{-2.511432782796024, -23.579878302279,
+                                           6.247401640273631}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.6248157526739484, -4.711062398427756,
+                            24.333875051967198}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.248762235912166, 3.9211610416115503,
+                            23.28130314826713}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.546354737518428, 3.0859064968441743,
+                            23.57231943762047}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-6.525189916474545, -14.316489663252579,
+                            18.955742847424318}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.949166635171398, 11.117200196530481,
+                            2.743867871045769}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.517479874522847, 11.748365395517594,
+                            4.695944669110699}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-9.420235080690881, -14.815374730715448,
+                            10.86964737896368}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.5274197815488115, 11.548055482066594,
+                            13.31305037983295}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{20.917268226312412, -4.620356022525416,
+                            24.40757398238785}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.1618352923390907, 2.9668543784723536,
+                            21.399145848293585}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{20.790657243282062, -10.525719037000643,
+                            24.519067236101137}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.774972599115613, -0.08692694357307533,
+                            19.961071847008583}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{24.751502324350884, -11.748365395517594,
+                            20.565781019690842}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-7.024074983937413, -11.60852639933482,
+                            20.155712611965683}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.450961865527798, 8.473487282210213,
+                            13.373521297101176}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.112778260705245, -0.04913262028043388,
+                            19.90627007823425}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{-5.243962356854, -11.117200196530481,
+                                           22.517857817755775}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.1017045239804981, -16.300691636116255,
+                            -8.12388979175328}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-6.700933519785329, -2.8912657318870707,
+                            20.567670735855476}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{2.07868778109528, -7.056200158736158,
+                                           -10.726028950451644}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{21.051438074001286, -7.564533807022186,
+                            25.023621452057903}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.577572848558147, -23.619562341736273,
+                            13.48501455081447}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.96878188896028, -26.399334819910052,
+                            2.0503420386257987}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{28.145432556030087, -14.815374730715448,
+                            10.86964737896368}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{4.949166635171398, -26.8793227257266,
+                                           2.743867871045769}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.326240598662081, 9.480705997959108,
+                            6.440152689066102}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{24.98393741260063, -2.8345742469481086,
+                            20.696171435050456}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.226954911372312, -4.034544011489474,
+                            22.956271967950414}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{20.966400846592844, 8.375222041649346,
+                            13.982009902112704}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.786877810952795, 3.233304357685476,
+                            -4.633584035677841}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{2.331909747155977, 10.62398427756151,
+                                           1.3511470577119318}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.493971805434825, 9.563853509202918,
+                            6.952265769681394}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{20.96451113042821, -23.710268717638613,
+                            13.558713481235118}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.96878188896028, 11.597188102347028,
+                            2.0503420386257987}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-6.406137798102725, -2.8912657318870707,
+                            -4.694054952946067}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.7442080199554029, 4.673268075135114,
+                            -6.802978192675461}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.300200309913453, -11.597188102347028,
+                            23.211383650175744}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.70939944820288, -6.880456555425376,
+                            -8.866548244453684}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.6780679541932804, -19.146604180052158,
+                            -7.3150912732907525}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.478324955591674, 10.525719037000643,
+                            0.7426584527004044}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.545863411315622, -3.7151819796666543,
+                            23.205714501681847}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.427302619146605, -7.196039154918931,
+                            -11.206016856268189}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.773082882950981, -19.04833893949129,
+                            17.986318454968067}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.831361729468235, -16.079594844854306,
+                            -8.639782304697835}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.93563626743263, -18.876374768509773,
+                            -7.475717147284478}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{25.048187762198122, -11.748365395517594,
+                            -4.695944669110699}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{6.279526815072376, -28.48558146566386,
+                            7.214936316565252}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.114667976869875, -19.08613326278393,
+                            17.931516686193735}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-6.632903737858574, 4.522090781964549,
+                            0.8692694357307533}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-6.72927926225481, -11.60852639933482,
+                            -5.106013076835859}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{24.0277410332968, -9.563853509202918,
+                                           -6.508182470992857}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{0.08692694357307533, -26.072413923428705,
+                            2.87236857024075}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{25.278733134283232, -2.8345742469481086,
+                            -4.5655542537510865}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.478287161268378, -0.08692694357307533,
+                            -5.300653841792963}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-1.855701273668695, -15.764012245360748,
+                            -7.997278808722931}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{-4.96050493215919, 7.402018216863827,
+                                           14.683094599191202}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-5.1041233606712275, 2.7211912770701843,
+                            20.83601043123323}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.537926603424166, -28.43266941305416,
+                            6.508182470992857}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.65890623228391, 3.1237008201368157,
+                            -1.649722211723799}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{25.161570732076044, 4.510752484976757,
+                            0.9769832571147814}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-6.322990286858914, 3.3618050568804567,
+                            -1.9029441777844966}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-4.809327638988624, 2.7211912770701843,
+                            -4.425715257568314}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{23.45326731924865, 2.76276503269209,
+                                           20.775539513965004}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-12.31150081257795, -8.61710571072225,
+                            11.721909369212746}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.206168033561359, -22.71438829887751,
+                            14.686874031520468}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.894024717487434, 4.590120563891303,
+                            18.617483653955176}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-5.890245285158169, -4.571223402244983,
+                            -7.152575683132394}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.38761857968933, -15.076155561434673,
+                            -10.65044030386636}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.851808458369554, 11.022714388298878,
+                            2.505763634302128}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-4.833893949128841, -7.11289164367512,
+                            -8.377111757813976}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{13.505801428625421, -11.884424959371103,
+                            29.515476775388336}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.40946369855248, -0.04913262028043388,
+                            -5.355455610567293}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-6.279526815072376, -9.51094145659322,
+                            -7.214936316565252}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.62111190899127, -4.677047507464379,
+                            -6.848331380626631}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.503873918137496, -26.195245474129788,
+                            -1.4248459881325826}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.404928379757361, -11.865527797724782,
+                            29.65531577157111}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.331909747155977, -27.372538644695567,
+                            1.3511470577119318}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.7986696398200994, -11.801277448127292,
+                            26.686571676934125}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{23.748063040931253, 2.76276503269209,
+                                           -4.48618617483654}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.3904909482595715, -26.119656827544503,
+                            4.612797157866888}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.427831739672705, -3.0859064968441743,
+                            26.951131939982616}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{6.230394194791943, 14.316489663252579,
+                            6.305982841377226}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{0.08692694357307533, 11.924108998828375,
+                            2.87236857024075}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{23.630900638724068, -7.131788805321441,
+                            -8.237272761631203}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.566650289126574, -23.03375033070033,
+                            14.938206281416532}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.51453191730602, -2.7211912770701843,
+                            29.687440946369858}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{13.520919157942478, -2.76276503269209,
+                            29.747911863638084}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{2.08813636191844, -15.91329982236668,
+                                           -10.9414565932197}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{31.08583090819759, -8.620885143051515,
+                            11.466797686987414}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.5285158169243, -14.409085755319552,
+                            -5.986620809554405}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{23.583657734608263, 7.880116406515742,
+                            15.374730715446539}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-6.230394194791943, -14.316489663252579,
+                            -6.305982841377226}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.41838315884954, -11.943006160474697,
+                            27.166559582750672}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.4834271892361768, -12.116860047620849,
+                            29.026040288748632}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{13.430212782040138, 3.7151819796666543,
+                            27.317736875921238}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.273328546052383, -23.638459503382595,
+                            -5.542537510865868}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.5722438489738841, -2.9668543784723536,
+                            29.124305529309503}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.060168562681886, -9.488264862617635,
+                            30.677652216637068}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-2.8383536792773727, -3.9211610416115503,
+                            27.242148229335957}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{20.79821610794059, -16.03046222457387,
+                            -8.768283003892815}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{16.05880796704335, 4.620356022525416,
+                                           26.11587739521524}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{18.851808458369554, -26.9738085339582,
+                            2.505763634302128}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{24.864885294228806, 4.680826939793643,
+                            18.936845685778}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{20.824672134245436, -26.429570278544166,
+                            4.716731546921652}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.711742696247024, -11.432782796024037,
+                            -12.868967081144412}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{12.016705090895348, -29.37941721153483,
+                            13.539816319588798}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.85248875618882, -26.053516761782383,
+                            -1.904833893949129}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.478324955591674, -27.470803885256437,
+                            0.7426584527004044}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.1831512906761406, -29.375637779205565,
+                            13.794928001814128}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{2.03333459314411, 4.711062398427756,
+                                           26.18957632563589}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-12.298272799425527, -14.477115537246306,
+                            11.761593408670018}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{2.503873918137496, 11.801277448127292,
+                            -1.4248459881325826}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{-13.069276994595413, -11.55183491439586,
+                            11.833402622926036}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{4.635473751842473, 4.034544011489474,
+                                           27.569069125817304}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{20.824672134245436, 11.566952643712916,
+                            4.716731546921652}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.230394194791943, 14.488453834234098,
+                            13.607846101515552}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.450961865527798, -8.473487282210213,
+                            -13.373521297101176}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{27.682452095695226, -11.447900525341094,
+                            21.10812955894025}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-2.3904909482595715, 11.876866094712575,
+                            4.612797157866888}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{9.129218791337543, -29.721455837333234,
+                            14.339166257228165}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-6.644242034846367, -21.831890849994334,
+                            17.19641709815186}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.1788427378207795, -22.015193317963643,
+                            -8.08042631996674}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.9866586038777, -23.560981140632677,
+                            -6.082996333950641}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.483994104085568, -3.233304357685476,
+                            29.895309724479386}});
+    zsm5_8.push_back(Atom{pt.get_atom(14).mass(), 14ul,
+                          Atom::coord_type{-6.411806946596621, 7.24895120752863,
+                                           17.326807513511472}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{16.44053063229903, -11.604746967005557,
+                            30.093729921765753}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{25.04062889753959, -21.890472051097927,
+                            17.32491779734684}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.1882913186439397, 7.4322536754979405,
+                            -7.914131297479119}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{1.8575909898333272, 9.435352810007938,
+                            -5.678597074719377}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{9.04607128009373, 2.8912657318870707,
+                                           29.2717033901508}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{31.03858800408179, -14.488453834234098,
+                            11.65387958728599}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{31.74156241732492, -11.548055482066594,
+                            11.948675308968594}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-4.8187762198117845, -16.236441286518765,
+                            -8.14467666956423}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{4.801768774330096, -9.435352810007938,
+                            31.386295778374095}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.740995502475528, -21.71850788011641,
+                            -8.452700404399259}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.387089459163233, -30.586945840734725,
+                            10.799727880872293}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.109301182962321, -4.680826939793643,
+                            31.58660569182509}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{31.9229751691296, -7.037302997089838,
+                                           13.91398012018595}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.183491439585774, 0.08692694357307533,
+                            30.5623795305945}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.3946105294984694, -2.9177217581919197,
+                            29.252806228504483}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.599266790128127, -8.375222041649346,
+                            -13.982009902112704}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.833893949128841, -30.88363127858196,
+                            8.377111757813976}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{12.861408216485884, 0.04913262028043388,
+                            30.61718129936884}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.2094183453645264, -26.076193355757965,
+                            -4.132809252050342}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.7277296949998115, 15.87550549907404,
+                            10.981140632676972}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{13.9347669979969, -30.864734116935637,
+                            8.237272761631203}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{-1.5042140670471298, -11.920329566499111,
+                            29.394534940851884}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.3478967459087645, -30.95921992516724,
+                            11.347745568615595}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{23.740504176272726, -16.278015042140673,
+                            -8.205147586832458}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{2.577572848558147, -14.376960580520805,
+                            -13.48501455081447}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{5.302543557957595, -4.590120563891303,
+                            31.905967723647912}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{11.992138780755132, 2.8345742469481086,
+                            29.827279942552632}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{25.363770361691678, 7.390679919876035,
+                            17.73687592123663}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{17.171850788011643, -11.330738123133907,
+                            -13.806266298801921}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(8).mass(), 8ul,
+           Atom::coord_type{30.991345099965983, -9.51094145659322,
+                            18.046789372236294}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{6.111342076420122, 2.8912657318870707,
+                            29.955780641747612}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{4.8187762198117845, 16.236441286518765,
+                            8.14467666956423}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{19.441399901734762, -2.6985146830945994,
+                            29.768698741449036}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{16.601156506292757, -14.286254204618466,
+                            -13.558713481235118}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{19.443289617899392, -11.869307230054046,
+                            30.014361842851205}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{17.82758229713897, -26.127215692203034,
+                            -4.752636154049663}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{11.610416115499453, -7.390679919876035,
+                            32.78657545636646}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{1.2094183453645264, 11.920329566499111,
+                            -4.132809252050342}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{30.541592652783553, -11.60852639933482,
+                            20.155712611965683}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(14).mass(), 14ul,
+           Atom::coord_type{32.435088249744894, -7.11289164367512,
+                            16.884613930987566}});
+    zsm5_8.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{5.61910880985676, -7.850485657054311,
+                                           30.211648210438792}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{3.684398503344798, -4.778374088211951,
+                            33.2865943535281}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{27.849125061415776, -21.876677123096112,
+                            16.820798216107942}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{24.482973657356666, -23.579689330662536,
+                            19.555916701311464}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{32.30261914660419, -11.097641634226541,
+                            22.342114214444994}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{31.05162704561775, -14.215068596696778,
+                            19.11258928908878}});
+    zsm5_8.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{28.09289844665331, 7.517895612079066,
+                                           16.913715559922903}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{24.875845647983674, 9.379681771797877,
+                            19.723912468347255}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{5.314958993159228, 18.912657318870707,
+                            7.288106126459806}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.6210363203446845, 12.112551494765487,
+                            -3.8264295702785445}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{2.1703957065648742, 14.204939718054348,
+                            -5.546808269397936}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.2590989833327035, 7.9598813258248615,
+                            -9.94935560678786}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.720170830341283, -15.797668090252843,
+                            -10.816244000151178}});
+    zsm5_8.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{5.733436637817, -33.25881552590801, 7.076382327374429}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{32.70720737745191, -15.560489814429872,
+                            9.602328130314827}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.4235231868173401, -14.831739672701161,
+                            -15.30037038436827}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.11988359348425866, -22.902037114025475,
+                            -9.845836955289315}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.219037000642503, 7.510922559431574,
+                            16.887354019426283}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{25.086926943573076, 4.569919498091386,
+                            -6.2423372009524165}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{12.927113647530142, -33.167164291923356,
+                            6.8860312181110395}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{18.742998601610037, -7.144166446199781,
+                            -15.407233833478212}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{18.705279866963984, -15.765694092747271,
+                            -14.794134321024982}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{14.136872141804302, -14.851997429986017,
+                            -14.88140141350769}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{16.17292792622548, -30.26380437658264,
+                            0.2440946369855248}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{18.867417513889418, -22.243282059034733,
+                            -10.281699988661703}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.75513057938698, -4.548357836652935,
+                            31.499111833402626}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.009259609206698, -0.034033788125023626,
+                            30.6173702709853}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.17687743300956, -14.290638346120414,
+                            31.33395064061378}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.62568502210968, -9.652707963263918,
+                            31.367587588344232}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{8.924486942061304, -7.556578101969085,
+                            33.73559091424468}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{13.413828942892778, -7.820722627461355,
+                            34.955780641747616}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.2745001700744547, -4.436713405646472,
+                            31.5023243508825}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.290713934766998, -0.22145583733323257,
+                            29.516421633470657}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.115140405911032, -9.540912354964286,
+                            30.846214898522245}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.491439585774217, -14.185324464265468,
+                            30.822026531614956}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{35.24131675422352, -7.3142597981783135,
+                            17.36121924486942}});
+    zsm5_8.push_back(Atom{
+      pt.get_atom(1).mass(), 1ul,
+      Atom::coord_type{-12.6617974980158, -7.47509354095015, 14.313314940096}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-12.591046524811974, -15.571469065346385,
+                            14.380551041233607}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-13.984598813258248, -15.83914736006652,
+                            9.905929929324616}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-13.968385048565708, -7.287274651347368,
+                            9.817018783778677}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{31.43633546241355, -4.705525530065384,
+                            18.046241354548545}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{28.082278241808083, -2.888525643448354,
+                            -4.0368494652103255}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{27.790978495030046, 3.8465361502702295,
+                            0.08964813485014551}});
+    zsm5_8.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{24.50120941834537, 7.272912808496164,
+                                           0.7000642503495975}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{23.462678105748516, 11.39738841226048,
+                            3.642257832873503}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{2.004289655693715, 15.787709286065233,
+                            8.004667598926641}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.401300124721267, 14.18428512037492,
+                            5.771552212857629}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.284553460070297, 3.8374088211950563,
+                            0.06785970747193772}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.185116595487358, -2.8912657318870707,
+                            -4.0462791488718395}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{31.51468309459919, -15.80220340904796,
+                            14.141785403832346}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-6.0203144487697955, -23.581786915605278,
+                            19.362258588759968}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.447749348047923, -21.887637476850976,
+                            16.667731206772743}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.47951547677539, -2.8912657318870707,
+                            21.217147284477875}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.448448543028838, 9.316867606485506,
+                            19.0408367663177}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{16.83113496352848, 11.862107411466798,
+                            -1.7537132922635021}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.727465134736763, -11.45664991118334,
+                            21.05623795305945}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.442703805888356, -18.89665142295627,
+                            -7.322309989039647}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{12.507577761820174, -14.292320193506935,
+                            30.676480592614993}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{23.462678105748516, -26.5991345099966,
+                            3.642257832873503}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.512188669261878, -28.322328886201294,
+                            6.829112967232322}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{16.71444499036245, -31.103858800408183,
+                            8.836010431233229}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.329660984920065, -28.388109905892136,
+                            6.342756717940966}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{2.0465815034581807, -30.616198646963227,
+                            7.827903548886957}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{4.767016894062512, -30.332249896065616,
+                            16.080048376733817}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{24.373332325484714, -18.93446464341056,
+                            -7.377470803885257}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-4.744000151177294, 11.783797573604446,
+                            3.0020219962961567}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.697909973921917, 11.27580407422805,
+                            12.895725462035603}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.521864016024793, 14.261120979628862,
+                            6.1749499225216375}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-4.744000151177294, -26.212725348652633,
+                            3.0020219962961567}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-1.6165765901961526, -25.89030197664311,
+                            -3.784251105483956}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{14.217884273782078, -22.069787217959867,
+                            -9.738331002683399}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{27.78716126837749, -2.888525643448354,
+                            21.226614762462678}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.9058732378396765, 7.280547261801278,
+                            0.8015609055519861}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.424600325031182, 11.171850788011643,
+                            13.81571487962508}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{13.673589326883102, -30.709248270909715,
+                            15.444706905022867}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.42533731433539, -26.502551116822257,
+                            13.792603650931632}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-2.704731849276239, -26.40976605313882,
+                            12.90118674175139}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{4.6086397823046985, 15.685022109679128,
+                            15.627858195699007}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-6.538606901243434, 3.3283003892815297,
+                            23.226822631240786}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{27.839884349370728, -11.462167882384067,
+                            -4.179371858346877}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{32.50330700328811, -7.664575380777807,
+                            9.182395404210288}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{4.674194036055785, -22.234891719263768,
+                            -9.446880078612194}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-0.140349219547224, 3.2953059450470543,
+                            27.378302278997694}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.4962016705090897, 7.503760535167618,
+                            26.423334215200878}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{5.350164405306323, -14.208794739030198,
+                            30.981178427000266}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.9735061793718585, -23.551948297365737,
+                            19.583941192032956}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.559034732983107, 4.4950300464870185,
+                            -6.531369288332892}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-5.320250198420198, -7.0413658868437965,
+                            -11.187913375411014}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{16.67884273782078, -23.464076495710344,
+                            19.054083676631773}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{25.218659057409578, -15.577213802486867,
+                            -10.54314222003855}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{8.968385048565706, 14.797630295929553,
+                            14.349540798971995}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{12.727956460939568, 11.37852904493745,
+                            13.434899278128425}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{13.01135719414944, 14.276975698250123,
+                            5.9225405344117314}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.8492195472240072, -28.439925923126346,
+                            -5.597641634226539}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{14.11464907970823, -7.905211837182056,
+                            -15.304149816697532}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{4.816886503647153, -7.463339506406139,
+                            -14.608148456101894}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{20.660021164821043, -26.471994406440153,
+                            -4.779545712234023}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{16.59157564533807, -28.302203409047962,
+                            -6.125231490230168}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{25.113005026645002, -7.336898597830606,
+                            -10.666994217468536}});
+    zsm5_8.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{4.826391775955252, 7.600041573755623,
+                                           -8.988642805850562}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{15.929872633130504, 7.410484145281379,
+                            25.532068483313807}});
+    zsm5_8.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{16.30658755054991, 9.38952719301561,
+                                           18.972731395744358}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{18.180883631278583, 4.121149703314562,
+                            27.957046751577913}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{-9.432480441437697, -11.45655542537511,
+                            -4.204939718054348}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{5.054045882308478, -15.229751691295967,
+                            -14.61731357950036}});
+    zsm5_8.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{1.581012131977777, 9.32501228315507,
+                                           19.459975811633093}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{24.319362031822823, 3.105975282512567,
+                            23.472655807097777}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{0.16608715370951282, -8.023904909482596,
+                            -15.022619902490646}});
+    zsm5_8.push_back(Atom{pt.get_atom(1).mass(), 1ul,
+                          Atom::coord_type{16.49291356438263, 4.484768887713066,
+                                           -6.286065233002003}});
+    zsm5_8.push_back(
+      Atom{pt.get_atom(1).mass(), 1ul,
+           Atom::coord_type{1.807570202955516, -30.176442798291696,
+                            1.276862315280245}});
+    zsm5_8.push_back(Atom{pt.get_atom(8).mass(), 8ul,
+                          Atom::coord_type{9.061774821421823, -4.23286972296761,
+                                           23.592237045995695}});
+    mm.insert("zsm5_8", zsm5_8);
+
+} // function load_molecules
 
 } // namespace chemcache
