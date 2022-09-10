@@ -23,6 +23,7 @@ header:
     - reference_data/atomic_densities/default
     - reference_data/molecules/default
     - reference_data/physical_data
+    - tests/data
     - requirements.txt
     - LICENSE
 
