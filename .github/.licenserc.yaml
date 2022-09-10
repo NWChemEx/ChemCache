@@ -20,6 +20,10 @@ header:
   paths-ignore:
     - .github/
     - docs/Makefile
+    - reference_data/atomic_densities/default
+    - reference_data/molecules/default
+    - reference_data/physical_data
+    - requirements.txt
     - LICENSE
 
   comment: never
