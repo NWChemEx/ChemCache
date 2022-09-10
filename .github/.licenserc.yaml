@@ -1,4 +1,4 @@
-# Copyright 2022 NWChemEx-Project
+# Copyright 2021 NWChemEx-Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,4 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+header:
+  license:
+    spdx-id: Apache-2.0
+    copyright-owner: NWChemEx-Project
 
+  paths-ignore:
+    - .github/
+    - docs/Makefile
+    - reference_data/atomic_densities/default
+    - reference_data/molecules/default
+    - reference_data/physical_data
+    - tests/data
+    - requirements.txt
+    - LICENSE
+
+  comment: never
