@@ -1,37 +1,76 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>reference_data.helper_fxns module &mdash; ChemCache 1.0.0 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/js/theme.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="prev" title="reference_data.scrape_bse module" href="reference_data.scrape_bse.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
+
+          
             <a href="../../index.html" class="icon icon-home"> ChemCache
+          
+
+          
           </a>
+
+          
+            
+            
               <div class="version">
                 1.0.0
               </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -39,7 +78,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
               <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference external" href="https://nwchemex-project.github.io/ChemCache/chemcache_cxx_api/index.html">C++ API</a></li>
@@ -56,39 +106,82 @@
 </li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">ChemCache</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
+    
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
           <li><a href="../index.html">Python API</a> &raquo;</li>
+        
           <li><a href="index.html">reference_data</a> &raquo;</li>
+        
       <li>reference_data.helper_fxns module</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
             <a href="../../_sources/python_api/reference_data/reference_data.helper_fxns.rst.txt" rel="nofollow"> View page source</a>
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <section id="module-reference_data.helper_fxns">
-<span id="reference-data-helper-fxns-module"></span><h1>reference_data.helper_fxns module<a class="headerlink" href="#module-reference_data.helper_fxns" title="Permalink to this heading"></a></h1>
+<span id="reference-data-helper-fxns-module"></span><h1>reference_data.helper_fxns module<a class="headerlink" href="#module-reference_data.helper_fxns" title="Permalink to this heading">¶</a></h1>
 <p>This file contains helper functions used throughout the various parsing 
 scripts in this directory.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.desanitize_basis_name">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">desanitize_basis_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bs_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.desanitize_basis_name" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">desanitize_basis_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bs_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.desanitize_basis_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>“Desanitizes” the basis set name. For example, replace “_star” with
 an asterisk character ‘*’.</p>
 <dl class="field-list simple">
@@ -106,14 +199,14 @@ an asterisk character ‘*’.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.find_files">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">find_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.find_files" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">find_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.find_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recursively find all files in the given directory with the provided
 extensions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source_root</strong> (<em>str</em>) – Root directory containing relevant files.</p></li>
-<li><p><strong>extensions</strong> (<em>list of str</em>) – File extensions to search for.</p></li>
+<li><p><strong>extensions</strong> (<em>list</em><em> of </em><em>str</em>) – File extensions to search for.</p></li>
 <li><p><strong>recursive</strong> (<em>bool</em>) – Whether or not to recursively search in subdirectories,
 defaults to False</p></li>
 </ul>
@@ -130,7 +223,7 @@ files found with the respective extension</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.lookup_extension">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">lookup_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.lookup_extension" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">lookup_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.lookup_extension" title="Permalink to this definition">¶</a></dt>
 <dd><p>Looks up the extension for a basis set file format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -147,7 +240,7 @@ files found with the respective extension</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.sanitize_basis_name">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">sanitize_basis_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bs_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.sanitize_basis_name" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">sanitize_basis_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bs_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.sanitize_basis_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sanitizes the basis set name. For example, replace numbers with the
 corresponding word and hyphens, plus-signs, and other symbols with 
 underscores.</p>
@@ -166,7 +259,7 @@ underscores.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.write_warning">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">write_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">script_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.write_warning" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">write_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">script_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.write_warning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes a warning saying the file was auto-generated by the given script
 and will be overwritten the next time it is run.</p>
 <dl class="field-list simple">
@@ -187,32 +280,49 @@ Defaults to “”.</p></li>
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="reference_data.scrape_bse.html" class="btn btn-neutral float-left" title="reference_data.scrape_bse module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, NWChemEx Team.</p>
-  </div>
+    <p>
+        &#169; Copyright 2020, NWChemEx Team.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
