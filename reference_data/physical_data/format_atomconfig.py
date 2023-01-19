@@ -56,9 +56,11 @@ def getconfigs(conf_path, elem_path):
             z = int(z_s)  # atomic number
             conf_s = conf_s.strip('[').split(']')  # separate core if present
             # get core config
-            ccore = ztoconf[stoz[conf_s[0]]] if len(conf_s) == 2 else (0,)*(LMAX+1)
-            cval_s = conf_s[-1] # get string representing remaining elec config
-            revcval_s = cval_s[::-1] # reverse config (easier to parse)
+            ccore = ztoconf[stoz[conf_s[0]]] if len(
+                conf_s) == 2 else (0,)*(LMAX+1)
+            # get string representing remaining elec config
+            cval_s = conf_s[-1]
+            revcval_s = cval_s[::-1]  # reverse config (easier to parse)
             shells = re.findall(r'(\d*[a-z]\d)', revcval_s)
             cval = [0]*(LMAX+1)  # valence config
             for shellrev in shells:
