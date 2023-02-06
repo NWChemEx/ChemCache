@@ -178,14 +178,14 @@ def parse_nist_configs(ip_file: str, atoms: dict) -> None:
 
 
 def _write_pt_configs(out_dir: str, atoms: dict) -> None:
-    """Generate a file containing a function which returns the atomic
-    configurations as a std::array<std::array<size_t,n_l>,n_elements>
+    """Generate a file containing a function which adds atomic electronic
+    configurations to an existing PeriodicTable object
 
     :param out_dir: Output directory for the generated header file.
     :type out_dir: str
 
     :param atoms: Collection of atoms.
-    :type atoms: dict of AtomicData {Z: (config, Sym, name)
+    :type atoms: dict of AtomicData
     """
 
     out_file = os.path.join(out_dir, "load_elec_configs.cpp")
@@ -206,14 +206,10 @@ def _write_pt_configs(out_dir: str, atoms: dict) -> None:
 namespace chemcache {
 
 void load_elec_configs(chemist::PeriodicTable& pt) {
-"""
-#    return std::array<std::array<size_t, N_L>, N_ELEMENTS> {{
-#""".replace("N_L",str(n_l)).replace("N_ELEMENTS",str(n_elements))
-        )
+""")
 
         # Add atoms and isotopes to the PeriodicTable
         for Z in sorted_Z:
-            #conf_i, sym_i, name_i = atoms[Z]
             ai = atoms[Z]
             # Comment atomic number, symbol, name
             comment_str = f"// Z = {Z:>3d}, {ai.sym:<2s}, {ai.name:<14s}"
@@ -232,12 +228,11 @@ void load_elec_configs(chemist::PeriodicTable& pt) {
             """} // function load_elec_configs
 
 } // namespace chemcache
-"""
-        )
+""")
 
 def _write_array_configs(out_dir: str, atoms: dict) -> None:
     """Generate a file containing a function which returns the atomic
-    configurations as a std::array<std::array<size_t,n_l>,n_elements>
+    configurations as a std::array<std::array<std::size_t,n_l>,n_elements>
 
     :param out_dir: Output directory for the generated header file.
     :type out_dir: str
@@ -264,13 +259,12 @@ def _write_array_configs(out_dir: str, atoms: dict) -> None:
 namespace chemcache {
 
 inline auto atomconfigs() {
-    return std::array<std::array<size_t, N_L>, N_ELEMENTS> {{
+    return std::array<std::array<std::size_t, N_L>, N_ELEMENTS> {{
 """.replace("N_L",str(n_l)).replace("N_ELEMENTS",str(n_elements))
         )
 
         # Add atoms and isotopes to the PeriodicTable
         for Z in sorted_Z:
-            #conf_i, sym_i, name_i = atoms[Z]
             ai = atoms[Z]
             # Comment atomic number, symbol, name
             comment_str = f" // Z = {Z:>3d}, {ai.sym:<2s}, {ai.name:<14s}"
