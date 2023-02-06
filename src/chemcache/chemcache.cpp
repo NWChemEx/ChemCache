@@ -44,6 +44,7 @@ chemist::MoleculeManager nwx_molecule_manager() {
 chemist::PeriodicTable nwx_periodic_table() {
     chemist::PeriodicTable pt;
     load_elements(pt);
+    load_elec_configs(pt);
 
     return pt;
 }

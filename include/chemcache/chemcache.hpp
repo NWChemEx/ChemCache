@@ -60,6 +60,13 @@ void load_molecules(chemist::MoleculeManager& mm,
 void load_elements(chemist::PeriodicTable& pt);
 
 /**
+ * @brief Load ground state electronic configurations into a PeriodicTable.
+ *
+ * @param[out] pt PeriodicTable to load data into
+ */
+void load_elec_configs(chemist::PeriodicTable& pt);
+
+/**
  * @brief Creates a basis set manager with NWX default basis sets pre-loaded.
  *
  * @return chemist::BasisSetManager Basis set manager with defaults loaded
