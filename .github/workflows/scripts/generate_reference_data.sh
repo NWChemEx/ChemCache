@@ -54,8 +54,5 @@ ${PYTHON} ${REFERENCE_DATA}/generate_molecules.py ${MOLECULES} ${SRC} -r
 echo "Calling ${REFERENCE_DATA}/generate_basis.py ${BASIS_SETS} ${SRC} -r"
 ${PYTHON} ${REFERENCE_DATA}/generate_basis.py ${BASIS_SETS} ${SRC} -r
 
-echo "Calling ${REFERENCE_DATA}/generate_atomconfigs.py ${ATOMIC_INFO} ${SRC}"
-${PYTHON} ${REFERENCE_DATA}/generate_atomconfigs.py ${ATOMIC_INFO} ${SRC}
-
 echo "Calling ${REFERENCE_DATA}/generate_ptable_configs.py ${ATOMIC_INFO} ${SRC}"
 ${PYTHON} ${REFERENCE_DATA}/generate_ptable_configs.py ${ATOMIC_INFO} ${SRC}

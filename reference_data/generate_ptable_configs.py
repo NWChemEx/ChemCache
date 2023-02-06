@@ -67,7 +67,6 @@ class AtomicData:
         self.name = ""
         self.Z = 0
         self.confstr = ""
-        self.config = tuple()
         self.confdict = defaultdict(int)
 
     @property
@@ -81,15 +80,15 @@ class AtomicData:
         return confs
 
     @property
-    def config_2(self):
+    def config(self):
         confs = [0]*(LMAX+1)
         for li in range(LMAX+1):
             for ni in range(NMAX):
                 confs[li] += self.confdict[ni+li+1,i_to_lchar[li]]
-        return confs
+        return tuple(confs)
 
     def __repr__(self):
-        return f"{self.Z} {self.name} {self.sym}\n{self.confstr}\n{self.config}\n{self.config_2}\n{self.confdict}\n{self.config_full}"
+        return f"{self.Z} {self.name} {self.sym}\n{self.confstr}\n{self.config}\n{self.confdict}\n{self.config_full}"
 
 
 def parse_symbols(name_file: str, atoms: dict) -> None:
@@ -152,28 +151,21 @@ def parse_nist_configs(ip_file: str, atoms: dict) -> None:
             conf_s = conf_s0.strip('[').split(']')  # separate core if present
             # get core config
             if len(conf_s) == 2:
-                ccore = atoms[conf_s[0]].config
-                ccore_dict = atoms[conf_s[0]].confdict.copy()
+                conf_dict = atoms[conf_s[0]].confdict.copy()
             else:
-                ccore = (0,)*(LMAX+1)
-                ccore_dict = defaultdict(int)
+                conf_dict = defaultdict(int)
 
             # get string representing remaining elec config
             cval_s = conf_s[-1]
             revcval_s = cval_s[::-1]  # reverse config (easier to parse)
             shells = re.findall(r'(\d*[a-z]\d)', revcval_s)
-            cval = [0]*(LMAX+1)  # valence config
             for shellrev in shells:
                 shell = shellrev[::-1]  # put back in correct order
                 matches = re.match(r'(?P<n>\d)(?P<l>\w)(?P<e>\d*)', shell)
                 # 1-elec shells have implicit 'e'
                 nelec = int(matches['e']) if matches['e'] else 1
-                cval[lchar_to_i[matches['l']]] += nelec
-                ccore_dict[int(matches['n']),matches['l']] += nelec
-            # add sum contributions and add to dict
-            atoms[Z].config = tuple(sum(nc) for nc in zip(cval, ccore))
-            atoms[atoms[Z].sym].config = atoms[Z].config
-            atoms[Z].confdict = ccore_dict.copy()
+                conf_dict[int(matches['n']),matches['l']] += nelec
+            atoms[Z].confdict = conf_dict.copy()
             atoms[atoms[Z].sym].confdict = atoms[Z].confdict
             atoms[Z].confstr = conf_s0 
             atoms[atoms[Z].sym].confstr = atoms[Z].confstr
@@ -196,7 +188,7 @@ def _write_pt_configs(out_dir: str, atoms: dict) -> None:
     :type atoms: dict of AtomicData {Z: (config, Sym, name)
     """
 
-    out_file = os.path.join(out_dir, "load_configs.cpp")
+    out_file = os.path.join(out_dir, "load_elec_configs.cpp")
 
     sorted_Z = list(sorted([x for x in atoms.keys() if isinstance(x, int)]))
     n_elements = len(sorted_Z)
@@ -243,6 +235,62 @@ void load_elec_configs(chemist::PeriodicTable& pt) {
 """
         )
 
+def _write_array_configs(out_dir: str, atoms: dict) -> None:
+    """Generate a file containing a function which returns the atomic
+    configurations as a std::array<std::array<size_t,n_l>,n_elements>
+
+    :param out_dir: Output directory for the generated header file.
+    :type out_dir: str
+
+    :param atoms: Collection of atoms.
+    :type atoms: dict of AtomicData {Z: (config, Sym, name)
+    """
+
+    out_file = os.path.join(out_dir, "atomic_configurations", "atomconfigs.cpp")
+
+    sorted_Z = list(sorted([x for x in atoms.keys() if isinstance(x, int)]))
+    n_elements = len(sorted_Z)
+    n_l = len(atoms[sorted_Z[0]].config)
+
+    tab = "    "
+    with open(out_file, 'w') as fout:
+        helpers.write_warning(fout, os.path.basename(__file__))
+
+        # Start of the file
+        fout.write(
+            """#include "chemcache/chemcache.hpp"
+#include <array>
+
+namespace chemcache {
+
+inline auto atomconfigs() {
+    return std::array<std::array<size_t, N_L>, N_ELEMENTS> {{
+""".replace("N_L",str(n_l)).replace("N_ELEMENTS",str(n_elements))
+        )
+
+        # Add atoms and isotopes to the PeriodicTable
+        for Z in sorted_Z:
+            #conf_i, sym_i, name_i = atoms[Z]
+            ai = atoms[Z]
+            # Comment atomic number, symbol, name
+            comment_str = f" // Z = {Z:>3d}, {ai.sym:<2s}, {ai.name:<14s}"
+
+            # Print config and comment
+            fout.write(tab + "{" 
+            + ", ".join(f"{ni:>2d}" for ni in ai.config)
+            + "},"
+            + comment_str + "\n") 
+
+
+        # End of the file
+        fout.write(
+            tab + """}};
+} // function atomconfigs
+
+} // namespace chemcache
+"""
+        )
+
 def main(args: argparse.Namespace) -> None:
     """Entry point function to generate atomic info files.
 
@@ -266,14 +314,15 @@ def main(args: argparse.Namespace) -> None:
     parse_symbols(name_file, atoms)
     parse_nist_configs(ip_file, atoms)
     # add dummy element zero for nicer indexing
-    atoms[0].config = (0,0,0,0)
+    #atoms[0].config = (0,0,0,0)
     # remove elements without configs
     # TODO: check that remaining elements are contiguous from 0?
-    atoms = {z:a for z,a in atoms.items() if a.config}
+    atoms = {z:a for z,a in atoms.items() if sum(a.config) == z}
     for z,atom in atoms.items():
         print(atom)
 
     _write_pt_configs(out_dir, atoms)
+    _write_array_configs(out_dir, atoms)
 
 
 def parse_args() -> argparse.Namespace:
