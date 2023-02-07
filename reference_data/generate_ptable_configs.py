@@ -132,18 +132,15 @@ def parse_nist_configs(ip_file: str, atoms: dict) -> None:
     :type atoms: dict of AtomicData
     """
 
-    new_atom = r"(\d+)\s+[a-zA-Z]{1,2}\s+[a-zA-Z]+\s+"
-    new_iso = r"(\d+)\**\s+(\d+\.\d+)\s((\d+\s?)+)+"
-    new_atom += new_iso
-
     def parse_cfg_line(line: str, atoms: dict) -> None:
-        """Parse the isotope match and add it to the given atom.
+        """Parse a line from the NIST data file and add the config to the
+        corresponding atom in the dict atoms.
 
-        :param match: Regex match groups for an isotope
-        :type match: tuple
+        :param line: line from NIST file: Z, name, config, term symbol
+        :type line: str
 
-        :param atom: Atom to add the isotope to
-        :type atom: AtomicData
+        :param atoms: dict of atoms
+        :type atoms: dict
         """
         try:
             Z, name, conf_s0, _ = line.split()
