@@ -14,8 +14,9 @@
 # limitations under the License.
 
 
-"""This script is used to create the data array containing ground state atomic
-electronic configurations used for the SAD guess module.
+"""This script parses a file containing ground state atomic electronic
+configurations and generates a function to load that data into a PeriodicTable
+object.
 
 For readability and convenience we use a few abbreviations throughout this
 script:
@@ -181,8 +182,8 @@ def parse_nist_configs(ip_file: str, atoms: dict) -> None:
         :type atoms: dict[tuple[int,str],int]
         """
         try:
-            # ATOMCONFIGS-HF[S].txt have Z, name, conf
-            # NIST-ATOMICION.txt has Z, name, conf, IP sym
+            # ATOMCONFIGS-HF[S].txt have "Z, name, conf"
+            # NIST-ATOMICION.txt has "Z, name, conf, IP sym"
             Z, name, conf_s0 = line.split()[:3]
             Z = int(Z)
 
@@ -229,6 +230,7 @@ def _write_pt_configs(out_dir: str, atoms: dict) -> None:
 
     out_file = os.path.join(out_dir, "load_elec_configs.cpp")
 
+    # atoms contains duplicate values with Z and sym keys; only use Z
     sorted_Z = list(sorted([x for x in atoms.keys() if isinstance(x, int)]))
 
     tab = "    "
@@ -266,60 +268,6 @@ void load_elec_configs(chemist::PeriodicTable& pt) {
 } // namespace chemcache
 """)
 
-def _write_array_configs(out_dir: str, atoms: dict) -> None:
-    """Generate a file containing a function which returns the atomic
-    configurations as a std::array<std::array<std::size_t,n_l>,n_elements>
-
-    :param out_dir: Output directory for the generated header file.
-    :type out_dir: str
-
-    :param atoms: Collection of atoms.
-    :type atoms: dict of AtomicData {Z: (config, Sym, name)
-    """
-
-    out_file = os.path.join(out_dir, "atomic_configurations", "atomconfigs.cpp")
-
-    sorted_Z = list(sorted([x for x in atoms.keys() if isinstance(x, int)]))
-    n_elements = len(sorted_Z)
-    n_l = len(atoms[sorted_Z[0]].config)
-
-    tab = "    "
-    with open(out_file, 'w') as fout:
-        helpers.write_warning(fout, os.path.basename(__file__))
-
-        # Start of the file
-        fout.write(
-            """#include "chemcache/chemcache.hpp"
-#include <array>
-
-namespace chemcache {
-
-inline auto atomconfigs() {
-    return std::array<std::array<std::size_t, N_L>, N_ELEMENTS> {{
-""".replace("N_L",str(n_l)).replace("N_ELEMENTS",str(n_elements))
-        )
-
-        # Add atoms and isotopes to the PeriodicTable
-        for Z in sorted_Z:
-            ai = atoms[Z]
-            # Comment atomic number, symbol, name
-            comment_str = f" // Z = {Z:>3d}, {ai.sym:<2s}, {ai.name:<14s}"
-
-            # Print config and comment
-            fout.write(tab + "{" 
-            + ", ".join(f"{ni:>2d}" for ni in ai.config)
-            + "},"
-            + comment_str + "\n") 
-
-
-        # End of the file
-        fout.write(
-            tab + """}};
-} // function atomconfigs
-
-} // namespace chemcache
-"""
-        )
 
 def main(args: argparse.Namespace) -> None:
     """Entry point function to generate atomic info files.
@@ -337,17 +285,13 @@ def main(args: argparse.Namespace) -> None:
     #ip_file = os.path.join(data_dir, "NIST-ATOMICION.txt")
 
     # Parse atomic data
-    atoms = dict()
+    atoms = {}
     parse_symbols(name_file, atoms)
     parse_nist_configs(ip_file, atoms)
-    # add dummy element zero for nicer indexing
-    #atoms[0].config = (0,0,0,0)
     # remove elements without configs
-    # TODO: check that remaining elements are contiguous from 0?
     atoms = {z:a for z,a in atoms.items() if sum(a.config) == z}
 
     _write_pt_configs(out_dir, atoms)
-    #_write_array_configs(out_dir, atoms)
 
 
 def parse_args() -> argparse.Namespace:
