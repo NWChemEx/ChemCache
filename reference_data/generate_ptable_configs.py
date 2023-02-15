@@ -62,6 +62,7 @@ NMAX = 7
 i_to_lchar = 'spdfgh'[:LMAX+1]
 lchar_to_i = {c: i for i, c in enumerate(i_to_lchar)}
 
+
 class AtomicData:
     def __init__(self):
         self.sym = ""
@@ -83,7 +84,7 @@ class AtomicData:
         for li in range(LMAX+1):
             tmp = []
             for ni in range(NMAX):
-                tmp.append(self.confdict[ni+li+1,i_to_lchar[li]])
+                tmp.append(self.confdict[ni+li+1, i_to_lchar[li]])
             confs.append(tmp)
         return confs
 
@@ -98,7 +99,7 @@ class AtomicData:
         confs = [0]*(LMAX+1)
         for li in range(LMAX+1):
             for ni in range(NMAX):
-                confs[li] += self.confdict[ni+li+1,i_to_lchar[li]]
+                confs[li] += self.confdict[ni+li+1, i_to_lchar[li]]
         return tuple(confs)
 
     def __repr__(self):
@@ -133,6 +134,7 @@ def parse_symbols(name_file: str, atoms: dict) -> None:
                 atoms[k].name = name
                 atoms[k].Z = z
 
+
 def parse_config_str(sconf: str) -> dict:
     """
     parse an electronic configuration and return dict containing number
@@ -150,7 +152,7 @@ def parse_config_str(sconf: str) -> dict:
         matches = re.match(r'(?P<n>\d)(?P<l>\w)(?P<e>\d*)', shell)
         # 1-elec shells have implicit 'e'
         nelec = int(matches['e']) if matches['e'] else 1
-        conf_dict[int(matches['n']),matches['l']] += nelec
+        conf_dict[int(matches['n']), matches['l']] += nelec
     return dict(conf_dict)
 
 
@@ -206,7 +208,7 @@ def parse_nist_configs(ip_file: str, atoms: dict) -> None:
             # insert config dict and string into atoms dict
             atoms[Z].confdict = conf_dict.copy()
             atoms[atoms[Z].sym].confdict = atoms[Z].confdict
-            atoms[Z].confstr = conf_s0 
+            atoms[Z].confstr = conf_s0
             atoms[atoms[Z].sym].confstr = atoms[Z].confstr
         except Exception as e:
             print(f"skipping line: {line.strip()}")
@@ -257,9 +259,8 @@ void load_elec_configs(chemist::PeriodicTable& pt) {
 
             fout.write(
                 tab + f"pt.add_elec_config({Z:>3d}, {{"
-            + ",".join(f"{ni:>2d}" for ni in ai.config)
-            + "});\n\n") 
-
+                + ",".join(f"{ni:>2d}" for ni in ai.config)
+                + "});\n\n")
 
         # End of the file
         fout.write(
@@ -289,7 +290,7 @@ def main(args: argparse.Namespace) -> None:
     parse_symbols(name_file, atoms)
     parse_nist_configs(ip_file, atoms)
     # remove elements without configs
-    atoms = {z:a for z,a in atoms.items() if sum(a.config) == z}
+    atoms = {z: a for z, a in atoms.items() if sum(a.config) == z}
 
     _write_pt_configs(out_dir, atoms)
 
