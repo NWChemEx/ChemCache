@@ -345,8 +345,6 @@ def main(args: argparse.Namespace) -> None:
     # remove elements without configs
     # TODO: check that remaining elements are contiguous from 0?
     atoms = {z:a for z,a in atoms.items() if sum(a.config) == z}
-    for z,atom in atoms.items():
-        print(atom)
 
     _write_pt_configs(out_dir, atoms)
     #_write_array_configs(out_dir, atoms)
