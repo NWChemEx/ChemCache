@@ -43,6 +43,14 @@ TEST_CASE("Load into managers") {
 
         REQUIRE_NOTHROW(load_elements(pt));
     }
+
+    SECTION("load_elec_configs") {
+        chemist::PeriodicTable pt;
+
+        load_elements(pt);
+
+        REQUIRE_NOTHROW(load_elec_configs(pt));
+    }
 }
 
 TEST_CASE("Create default managers") {
