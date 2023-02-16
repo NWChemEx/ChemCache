@@ -1,0 +1,7 @@
+reference\_data.generate\_ptable\_configs module
+================================================
+
+.. automodule:: reference_data.generate_ptable_configs
+   :members:
+   :undoc-members:
+   :show-inheritance:

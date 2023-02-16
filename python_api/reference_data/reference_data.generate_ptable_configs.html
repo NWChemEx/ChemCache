@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>reference_data.generate_ptable_configs module &mdash; ChemCache 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ChemCache
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://nwchemex-project.github.io/ChemCache/chemcache_cxx_api/index.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ChemCache</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">reference_data.generate_ptable_configs module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/python_api/reference_data/reference_data.generate_ptable_configs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="module-reference_data.generate_ptable_configs">
+<span id="reference-data-generate-ptable-configs-module"></span><h1>reference_data.generate_ptable_configs module<a class="headerlink" href="#module-reference_data.generate_ptable_configs" title="Permalink to this heading"></a></h1>
+<p>This script parses a file containing ground state atomic electronic
+configurations and generates a function to load that data into a PeriodicTable
+object.</p>
+<p>For readability and convenience we use a few abbreviations throughout this
+script:</p>
+<ul class="simple">
+<li><p>Z: the atomic number of an atom</p></li>
+<li><p>Sym: the atomic symbol of an atom (e.g. H for hydrogen, He for helium)</p></li>
+</ul>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_ptable_configs</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">data_dir</span> <span class="n">src_dir</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="n">data_dir</span>         <span class="n">Data</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">atomic</span> <span class="n">information</span> <span class="n">files</span><span class="o">.</span>
+  <span class="n">src_dir</span>          <span class="n">Destination</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">generated</span> <span class="n">source</span> <span class="n">files</span><span class="o">.</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+</pre></div>
+</div>
+<p>This script looks for the following file(s):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">data_dir</span>  
+<span class="o">|</span>       <span class="n">ElementNames</span><span class="o">.</span><span class="n">txt</span>  
+<span class="o">|</span>       <span class="n">NIST</span><span class="o">-</span><span class="n">ATOMICION</span><span class="o">.</span><span class="n">txt</span>  
+</pre></div>
+</div>
+<p>This script creates the following file(s):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">src_dir</span><span class="o">/</span><span class="n">atomic_configurations</span>  
+<span class="o">|</span>       <span class="n">atomconfigs</span><span class="o">.</span><span class="n">cpp</span>  
+</pre></div>
+</div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="reference_data.generate_ptable_configs.AtomicData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">reference_data.generate_ptable_configs.</span></span><span class="sig-name descname"><span class="pre">AtomicData</span></span><a class="headerlink" href="#reference_data.generate_ptable_configs.AtomicData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="reference_data.generate_ptable_configs.AtomicData.config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#reference_data.generate_ptable_configs.AtomicData.config" title="Permalink to this definition"></a></dt>
+<dd><p>return reduced config (number of electrons per l)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(Ns, Np, Nd, …)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="reference_data.generate_ptable_configs.AtomicData.config_full">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config_full</span></span><a class="headerlink" href="#reference_data.generate_ptable_configs.AtomicData.config_full" title="Permalink to this definition"></a></dt>
+<dd><p>return full electronic configuration (number of electrons for each (l, n))</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>number of electrons for each (l, n); indexed by [l][n-(l+1)]</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list[list[int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reference_data.generate_ptable_configs.main">
+<span class="sig-prename descclassname"><span class="pre">reference_data.generate_ptable_configs.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.generate_ptable_configs.main" title="Permalink to this definition"></a></dt>
+<dd><p>Entry point function to generate atomic info files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>argparse.Namespace</em>) – Command line argument namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reference_data.generate_ptable_configs.parse_args">
+<span class="sig-prename descclassname"><span class="pre">reference_data.generate_ptable_configs.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Namespace</span></span></span><a class="headerlink" href="#reference_data.generate_ptable_configs.parse_args" title="Permalink to this definition"></a></dt>
+<dd><p>Parse command line arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Values of command line arguments.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>argparse.Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reference_data.generate_ptable_configs.parse_config_str">
+<span class="sig-prename descclassname"><span class="pre">reference_data.generate_ptable_configs.</span></span><span class="sig-name descname"><span class="pre">parse_config_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sconf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#reference_data.generate_ptable_configs.parse_config_str" title="Permalink to this definition"></a></dt>
+<dd><p>parse an electronic configuration and return dict containing number
+of electrons in each shell, indexed by (n,l)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dictionary with number of electrons in each shell, indexed by
+(n, l) where n is an int and l is a str with length 1</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict[tuple[int,str],int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reference_data.generate_ptable_configs.parse_nist_configs">
+<span class="sig-prename descclassname"><span class="pre">reference_data.generate_ptable_configs.</span></span><span class="sig-name descname"><span class="pre">parse_nist_configs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.generate_ptable_configs.parse_nist_configs" title="Permalink to this definition"></a></dt>
+<dd><p>Parses file containing ionization energy data from the NIST Atomic
+Spectra Database or other file with similar format
+each line should contain “Z element_name atomic_config […]”</p>
+<p>If an element symbol is used to represent a closed-shell core in a config,
+the config for that element must be parsed and added to <cite>atoms</cite> before
+it is used to represent a core configuration.
+e.g. Ne config must be added before [Ne]3s2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ip_file</strong> – path to file containing configs</p></li>
+<li><p><strong>atoms</strong> (<em>dict</em><em> of </em><a class="reference internal" href="#reference_data.generate_ptable_configs.AtomicData" title="reference_data.generate_ptable_configs.AtomicData"><em>AtomicData</em></a>) – Collection of atoms. Loaded configs will be added here.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reference_data.generate_ptable_configs.parse_symbols">
+<span class="sig-prename descclassname"><span class="pre">reference_data.generate_ptable_configs.</span></span><span class="sig-name descname"><span class="pre">parse_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.generate_ptable_configs.parse_symbols" title="Permalink to this definition"></a></dt>
+<dd><p>Parse the given symbols file and add them to the existing atom 
+collection.
+Atoms will be added twice (same data with two keys) to allow access via
+either Z or Sym</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name_file</strong> (<em>str</em>) – File with atomic numbers, symbols, and names for atoms.</p></li>
+<li><p><strong>atoms</strong> (<em>dict</em>) – Current collection of atoms. Loaded atoms will be added here.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, NWChemEx Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
