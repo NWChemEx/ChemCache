@@ -43,7 +43,7 @@ be present before running it.
    |       nwx_atomic_densities.hpp
    |
    +---src
-   |   \---atomic_densities
+   |   \---atomic_densities (this directory must be made manually before run this python script)
    |           add_density.cmake
    |           <all_basis_set_files>
    |       nwx_atomic_densities.cpp
@@ -63,11 +63,11 @@ def _print_pimpl_header(f):
 """#include <string>
 #include <stdexcept>
 
-#include \"chemcache/nwx_atomic_densities.hpp\"
+#include \"nwx_atomic_densities.hpp\"
 
 namespace chemcache::detail_ {
             
-    std::vector<std::vector<double>> get_atomic_density_(const std::string& name, std::size_t Z) {         
+    std::vector<double> get_atomic_density_(const std::string& name, std::size_t Z) {         
 """)
 
 def _print_pimpl_footer(f):
@@ -84,11 +84,11 @@ def _print_basis_header(f, bs_name):
     f.write(
 """#include <stdexcept>
  
-#include \"chemcache/nwx_atomic_densities.hpp\"
+#include \"../nwx_atomic_densities.hpp\"
 
 namespace chemcache::detail_ {{
  
-std::vector<std::vector<double>> {}_density(std::size_t Z) {{
+std::vector<double> {}_density(std::size_t Z) {{
     switch(Z) {{         
 """.format(bs_name))
 
@@ -113,12 +113,12 @@ def _print_basis_footer(f):
 
 def _print_atom_basis(f, z, density):
     tab = "    "
-    f.write("{}case({}) : {{\n{}return std::vector<std::vector<double>>{{\n".format(tab*2, z, tab*3))
+    f.write("{}case({}) : {{\n{}return std::vector<double>{{\n".format(tab*2, z, tab*3))
     for line in density.lstrip().rstrip().splitlines():
-        f.write("{}{{".format(tab*4))
-        for x in line.split():
+        f.write("{}".format(tab*4)) # 1D vector only
+        for x in line.strip().split():
             f.write(" {},".format(x))
-        f.write("},\n")
+        f.write("\n")
     f.write("{}}}; //End atomic density\n{}}} //End case\n".format(tab*3, tab*2))
 
 def _write_bases(inc_dir, src_dir, bases):
@@ -127,13 +127,14 @@ def _write_bases(inc_dir, src_dir, bases):
         _print_pimpl_header(f)
         with open(os.path.join(inc_dir, "nwx_atomic_densities.hpp"), 'w') as g:
             _print_basis_list(g)
+            g.write("\tstd::vector<double> get_atomic_density_(const std::string& name, std::size_t Z);\n")
             f.write("{}".format(tab*2))
             for bs_name, bs in sorted(bases.items()):
                 s_name = helpers.sanitize_basis_name(bs_name)
                 d_name = helpers.desanitize_basis_name(bs_name)
                 f.write("if(name == \"{}\") {{ ".format(d_name))
                 f.write("return {}_density(Z); ".format(s_name))
-                g.write("std::vector<std::vector<double>> {}_density(std::size_t Z);\n".format(s_name))
+                g.write("\tstd::vector<double> {}_density(std::size_t Z);\n".format(s_name))
                 bs_file_name = "{}.cpp".format(bs_name)
                 bs_path = os.path.join(src_dir,"atomic_densities", bs_file_name)
                 with open(bs_path, 'w') as h:
@@ -154,7 +155,8 @@ def _write_bases(inc_dir, src_dir, bases):
         f.write(")")
 
 def _parse_densities_xml(filepaths, sym2Z) -> dict:
-    """Parse atomic density files in XML format.
+    """Parse atomic density files in XML format. 
+    Deprecated as new atomic density format is adopted. Y. Z. 02/23/23
 
     :param filepaths: Full paths to atomic density files.
     :type filepaths: list of str
@@ -183,7 +185,40 @@ def _parse_densities_xml(filepaths, sym2Z) -> dict:
 
     return basis_sets
 
-def _parse_densities(filepaths, sym2Z, extension=".xml") -> dict:
+def _parse_densities_dat(filepaths, sym2Z) -> dict:
+    """Parse atomic density files in .dat format. 
+
+    :param filepaths: Full paths to atomic density files.
+    :type filepaths: list of str
+
+    :param sym2Z: Mapping from lowercased atomic symbols to atomic numbers
+    :type sym2Z: dict
+    
+    :return: Collection of atomic densities sorted by basis set and element
+    :rtype: dict
+    """
+
+    basis_sets = {}
+    for filepath in filepaths:
+        basis_set = os.path.splitext(os.path.basename(filepath))[0]
+
+        basis_sets[basis_set] = {}
+
+        with open(filepath,"r") as f:
+            for line in f:
+                line1 = line.strip().split()
+                if ((len(line1) == 1) and (line1[0].isalpha())):
+                    atom_z = sym2Z[line1[0].lower()]
+                    guessDM = ''
+                    line2 = f.readline().strip()
+                    while (len(line2) > 0):
+                        guessDM += (line2+'\n')
+                        line2 = f.readline().strip()
+                basis_sets[basis_set][atom_z] =  guessDM   
+
+    return basis_sets
+
+def _parse_densities(filepaths, sym2Z, extension=".dat") -> dict:
     """Parse atomic density files of the specified format.
 
     :param filepaths: Full paths to atomic density files.
@@ -192,7 +227,7 @@ def _parse_densities(filepaths, sym2Z, extension=".xml") -> dict:
     :param sym2Z: Mapping from lowercased atomic symbols to atomic numbers
     :type sym2Z: dict
 
-    :param extension: File format extension to parse, defaults to".xml"
+    :param extension: File format extension to parse, defaults to".dat"
     :type extension: str, optional
 
     :raises RuntimeError: Unsupported atomic density file format.
@@ -201,7 +236,9 @@ def _parse_densities(filepaths, sym2Z, extension=".xml") -> dict:
     :rtype: dict
     """
 
-    if (extension == ".xml"):
+    if (extension == ".dat"):
+        return _parse_densities_dat(filepaths, sym2Z)
+    elif (extension == ".xml"):
         return _parse_densities_xml(filepaths, sym2Z)
     else:
         raise RuntimeError(
@@ -215,7 +252,7 @@ def main(args: argparse.Namespace) -> None:
     :type args: argparse.Namespace
     """
 
-    extensions = [ ".xml" ]
+    extensions = [ ".dat" ]
 
     # Set include directory to default src_dir path if no path is specified
     if (args.inc == ""):

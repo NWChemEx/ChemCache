@@ -41,8 +41,8 @@ mkdir -p "${SRC}/bases"
 echo "Calling ${REFERENCE_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${SRC}"
 ${PYTHON} ${REFERENCE_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${SRC}
 
-# echo "Calling ${REFERENCE_DATA}/generate_densities.py"
-# ${PYTHON} ${REFERENCE_DATA}/generate_densities.py ${DENSITIES} -i ${INC} ${SRC} ${TESTS} -r
+echo "Calling ${REFERENCE_DATA}/generate_densities.py"
+${PYTHON} ${REFERENCE_DATA}/generate_densities.py ${DENSITIES} -i ${INC} ${SRC} ${TESTS} -r
 
 echo "Calling ${REFERENCE_DATA}/generate_molecules.py ${MOLECULES} ${SRC} -r"
 ${PYTHON} ${REFERENCE_DATA}/generate_molecules.py ${MOLECULES} ${SRC} -r
