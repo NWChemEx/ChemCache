@@ -45,6 +45,7 @@ chemist::PeriodicTable nwx_periodic_table() {
     chemist::PeriodicTable pt;
     load_elements(pt);
     load_elec_configs(pt);
+    load_atom_dm(pt);
 
     return pt;
 }
