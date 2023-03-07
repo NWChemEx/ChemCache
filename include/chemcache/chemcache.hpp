@@ -67,6 +67,24 @@ void load_elements(chemist::PeriodicTable& pt);
 void load_elec_configs(chemist::PeriodicTable& pt);
 
 /**
+ * @brief Load the precalculated density matrix with the basis set for 
+ *        atom Z into a PeriodicTable (non-default case).
+ *
+ * @param[in] Z Atomic number
+ * @param[in] basis_name the name of the basis set to generate the density matrix
+ * @param[out] pt PeriodicTable to load data into
+ */
+void load_atom_dm(chemist::PeriodicTable::size_type Z, std::string basis_name, chemist::PeriodicTable& pt);
+
+/**
+ * @brief Load the precalculated density matrix with the default basis set (STO-3G) and 
+ *        for all the corresponding atoms into a PeriodicTable.
+ *
+ * @param[out] pt PeriodicTable to load data into
+ */
+void load_atom_dm(chemist::PeriodicTable& pt);
+
+/**
  * @brief Creates a basis set manager with NWX default basis sets pre-loaded.
  *
  * @return chemist::BasisSetManager Basis set manager with defaults loaded

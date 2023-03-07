@@ -14,40 +14,21 @@
  * limitations under the License.
  */
 
-/**
- * @file chemcache.cpp
+/*
+ * The empty functions in this file would be auto populated 
+ * by: generate_ptable_configs.py
  *
- * @brief Implementation of chemcache.hpp API
+ * NOTE: Any modifications made in this file will be lost next time
+ *       generate_ptable_configs.py is run.
  */
 
 #include "chemcache/chemcache.hpp"
+#include <chemist/chemist.hpp>
 
 namespace chemcache {
 
-chemist::BasisSetManager nwx_basis_set_manager() {
-    chemist::BasisSetManager bsm;
-    load_basis_sets(bsm);
-
-    return bsm;
-}
-
-chemist::MoleculeManager nwx_molecule_manager() {
-    chemist::MoleculeManager mm;
-    chemist::PeriodicTable pt;
-
-    load_elements(pt);
-    load_molecules(mm, pt);
-
-    return mm;
-}
-
-chemist::PeriodicTable nwx_periodic_table() {
-    chemist::PeriodicTable pt;
-    load_elements(pt);
-    load_elec_configs(pt);
-    load_atom_dm(pt);
-
-    return pt;
-}
+	void load_atom_dm(chemist::PeriodicTable::size_type Z, 
+			std::string basis_name, chemist::PeriodicTable& pt) {}
+	void load_atom_dm(chemist::PeriodicTable& pt) {}
 
 } // namespace chemcache
