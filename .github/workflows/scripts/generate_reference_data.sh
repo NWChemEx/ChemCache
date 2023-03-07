@@ -23,7 +23,8 @@ SRC="src/chemcache"
 # Set data directories
 ATOMIC_INFO="${REFERENCE_DATA}/physical_data"
 BASIS_SETS="${REFERENCE_DATA}/basis_sets"
-DENSITIES="${REFERENCE_DATA}/atomic_densities"
+DENSITIES="${REFERENCE_DATA}/atomic_densities/default"
+TESTS="tests/chemcache"
 MOLECULES="${REFERENCE_DATA}/molecules"
 
 # Remove existing source files
@@ -42,7 +43,7 @@ echo "Calling ${REFERENCE_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${SRC}"
 ${PYTHON} ${REFERENCE_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${SRC}
 
 echo "Calling ${REFERENCE_DATA}/generate_densities.py"
-${PYTHON} ${REFERENCE_DATA}/generate_densities.py ${DENSITIES} -i ${INC} ${SRC} ${TESTS} -r
+${PYTHON} ${REFERENCE_DATA}/generate_densities.py ${DENSITIES} ${SRC} ${TESTS} -r
 
 echo "Calling ${REFERENCE_DATA}/generate_molecules.py ${MOLECULES} ${SRC} -r"
 ${PYTHON} ${REFERENCE_DATA}/generate_molecules.py ${MOLECULES} ${SRC} -r
@@ -52,3 +53,6 @@ ${PYTHON} ${REFERENCE_DATA}/generate_basis.py ${BASIS_SETS} ${SRC} -r
 
 echo "Calling ${REFERENCE_DATA}/generate_ptable_configs.py ${ATOMIC_INFO} ${SRC}"
 ${PYTHON} ${REFERENCE_DATA}/generate_ptable_configs.py ${ATOMIC_INFO} ${SRC}
+
+echo "Calling ${REFERENCE_DATA}/generate_ptable_atomdm.py ${SRC}"
+${PYTHON} ${REFERENCE_DATA}/generate_ptable_atomdm.py ${SRC}

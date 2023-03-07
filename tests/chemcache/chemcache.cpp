@@ -52,7 +52,7 @@ TEST_CASE("Load into managers") {
         REQUIRE_NOTHROW(load_elec_configs(pt));
     }
 
-    SECTION("load_atom_dm") {
+    SECTION("load_atom_dm, non-default case") {
         chemist::PeriodicTable pt;
 
         pt.insert(8, chemist::Atom(8ul, 29165.122045980286, "O"));
@@ -98,6 +98,20 @@ TEST_CASE("Load into managers") {
         REQUIRE(corr1 == pt.get_atom_dm(6, "STO-3G"));
         REQUIRE(corr2 == pt.get_atom_dm(7, "3-21G"));
         REQUIRE(corr3 == pt.get_atom_dm("O", "6-31G")); // failed if O is not explicitly loaded
+    }
+
+    SECTION("load_atom_dm, default case") {
+        chemist::PeriodicTable pt;
+
+        REQUIRE_NOTHROW(load_atom_dm(pt));
+
+        chemist::PeriodicTable::atom_dm_t corr1 = {  2.12007958, -0.50455749, 0.00000000, 0.00000000, 0.00000000, -0.50455749,
+                                                     2.12007958, 0.00000000, 0.00000000, 0.00000000, 0.00000000, 0.00000000,
+                                                     1.66666667, 0.00000000, 0.00000000, 0.00000000, 0.00000000, 0.00000000,
+                                                     1.66666667, 0.00000000, 0.00000000, 0.00000000, 0.00000000, 0.00000000,
+                                                     1.66666667};
+                                            
+        REQUIRE(corr1 == pt.get_atom_dm(9, "STO-3G"));
     }
 }
 
