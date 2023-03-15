@@ -63,7 +63,7 @@ namespace chemcache {
 
         # Default case: loading the STO-3G densities to the PeriodicTable
         for Z in range(1,54):
-            fout.write(tab + tab +"pt.add_atom_dm({}, \"STO-3G\", chemcache::detail_::get_atomic_density_(\"STO-3G\", {}));\n".format(Z,Z))
+            fout.write(tab + tab +"pt.add_atom_dm({}, \"sto-3g\", chemcache::detail_::get_atomic_density_(\"STO-3G\", {}));\n".format(Z,Z))
         # End of the file
         fout.write(
             tab+"""} // function load_atom_dm for the default case
