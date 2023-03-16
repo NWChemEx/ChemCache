@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-""" Python script to generate all atomic density matrices with NWChem calculations
+""" Python script to generate all atomic density matrices for basis sets in the NWChem library 
+    with NWChem calculations
 
 # Usage: to run this script, 1) If you only want to generate atomic density matrice for 
                                 several basis sets, you can comment out the line 
@@ -33,6 +34,9 @@
 #
 # The atomic density matrices are stored as text blocks representing the 1-D flatten version of
 # the corresponding 2-D matrices.
+# This script works only for basis sets defined in the NWChem library (see the dictionary 
+# basis_elements below). For the same calculation with user defined basis sets, please use
+# another script genbase_nwchem_dm.py.
 """
 
 
