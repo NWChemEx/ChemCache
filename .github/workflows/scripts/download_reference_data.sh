@@ -25,13 +25,13 @@ MOLECULES="${REFERENCE_DATA}/molecules/default"
 
 # Remove existing downloaded data files
 # rm -rf "${ATOMIC_INFO}"
-rm -rf "${BASIS_SETS}"
+#rm -rf "${BASIS_SETS}"
 # rm -rf "${DENSITIES}"
 # rm -rf "${MOLECULES}"
 
 # Recreate necessary data subdirectories
 # mkdir -p "${ATOMIC_INFO}"
-mkdir -p "${BASIS_SETS}"
+#mkdir -p "${BASIS_SETS}"
 # mkdir -p "${DENSITIES}"
 # mkdir -p "${MOLECULES}"
 
