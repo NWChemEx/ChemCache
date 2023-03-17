@@ -61,9 +61,9 @@ namespace chemcache {
     void load_atom_dm(chemist::PeriodicTable& pt) {
 """)
 
-        # Default case: loading the STO-3G densities to the PeriodicTable
-        for Z in range(1,54):
-            fout.write(tab + tab +"pt.add_atom_dm({}, \"STO-3G\", chemcache::detail_::get_atomic_density_(\"STO-3G\", {}));\n".format(Z,Z))
+        # Default case: loading the mini (basis set from GAMESS) densities to the PeriodicTable
+        for Z in range(1,86):
+            fout.write(tab + tab +"pt.add_atom_dm({}, \"mini\", chemcache::detail_::get_atomic_density_(\"mini\", {}));\n".format(Z,Z))
         # End of the file
         fout.write(
             tab+"""} // function load_atom_dm for the default case

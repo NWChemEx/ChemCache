@@ -1,10 +1,18 @@
 #!/usr/bin/python3
 
-""" Python script to generate all atomic density matrices with NWChem calculations
+""" Python script to generate all atomic density matrices for basis sets in the NWChem library 
+    with NWChem calculations
 
-# Usage: to run this script, 1) Set up the basis set name below ( basis_name = ***, following 
-#                               the naming convention shown in the basis_elements dictionary 
-#                               below); 
+# Usage: to run this script, 1) If you only want to generate atomic density matrice for 
+                                several basis sets, you can comment out the line 
+                                "for basis_name in basis_elements:" and uncomment the line
+                                "for basis_name in small_basis_elements:", then copy the
+                                corresponding key-value pairs in the basis_elements dictionary
+                                to the small_basis_elements dictionary; 
+                             1') Or you just want to generate atomic density matrices for all
+                                available basis sets, you can comment out the line 
+                                "for basis_name in small_basis_elements:" and uncomment the line
+                                "for basis_name in basis_elements:";
 #                            2) Modify the line "subprocess.run(["./mynw.sh", 'tmp'])" below,
 #                               make it adapted to the path to your NWChem script or executable. 
 #                               Note here the input file is "tmp.nw" and the output file is set 
@@ -12,6 +20,11 @@
 #                            3) Make two directories "scratch" and "perm" under the current
 #                               directory to hold the scratch and permanent files of NWChem
 #                               calculations.
+#                            4) Simply run the script in the command line as: ./batch_nwchem_dm.py
+#                               The script will try to map the basis set in your choice of 
+#                               dictionary to this list of NWChemEx basis sets. If the mapping is
+#                               successful, atomic density matrix data files with the basis set
+#                               names in the NWChemEx convention will be generated.
 #
 # The script write a NWChem input file (tmp.nw) for each atom in the value list corresponding to
 # the basis name key, and call NWChem to run a simple SAD guess generation calculaton (noscf).
@@ -20,7 +33,10 @@
 # stored accumulatively in a "basis_name.dat" file (e. g., STO-3G.dat).
 #
 # The atomic density matrices are stored as text blocks representing the 1-D flatten version of
-# the 2-D matrices.
+# the corresponding 2-D matrices.
+# This script works only for basis sets defined in the NWChem library (see the dictionary 
+# basis_elements below). For the same calculation with user defined basis sets, please use
+# another script genbase_nwchem_dm.py.
 """
 
 
@@ -53,9 +69,10 @@ def atom_sym2num(sym):
 # To get the atomic symbol from the corresponding atomic number
 #print(list(elements.keys())[list(elements.values()).index(3)])
 
-# The following dictionary contain the information of the basis set names and 
+# The following dictionary contains the information of the basis set names and 
 # the atoms for which the corresponding basis sets are available
 # Info refomated from https://nwchemgit.github.io/AvailableBasisSets.html
+# Basis set names are in the convention of NWChem
 
 basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca ',
 '3-21++G*' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
@@ -82,10 +99,10 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 '6-31G*' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
 '6-31G*-Blaudeau' : '  K Ca ',
 '6-31G**' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
-'Ahlrichs_pVDZ' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
-'Ahlrichs_TZV' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
+'Ahlrichs pVDZ' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
+'Ahlrichs TZV' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
 'Ahlrichs_VDZ' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
-'Ahlrichs_VTZ' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
+'Ahlrichs VTZ' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
 'ANO-RCC' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu Am Cm ',
 'apr-cc-pV(Q+d)Z' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
 'aug-cc-pCV5Z' : '  B C N O F Ne Al Si P S Cl Ar ',
@@ -139,11 +156,11 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'aug-pcS-4' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
 'aug-pV7Z' : '  C N O F S ',
 'B2' : '  Zn ',
-'Bauschlicher_ANO' : '  Sc Ti V Cr Mn Fe Co Ni Cu ',
-'Binning/Curtiss_SV' : '  Ga Ge As Se Br Kr ',
-'Binning/Curtiss_SVP' : '  Ga Ge As Se Br Kr ',
-'Binning/Curtiss_VTZ' : '  Ga Ge As Se Br Kr ',
-'Binning/Curtiss_VTZP' : '  Ga Ge As Se Br Kr ',
+'Bauschlicher ANO' : '  Sc Ti V Cr Mn Fe Co Ni Cu ',
+'Binning/Curtiss SV' : '  Ga Ge As Se Br Kr ',
+'Binning/Curtiss SVP' : '  Ga Ge As Se Br Kr ',
+'Binning/Curtiss VTZ' : '  Ga Ge As Se Br Kr ',
+'Binning/Curtiss VTZP' : '  Ga Ge As Se Br Kr ',
 'cc-pCV5Z' : '  B C N O F Ne Na Mg Al Si P S Cl Ar Ca ',
 'cc-pCV6Z' : '  B C N O F Ne Al Si P S Cl Ar ',
 'cc-pCV6Z(old)' : '  O ',
@@ -201,9 +218,9 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'dhf-QZVP' : '  Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'dhf-SV(P)' : '  Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'dhf-TZVP' : '  Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
-'Dunning-Hay_Double_Rydberg' : '  B C N O F Ne Al Si P S Cl Ar ',
-'Dunning-Hay_Rydberg' : '  B C N O F Ne Al Si P S Cl Ar ',
-'DZ+Double_Rydberg' : '  B C N O F Ne Al Si P S Cl ',
+'Dunning-Hay Double Rydberg' : '  B C N O F Ne Al Si P S Cl Ar ',
+'Dunning-Hay Rydberg' : '  B C N O F Ne Al Si P S Cl Ar ',
+'DZ+Double Rydberg' : '  B C N O F Ne Al Si P S Cl ',
 'DZ+Rydberg' : '  B C N O F Ne Al Si P S Cl ',
 'DZ' : '  H Li B C N O F Ne Al Si P S Cl ',
 'DZP+Rydberg' : '  B C N O F Ne Al Si P S Cl ',
@@ -213,9 +230,9 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'DZVP' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe ',
 'Feller_Misc._CVDZ' : '  K ',
 'Feller' : '  K ',
-'Feller_Misc._CVTZ' : '  K ',
-'GAMESS_PVTZ' : '  H Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
-'GAMESS_VTZ' : '  H Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
+'Feller Misc. CVTZ' : '  K ',
+'GAMESS PVTZ' : '  H Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
+'GAMESS VTZ' : '  H Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
 'IGLO-II' : '  H B C N O F Al Si P S Cl ',
 'IGLO-III' : '  H B C N O F Al Si P S Cl ',
 'jul-cc-pV(D+d)Z' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
@@ -246,25 +263,25 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'maug-cc-pVTZ' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
 'may-cc-pV(Q+d)Z' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
 'may-cc-pV(T+d)Z' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
-'McLean/Chandler_VTZ' : '  Na Mg Al Si P S Cl Ar ',
+'McLean/Chandler VTZ' : '  Na Mg Al Si P S Cl Ar ',
 'MG3S' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar ',
 'MIDI!' : '  H C N O F Si P S Cl Br I ',
 'MIDI(Huzinaga)' : '  H He Li Be B C N O F Ne Na Al Si P S Cl Ar K Cs ',
 'MINI(Huzinaga)' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca ',
 'MINI(Scaled)' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca ',
-'modified_LANL2DZ' : '  Sc Ti V Cr Mn Fe Co Ni Cu Y Zr Nb Mo Tc Ru Rh Pd Ag La Hf Ta W Re Os Ir Pt Au ',
-'NASA_Ames_ANO' : '  H B C N O F Ne Al P Ti Fe Ni ',
-'NASA_Ames_ANO2' : '  Sc Ti V ',
-'NASA_Ames_cc-pCV5Z' : '  Ti ',
-'NASA_Ames_cc-pCVQZ' : '  Ti ',
-'NASA_Ames_cc-pCVTZ' : '  Ti ',
-'NASA_Ames_cc-pV5Z' : '  Ti Fe ',
-'NASA_Ames_cc-pVQZ' : '  Ti Fe ',
-'NASA_Ames_cc-pVTZ' : '  Ti Fe ',
-'Partridge_Uncontracted_1' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr ',
-'Partridge_Uncontracted_2' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
-'Partridge_Uncontracted_3' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
-'Partridge_Uncontracted_4' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
+'modified LANL2DZ' : '  Sc Ti V Cr Mn Fe Co Ni Cu Y Zr Nb Mo Tc Ru Rh Pd Ag La Hf Ta W Re Os Ir Pt Au ',
+'NASA Ames ANO' : '  H B C N O F Ne Al P Ti Fe Ni ',
+'NASA Ames ANO2' : '  Sc Ti V ',
+'NASA Ames cc-pCV5Z' : '  Ti ',
+'NASA Ames cc-pCVQZ' : '  Ti ',
+'NASA Ames cc-pCVTZ' : '  Ti ',
+'NASA Ames cc-pV5Z' : '  Ti Fe ',
+'NASA Ames cc-pVQZ' : '  Ti Fe ',
+'NASA Ames cc-pVTZ' : '  Ti Fe ',
+'Partridge Uncontracted 1' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr ',
+'Partridge Uncontracted 2' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
+'Partridge Uncontracted 3' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
+'Partridge Uncontracted 4' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
 'pc-0' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Ga Ge As Se Br Kr ',
 'pc-1' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
 'pc-2' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
@@ -294,13 +311,13 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'pV7Z' : '  H C N O F Ne S ',
 'Roos_ANO_DZ' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
 'Roos_ANO_TZ' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
-'Roos_Augmented_Double_Zeta_ANO' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
-'Roos_Augmented_Triple_Zeta_ANO' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
+'Roos Augmented Double Zeta ANO' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
+'Roos Augmented Triple Zeta ANO' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
 's3-21G' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
 's3-21G*' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
 's6-31G' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
 's6-31G*' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
-'Sadlej_pVTZ' : '  H Li Be C N O F Na Mg Si P S Cl K Ca Br Rb Sr I ',
+'Sadlej pVTZ' : '  H Li Be C N O F Na Mg Si P S Cl K Ca Br Rb Sr I ',
 'SDB-aug-cc-pVQZ' : '  Ga Ge As Se Br In Sn Sb Te I ',
 'SDB-aug-cc-pVTZ' : '  Ga Ge As Se Br In Sn Sb Te I ',
 'SDB-cc-pVQZ' : '  Ga Ge As Se Br Kr In Sn Sb Te I Xe ',
@@ -335,22 +352,22 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'cc-pwCVQZ-PP' : '  Cu Zn Ga Ge As Se Br Kr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'cc-pwCVTZ-PP' : '  Cu Zn Ga Ge As Se Br Kr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'CRENBL_ECP' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr Rf Db Sg Bh Hs Mt Uun Uuu Uub Uut Uuq Uup Uuh Uus ',
-'CRENBS_ECP' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn Y Zr Nb Mo Tc Ru Rh Pd Ag Cd La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Rf Db Sg Bh Hs Mt Uun Uuu Uub Uut Uuq Uup Uuh Uus ',
+'CRENBS ECP' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn Y Zr Nb Mo Tc Ru Rh Pd Ag Cd La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Rf Db Sg Bh Hs Mt Uun Uuu Uub Uut Uuq Uup Uuh Uus ',
 'Def2-QZVPP' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'Def2-QZVPPD' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'Def2-TZVPP' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'Def2-TZVPPD' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'dhf-QZVPP' : '  Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'dhf-TZVPP' : '  Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
-'Hay-Wadt_MB_(n+1)_ECP' : '  K Ca Sc Ti V Cr Mn Fe Co Ni Cu Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cs Ba La Hf Ta W Re Os Ir Pt Au ',
-'Hay-Wadt_VDZ_(n+1)_ECP' : '  K Ca Sc Ti V Cr Mn Fe Co Ni Cu Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cs Ba La Ta W Re Os Ir Pt Au ',
-'LANL2DZ_ECP' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Hf Ta W Re Os Ir Pt Au Pb Bi U Np Pu ',
-'LANL2DZdp_ECP' : '  H C N O F Si P S Cl Ge As Se Br Sn Sb Te I Pb Bi ',
-'SBKJC_VDZ_ECP' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
-'Stuttgart_RLC_ECP' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Zn Ga Ge As Se Br Kr Rb Sr In Sn Sb Te I Xe Cs Ba Hg Tl Pb Bi Po At Rn Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr ',
-'Stuttgart_RSC_1997_ECP' : '  K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd Cs Ba Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Hf Ta W Re Os Ir Pt Au Hg Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr Db ',
-'Stuttgart_RSC_ANO/ECP' : '  La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu ',
-'Stuttgart_RSC_Segmented/ECP' : '  La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu ',
+'Hay-Wadt MB (n+1) ECP' : '  K Ca Sc Ti V Cr Mn Fe Co Ni Cu Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cs Ba La Hf Ta W Re Os Ir Pt Au ',
+'Hay-Wadt VDZ (n+1) ECP' : '  K Ca Sc Ti V Cr Mn Fe Co Ni Cu Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cs Ba La Ta W Re Os Ir Pt Au ',
+'LANL2DZ ECP' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Hf Ta W Re Os Ir Pt Au Pb Bi U Np Pu ',
+'LANL2DZdp ECP' : '  H C N O F Si P S Cl Ge As Se Br Sn Sb Te I Pb Bi ',
+'SBKJC VDZ ECP' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
+'Stuttgart RLC ECP' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Zn Ga Ge As Se Br Kr Rb Sr In Sn Sb Te I Xe Cs Ba Hg Tl Pb Bi Po At Rn Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr ',
+'Stuttgart RSC 1997 ECP' : '  K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd Cs Ba Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Hf Ta W Re Os Ir Pt Au Hg Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr Db ',
+'Stuttgart RSC ANO/ECP' : '  La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu ',
+'Stuttgart RSC Segmented/ECP' : '  La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu ',
 'aug-cc-pV5Z-DK' : '  H He B C N O F Ne Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
 'aug-cc-pVDZ-DK' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
 'aug-cc-pVQZ-DK' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
@@ -394,17 +411,17 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'cc-pVTZ(pt/sf/lc)' : '  H He B C N O F Ne Al Si P S Cl Ar Ga Ge As Se Br Kr ',
 'cc-pVTZ(pt/sf/sc)' : '  H He B C N O F Ne Al Si P S Cl Ar Ga Ge As Se Br Kr ',
 'aug-cc-pV5Z-PP_OPTRI' : '  Cu Zn Ag Cd Au Hg ',
-'aug-cc-pV5Z-RI' : '  H He B C N O F Ne Al Si P S Cl Ar ',
+'aug-cc-pV5Z-RI diffuse' : '  H He B C N O F Ne Al Si P S Cl Ar ',
 'aug-cc-pV5Z_OPTRI' : '  H He B C N O F Ne Al Si P S Cl Ar ',
-'aug-cc-pV6Z-RI' : '  H He B C N O F Ne Al Si P S Cl Ar ',
+'aug-cc-pV6Z-RI diffuse' : '  H He B C N O F Ne Al Si P S Cl Ar ',
 'aug-cc-pVDZ-PP_OPTRI' : '  Cu Zn Ag Cd Au Hg ',
-'aug-cc-pVDZ-RI' : '  H He B C N O F Ne Al Si P S Cl Ar Ga Ge As Se Br Kr ',
+'aug-cc-pVDZ-RI diffuse' : '  H He B C N O F Ne Al Si P S Cl Ar Ga Ge As Se Br Kr ',
 'aug-cc-pVDZ_OPTRI' : '  H He B C N O F Ne Al Si P S Cl Ar ',
 'aug-cc-pVQZ-PP_OPTRI' : '  Cu Zn Ag Cd Au Hg ',
-'aug-cc-pVQZ-RI' : '  H He B C N O F Ne Al Si P S Cl Ar Ga Ge As Se Br Kr ',
+'aug-cc-pVQZ-RI diffuse' : '  H He B C N O F Ne Al Si P S Cl Ar Ga Ge As Se Br Kr ',
 'aug-cc-pVQZ_OPTRI' : '  H He B C N O F Ne Al Si P S Cl Ar ',
 'aug-cc-pVTZ-PP_OPTRI' : '  Cu Zn Ag Cd Au Hg ',
-'aug-cc-pVTZ-RI' : '  H He B C N O F Ne Al Si P S Cl Ar Ga Ge As Se Br Kr ',
+'aug-cc-pVTZ-RI diffuse' : '  H He B C N O F Ne Al Si P S Cl Ar Ga Ge As Se Br Kr ',
 'aug-cc-pVTZ_OPTRI' : '  H He B C N O F Ne Al Si P S Cl Ar ',
 'aug-cc-pwCV5Z-PP_OPTRI' : '  Cu Zn Ag Cd Au Hg ',
 'aug-cc-pwCVDZ-PP_OPTRI' : '  Cu Zn Ag Cd Au Hg ',
@@ -425,34 +442,34 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'cc-pVTZ-PP-RI' : '  Cu Zn Ga Ge As Se Br Kr Ag Cd In Sn Sb Te I Xe Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'cc-pVTZ-RI' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Ga Ge As Se Br Kr ',
 'cc-pwCV5Z-RI' : '  Cu Zn Ag Cd Au Hg ',
-'cc-pwCV5Z-RI_tight' : '  B C N O F Ne Al Si P S Cl Ar ',
+'cc-pwCV5Z-RI tight' : '  B C N O F Ne Al Si P S Cl Ar ',
 'cc-pwCVDZ-RI' : '  Cu Zn Ag Cd Au Hg ',
-'cc-pwCVDZ-RI_tight' : '  B C N O F Ne Al Si P S Cl Ar ',
+'cc-pwCVDZ-RI tight' : '  B C N O F Ne Al Si P S Cl Ar ',
 'cc-pwCVQZ-RI' : '  Cu Zn Ag Cd Au Hg ',
-'cc-pwCVQZ-RI_tight' : '  B C N O F Ne Al Si P S Cl Ar ',
+'cc-pwCVQZ-RI tight' : '  B C N O F Ne Al Si P S Cl Ar ',
 'cc-pwCVTZ-RI' : '  Cu Zn Ag Cd Au Hg ',
-'cc-pwCVTZ-RI_tight' : '  B C N O F Ne Al Si P S Cl Ar ',
-'Ahlrichs_Coulomb_Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At ',
-'aug-cc-pV5Z-PP_MP2_Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
-'aug-cc-pVDZ-PP_MP2_Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
-'aug-cc-pVQZ-PP_MP2_Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
-'aug-cc-pVTZ-PP_MP2_Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
-'aug-cc-pVTZ_MP2_Fitting' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
-'cc-pV5Z-PP_MP2_Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
-'cc-pVDZ-PP_MP2_Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
-'cc-pVQZ-PP_MP2_Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
-'cc-pVTZ-PP_MP2_Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
-'cc-pVTZ_MP2_Fitting' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
-'cc-pwCV5Z-PP_MP2_Fitting' : '  Hf Ta W Re Os Ir Pt ',
-'cc-pwCVDZ-PP_MP2_Fitting' : '  Hf Ta W Re Os Ir Pt ',
-'cc-pwCVQZ-PP_MP2_Fitting' : '  Hf Ta W Re Os Ir Pt ',
-'cc-pwCVTZ-PP_MP2_Fitting' : '  Hf Ta W Re Os Ir Pt ',
-'DeMon_Coulomb_Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe ',
-'DGauss_A1_DFT_Coulomb_Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe ',
-'DGauss_A1_DFT_Exchange_Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe ',
-'DGauss_A2_DFT_Coulomb_Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
-'DGauss_A2_DFT_Exchange_Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
-'Weigend_Coulomb_Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
+'cc-pwCVTZ-RI tight' : '  B C N O F Ne Al Si P S Cl Ar ',
+'Ahlrichs Coulomb Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At ',
+'aug-cc-pV5Z-PP MP2 Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
+'aug-cc-pVDZ-PP MP2 Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
+'aug-cc-pVQZ-PP MP2 Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
+'aug-cc-pVTZ-PP MP2 Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
+'aug-cc-pVTZ MP2 Fitting' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
+'cc-pV5Z-PP MP2 Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
+'cc-pVDZ-PP MP2 Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
+'cc-pVQZ-PP MP2 Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
+'cc-pVTZ-PP MP2 Fitting' : '  Y Zr Nb Mo Tc Ru Rh Pd Hf Ta W Re Os Ir Pt ',
+'cc-pVTZ MP2 Fitting' : '  Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
+'cc-pwCV5Z-PP MP2 Fitting' : '  Hf Ta W Re Os Ir Pt ',
+'cc-pwCVDZ-PP MP2 Fitting' : '  Hf Ta W Re Os Ir Pt ',
+'cc-pwCVQZ-PP MP2 Fitting' : '  Hf Ta W Re Os Ir Pt ',
+'cc-pwCVTZ-PP MP2 Fitting' : '  Hf Ta W Re Os Ir Pt ',
+'DeMon Coulomb Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe ',
+'DGauss A1 DFT Coulomb Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe ',
+'DGauss A1 DFT Exchange_Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe ',
+'DGauss A2 DFT Coulomb Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
+'DGauss A2 DFT Exchange Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn ',
+'Weigend Coulomb Fitting' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn ',
 'cc-pCV5Z' : '  B C N O F Ne Na Mg Al Si P S Cl Ar Ca ',
 'cc-pCV6Z' : '  B C N O F Ne Al Si P S Cl Ar ',
 'cc-pCV6Z(old)' : '  O ',
@@ -462,30 +479,68 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'cc-pCVQZ(old)' : '  Al Si P S Cl Ar ',
 'cc-pCVTZ' : '  Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Ca ',
 'cc-pCVTZ(old)' : '  Al Si P S Cl Ar ',
-'aug-cc-pV5Z-DK_Diffuse' : '  H He B C N O F Ne Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
-'aug-cc-pVDZ-DK_Diffuse' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
-'aug-cc-pVQZ-DK_Diffuse' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
-'aug-cc-pVTZ-DK_Diffuse' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Y Zr Nb Mo Tc Ru Rh Pd ',
-'cc-pwCV5Z_Tight' : '  B C N O F Ne Al Si P S Cl Ar ',
-'cc-pwCVDZ_Tight' : '  B C N O F Ne Al Si P S Cl Ar ',
-'cc-pwCVQZ_Tight' : '  B C N O F Ne Al Si P S Cl Ar Br ',
-'cc-pwCVTZ_Tight' : '  B C N O F Ne Al Si P S Cl Ar '}
+'aug-cc-pV5Z-DK Diffuse' : '  H He B C N O F Ne Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
+'aug-cc-pVDZ-DK Diffuse' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
+'aug-cc-pVQZ-DK Diffuse' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr ',
+'aug-cc-pVTZ-DK Diffuse' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Y Zr Nb Mo Tc Ru Rh Pd ',
+'cc-pwCV5Z Tight' : '  B C N O F Ne Al Si P S Cl Ar ',
+'cc-pwCVDZ Tight' : '  B C N O F Ne Al Si P S Cl Ar ',
+'cc-pwCVQZ Tight' : '  B C N O F Ne Al Si P S Cl Ar Br ',
+'cc-pwCVTZ Tight' : '  B C N O F Ne Al Si P S Cl Ar '}
 
-#basis_name = '6-31G'
-#basis_name = '3-21G'
-#basis_name = 'STO-3G'
-#basis_name = 'cc-pV9Z'
-#basis_name = 'aug-mcc-pV5Z'
-basis_name = 'aug-cc-pVTZ'
+# This list contains the names of all basis set available in NWChemEx 
+# (in the convention of NWChemEx)
+nwchemex_basis_list = ['3-21g','4-31g','5-21g','6-21g','6-31++g','6-31++g_st_','6-31++g_st__st_',
+                       '6-31+g','6-31+g_st_','6-31+g_st__st_','6-311++g(2d,2p)','6-311++g(3df,3pd)',
+                       '6-311++g','6-311++g_st_','6-311++g_st__st_','6-311+g(2d,p)','6-311+g',
+                       '6-311+g_st_','6-311+g_st__st_','6-311g(2df,2pd)','6-311g(d,p)','6-311g',
+                       '6-311g_st_','6-311g_st__st_','6-31g(2df,p)','6-31g(3df,3pd)','6-31g(d,p)',
+                       '6-31g','6-31g_st_','6-31g_st__st_','aug-cc-pcv5z','aug-cc-pcvdz',
+                       'aug-cc-pcvqz','aug-cc-pcvtz','aug-cc-pv(5+d)z','aug-cc-pv(d+d)z',
+                       'aug-cc-pv(q+d)z','aug-cc-pv(t+d)z','aug-cc-pv5z-optri',
+                       'aug-cc-pv5z-pp-optri','aug-cc-pv5z-pp-rifit','aug-cc-pv5z-rifit',
+                       'aug-cc-pv5z','aug-cc-pv6z-rifit','aug-cc-pv6z','aug-cc-pv7z',
+                       'aug-cc-pvdz-optri','aug-cc-pvdz-pp-optri','aug-cc-pvdz-pp-rifit',
+                       'aug-cc-pvdz-rifit','aug-cc-pvdz','aug-cc-pvqz-optri',
+                       'aug-cc-pvqz-pp-optri','aug-cc-pvqz-pp-rifit','aug-cc-pvqz-rifit',
+                       'aug-cc-pvqz','aug-cc-pvtz-optri','aug-cc-pvtz-pp-optri',
+                       'aug-cc-pvtz-pp-rifit','aug-cc-pvtz-rifit','aug-cc-pvtz',
+                       'aug-cc-pwcv5z-pp-optri','aug-cc-pwcv5z-pp-rifit','aug-cc-pwcv5z-rifit',
+                       'aug-cc-pwcv5z','aug-cc-pwcvdz-pp-optri','aug-cc-pwcvdz-pp-rifit',
+                       'aug-cc-pwcvdz-rifit','aug-cc-pwcvdz','aug-cc-pwcvqz-pp-optri',
+                       'aug-cc-pwcvqz-pp-rifit','aug-cc-pwcvqz-rifit','aug-cc-pwcvqz',
+                       'aug-cc-pwcvtz-pp-optri','aug-cc-pwcvtz-pp-rifit','aug-cc-pwcvtz-rifit',
+                       'aug-cc-pwcvtz','aug-pv7z','cc-pcv5z','cc-pcvdz','cc-pcvqz','cc-pcvtz',
+                       'cc-pv(5+d)z','cc-pv(d+d)z','cc-pv(q+d)z','cc-pv(t+d)z','cc-pv5z-jkfit',
+                       'cc-pv5z-pp-rifit','cc-pv5z-rifit','cc-pv5z','cc-pv6z-rifit','cc-pv6z',
+                       'cc-pv8z','cc-pv9z','cc-pvdz(seg-opt)','cc-pvdz-pp-rifit','cc-pvdz-rifit',
+                       'cc-pvdz','cc-pvqz(seg-opt)','cc-pvqz-jkfit','cc-pvqz-pp-rifit',
+                       'cc-pvqz-rifit','cc-pvqz','cc-pvtz(seg-opt)','cc-pvtz-jkfit',
+                       'cc-pvtz-pp-rifit','cc-pvtz-rifit','cc-pvtz','cc-pwcv5z-pp-rifit',
+                       'cc-pwcv5z-rifit','cc-pwcv5z','cc-pwcvdz-pp-rifit','cc-pwcvdz-rifit',
+                       'cc-pwcvdz','cc-pwcvqz-pp-rifit','cc-pwcvqz-rifit','cc-pwcvqz',
+                       'cc-pwcvtz-pp-rifit','cc-pwcvtz-rifit','cc-pwcvtz','d-aug-cc-pv5z',
+                       'd-aug-cc-pv6z','d-aug-cc-pvdz','d-aug-cc-pvqz','d-aug-cc-pvtz','pv6z',
+                       'pv7z','sto-2g','sto-3g','sto-3g_st_','sto-4g','sto-5g','sto-6g']
 
-outfile = basis_name+".dat"
+small_basis_elements = {'3-21G' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs ',
+'6-31++G*' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca '}
 
-if os.path.isfile(outfile):
-    os.remove(outfile)
+#for basis_name in basis_elements:
+for basis_name in small_basis_elements:
 
-for k in basis_elements:
-    if basis_name.lower() == k.lower():
-        str1 = (basis_elements[k].strip()).split()
+    nwchemex_basis_name = basis_name.lower().replace("*","_st_").replace(" ","_")
+
+    if nwchemex_basis_name in nwchemex_basis_list:
+
+        print("Generating atomic density matrices for basis set",nwchemex_basis_name,":")
+        outfile = nwchemex_basis_name+".dat"
+
+        # remove the old files if exist
+        if os.path.isfile(outfile):
+            os.remove(outfile)
+        
+        str1 = (basis_elements[basis_name].strip()).split()
         for cc in str1:
             with open('tmp.nw', 'w') as nwInp:
                 if (atom_sym2num(cc)%2 == 0):
@@ -573,7 +628,7 @@ for k in basis_elements:
                                     for j in range(r1):
                                         dm_vec[i*dim+j+6*n1] = float(line1[j])
                                     i += 1
-                        with open(basis_name+'.dat', "a") as dmOut:
+                        with open(outfile, "a") as dmOut:
                             dmOut.write("{}\n".format(cc))
                             ii = 0
                             for el in dm_vec:
@@ -582,4 +637,4 @@ for k in basis_elements:
                                 if ii%6 == 0:
                                     dmOut.write("\n")
                             dmOut.write("\n\n")
-
+                                

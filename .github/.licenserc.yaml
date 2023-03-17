@@ -21,6 +21,7 @@ header:
     - .github/
     - docs/Makefile
     - reference_data/atomic_densities/default
+    - reference_data/basis_sets/default
     - reference_data/molecules/default
     - reference_data/physical_data
     - tests/data

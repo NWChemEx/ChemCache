@@ -57,9 +57,9 @@ TEST_CASE("Load into managers") {
 
         pt.insert(8, chemist::Atom(8ul, 29165.122045980286, "O"));
 
-        REQUIRE_NOTHROW(load_atom_dm(6,"STO-3G",pt));
-        REQUIRE_NOTHROW(load_atom_dm(7,"3-21G",pt));
-        REQUIRE_NOTHROW(load_atom_dm(8,"6-31G",pt));
+        REQUIRE_NOTHROW(load_atom_dm(6,"sto-3g",pt));
+        REQUIRE_NOTHROW(load_atom_dm(7,"3-21g",pt));
+        REQUIRE_NOTHROW(load_atom_dm(8,"6-31g",pt));
 
         chemist::PeriodicTable::atom_dm_t corr1 = {  2.13147782,  -0.52937893,   0.00000000,   0.00000000,   0.00000000,  -0.52937893,
                                             2.13147782,   0.00000000,   0.00000000,   0.00000000,   0.00000000,   0.00000000,
@@ -95,9 +95,9 @@ TEST_CASE("Load into managers") {
                                             0.00000000,   0.00000000,   0.00000000,   0.00000000,   0.41836429,   0.00000000,
                                             0.00000000,   0.00000000,   0.27332251};
                                             
-        REQUIRE(corr1 == pt.get_atom_dm(6, "STO-3G"));
-        REQUIRE(corr2 == pt.get_atom_dm(7, "3-21G"));
-        REQUIRE(corr3 == pt.get_atom_dm("O", "6-31G")); // failed if O is not explicitly loaded
+        REQUIRE(corr1 == pt.get_atom_dm(6, "sto-3g"));
+        REQUIRE(corr2 == pt.get_atom_dm(7, "3-21g"));
+        REQUIRE(corr3 == pt.get_atom_dm("O", "6-31g")); // failed if O is not explicitly loaded
     }
 
     SECTION("load_atom_dm, default case") {
@@ -105,13 +105,13 @@ TEST_CASE("Load into managers") {
 
         REQUIRE_NOTHROW(load_atom_dm(pt));
 
-        chemist::PeriodicTable::atom_dm_t corr1 = {  2.12007958, -0.50455749, 0.00000000, 0.00000000, 0.00000000, -0.50455749,
-                                                     2.12007958, 0.00000000, 0.00000000, 0.00000000, 0.00000000, 0.00000000,
-                                                     1.66666667, 0.00000000, 0.00000000, 0.00000000, 0.00000000, 0.00000000,
-                                                     1.66666667, 0.00000000, 0.00000000, 0.00000000, 0.00000000, 0.00000000,
-                                                     1.66666667};
+        chemist::PeriodicTable::atom_dm_t corr1 = {  2.08820832,  -0.42918219,   0.00000000,   0.00000000,   0.00000000,  -0.42918219,
+  						     2.08820832,   0.00000000,   0.00000000,   0.00000000,   0.00000000,   0.00000000,
+  						     1.66666667,   0.00000000,   0.00000000,   0.00000000,   0.00000000,   0.00000000,
+  						     1.66666667,   0.00000000,   0.00000000,   0.00000000,   0.00000000,   0.00000000,
+  						     1.66666667};
                                             
-        REQUIRE(corr1 == pt.get_atom_dm(9, "STO-3G"));
+        REQUIRE(corr1 == pt.get_atom_dm(9, "mini"));
     }
 }
 
