@@ -36,11 +36,11 @@ option(BUILD_PYBINDINGS "Should we build Python3 bindings?" ON)
 nwx_cxx_api_docs("${project_inc_dir}")
 
 cpp_find_or_build_dependency(
-    chemist
-    URL github.com/NWChemEx-Project/chemist
+    simde
+    URL github.com/NWChemEx-Project/SimDE
     PRIVATE TRUE
-    BUILD_TARGET chemist
-    FIND_TARGET nwx::chemist
+    BUILD_TARGET simde
+    FIND_TARGET nwx::simde
     CMAKE_ARGS BUILD_TESTING=OFF
 )
 
@@ -48,11 +48,11 @@ cpp_add_library(
     ${PROJECT_NAME}
     SOURCE_DIR "${project_src_dir}"
     INCLUDE_DIR "${project_inc_dir}"
-    DEPENDS nwx::chemist
+    DEPENDS nwx::simde
 )
 
 include(nwx_python_mods)
-cppyy_make_python_package(PACKAGE chemcache NAMESPACES chemcache DEPPACKAGES chemist )
+cppyy_make_python_package(PACKAGE chemcache NAMESPACES chemcache DEPPACKAGES simde )
 
 if("${BUILD_TESTING}")
     set(project_test_dir "${CMAKE_CURRENT_LIST_DIR}/tests/${PROJECT_NAME}")
