@@ -27,6 +27,7 @@
 namespace chemcache {
 
 // Module declarations will go here
+DECLARE_MODULE(sto_dash_3g_atom_dm);
 
 namespace atom_dm_mods {
 
@@ -36,6 +37,7 @@ inline void set_defaults(pluginplay::ModuleManager& mm) {
 
 inline void load_modules(pluginplay::ModuleManager& mm) {
     // Modules will be added to the ModuleManager here
+    mm.add_module<sto_dash_3g_atom_dm>("sto-3g atomic dm");
 
     set_defaults(mm);
 }
