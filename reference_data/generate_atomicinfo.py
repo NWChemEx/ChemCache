@@ -221,6 +221,7 @@ def _write_load_elements(out_dir: str, amu2me: float, atoms: dict) -> None:
     sorted_Z = sorted([int(x) for x in atoms.keys()])
 
     tab = "    "
+    atom_ctor = "chemist::Atom(\"{}\", {}ul, {}, 0.0, 0.0, 0.0));\n"
     with open(out_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
 
@@ -243,9 +244,7 @@ void load_elements(chemist::PeriodicTable& pt) {
 
             # Add abundance-weighted atom
             fout.write("{}pt.insert({}, ".format(tab, Z))
-            fout.write("chemist::Atom({}ul, {}, \"{}\"));\n".format(
-                Z, ai.mass * amu2me, ai.sym
-            ))
+            fout.write(atom_ctor.format(ai.sym, Z, ai.mass * amu2me))
 
             # Add isotope atoms
             sorted_mass_numbers = sorted([int(x) for x in ai.isotopes])
@@ -253,10 +252,7 @@ void load_elements(chemist::PeriodicTable& pt) {
                 mi = ai.isotope_masses[str(mn)] * amu2me
 
                 fout.write("{}pt.add_isotope({}, {}, ".format(tab, Z, mn, ))
-                fout.write("chemist::Atom({}ul, {}, \"{}\"));\n"
-                           .format(
-                               Z, mi, ai.sym
-                           ))
+                fout.write(atom_ctor.format(ai.sym, Z, mi))
 
             # Extra whitespace between atomic numbers being handled
             fout.write("\n")
@@ -283,9 +279,9 @@ def main(args: argparse.Namespace) -> None:
     name_file = os.path.join(data_dir, "ElementNames.txt")
     iso_file = os.path.join(data_dir, "CIAAW-ISOTOPEMASSES.txt")
     mass_file = os.path.join(data_dir, "CIAAW-MASSES.txt")
-    #cov_file = os.path.join(data_dir, "CovRadii.txt")
-    #vdw_file = os.path.join(data_dir, "VanDerWaalRadius.txt")
-    #mult_file = os.path.join(data_dir, "NIST-ATOMICION.formatted.txt")
+    # cov_file = os.path.join(data_dir, "CovRadii.txt")
+    # vdw_file = os.path.join(data_dir, "VanDerWaalRadius.txt")
+    # mult_file = os.path.join(data_dir, "NIST-ATOMICION.formatted.txt")
 
     # Parse atomic data
     atoms = dict()
@@ -302,10 +298,9 @@ def parse_args() -> argparse.Namespace:
     :return: Values of command line arguments.
     :rtype: argparse.Namespace
     """
-    parser = argparse.ArgumentParser(description=
-        "This script is used to create the experimental data look up tables "
-        "for the atom class."
-    )
+    parser = argparse.ArgumentParser(description="This script is used to create the experimental data look up tables "
+                                     "for the atom class."
+                                     )
 
     parser.add_argument('data_dir', type=str,
                         help="Data directory for atomic information files.")

@@ -211,7 +211,7 @@ class BSEBasisSetScraper:
             raise RuntimeError("Could not obtain {}.".format(self.basis_set))
 
         clean_basis_set_name = bs.lower().replace(
-            '%20', '_').replace('*', "_star").replace('/', '_')
+            '%20', '_').replace('_st_', "_star").replace('/', '_')
 
         # Notify the user that the download is complete
         print("complete.")

@@ -56,6 +56,7 @@ import helper_fxns as helpers
 class Molecule:
     """Representation of a molecule.
     """
+
     def __init__(self) -> None:
         self.carts = []
         self.atoms = []
@@ -119,18 +120,18 @@ class Molecule:
 
         for i, ai in enumerate(self.atoms):
             # Start writing atom details
-            fout.write("{}{}.push_back(".format(indent, mol))
-            fout.write("Atom{{{0}.get_atom({1}).mass(), {1}ul,\n".format(
-                pt, ai))
+            fout.write("{}{}.push_back(Atom{{".format(indent, mol))
+            fout.write(
+                "\"\", {1}ul, {0}.get_atom({1}).mass(),\n".format(pt, ai))
 
             # Write cartesian coordinates and end atom
-            fout.write("{}Atom::coord_type{{{}, {}, {}}}}});\n".format(
+            fout.write("{}{}, {}, {}}});\n".format(
                 indent + tab, self.carts[i * 3], self.carts[i * 3 + 1],
                 self.carts[i * 3 + 2]))
 
 
 def _parse_molecules_xyz(filepaths: list, sym2Z: dict,
-                        ang2au: float) -> Molecule:
+                         ang2au: float) -> Molecule:
     """Parses an XYZ formatted molecule file.
 
     :param file_name: Full paths to molecule files.
@@ -179,9 +180,9 @@ def _parse_molecules_xyz(filepaths: list, sym2Z: dict,
 
 
 def _parse_molecules(filepaths: list,
-                    sym2Z: dict,
-                    ang2au: float,
-                    extension: str = ".xyz") -> dict:
+                     sym2Z: dict,
+                     ang2au: float,
+                     extension: str = ".xyz") -> dict:
     """Parse molecule files of the specified format.
 
     :param filepaths: Full paths to molecule files.
@@ -282,7 +283,7 @@ def main(args: argparse.Namespace) -> None:
         #       `parse_molecules()` version.
         molecules.update(
             _parse_molecules(molecule_filepaths[extension], sym2Z, args.ang2au,
-                            extension))
+                             extension))
 
     print("Writing molecules to file...", end='')
     sys.stdout.flush()
@@ -299,10 +300,9 @@ def parse_args() -> argparse.Namespace:
     :rtype: Namespace
     """
 
-    parser = argparse.ArgumentParser(description=
-        "This script will read each molecule file in the provided directory"
-        "and generate a C++ source file with commands to make each molecule."
-    )
+    parser = argparse.ArgumentParser(description="This script will read each molecule file in the provided directory"
+                                     "and generate a C++ source file with commands to make each molecule."
+                                     )
 
     parser.add_argument('molecule_dir',
                         type=str,
