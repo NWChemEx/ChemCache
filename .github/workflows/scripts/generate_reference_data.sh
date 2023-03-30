@@ -15,44 +15,52 @@ set -e # Exit with error if any command fails
 PYTHON="python"
 
 # Set reference data directory
-REFERENCE_DATA="reference_data"
+REF_DATA="reference_data"
 
-# Set source code output directory
+# Set source code output directories
 SRC="src/chemcache"
+ATOM_DEN="${SRC}/atomic_densities"
+ATOM="${SRC}/atoms"
+BASES="${SRC}/bases"
+ELEC_CONFIGS="${SRC}/electronic_configurations"
+MOLES="${SRC}/molecules"
 
 # Set data directories
-ATOMIC_INFO="${REFERENCE_DATA}/physical_data"
-BASIS_SETS="${REFERENCE_DATA}/basis_sets"
-DENSITIES="${REFERENCE_DATA}/atomic_densities/default"
+ATOMIC_INFO="${REF_DATA}/physical_data"
+BASIS_SETS="${REF_DATA}/basis_sets"
+DENSITIES="${REF_DATA}/atomic_densities/default"
+MOLECULES="${REF_DATA}/molecules"
 TESTS="tests/chemcache"
-MOLECULES="${REFERENCE_DATA}/molecules"
 
 # Remove existing source files
-rm -rf "${SRC}/atomic_densities"
-rm -rf "${SRC}/bases"
+rm -rf $ATOM_DEN
+rm -rf $ATOM
+rm -rf $BASES
+rm -rf $ELEC_CONFIGS
+rm -rf $MOLES
 
 # Recreate necessary src subdirectories
-mkdir -p "${SRC}/atomic_densities"
-mkdir -p "${SRC}/bases"
+mkdir -p $ATOM_DEN
+mkdir -p $ATOM
+mkdir -p $BASES
+mkdir -p $ELEC_CONFIGS
+mkdir -p $MOLES
 
 # Activate virtual environment
 . venv/bin/activate
 
 # Call generation scripts
-echo "Calling ${REFERENCE_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${SRC}"
-${PYTHON} ${REFERENCE_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${SRC}
+echo "Calling ${REF_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${ATOM}"
+${PYTHON} ${REF_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${ATOM}
 
-echo "Calling ${REFERENCE_DATA}/generate_densities.py"
-${PYTHON} ${REFERENCE_DATA}/generate_densities.py ${DENSITIES} ${SRC} ${TESTS} -r
+echo "Calling ${REF_DATA}/generate_densities.py ${DENSITIES} ${ATOM_DEN} ${TESTS} -r" 
+${PYTHON} ${REF_DATA}/generate_densities.py ${DENSITIES} ${ATOM_DEN} ${TESTS} -r
 
-echo "Calling ${REFERENCE_DATA}/generate_molecules.py ${MOLECULES} ${SRC} -r"
-${PYTHON} ${REFERENCE_DATA}/generate_molecules.py ${MOLECULES} ${SRC} -r
+echo "Calling ${REF_DATA}/generate_molecules.py ${MOLECULES} ${MOLES} -r"
+${PYTHON} ${REF_DATA}/generate_molecules.py ${MOLECULES} ${MOLES} -r
 
-echo "Calling ${REFERENCE_DATA}/generate_basis.py ${BASIS_SETS} ${SRC} -r"
-${PYTHON} ${REFERENCE_DATA}/generate_basis.py ${BASIS_SETS} ${SRC} -r
+echo "Calling ${REF_DATA}/generate_basis.py ${BASIS_SETS} ${BASES} -r"
+${PYTHON} ${REF_DATA}/generate_basis.py ${BASIS_SETS} ${BASES} -r
 
-echo "Calling ${REFERENCE_DATA}/generate_ptable_configs.py ${ATOMIC_INFO} ${SRC}"
-${PYTHON} ${REFERENCE_DATA}/generate_ptable_configs.py ${ATOMIC_INFO} ${SRC}
-
-echo "Calling ${REFERENCE_DATA}/generate_ptable_atomdm.py ${SRC}"
-${PYTHON} ${REFERENCE_DATA}/generate_ptable_atomdm.py ${SRC}
+echo "Calling ${REF_DATA}/generate_elec_configs.py ${ATOMIC_INFO} ${ELEC_CONFIGS}"
+${PYTHON} ${REF_DATA}/generate_elec_configs.py ${ATOMIC_INFO} ${ELEC_CONFIGS}
