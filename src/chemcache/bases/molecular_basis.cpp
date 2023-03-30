@@ -24,7 +24,16 @@ using molecular_basis_t  = simde::type::ao_basis_set;
 using atomic_basis_pt    = simde::AtomicBasisSetFromZ;
 using atomic_basis_t     = simde::type::atomic_basis_set;
 
+static constexpr auto module_desc = R"(
+Molecular Basis Set
+---------------------------------
+
+This module returns a molecular basis set for the input molecule. The basis set
+is determined by the "Atomic Basis" submodule.
+)";
+
 MODULE_CTOR(molecular_basis) {
+    description(module_desc);
     satisfies_property_type<molecular_basis_pt>();
     add_submodule<atomic_basis_pt>("Atomic Basis");
 }
