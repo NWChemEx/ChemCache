@@ -18,8 +18,12 @@
 #include <catch2/catch.hpp>
 #include <simde/simde.hpp>
 
-using atomic_basis_pt = simde::AtomicBasisSetFromZ;
-using atomic_basis_t  = simde::type::atomic_basis_set;
+using atomic_basis_pt    = simde::AtomicBasisSetFromZ;
+using atomic_basis_t     = simde::type::atomic_basis_set;
+using molecular_basis_pt = simde::MolecularBasisSet;
+using molecular_basis_t  = simde::type::ao_basis_set;
+using molecule_t         = simde::type::molecule;
+using atom_t             = simde::type::atom;
 
 using Catch::Matchers::Message;
 
@@ -65,4 +69,37 @@ TEST_CASE("Atomic Basis Set") {
                                std::out_of_range,
                                Message("Basis Set not available for Z"));
     }
+}
+
+TEST_CASE("Molecular Basis Set") {
+    pluginplay::ModuleManager mm;
+    chemcache::load_modules(mm);
+    auto& mol_bs_mod = mm.at("sto-3g");
+
+    atom_t h1{"H", 1ul, 0.0, 1.0, 1.0, 1.0};
+    atom_t h2{"H", 1ul, 0.0, 2.0, 2.0, 2.0};
+    molecule_t in{h1, h2};
+
+    auto h_aos = [](auto r) {
+        atomic_basis_t aos("sto-3g", 1, r, r, r);
+        aos.add_shell(chemist::ShellType::pure, 0,
+                      std::vector<double>{1.5432896730e-01, 5.3532814230e-01,
+                                          4.4463454220e-01},
+                      std::vector<double>{3.4252509140e+00, 6.2391372980e-01,
+                                          1.6885540400e-01});
+        return aos;
+    };
+
+    auto atom_mod = pluginplay::make_lambda<atomic_basis_pt>([=](auto&& Z) {
+        REQUIRE(Z == 1);
+        return h_aos(0.0);
+    });
+    mol_bs_mod.change_submod("Atomic Basis", atom_mod);
+
+    molecular_basis_t corr;
+    corr.add_center(h_aos(1.0));
+    corr.add_center(h_aos(2.0));
+
+    auto [rv] = mol_bs_mod.run_as<molecular_basis_pt>(in);
+    REQUIRE(rv == corr);
 }

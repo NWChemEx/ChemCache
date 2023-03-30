@@ -27,16 +27,19 @@
 namespace chemcache {
 
 // Module declarations will go here
+DECLARE_MODULE(molecular_basis);
 DECLARE_MODULE(sto_dash_3g_atom_basis);
 
 namespace bases_mods {
 
 inline void set_defaults(pluginplay::ModuleManager& mm) {
     // Default submodules within this subcollection will be set here
+    mm.change_submod("sto-3g", "Atomic Basis", "sto-3g atomic basis");
 }
 
 inline void load_modules(pluginplay::ModuleManager& mm) {
     // Modules will be added to the ModuleManager here
+    mm.add_module<molecular_basis>("sto-3g");
     mm.add_module<sto_dash_3g_atom_basis>("sto-3g atomic basis");
 
     set_defaults(mm);
