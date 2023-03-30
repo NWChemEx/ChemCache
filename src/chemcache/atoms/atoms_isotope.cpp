@@ -54,8 +54,7 @@ MODULE_RUN(atoms_isotope) {
     if(Z == 1) {
         if(N == 1) {
             atom = atom_t{"H", 1ul, 1837.1526472934618, 0.0, 0.0, 0.0};
-        }
-        if(N == 2) {
+        } else if(N == 2) {
             atom = atom_t{"H", 1ul, 3671.4829413173247, 0.0, 0.0, 0.0};
         } else {
             throw std::out_of_range(message2);
@@ -63,11 +62,9 @@ MODULE_RUN(atoms_isotope) {
     } else if(Z == 8) {
         if(N == 16) {
             atom = atom_t{"O", 8ul, 29156.94569842209, 0.0, 0.0, 0.0};
-        }
-        if(N == 17) {
+        } else if(N == 17) {
             atom = atom_t{"O", 8ul, 30987.521555096086, 0.0, 0.0, 0.0};
-        }
-        if(N == 18) {
+        } else if(N == 18) {
             atom = atom_t{"O", 8ul, 32810.46081966976, 0.0, 0.0, 0.0};
         } else {
             throw std::out_of_range(message2);
