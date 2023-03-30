@@ -202,70 +202,6 @@ def _parse_ciaww_mass(mass_file: str, atoms: dict) -> None:
                 atoms[Z].mass = sum(masses) / len(masses)
 
 
-def _write_load_elements(out_dir: str, amu2me: float, atoms: dict) -> None:
-    """Generate a file which will load the atomic info into a
-    chemist::PeriodicTable instance.
-
-    :param out_dir: Output directory for the generated header file.
-    :type out_dir: str
-
-    :param amu2me: Ratio of mass of electron to a Dalton.
-    :type amu2me: float
-
-    :param atoms: Collection of atoms.
-    :type atoms: dict of AtomicData
-    """
-
-    out_file = os.path.join(out_dir, "load_elements.cpp")
-
-    sorted_Z = sorted([int(x) for x in atoms.keys()])
-
-    tab = "    "
-    atom_ctor = "chemist::Atom(\"{}\", {}ul, {}, 0.0, 0.0, 0.0));\n"
-    with open(out_file, 'w') as fout:
-        helpers.write_warning(fout, os.path.basename(__file__))
-
-        # Start of the file
-        fout.write(
-            """#include "chemcache/chemcache.hpp"
-
-namespace chemcache {
-
-void load_elements(chemist::PeriodicTable& pt) {
-"""
-        )
-
-        # Add atoms and isotopes to the PeriodicTable
-        for Z in sorted_Z:
-            ai = atoms[str(Z)]
-
-            # Comment atomic number being handled
-            fout.write("{}// Z = {}\n".format(tab, Z))
-
-            # Add abundance-weighted atom
-            fout.write("{}pt.insert({}, ".format(tab, Z))
-            fout.write(atom_ctor.format(ai.sym, Z, ai.mass * amu2me))
-
-            # Add isotope atoms
-            sorted_mass_numbers = sorted([int(x) for x in ai.isotopes])
-            for mn in sorted_mass_numbers:
-                mi = ai.isotope_masses[str(mn)] * amu2me
-
-                fout.write("{}pt.add_isotope({}, {}, ".format(tab, Z, mn, ))
-                fout.write(atom_ctor.format(ai.sym, Z, mi))
-
-            # Extra whitespace between atomic numbers being handled
-            fout.write("\n")
-
-        # End of the file
-        fout.write(
-            """} // function load_elements
-
-} // namespace chemcache
-"""
-        )
-
-
 def _write_z_from_sym(out_dir: str, amu2me: float, atoms: dict) -> None:
     """Generate the Z_from_sym.cpp source file.
 
@@ -580,7 +516,6 @@ def main(args: argparse.Namespace) -> None:
     _parse_ciaaw_isotopes(iso_file, atoms)
     _parse_ciaww_mass(mass_file, atoms)
 
-    _write_load_elements(out_dir, args.amu2me, atoms)
     _write_z_from_sym(out_dir, args.amu2me, atoms)
     _write_sym_from_z(out_dir, args.amu2me, atoms)
     _write_atoms_average(out_dir, args.amu2me, atoms)
