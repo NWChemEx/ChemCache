@@ -129,7 +129,7 @@ class Shell:
 
 
 def _print_atom_basis(fout: io.TextIOWrapper, bs_name: str, z: int,
-                     basis: list, tab: str = "    ") -> None:
+                      basis: list, tab: str = "    ") -> None:
     """Print basis data for the given atom.
 
     :param fout: C++ source file opened for writing
@@ -151,7 +151,8 @@ def _print_atom_basis(fout: io.TextIOWrapper, bs_name: str, z: int,
     d_name = helpers.desanitize_basis_name(bs_name)
 
     fout.write("{}basis_map.emplace({}, ".format(tab, z))
-    fout.write("chemist::AtomicBasisSet<double>(\"{}\", {}, 0.0, 0.0, 0.0));\n\n".format(d_name, z))
+    fout.write("chemist::AtomicBasisSet<double>(\"{}\", {}, 0.0, 0.0, 0.0));\n\n".format(
+        d_name, z))
 
     center = "basis_map.at({})".format(z)
 
@@ -160,7 +161,7 @@ def _print_atom_basis(fout: io.TextIOWrapper, bs_name: str, z: int,
 
 
 def _write_basis_files(out_file: str, bs_name: str, basis_set: dict,
-                      tab: str = "    ") -> None:
+                       tab: str = "    ") -> None:
 
     with open(out_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
@@ -262,7 +263,7 @@ void load_basis_sets(chemist::BasisSetManager& bsm) {
             fout.write("{}basis_sets::load_{}(bsm);"
                        .format(tab, helpers.sanitize_basis_name(bs_name)))
 
-            basis_file = os.path.join(src_dir, "bases", bs_name + ".cpp")
+            basis_file = os.path.join(src_dir, bs_name + ".cpp")
             _write_basis_files(basis_file, bs_name, basis_set)
 
             # White space between basis sets
@@ -280,7 +281,7 @@ void load_basis_sets(chemist::BasisSetManager& bsm) {
 
 
 def _parse_bases_gbs(basis_set_filenames: list, sym2Z: dict,
-                    l2num: "function") -> dict:
+                     l2num: "function") -> dict:
     """Parses basis set files from the filepaths given.
 
     :param basis_set_filepaths: Full paths to basis set files.
@@ -483,45 +484,6 @@ def _parse_bases(basis_set_filepaths: list, sym2Z: dict, l2num: "function", form
         raise RuntimeError("Unsupported basis file format: {}".format(format))
 
 
-def _find_basis_sets(source_root: str, formats: list = ["nwchem"], recursive: bool = False) -> list:
-    """Recursively find all basis set files in the given directory. Basis set
-    files are identified using the given extensions list.
-
-    :param source_root: Root directory containing basis set files.
-    :type source_root: str
-
-    :param extensions: Possible extensions for basis sets, defaults to ["nwchem"]
-    :type extensions: list, optional
-
-    :param recursive: Whether or not to recursively search in subdirectories,
-        defaults to False
-    :type recursive: bool, optional
-
-    :return: Full paths to basis set files found
-    :rtype: list
-    """
-    basis_sets = []
-
-    for format in formats:
-        extension = helpers.lookup_extension(format)
-
-        # Recursively search for basis set files of the given extension
-        for dirpath, _, filenames in os.walk(source_root):
-            for filename in filenames:
-                _, ext = os.path.splitext(filename)
-
-                # Case insensitive comparison of extensions
-                if (ext.lower() == extension.lower()):
-                    basis_sets.append(os.path.join(dirpath, filename))
-
-            # Stop the recursive search before diving into subdirectories
-            # if recursion is not requested
-            if (not recursive):
-                break
-
-    return basis_sets
-
-
 def main(args: argparse.Namespace) -> None:
     """Entry point function to generate basis set files.
 
@@ -579,11 +541,10 @@ def parse_args() -> argparse.Namespace:
     :rtype: argparse.Namespace
     """
 
-    parser = argparse.ArgumentParser(description=
-        "This script will loop over a series of basis sets and write out a "
-        "file that will fill them in. The format of the resulting basis sets "
-        "is suitable for use with the BasisSetExchange class."
-    )
+    parser = argparse.ArgumentParser(description="This script will loop over a series of basis sets and write out a "
+                                     "file that will fill them in. The format of the resulting basis sets "
+                                     "is suitable for use with the BasisSetExchange class."
+                                     )
 
     parser.add_argument('basis_set_source', type=str,
                         help="""Source directory for basis set files. If combined
