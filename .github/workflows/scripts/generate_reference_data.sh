@@ -54,7 +54,7 @@ echo "Calling ${REF_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${ATOM}"
 ${PYTHON} ${REF_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${ATOM}
 
 echo "Calling ${REF_DATA}/generate_densities.py ${DENSITIES} ${ATOM_DEN} ${TESTS} -r" 
-${PYTHON} ${REF_DATA}/generate_densities.py ${DENSITIES} ${ATOM_DEN} ${TESTS} -r
+${PYTHON} ${REF_DATA}/generate_densities.py ${DENSITIES} ${ATOM_DEN} -r
 
 echo "Calling ${REF_DATA}/generate_molecules.py ${MOLECULES} ${MOLES} -r"
 ${PYTHON} ${REF_DATA}/generate_molecules.py ${MOLECULES} ${MOLES} -r

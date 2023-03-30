@@ -171,7 +171,7 @@ MODULE_RUN({s_name}_atom_basis) {{
 {t}{t}{t}atomic_basis_t atom_bs("{bs_name}", {Z}, 0.0, 0.0, 0.0);
 {shells}
 {t}{t}{t}return atomic_basis_pt::wrap_results(rv, atom_bs);
-}}'''
+{t}{t}}}'''
 
     s_name = helpers.sanitize_basis_name(bs_name)
 
