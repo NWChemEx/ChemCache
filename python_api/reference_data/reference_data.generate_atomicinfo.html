@@ -96,11 +96,11 @@
 <p>This script is used to create the experimental data look up tables for the
 atom class.</p>
 <div class="line-block">
-<div class="line">Original author: Ben Pritchard  </div>
+<div class="line">Original author: Ben Pritchard</div>
 <div class="line">Modified by: Zachery Crandall</div>
 </div>
 <p>In order to run, this script needs to know the location of the data directory
-to read from and the <cite>src</cite> code directory to output the result into. One can 
+to read from and the <cite>src</cite> code directory to output the result into. One can
 also optionally provide a nondefault value for the electron mass to Dalton ratio.</p>
 <p>For readability and convenience we use a few abbreviations throughout this
 script:</p>
@@ -122,15 +122,15 @@ script:</p>
 </pre></div>
 </div>
 <p>This script looks for the following file(s):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">data_dir</span>  
-<span class="o">|</span>       <span class="n">ElementNames</span><span class="o">.</span><span class="n">txt</span>  
-<span class="o">|</span>       <span class="n">CIAAW</span><span class="o">-</span><span class="n">ISOTOPEMASSES</span><span class="o">.</span><span class="n">txt</span>  
-<span class="o">|</span>       <span class="n">CIAAW</span><span class="o">-</span><span class="n">MASSES</span><span class="o">.</span><span class="n">txt</span>  
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">data_dir</span>
+<span class="o">|</span>       <span class="n">ElementNames</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">|</span>       <span class="n">CIAAW</span><span class="o">-</span><span class="n">ISOTOPEMASSES</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">|</span>       <span class="n">CIAAW</span><span class="o">-</span><span class="n">MASSES</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 <p>This script creates the following file(s):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">src_dir</span>  
-<span class="o">|</span>       <span class="n">load_elements</span><span class="o">.</span><span class="n">hpp</span>  
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">src_dir</span>
+<span class="o">|</span>       <span class="n">load_elements</span><span class="o">.</span><span class="n">hpp</span>
 </pre></div>
 </div>
 </div>
@@ -182,7 +182,7 @@ script:</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.generate_atomicinfo.parse_symbols">
 <span class="sig-prename descclassname"><span class="pre">reference_data.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">parse_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.generate_atomicinfo.parse_symbols" title="Permalink to this definition"></a></dt>
-<dd><p>Parse the given symbols file and add them to the existing atom 
+<dd><p>Parse the given symbols file and add them to the existing atom
 collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

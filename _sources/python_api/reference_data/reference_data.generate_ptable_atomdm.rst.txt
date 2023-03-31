@@ -1,7 +1,0 @@
-reference\_data.generate\_ptable\_atomdm module
-===============================================
-
-.. automodule:: reference_data.generate_ptable_atomdm
-   :members:
-   :undoc-members:
-   :show-inheritance:
