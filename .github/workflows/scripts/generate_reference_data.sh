@@ -33,18 +33,18 @@ MOLECULES="${REF_DATA}/molecules"
 TESTS="tests/chemcache"
 
 # Remove existing source files
-rm -rf $ATOM_DEN
-rm -rf $ATOM
-rm -rf $BASES
-rm -rf $ELEC_CONFIGS
-rm -rf $MOLES
+# rm -rf $ATOM_DEN
+# rm -rf $ATOM
+# rm -rf $BASES
+# rm -rf $ELEC_CONFIGS
+# rm -rf $MOLES
 
 # Recreate necessary src subdirectories
-mkdir -p $ATOM_DEN
-mkdir -p $ATOM
-mkdir -p $BASES
-mkdir -p $ELEC_CONFIGS
-mkdir -p $MOLES
+# mkdir -p $ATOM_DEN
+# mkdir -p $ATOM
+# mkdir -p $BASES
+# mkdir -p $ELEC_CONFIGS
+# mkdir -p $MOLES
 
 # Activate virtual environment
 . venv/bin/activate

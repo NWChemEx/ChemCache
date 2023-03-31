@@ -31,7 +31,7 @@ MOLECULES="${REFERENCE_DATA}/molecules/default"
 
 # Recreate necessary data subdirectories
 # mkdir -p "${ATOMIC_INFO}"
-#mkdir -p "${BASIS_SETS}"
+# mkdir -p "${BASIS_SETS}"
 # mkdir -p "${DENSITIES}"
 # mkdir -p "${MOLECULES}"
 

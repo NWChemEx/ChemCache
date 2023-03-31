@@ -108,6 +108,8 @@ def sanitize_basis_name(bs_name):
     """
 
     temp = bs_name.replace("6-", "six_dash_")
+    temp = temp.replace("5-", "five_dash_")
+    temp = temp.replace("4-", "four_dash_")
     temp = temp.replace("3-", "three_dash_")
     temp = temp.replace("-", "_dash_")
     temp = temp.replace("-", "_dash_")
