@@ -14,21 +14,27 @@
  * limitations under the License.
  */
 
-/*
- * The empty functions in this file would be auto populated 
- * by: generate_ptable_configs.py
- *
- * NOTE: Any modifications made in this file will be lost next time
- *       generate_ptable_configs.py is run.
- */
-
-#include "chemcache/chemcache.hpp"
-#include <chemist/chemist.hpp>
+#pragma once
+#include <pluginplay/pluginplay.hpp>
 
 namespace chemcache {
 
-	void load_atom_dm(chemist::PeriodicTable::size_type Z, 
-			std::string basis_name, chemist::PeriodicTable& pt) {}
-	void load_atom_dm(chemist::PeriodicTable& pt) {}
+// Module declarations will go here
+DECLARE_MODULE(elec_configs);
+
+namespace elec_config_mods {
+
+inline void set_defaults(pluginplay::ModuleManager& mm) {
+    // Default submodules within this subcollection will be set here
+}
+
+inline void load_modules(pluginplay::ModuleManager& mm) {
+    // Modules will be added to the ModuleManager here
+    mm.add_module<elec_configs>("Elec Config from Z");
+
+    set_defaults(mm);
+}
+
+} // namespace elec_config_mods
 
 } // namespace chemcache
