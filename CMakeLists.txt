@@ -35,7 +35,7 @@ option(BUILD_PYBINDINGS "Should we build Python3 bindings?" ON)
 # Generate C++ API documentation, if BUILD_DOCS is set
 nwx_cxx_api_docs("${project_inc_dir}")
 
-cpp_find_or_build_dependency(
+cmaize_find_or_build_dependency(
     simde
     URL github.com/NWChemEx-Project/SimDE
     PRIVATE TRUE
