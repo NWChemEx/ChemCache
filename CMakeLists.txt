@@ -4,8 +4,8 @@ project(chemcache VERSION "${VERSION}" LANGUAGES CXX)
 
 include(FetchContent)
 FetchContent_Declare(
-        nwx_cmake
-        GIT_REPOSITORY https://github.com/NWChemEx-Project/NWXCMake
+    nwx_cmake
+    GIT_REPOSITORY https://github.com/NWChemEx-Project/NWXCMake
 )
 FetchContent_MakeAvailable(nwx_cmake)
 list(APPEND CMAKE_MODULE_PATH "${nwx_cmake_SOURCE_DIR}/cmake")
@@ -15,7 +15,7 @@ set(
     CACHE STRING "" FORCE
 )
 
-include(get_cpp)
+include(get_cmaize)
 include(nwx_cxx_api_docs)
 
 # Work out the project paths
@@ -35,7 +35,7 @@ option(BUILD_PYBINDINGS "Should we build Python3 bindings?" ON)
 # Generate C++ API documentation, if BUILD_DOCS is set
 nwx_cxx_api_docs("${project_inc_dir}")
 
-cpp_find_or_build_dependency(
+cmaize_find_or_build_dependency(
     simde
     URL github.com/NWChemEx-Project/SimDE
     PRIVATE TRUE
@@ -44,10 +44,10 @@ cpp_find_or_build_dependency(
     CMAKE_ARGS BUILD_TESTING=OFF
 )
 
-cpp_add_library(
+cmaize_add_library(
     ${PROJECT_NAME}
     SOURCE_DIR "${project_src_dir}"
-    INCLUDE_DIR "${project_inc_dir}"
+    INCLUDE_DIRS "${project_inc_dir}"
     DEPENDS nwx::simde
 )
 
@@ -56,20 +56,22 @@ cppyy_make_python_package(PACKAGE chemcache NAMESPACES chemcache DEPPACKAGES sim
 
 if("${BUILD_TESTING}")
     set(project_test_dir "${CMAKE_CURRENT_LIST_DIR}/tests/${PROJECT_NAME}")
-    cpp_find_or_build_dependency(
+    cmaize_find_or_build_dependency(
         Catch2
         URL github.com/catchorg/Catch2
         BUILD_TARGET Catch2
         FIND_TARGET Catch2::Catch2
 	    VERSION v2.x
     )
-    cpp_add_tests(
+    cmaize_add_tests(
         test_${PROJECT_NAME}
         SOURCE_DIR "${project_test_dir}"
-        INCLUDE_DIR "${project_src_dir}"
-        DEPENDS Catch2::Catch2 ${PROJECT_NAME}
+        INCLUDE_DIRS "${project_src_dir}"
+        DEPENDS Catch2 ${PROJECT_NAME}
     )
     # Haven't gotten this to work yet.
     # add_test(NAME python_unittest 
     #          COMMAND "python -m unittest discover -s ${project_test_dir}")
 endif()
+
+cmaize_add_package(${PROJECT_NAME} NAMESPACE nwx::)
