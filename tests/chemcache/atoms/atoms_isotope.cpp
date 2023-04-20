@@ -32,14 +32,14 @@ TEST_CASE("Atom Isotope") {
 
     SECTION("Hydrogen-2") {
         input_t in{1ul, 2ul};
-        auto [rv] = atom_mod.run_as<isotope_pt>(in);
+        auto rv = atom_mod.run_as<isotope_pt>(in);
         atom_t corr{"H", 1ul, 3671.4829413173247, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
     }
 
     SECTION("Oxygen-18") {
         input_t in{8ul, 18ul};
-        auto [rv] = atom_mod.run_as<isotope_pt>(in);
+        auto rv = atom_mod.run_as<isotope_pt>(in);
         atom_t corr{"O", 8ul, 32810.46081966976, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
     }

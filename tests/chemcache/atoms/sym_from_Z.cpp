@@ -28,12 +28,12 @@ TEST_CASE("Symbol from Z") {
     auto& sym_mod = mm.at("Symbol from Z");
 
     SECTION("Hydrogen") {
-        auto [rv] = sym_mod.run_as<sym_pt>(1ul);
+        auto rv = sym_mod.run_as<sym_pt>(1ul);
         REQUIRE(rv == "H");
     }
 
     SECTION("Oxygen") {
-        auto [rv] = sym_mod.run_as<sym_pt>(8ul);
+        auto rv = sym_mod.run_as<sym_pt>(8ul);
         REQUIRE(rv == "O");
     }
 

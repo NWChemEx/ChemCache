@@ -33,7 +33,7 @@ TEST_CASE("Atomic Basis Set") {
     auto& atom_bs_mod = mm.at("sto-3g atomic basis");
 
     SECTION("sto-3g Hydrogen") {
-        auto [rv] = atom_bs_mod.run_as<atomic_basis_pt>(1ul);
+        auto rv = atom_bs_mod.run_as<atomic_basis_pt>(1ul);
         atomic_basis_t corr("sto-3g", 1, 0.0, 0.0, 0.0);
         corr.add_shell(chemist::ShellType::pure, 0,
                        std::vector<double>{1.5432896730e-01, 5.3532814230e-01,
@@ -44,7 +44,7 @@ TEST_CASE("Atomic Basis Set") {
     }
 
     SECTION("sto-3g Oxygen") {
-        auto [rv] = atom_bs_mod.run_as<atomic_basis_pt>(8ul);
+        auto rv = atom_bs_mod.run_as<atomic_basis_pt>(8ul);
         atomic_basis_t corr("sto-3g", 8, 0.0, 0.0, 0.0);
         corr.add_shell(chemist::ShellType::pure, 0,
                        std::vector<double>{1.5432896730e-01, 5.3532814230e-01,
@@ -100,6 +100,6 @@ TEST_CASE("Molecular Basis Set") {
     corr.add_center(h_aos(1.0));
     corr.add_center(h_aos(2.0));
 
-    auto [rv] = mol_bs_mod.run_as<molecular_basis_pt>(in);
+    auto rv = mol_bs_mod.run_as<molecular_basis_pt>(in);
     REQUIRE(rv == corr);
 }
