@@ -20,7 +20,7 @@ Usage
 -----
 
 ::
-   
+
    usage: generate_molecules.py [-h] [--ang2au ANG2AU] [-r] molecule_dir src_dir
 
    positional arguments:
@@ -102,7 +102,7 @@ class Molecule:
         :rtype: str
         """
 
-        atom = "{t}{t}std::tie(atm) = atoms_mod.run_as<atom_pt>({z}ul);"
+        atom = "{t}{t}atm = atoms_mod.run_as<atom_pt>({z}ul);"
         xyz = "{t}{t}translate(atm, {x}, {y}, {z});"
         push = "{t}{t}mol.push_back(atm);\n"
 

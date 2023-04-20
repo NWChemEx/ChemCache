@@ -29,13 +29,13 @@ TEST_CASE("Electronic Configurations") {
     auto& elec_config_mod = mm.at("Elec Config from Z");
 
     SECTION("Hydrogen") {
-        auto [rv] = elec_config_mod.run_as<elec_config_pt>(1ul);
+        auto rv = elec_config_mod.run_as<elec_config_pt>(1ul);
         elec_config_t corr{1, 0, 0, 0};
         REQUIRE(rv == corr);
     }
 
     SECTION("Oxygen") {
-        auto [rv] = elec_config_mod.run_as<elec_config_pt>(8ul);
+        auto rv = elec_config_mod.run_as<elec_config_pt>(8ul);
         elec_config_t corr{4, 4, 0, 0};
         REQUIRE(rv == corr);
     }

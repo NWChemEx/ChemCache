@@ -58,15 +58,15 @@ MODULE_RUN(default_molecules) {
     atom_t atm;
     molecule_t mol;
     if(name == "water") {
-        std::tie(atm) = atoms_mod.run_as<atom_pt>(8ul);
+        atm = atoms_mod.run_as<atom_pt>(8ul);
         translate(atm, 0.0, -0.1432223429807816, 0.0);
         mol.push_back(atm);
 
-        std::tie(atm) = atoms_mod.run_as<atom_pt>(1ul);
+        atm = atoms_mod.run_as<atom_pt>(1ul);
         translate(atm, 1.6380335020342418, 1.1365568803584036, 0.0);
         mol.push_back(atm);
 
-        std::tie(atm) = atoms_mod.run_as<atom_pt>(1ul);
+        atm = atoms_mod.run_as<atom_pt>(1ul);
         translate(atm, -1.6380335020342418, 1.1365568803584036, 0.0);
         mol.push_back(atm);
 

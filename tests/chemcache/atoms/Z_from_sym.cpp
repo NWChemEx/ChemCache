@@ -28,12 +28,12 @@ TEST_CASE("Z from Symbol") {
     auto& z_mod = mm.at("Z From Symbol");
 
     SECTION("sto-3g Hydrogen") {
-        auto [rv] = z_mod.run_as<z_pt>("H");
+        auto rv = z_mod.run_as<z_pt>("H");
         REQUIRE(rv == 1ul);
     }
 
     SECTION("sto-3g Oxygen") {
-        auto [rv] = z_mod.run_as<z_pt>("O");
+        auto rv = z_mod.run_as<z_pt>("O");
         REQUIRE(rv == 8ul);
     }
 

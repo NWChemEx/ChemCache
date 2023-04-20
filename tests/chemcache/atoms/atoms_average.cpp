@@ -29,13 +29,13 @@ TEST_CASE("Atom") {
     auto& atom_mod = mm.at("Atom");
 
     SECTION("Hydrogen") {
-        auto [rv] = atom_mod.run_as<atom_pt>(1ul);
+        auto rv = atom_mod.run_as<atom_pt>(1ul);
         atom_t corr{"H", 1ul, 1837.4260218693814, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
     }
 
     SECTION("Oxygen") {
-        auto [rv] = atom_mod.run_as<atom_pt>(8ul);
+        auto rv = atom_mod.run_as<atom_pt>(8ul);
         atom_t corr{"O", 8ul, 29165.122045980286, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
     }

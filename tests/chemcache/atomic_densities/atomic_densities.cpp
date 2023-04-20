@@ -29,13 +29,13 @@ TEST_CASE("Atomic Densities") {
     auto& atom_dm_mod = mm.at("sto-3g atomic dm");
 
     SECTION("sto-3g Hydrogen") {
-        auto [rv] = atom_dm_mod.run_as<atomic_den_pt>(1ul);
+        auto rv = atom_dm_mod.run_as<atomic_den_pt>(1ul);
         atomic_den_t corr{1.00000000};
         REQUIRE(rv == corr);
     }
 
     SECTION("sto-3g Oxygen") {
-        auto [rv] = atom_dm_mod.run_as<atomic_den_pt>(8ul);
+        auto rv = atom_dm_mod.run_as<atomic_den_pt>(8ul);
         atomic_den_t corr{
           2.11870860,  -0.50150667, 0.00000000, 0.00000000, 0.00000000,
           -0.50150667, 2.11870860,  0.00000000, 0.00000000, 0.00000000,

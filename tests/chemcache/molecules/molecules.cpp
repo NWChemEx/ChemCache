@@ -42,7 +42,7 @@ TEST_CASE("NWX Molecules") {
         mol_mod.change_submod("Atoms", atom_mod);
 
         std::string name{"water"};
-        auto [rv] = mol_mod.run_as<molecule_pt>(name);
+        auto rv = mol_mod.run_as<molecule_pt>(name);
 
         double o_y = -0.1432223429807816;
         double h_x = 1.6380335020342418;
