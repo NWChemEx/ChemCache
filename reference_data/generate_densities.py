@@ -102,7 +102,7 @@ MODULE_RUN({s_name}_atom_dm) {{
 
     cases_template = '''{t}{t}case({Z}): {{
 {t}{t}{t}atomic_den_t atom_dm{{{values}}};
-{t}{t}{t}return atomic_den_ao_pt::wrap_results(rv, atom_dm, aos);
+{t}{t}{t}return atomic_den_ao_pt::wrap_results(rv, aos, atom_dm);
 {t}{t}}}'''
 
     s_name = helpers.sanitize_basis_name(bs_name)
