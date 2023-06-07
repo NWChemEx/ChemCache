@@ -30,7 +30,7 @@ option(
     "If enabled and BUILD_DOCS is true no libraries will be built" OFF
 )
 
-option(BUILD_PYBINDINGS "Should we build Python3 bindings?" ON)
+option(BUILD_CPPYY_PYBINDINGS "Should we build Python3 bindings?" ON)
 
 # Generate C++ API documentation, if BUILD_DOCS is set
 nwx_cxx_api_docs("${project_inc_dir}")
