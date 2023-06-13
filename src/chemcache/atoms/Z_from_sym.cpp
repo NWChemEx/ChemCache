@@ -42,10 +42,244 @@ MODULE_RUN(Z_from_sym) {
     const auto& [sym] = z_pt::unwrap_inputs(inputs);
 
     simde::type::atomic_number Z;
-    if(sym == "H") {
+    if(sym == "Ez") {
+        Z = 0;
+    } else if(sym == "H") {
         Z = 1;
+    } else if(sym == "He") {
+        Z = 2;
+    } else if(sym == "Li") {
+        Z = 3;
+    } else if(sym == "Be") {
+        Z = 4;
+    } else if(sym == "B") {
+        Z = 5;
+    } else if(sym == "C") {
+        Z = 6;
+    } else if(sym == "N") {
+        Z = 7;
     } else if(sym == "O") {
         Z = 8;
+    } else if(sym == "F") {
+        Z = 9;
+    } else if(sym == "Ne") {
+        Z = 10;
+    } else if(sym == "Na") {
+        Z = 11;
+    } else if(sym == "Mg") {
+        Z = 12;
+    } else if(sym == "Al") {
+        Z = 13;
+    } else if(sym == "Si") {
+        Z = 14;
+    } else if(sym == "P") {
+        Z = 15;
+    } else if(sym == "S") {
+        Z = 16;
+    } else if(sym == "Cl") {
+        Z = 17;
+    } else if(sym == "Ar") {
+        Z = 18;
+    } else if(sym == "K") {
+        Z = 19;
+    } else if(sym == "Ca") {
+        Z = 20;
+    } else if(sym == "Sc") {
+        Z = 21;
+    } else if(sym == "Ti") {
+        Z = 22;
+    } else if(sym == "V") {
+        Z = 23;
+    } else if(sym == "Cr") {
+        Z = 24;
+    } else if(sym == "Mn") {
+        Z = 25;
+    } else if(sym == "Fe") {
+        Z = 26;
+    } else if(sym == "Co") {
+        Z = 27;
+    } else if(sym == "Ni") {
+        Z = 28;
+    } else if(sym == "Cu") {
+        Z = 29;
+    } else if(sym == "Zn") {
+        Z = 30;
+    } else if(sym == "Ga") {
+        Z = 31;
+    } else if(sym == "Ge") {
+        Z = 32;
+    } else if(sym == "As") {
+        Z = 33;
+    } else if(sym == "Se") {
+        Z = 34;
+    } else if(sym == "Br") {
+        Z = 35;
+    } else if(sym == "Kr") {
+        Z = 36;
+    } else if(sym == "Rb") {
+        Z = 37;
+    } else if(sym == "Sr") {
+        Z = 38;
+    } else if(sym == "Y") {
+        Z = 39;
+    } else if(sym == "Zr") {
+        Z = 40;
+    } else if(sym == "Nb") {
+        Z = 41;
+    } else if(sym == "Mo") {
+        Z = 42;
+    } else if(sym == "Tc") {
+        Z = 43;
+    } else if(sym == "Ru") {
+        Z = 44;
+    } else if(sym == "Rh") {
+        Z = 45;
+    } else if(sym == "Pd") {
+        Z = 46;
+    } else if(sym == "Ag") {
+        Z = 47;
+    } else if(sym == "Cd") {
+        Z = 48;
+    } else if(sym == "In") {
+        Z = 49;
+    } else if(sym == "Sn") {
+        Z = 50;
+    } else if(sym == "Sb") {
+        Z = 51;
+    } else if(sym == "Te") {
+        Z = 52;
+    } else if(sym == "I") {
+        Z = 53;
+    } else if(sym == "Xe") {
+        Z = 54;
+    } else if(sym == "Cs") {
+        Z = 55;
+    } else if(sym == "Ba") {
+        Z = 56;
+    } else if(sym == "La") {
+        Z = 57;
+    } else if(sym == "Ce") {
+        Z = 58;
+    } else if(sym == "Pr") {
+        Z = 59;
+    } else if(sym == "Nd") {
+        Z = 60;
+    } else if(sym == "Pm") {
+        Z = 61;
+    } else if(sym == "Sm") {
+        Z = 62;
+    } else if(sym == "Eu") {
+        Z = 63;
+    } else if(sym == "Gd") {
+        Z = 64;
+    } else if(sym == "Tb") {
+        Z = 65;
+    } else if(sym == "Dy") {
+        Z = 66;
+    } else if(sym == "Ho") {
+        Z = 67;
+    } else if(sym == "Er") {
+        Z = 68;
+    } else if(sym == "Tm") {
+        Z = 69;
+    } else if(sym == "Yb") {
+        Z = 70;
+    } else if(sym == "Lu") {
+        Z = 71;
+    } else if(sym == "Hf") {
+        Z = 72;
+    } else if(sym == "Ta") {
+        Z = 73;
+    } else if(sym == "W") {
+        Z = 74;
+    } else if(sym == "Re") {
+        Z = 75;
+    } else if(sym == "Os") {
+        Z = 76;
+    } else if(sym == "Ir") {
+        Z = 77;
+    } else if(sym == "Pt") {
+        Z = 78;
+    } else if(sym == "Au") {
+        Z = 79;
+    } else if(sym == "Hg") {
+        Z = 80;
+    } else if(sym == "Tl") {
+        Z = 81;
+    } else if(sym == "Pb") {
+        Z = 82;
+    } else if(sym == "Bi") {
+        Z = 83;
+    } else if(sym == "Po") {
+        Z = 84;
+    } else if(sym == "At") {
+        Z = 85;
+    } else if(sym == "Rn") {
+        Z = 86;
+    } else if(sym == "Fr") {
+        Z = 87;
+    } else if(sym == "Ra") {
+        Z = 88;
+    } else if(sym == "Ac") {
+        Z = 89;
+    } else if(sym == "Th") {
+        Z = 90;
+    } else if(sym == "Pa") {
+        Z = 91;
+    } else if(sym == "U") {
+        Z = 92;
+    } else if(sym == "Np") {
+        Z = 93;
+    } else if(sym == "Pu") {
+        Z = 94;
+    } else if(sym == "Am") {
+        Z = 95;
+    } else if(sym == "Cm") {
+        Z = 96;
+    } else if(sym == "Bk") {
+        Z = 97;
+    } else if(sym == "Cf") {
+        Z = 98;
+    } else if(sym == "Es") {
+        Z = 99;
+    } else if(sym == "Fm") {
+        Z = 100;
+    } else if(sym == "Md") {
+        Z = 101;
+    } else if(sym == "No") {
+        Z = 102;
+    } else if(sym == "Lr") {
+        Z = 103;
+    } else if(sym == "Rf") {
+        Z = 104;
+    } else if(sym == "Db") {
+        Z = 105;
+    } else if(sym == "Sg") {
+        Z = 106;
+    } else if(sym == "Bh") {
+        Z = 107;
+    } else if(sym == "Hs") {
+        Z = 108;
+    } else if(sym == "Mt") {
+        Z = 109;
+    } else if(sym == "Ds") {
+        Z = 110;
+    } else if(sym == "Rg") {
+        Z = 111;
+    } else if(sym == "Cn") {
+        Z = 112;
+    } else if(sym == "Nh") {
+        Z = 113;
+    } else if(sym == "Fl") {
+        Z = 114;
+    } else if(sym == "Mc") {
+        Z = 115;
+    } else if(sym == "Lv") {
+        Z = 116;
+    } else if(sym == "Ts") {
+        Z = 117;
+    } else if(sym == "Og") {
+        Z = 118;
     } else {
         throw std::out_of_range("Z not available for Symbol");
     }
