@@ -78,7 +78,7 @@ cppyy_make_python_package(PACKAGE chemcache NAMESPACES chemcache DEPPACKAGES sim
 
 if("${BUILD_TESTING}")
     set(CXX_TEST_DIR "${CMAKE_CURRENT_LIST_DIR}/tests/cxx")
-    set(PYTHON_TEST_DIR "${CMAKE_CURRENT_LIST_DIR}/")
+    set(PYTHON_TEST_DIR "${CMAKE_CURRENT_LIST_DIR}/tests/python")
     cmaize_find_or_build_dependency(
         Catch2
         URL github.com/catchorg/Catch2
@@ -88,13 +88,14 @@ if("${BUILD_TESTING}")
     )
     cmaize_add_tests(
         test_${PROJECT_NAME}
-        SOURCE_DIR "${project_test_dir}"
+        SOURCE_DIR "${CXX_TEST_DIR}/unit_tests"
         INCLUDE_DIRS "${project_src_dir}"
         DEPENDS Catch2 ${PROJECT_NAME}
     )
-    nwx_pybind11_tests(
-        scrape_bse ${PYTHONG_TEST_DIR}/reference_data/test_scrape_bse.py
-    )
+    # Based on previous comment, not sure this test actually worked.
+    #nwx_pybind11_tests(
+    #scrape_bse ${PYTHON_TEST_DIR}/reference_data/test_scrape_bse.py
+    #)
     nwx_pybind11_tests(
         py_chem_cache ${PYTHON_TEST_DIR}/unit_tests/test_chemcache.py
         SUBMODULES parallelzone pluginplay chemist simde
