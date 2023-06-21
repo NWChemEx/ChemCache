@@ -1,5 +1,19 @@
+# Copyright 2022 NWChemEx-Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 cmake_minimum_required(VERSION 3.14)
-file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/version.txt" VERSION)
+set(VERSION 1.0.0) #TODO: Get from git
 project(chemcache VERSION "${VERSION}" LANGUAGES CXX)
 
 include(FetchContent)
@@ -29,8 +43,8 @@ option(
     ONLY_BUILD_DOCS
     "If enabled and BUILD_DOCS is true no libraries will be built" OFF
 )
-
-option(BUILD_CPPYY_PYBINDINGS "Should we build Python3 bindings?" ON)
+option(BUILD_PYBIND11_PYBINDINGS "Use pybind11 to build Python3 bindings?" OFF)
+option(BUILD_CPPYY_PYBINDINGS "Use Cppyy to build Python3 bindings?" OFF)
 
 # Generate C++ API documentation, if BUILD_DOCS is set
 nwx_cxx_api_docs("${project_inc_dir}")
@@ -42,6 +56,7 @@ cmaize_find_or_build_dependency(
     BUILD_TARGET simde
     FIND_TARGET nwx::simde
     CMAKE_ARGS BUILD_TESTING=OFF
+               BUILD_PYBIND11_PYBINDINGS="${BUILD_PYBIND11_PYBINDINGS}"
 )
 
 cmaize_add_library(
@@ -51,11 +66,19 @@ cmaize_add_library(
     DEPENDS nwx::simde
 )
 
+include(nwx_pybind11)
+nwx_add_pybind11_module(
+    ${PROJECT_NAME}
+    SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/src/python"
+    DEPENDS "${PROJECT_NAME}"
+)
+
 include(nwx_python_mods)
 cppyy_make_python_package(PACKAGE chemcache NAMESPACES chemcache DEPPACKAGES simde )
 
 if("${BUILD_TESTING}")
-    set(project_test_dir "${CMAKE_CURRENT_LIST_DIR}/tests/${PROJECT_NAME}")
+    set(CXX_TEST_DIR "${CMAKE_CURRENT_LIST_DIR}/tests/cxx")
+    set(PYTHON_TEST_DIR "${CMAKE_CURRENT_LIST_DIR}/tests/python")
     cmaize_find_or_build_dependency(
         Catch2
         URL github.com/catchorg/Catch2
@@ -65,13 +88,18 @@ if("${BUILD_TESTING}")
     )
     cmaize_add_tests(
         test_${PROJECT_NAME}
-        SOURCE_DIR "${project_test_dir}"
+        SOURCE_DIR "${CXX_TEST_DIR}/unit_tests"
         INCLUDE_DIRS "${project_src_dir}"
         DEPENDS Catch2 ${PROJECT_NAME}
     )
-    # Haven't gotten this to work yet.
-    # add_test(NAME python_unittest 
-    #          COMMAND "python -m unittest discover -s ${project_test_dir}")
+    # Based on previous comment, not sure this test actually worked.
+    #nwx_pybind11_tests(
+    #scrape_bse ${PYTHON_TEST_DIR}/reference_data/test_scrape_bse.py
+    #)
+    nwx_pybind11_tests(
+        py_chem_cache ${PYTHON_TEST_DIR}/unit_tests/test_chemcache.py
+        SUBMODULES parallelzone pluginplay chemist simde
+    )
 endif()
 
 cmaize_add_package(${PROJECT_NAME} NAMESPACE nwx::)
