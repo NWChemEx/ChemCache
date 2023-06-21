@@ -14,6 +14,14 @@
 
 import unittest
 import os
+import sys
+
+my_dir   = os.path.dirname(os.path.realpath(__file__))
+py_dir   = os.path.dirname(my_dir)
+test_dir = os.path.dirname(py_dir)
+root_dir = os.path.dirname(test_dir)
+sys.path.append(root_dir)
+
 from reference_data import scrape_bse
 
 

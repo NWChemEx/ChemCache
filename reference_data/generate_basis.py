@@ -140,7 +140,7 @@ using atomic_basis_pt = simde::AtomicBasisSetFromZ;
 using atomic_basis_t  = simde::type::atomic_basis_set;
 
 static constexpr auto module_desc = R"(
-{bs_name} atomic basis set
+{d_name} atomic basis set
 ---------------------------------
 
 This module returns the atomic basis set associated with an atomic number.
@@ -168,12 +168,13 @@ MODULE_RUN({s_name}_atom_basis) {{
 '''
 
     cases_template = '''{t}{t}case({Z}): {{
-{t}{t}{t}atomic_basis_t atom_bs("{bs_name}", {Z}, 0.0, 0.0, 0.0);
+{t}{t}{t}atomic_basis_t atom_bs("{d_name}", {Z}, 0.0, 0.0, 0.0);
 {shells}
 {t}{t}{t}return atomic_basis_pt::wrap_results(rv, atom_bs);
 {t}{t}}}'''
 
     s_name = helpers.sanitize_basis_name(bs_name)
+    d_name = helpers.desanitize_basis_name(bs_name)
 
     cases = []
     for z in sorted([int(x) for x in basis_set.keys()]):
@@ -181,12 +182,12 @@ MODULE_RUN({s_name}_atom_basis) {{
         for shell in basis_set[str(z)]:
             shells.append(shell.cxxify("atom_bs", tab))
         cases.append(cases_template.format(
-            t=tab, Z=z, bs_name=bs_name, shells="\n".join(shells)))
+            t=tab, Z=z, d_name=d_name, shells="\n".join(shells)))
 
     with open(out_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
         fout.write(source_template.format(
-            bs_name=bs_name, s_name=s_name, cases="\n".join(cases)))
+            d_name=d_name, s_name=s_name, cases="\n".join(cases)))
 
 
 def _write_bases(src_dir: str, bases: dict, tab="    ") -> None:
@@ -249,10 +250,11 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
         _write_basis_files(basis_file, bs_name, basis_set)
 
         s_name = helpers.sanitize_basis_name(bs_name)
+        d_name = helpers.desanitize_basis_name(bs_name)
         ds.append(d_template.format(s_name))
-        ss.append(s_template.format(bs_name, bs_name))
-        ms.append(m_template.format(bs_name))
-        bs.append(a_template.format(s_name, bs_name))
+        ss.append(s_template.format(d_name, d_name))
+        ms.append(m_template.format(d_name))
+        bs.append(a_template.format(s_name, d_name))
 
     bases_file = os.path.join(src_dir, "bases.hpp")
     with open(bases_file, 'w') as fout:
