@@ -46,10 +46,10 @@ MODULE_CTOR(sto_dash_3g_atom_dm) {
 }
 
 MODULE_RUN(sto_dash_3g_atom_dm) {
-    const auto& Z = atomic_den_ao_pt::unwrap_inputs(inputs);
-    auto& ao_mod  = submods.at("AO Basis");
-    auto& aos     = ao_mod.run_as<atomic_basis_pt>(Z);
-    auto rv       = results();
+    const auto& [Z] = atomic_den_ao_pt::unwrap_inputs(inputs);
+    auto& ao_mod    = submods.at("AO Basis");
+    auto aos        = ao_mod.run_as<atomic_basis_pt>(Z);
+    auto rv         = results();
 
     switch(Z) {
         case(1): {

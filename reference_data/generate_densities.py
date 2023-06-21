@@ -84,10 +84,10 @@ MODULE_CTOR({s_name}_atom_dm) {{
 }}
 
 MODULE_RUN({s_name}_atom_dm) {{
-    const auto& Z = atomic_den_ao_pt::unwrap_inputs(inputs);
-    auto& ao_mod  = submods.at("AO Basis");
-    auto& aos     = ao_mod.run_as<atomic_basis_pt>(Z);
-    auto rv       = results();
+    const auto& [Z] = atomic_den_ao_pt::unwrap_inputs(inputs);
+    auto& ao_mod    = submods.at("AO Basis");
+    auto aos        = ao_mod.run_as<atomic_basis_pt>(Z);
+    auto rv         = results();
 
     switch(Z) {{
 {cases}
