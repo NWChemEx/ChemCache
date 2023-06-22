@@ -33,6 +33,7 @@ namespace atom_dm_mods {
 
 inline void set_defaults(pluginplay::ModuleManager& mm) {
     // Default submodules within this subcollection will be set here
+    mm.change_submod("sto-3g atomic dm", "AO Basis", "sto-3g atomic basis");
 }
 
 inline void load_modules(pluginplay::ModuleManager& mm) {
