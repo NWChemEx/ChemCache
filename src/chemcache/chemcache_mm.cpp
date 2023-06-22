@@ -30,9 +30,9 @@ inline void set_defaults(pluginplay::ModuleManager& mm) {
 
 void load_modules(pluginplay::ModuleManager& mm) {
     // Add subcollection load calls here
-    atom_dm_mods::load_modules(mm);
     atom_mods::load_modules(mm);
     bases_mods::load_modules(mm);
+    atom_dm_mods::load_modules(mm);
     elec_config_mods::load_modules(mm);
     molecule_mods::load_modules(mm);
 
