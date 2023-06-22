@@ -71,7 +71,7 @@ def _write_den_files(out_file: str, bs_name: str, basis_set: dict,
 
 namespace chemcache {{
 
-using atomic_basis_pt  = simde::AtomicBasisSetFromZ;
+using atomic_basis_pt = simde::AtomicBasisSetFromZ;
 using atomic_den_pt   = simde::AtomDenFromZ;
 using atomic_den_t    = simde::type::el_density;
 using tensor_t        = simde::type::tensor;
