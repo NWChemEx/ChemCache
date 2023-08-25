@@ -18,7 +18,7 @@ jobs:
       - name: Get dependencies
         uses: NWChemEx-Project/.github/actions/get_dependencies@master
         with:
-          dependencies: cmake doxygen sphinx
+          dependencies: ninja gcc gcovr cmake openblas cblas lapacke scalapack boost eigen3 openmpi doxygen sphinx
 
       - name: Build Python documentation
         run: |
@@ -35,9 +35,11 @@ jobs:
           deactivate
 
       - name: Build C++ and overall documentation
-        uses: NWChemEx-Project/.github/actions/build_docs@master
+        uses: NWChemEx-Project/.github/actions/build_docs@build_module_dox
         with:
           target: chemcache_cxx_api
+          generate_modules_docs: true
+          CMAIZE_GITHUB_TOKEN: ${{ secrets.CMAIZE_GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
