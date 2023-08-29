@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elec Config from Z &mdash; ChemCache 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NWX Molecules" href="NWX_Molecules.html" />
+    <link rel="prev" title="Atom Isotope" href="Atom_Isotope.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ChemCache
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Atom.html">Atom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Atom_Isotope.html">Atom Isotope</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Elec Config from Z</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#electronic-configurations">Electronic Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#please-cite">Please Cite</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#property-types">Property Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-inputs">Module Inputs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#atom-id">Atom ID</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-results">Module Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="NWX_Molecules.html">NWX Molecules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sto-3g.html">sto-3g</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sto-3g_atomic_basis.html">sto-3g atomic basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sto-3g_atomic_dm.html">sto-3g atomic dm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Symbol_from_Z.html">Symbol from Z</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Z_from_Symbol.html">Z from Symbol</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python_api/index.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ChemCache</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Modules API</a></li>
+      <li class="breadcrumb-item active">Elec Config from Z</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/module_api/Elec_Config_from_Z.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="elec-config-from-z">
+<h1>Elec Config from Z<a class="headerlink" href="#elec-config-from-z" title="Permalink to this heading"></a></h1>
+<div class="section" id="electronic-configurations">
+<h2>Electronic Configurations<a class="headerlink" href="#electronic-configurations" title="Permalink to this heading"></a></h2>
+<p>This module returns the electron configuration associated with the atomic
+number. This module was autogenerated.</p>
+<div class="section" id="please-cite">
+<h3>Please Cite<a class="headerlink" href="#please-cite" title="Permalink to this heading"></a></h3>
+<p>No citations</p>
+</div>
+<div class="section" id="property-types">
+<h3>Property Types<a class="headerlink" href="#property-types" title="Permalink to this heading"></a></h3>
+<p>The following is a list of property types that this module satisfies.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">simde::ElecConfiguration&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::vector&lt;unsigned</span> <span class="pre">long,</span> <span class="pre">std::allocator&lt;unsigned</span> <span class="pre">long&gt;&gt;&gt;</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="module-inputs">
+<h3>Module Inputs<a class="headerlink" href="#module-inputs" title="Permalink to this heading"></a></h3>
+<p>This section details the full list of inputs that the module accepts. Inputs
+that are not listed as optional must have their value set before the module can
+be run. Inputs can be set manually by calling the module’s <code class="docutils literal notranslate"><span class="pre">change_input</span></code>
+function or by passing arguments to a property type.</p>
+<div class="section" id="quick-reference">
+<h4>Quick Reference<a class="headerlink" href="#quick-reference" title="Permalink to this heading"></a></h4>
+<p>The following table provides a quick summary of the inputs available to this
+module. The columns are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Key</span></code>: The key used to retrieve the option,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Default</span></code> : The initial value, if one exists, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Description</span></code> : A human readable description of what the option is used for.</p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Atom ID</p></td>
+<td><p>N/A</p></td>
+<td><p>The identifying feature of the atom</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="detailed-descriptions">
+<h4>Detailed Descriptions<a class="headerlink" href="#detailed-descriptions" title="Permalink to this heading"></a></h4>
+<p>The following subsections provide detailed descriptions of each input recognized
+by this module. The subsection headings are the name of the input. Within each
+subsection we list:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Description</span></code> : A human readable description of what the option is used for.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">Value</span></code> : The initial value, if one exists.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Optional?</span></code> : Whether the value must be set inorder for the module to run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Opaque?</span></code> : Does the value of the input influence memoization?.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Domain</span> <span class="pre">Restrictions</span></code> : Criteria a value must obey to be deemed valid.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="atom-id">
+<h2>Atom ID<a class="headerlink" href="#atom-id" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Description : The identifying feature of the atom</p></li>
+<li><p>Default Value : N/A</p></li>
+<li><p>Optional? : False</p></li>
+<li><p>Opaque? : True</p></li>
+<li><p>Domain Restrictions :</p>
+<ul>
+<li><p>Type == unsigned long</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="module-results">
+<h3>Module Results<a class="headerlink" href="#module-results" title="Permalink to this heading"></a></h3>
+<p>This section tabulates the full list of results that the module returns. The
+columns respectively are:</p>
+<ul class="simple">
+<li><p>Key: What the result is called</p></li>
+<li><p>Type: The C++ type of the result</p></li>
+<li><p>Description: What the result is/how it was computed.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A given property type will only return a subset of the available results.
+Additional results can be accessed by using other property types or by using
+the Module class’s advanced API.</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 43%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Electronic Configuration</p></td>
+<td><p>std::vector&lt;unsigned long, std::allocator&lt;unsigned long&gt;&gt;</p></td>
+<td><p>The electronic configuration for the specified atom</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="submodules">
+<h3>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h3>
+<p>The module defines no submodules.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Atom_Isotope.html" class="btn btn-neutral float-left" title="Atom Isotope" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="NWX_Molecules.html" class="btn btn-neutral float-right" title="NWX Molecules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, NWChemEx Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
