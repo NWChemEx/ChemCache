@@ -1,6 +1,6 @@
 name: Build and Deploy Documentation
 on:
-  pull_request:
+  push:
     branches:
       - master
 
@@ -36,7 +36,7 @@ jobs:
           deactivate
 
       - name: Build C++ and overall documentation
-        uses: NWChemEx-Project/.github/actions/build_docs@build_module_dox
+        uses: NWChemEx-Project/.github/actions/build_docs@master
         with:
           target: chemcache_cxx_api
           generate_modules_docs: true
