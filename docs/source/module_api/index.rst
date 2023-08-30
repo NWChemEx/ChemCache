@@ -12,13 +12,10 @@
 .. See the License for the specific language governing permissions and
 .. limitations under the License.
 
-#######################
-ChemCache Documentation
-#######################
+**********
+Module API
+**********
 
 .. toctree::
    :maxdepth: 1
-   :caption: API Documentation
-
-   module_api/index
-   python_api/index
+   :caption: Packages
