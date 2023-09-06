@@ -60,7 +60,7 @@ class Shell:
     """Class representing a shell for an element.
     """
 
-    def __init__(self, ls: list, num_format: str = ".10e") -> None:
+    def __init__(self, ls: list, num_format: str = ".10e", is_pure = True) -> None:
         """Initialization function.
 
         :param ls: List of angular momenta
@@ -76,6 +76,7 @@ class Shell:
         self.coefs = []
         self.gen = 0
         self.number_format = num_format
+        self.shelltype = "pure" if is_pure else "cartesian"
 
     def add_prim(self, exp: str, coefs: list) -> None:
         """Add a primitive for the shell.
@@ -101,12 +102,12 @@ class Shell:
         :type tab: str, optional
         """
 
-        add_shell = "{t}{c}.add_shell(\n{t}  chemist::ShellType::pure, {l},"
+        add_shell = "{t}{c}.add_shell(\n{t}  chemist::ShellType::{shelltype}, {l},"
 
         lines = []
         for i in range(self.gen):
             l = self.ls[i]
-            lines.append(add_shell.format(t=tab * 3, c=center, l=l))
+            lines.append(add_shell.format(t=tab * 3, c=center, l=l, shelltype = self.shelltype))
             cs = "{t}std::vector<double>{{".format(t=tab * 3)
             es = "{t}std::vector<double>{{".format(t=tab * 3)
             for j, ai in enumerate(self.exp):
@@ -335,7 +336,7 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -
     atom_shell_line = re.compile("^[a-zA-Z]{1,3}\s+[a-zA-Z]+\s*$")
     shell_data = re.compile(
         "^\s*(?:-?\d*\.\d+(?:(?:E|e|D|d)(?:\+|-)\d+)*\s*)+$")
-    basis_start = re.compile("^BASIS")
+    basis_start = re.compile("^BASIS \"ao basis\" (?P<shelltype>\w+) PRINT")
     block_end = re.compile("^END$")
 
     bases = {}
@@ -351,6 +352,7 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -
 
         # Read data from the file into memory
         tmp_basis = {}
+        is_pure = True
         with open(filepath, 'r') as fin:
             atom_z = 0     # Atomic number of current element
             ls = ""        # Angular momenta of current shells
@@ -382,9 +384,10 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -
                         break
 
                 # Check for basis block start
-                elif re.search(basis_start, line):
+                elif (bstart_match := re.search(basis_start, line)):
                     # Indicate that we are in a basis block and should parse
                     basis_block = True
+                    is_pure = (bstart_match['shelltype'] == "SPHERICAL")
 
         # Process the data read from the file
         bases[basis_set] = {}
@@ -404,7 +407,7 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -
                     coefs = [row for row in exp_coefs_t[1:]]
 
                     for j in range(len(coefs) - rowspan + 1):
-                        shell = Shell([l2num(l.lower()) for l in ls])
+                        shell = Shell([l2num(l.lower()) for l in ls], is_pure = is_pure)
 
                         for i in range(len(exp)):
                             coef = [row[i] for row in coefs[j:j + rowspan:]]
