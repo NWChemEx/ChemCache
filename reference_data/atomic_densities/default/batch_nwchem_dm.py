@@ -574,7 +574,7 @@ for basis_name in small_basis_elements:
     if nwchemex_basis_name in nwchemex_basis_list:
 
         print("Generating atomic density matrices for basis set",nwchemex_basis_name,":")
-        outfile = nwchemex_basis_name+".dat"
+        outfile = nwchemex_basis_name.replace("_st_","_star") + ".dat"
 
         # remove the old files if exist
         if os.path.isfile(outfile):

@@ -188,13 +188,14 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
     aos = []
 
     for bs_name, basis_set in sorted(bases.items()):
+        d_name = helpers.desanitize_basis_name(bs_name)
         den_file = os.path.join(src_dir, bs_name + ".cpp")
         _write_den_files(den_file, bs_name, basis_set)
 
         s_name = helpers.sanitize_basis_name(bs_name)
         ds.append(d_template.format(s_name))
-        ms.append(m_template.format(s_name, bs_name))
-        aos.append(ao_template.format(bs_name, bs_name))
+        ms.append(m_template.format(s_name, d_name))
+        aos.append(ao_template.format(d_name, d_name))
 
     bases_file = os.path.join(src_dir, "atomic_densities.hpp")
     with open(bases_file, 'w') as fout:
