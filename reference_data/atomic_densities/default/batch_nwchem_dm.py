@@ -488,6 +488,46 @@ basis_elements = {'3-21++G' : '  H Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca
 'cc-pwCVQZ Tight' : '  B C N O F Ne Al Si P S Cl Ar Br ',
 'cc-pwCVTZ Tight' : '  B C N O F Ne Al Si P S Cl Ar '}
 
+# This list contains all correlation-consistent basis sets, which were designed using 
+# spherical harmonics. To use them, the spherical keyword should be present in the BASIS directive. 
+CC_basis_sets = [ 'apr-cc-pV(Q+d)Z','aug-cc-pCV5Z','aug-cc-pCVDZ','aug-cc-pCVQZ','aug-cc-pCV(T+d)Z','aug-cc-pCVTZ',
+                  'aug-cc-pV(5+d)Z','aug-cc-pV5Z','aug-cc-pV(6+d)Z','aug-cc-pV6Z','aug-cc-pV(D+d)Z','aug-cc-pVDZ',
+                  'aug-cc-pV(Q+d)Z','aug-cc-pVQZ','aug-cc-pV(T+d)Z','aug-cc-pVTZ','aug-cc-pVTZ-J','aug-cc-pwCV5Z',
+                  'aug-cc-pwCV5Z-NR','aug-cc-pwCVDZ','aug-cc-pwCVQZ','aug-cc-pwCVQZ-NR','aug-cc-pwCVTZ','aug-cc-pwCVTZ-NR',
+                  'cc-pCV5Z','cc-pCV6Z','cc-pCV6Z(old)','cc-pCVDZ','cc-pCVDZ(old)','cc-pCVQZ','cc-pCVQZ(old)',
+                  'cc-pCVTZ','cc-pCVTZ(old)','cc-pV(5+d)Z','cc-pV5Z','cc-pV(6+d)Z','cc-pV6Z','cc-pV8Z','cc-pV9Z',
+                  'cc-pV(D+d)Z','cc-pVDZ','cc-pVDZ(seg-opt)','cc-pV(Q+d)Z','cc-pVQZ','cc-pVQZ(seg-opt)','cc-pV(T+d)Z',
+                  'cc-pVTZ','cc-pVTZ(seg-opt)','cc-pwCV5Z','cc-pwCV5Z','cc-pwCV5Z-NR','cc-pwCVDZ','cc-pwCVQZ',
+                  'cc-pwCVQZ-NR','cc-pwCVTZ','cc-pwCVTZ-NR','d-aug-cc-pV5Z','d-aug-cc-pV6Z','d-aug-cc-pVDZ',
+                  'd-aug-cc-pVQZ','d-aug-cc-pVTZ','jul-cc-pV(D+d)Z','jul-cc-pV(Q+d)Z','jul-cc-pV(T+d)Z','jun-cc-pV(D+d)Z',
+                  'jun-cc-pV(Q+d)Z','jun-cc-pV(T+d)Z','maug-cc-pV(D+d)Z','maug-cc-pVDZ','maug-cc-pV(Q+d)Z',
+                  'maug-cc-pVQZ','maug-cc-pV(T+d)Z','maug-cc-pVTZ','may-cc-pV(Q+d)Z','may-cc-pV(T+d)Z',
+                  'aug-cc-pV5Z-PP','aug-cc-pVDZ-PP','aug-cc-pVQZ-PP','aug-cc-pVTZ-PP','cc-pV5Z-PP','cc-pVDZ-PP',
+                  'cc-pVQZ-PP','cc-pVTZ-PP','cc-pwCV5Z-PP','cc-pwCVDZ-PP','cc-pwCVQZ-PP','cc-pwCVTZ-PP',
+                  'aug-cc-pV5Z-DK','aug-cc-pVDZ-DK','aug-cc-pVQZ-DK','aug-cc-pVTZ-DK','aug-cc-pwCV5Z-DK',
+                  'aug-cc-pwCVQZ-DK','aug-cc-pwCVTZ-DK','cc-pV5Z-DK','cc-pVDZ-DK','cc-pVQZ-DK','cc-pV(T+d)Z-DK',
+                  'cc-pVTZ-DK','cc-pwCV5Z-DK','cc-pwCVQZ-DK','cc-pwCVTZ-DK','cc-pV5Z(fi/sf/fw)','cc-pV5Z(fi/sf/lc)',
+		  'cc-pV5Z(fi/sf/sc)','cc-pV5Z(pt/sf/fw)','cc-pV5Z(pt/sf/lc)','cc-pV5Z(pt/sf/sc)','cc-pVDZ(fi/sf/fw)',
+                  'cc-pVDZ(fi/sf/lc)','cc-pVDZ(fi/sf/sc)','cc-pVDZ(pt/sf/fw)','cc-pVDZ(pt/sf/lc)','cc-pVDZ(pt/sf/sc)',
+                  'cc-pVQZ(fi/sf/fw)','cc-pVQZ(fi/sf/lc)','cc-pVQZ(fi/sf/sc)','cc-pVQZ(pt/sf/fw)','cc-pVQZ(pt/sf/lc)',
+                  'cc-pVQZ(pt/sf/sc)','cc-pVTZ(fi/sf/fw)','cc-pVTZ(fi/sf/lc)','cc-pVTZ(fi/sf/sc)','cc-pVTZ(pt/sf/fw)',
+                  'cc-pVTZ(pt/sf/lc)','cc-pVTZ(pt/sf/sc)','aug-cc-pV5Z-PP_OPTRI','aug-cc-pV5Z-RI diffuse',
+                  'aug-cc-pV5Z_OPTRI','aug-cc-pV6Z-RI diffuse','aug-cc-pVDZ-PP_OPTRI','aug-cc-pVDZ-RI diffuse',
+                  'aug-cc-pVDZ_OPTRI','aug-cc-pVQZ-PP_OPTRI','aug-cc-pVQZ-RI diffuse','aug-cc-pVQZ_OPTRI',
+                  'aug-cc-pVTZ-PP_OPTRI','aug-cc-pVTZ-RI diffuse','aug-cc-pVTZ_OPTRI','aug-cc-pwCV5Z-PP_OPTRI',
+                  'aug-cc-pwCVDZ-PP_OPTRI','aug-cc-pwCVQZ-PP_OPTRI','aug-cc-pwCVTZ-PP_OPTRI','cc-pV(5+d)Z-RI',
+                  'cc-pV5Z-PP-RI','cc-pV5Z-RI','cc-pV(6+d)Z-RI','cc-pV6Z-RI','cc-pV(D+d)Z-RI','cc-pVDZ-PP-RI',
+                  'cc-pVDZ-RI','cc-pV(Q+d)Z-RI','cc-pVQZ-PP-RI','cc-pVQZ-RI','cc-pV(T+d)Z-RI','cc-pVTZ-PP-RI',
+                  'cc-pVTZ-RI','cc-pwCV5Z-RI','cc-pwCV5Z-RI tight','cc-pwCVDZ-RI','cc-pwCVDZ-RI tight',
+                  'cc-pwCVQZ-RI','cc-pwCVQZ-RI tight','cc-pwCVTZ-RI','cc-pwCVTZ-RI tight','aug-cc-pV5Z-PP MP2 Fitting',
+                  'aug-cc-pVDZ-PP MP2 Fitting','aug-cc-pVQZ-PP MP2 Fitting','aug-cc-pVTZ-PP MP2 Fitting',
+                  'aug-cc-pVTZ MP2 Fitting','cc-pV5Z-PP MP2 Fitting','cc-pVDZ-PP MP2 Fitting','cc-pVQZ-PP MP2 Fitting',
+                  'cc-pVTZ-PP MP2 Fitting','cc-pVTZ MP2 Fitting','cc-pwCV5Z-PP MP2 Fitting','cc-pwCVDZ-PP MP2 Fitting',
+                  'cc-pwCVQZ-PP MP2 Fitting','cc-pwCVTZ-PP MP2 Fitting','cc-pCV5Z','cc-pCV6Z','cc-pCV6Z(old)',
+		  'cc-pCVDZ','cc-pCVDZ(old)','cc-pCVQZ','cc-pCVQZ(old)','cc-pCVTZ','cc-pCVTZ(old)',
+		  'aug-cc-pV5Z-DK Diffuse','aug-cc-pVDZ-DK Diffuse','aug-cc-pVQZ-DK Diffuse','aug-cc-pVTZ-DK Diffuse',
+		  'cc-pwCV5Z Tight','cc-pwCVDZ Tight','cc-pwCVQZ Tight','cc-pwCVTZ Tight' ]
+
 # This list contains the names of all basis set available in NWChemEx 
 # (in the convention of NWChemEx)
 nwchemex_basis_list = ['3-21g','4-31g','5-21g','6-21g','6-31++g','6-31++g_st_','6-31++g_st__st_',
@@ -557,7 +597,10 @@ for basis_name in small_basis_elements:
                     nwInp.write("  {}      0.00000000    0.00000000    0.00000000\n".format(cc))
                     nwInp.write("end\n")
                     nwInp.write("\n")
-                    nwInp.write("basis\n")
+                    if basis_name in CC_basis_sets:
+                        nwInp.write("basis spherical\n")
+                    else:
+                        nwInp.write("basis\n")
                     nwInp.write("  * library {} \n".format(basis_name))
                     nwInp.write("end\n")
                     nwInp.write("\n")
@@ -582,7 +625,10 @@ for basis_name in small_basis_elements:
                     nwInp.write("  {}      0.00000000    0.00000000    0.00000000\n".format(cc))
                     nwInp.write("end\n")
                     nwInp.write("\n")
-                    nwInp.write("basis\n")
+                    if basis_name in CC_basis_sets:
+                        nwInp.write("basis spherical\n")
+                    else:
+                        nwInp.write("basis\n")
                     nwInp.write("  * library {} \n".format(basis_name))
                     nwInp.write("end\n")
                     nwInp.write("\n")
