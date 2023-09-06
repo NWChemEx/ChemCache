@@ -194,7 +194,7 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
 
         s_name = helpers.sanitize_basis_name(bs_name)
         ds.append(d_template.format(s_name))
-        ms.append(m_template.format(s_name, bs_name))
+        ms.append(m_template.format(s_name, d_name))
         aos.append(ao_template.format(d_name, d_name))
 
     bases_file = os.path.join(src_dir, "atomic_densities.hpp")
