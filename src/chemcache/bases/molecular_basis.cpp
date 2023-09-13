@@ -46,7 +46,7 @@ MODULE_RUN(molecular_basis) {
     molecular_basis_t aobs;
     for(const auto& ai : mol) {
         ci = atoms_mod.run_as<atomic_basis_pt>(ai.Z());
-        for(auto i : {0, 1, 2}) ci.coord(i) = ai.coord(i);
+        for(auto i : {0, 1, 2}) ci.center().coord(i) = ai.coord(i);
         aobs.add_center(ci);
     }
 
