@@ -20,10 +20,12 @@
 
 using atomic_basis_pt    = simde::AtomicBasisSetFromZ;
 using atomic_basis_t     = simde::type::atomic_basis_set;
+using cg_t               = simde::type::contracted_gaussian;
 using molecular_basis_pt = simde::MolecularBasisSet;
 using molecular_basis_t  = simde::type::ao_basis_set;
 using molecule_t         = simde::type::molecule;
 using atom_t             = simde::type::atom;
+using doubles_t          = std::vector<double>;
 
 using Catch::Matchers::Message;
 
@@ -34,33 +36,31 @@ TEST_CASE("Atomic Basis Set") {
 
     SECTION("sto-3g Hydrogen") {
         auto rv = atom_bs_mod.run_as<atomic_basis_pt>(1ul);
+        doubles_t cs{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01};
+        doubles_t es{3.4252509140e+00, 6.2391372980e-01, 1.6885540400e-01};
+        cg_t cg(cs.begin(), cs.end(), es.begin(), es.end(), 0.0, 0.0, 0.0);
+
         atomic_basis_t corr("sto-3g", 1, 0.0, 0.0, 0.0);
-        corr.add_shell(chemist::ShellType::pure, 0,
-                       std::vector<double>{1.5432896730e-01, 5.3532814230e-01,
-                                           4.4463454220e-01},
-                       std::vector<double>{3.4252509140e+00, 6.2391372980e-01,
-                                           1.6885540400e-01});
+        corr.add_shell(chemist::ShellType::pure, 0, cg);
         REQUIRE(rv == corr);
     }
 
     SECTION("sto-3g Oxygen") {
         auto rv = atom_bs_mod.run_as<atomic_basis_pt>(8ul);
+        doubles_t cs0{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01};
+        doubles_t es0{1.3070932140e+02, 2.3808866050e+01, 6.4436083130e+00};
+        cg_t cg0(cs0.begin(), cs0.end(), es0.begin(), es0.end(), 0.0, 0.0, 0.0);
+        doubles_t cs1{-9.9967229190e-02, 3.9951282610e-01, 7.0011546890e-01};
+        doubles_t es1{5.0331513190e+00, 1.1695961250e+00, 3.8038896000e-01};
+        cg_t cg1(cs1.begin(), cs1.end(), es1.begin(), es1.end(), 0.0, 0.0, 0.0);
+        doubles_t cs2{1.5591627500e-01, 6.0768371860e-01, 3.9195739310e-01};
+        doubles_t es2{5.0331513190e+00, 1.1695961250e+00, 3.8038896000e-01};
+        cg_t cg2(cs2.begin(), cs2.end(), es2.begin(), es2.end(), 0.0, 0.0, 0.0);
+
         atomic_basis_t corr("sto-3g", 8, 0.0, 0.0, 0.0);
-        corr.add_shell(chemist::ShellType::pure, 0,
-                       std::vector<double>{1.5432896730e-01, 5.3532814230e-01,
-                                           4.4463454220e-01},
-                       std::vector<double>{1.3070932140e+02, 2.3808866050e+01,
-                                           6.4436083130e+00});
-        corr.add_shell(chemist::ShellType::pure, 0,
-                       std::vector<double>{-9.9967229190e-02, 3.9951282610e-01,
-                                           7.0011546890e-01},
-                       std::vector<double>{5.0331513190e+00, 1.1695961250e+00,
-                                           3.8038896000e-01});
-        corr.add_shell(chemist::ShellType::pure, 1,
-                       std::vector<double>{1.5591627500e-01, 6.0768371860e-01,
-                                           3.9195739310e-01},
-                       std::vector<double>{5.0331513190e+00, 1.1695961250e+00,
-                                           3.8038896000e-01});
+        corr.add_shell(chemist::ShellType::pure, 0, cg0);
+        corr.add_shell(chemist::ShellType::pure, 0, cg1);
+        corr.add_shell(chemist::ShellType::pure, 1, cg2);
         REQUIRE(rv == corr);
     }
 
@@ -81,12 +81,12 @@ TEST_CASE("Molecular Basis Set") {
     molecule_t in{h1, h2};
 
     auto h_aos = [](auto r) {
+        doubles_t cs{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01};
+        doubles_t es{3.4252509140e+00, 6.2391372980e-01, 1.6885540400e-01};
+        cg_t cg(cs.begin(), cs.end(), es.begin(), es.end(), 0.0, 0.0, 0.0);
+
         atomic_basis_t aos("sto-3g", 1, r, r, r);
-        aos.add_shell(chemist::ShellType::pure, 0,
-                      std::vector<double>{1.5432896730e-01, 5.3532814230e-01,
-                                          4.4463454220e-01},
-                      std::vector<double>{3.4252509140e+00, 6.2391372980e-01,
-                                          1.6885540400e-01});
+        aos.add_shell(chemist::ShellType::pure, 0, cg);
         return aos;
     };
 

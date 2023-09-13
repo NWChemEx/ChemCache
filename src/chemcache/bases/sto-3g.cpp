@@ -27,7 +27,12 @@
 namespace chemcache {
 
 using atomic_basis_pt = simde::AtomicBasisSetFromZ;
-using atomic_basis_t  = simde::type::atomic_basis_set;
+using abs_t           = simde::type::atomic_basis_set;
+using shell_t         = simde::type::shell;
+using center_t        = simde::type::point;
+using shells_t        = std::vector<shell_t>;
+using doubles_t       = std::vector<double>;
+using pure_t          = chemist::ShellType;
 
 static constexpr auto module_desc = R"(
 sto-3g atomic basis set
@@ -46,37 +51,40 @@ MODULE_RUN(sto_dash_3g_atom_basis) {
     const auto& [Z] = atomic_basis_pt::unwrap_inputs(inputs);
     auto rv         = results();
 
+    // Basis Set name and origin point
+    std::string name("sto-3g");
+    center_t r0(0.0, 0.0, 0.0);
+
+    auto make_shell = [&r0](auto pure, auto l, const doubles_t& cs,
+                            const doubles_t& es) {
+        return shell_t(pure, l, cs.begin(), cs.end(), es.begin(), es.end(), r0);
+    };
+
     switch(Z) {
         case(1): {
-            atomic_basis_t atom_bs("sto-3g", 1, 0.0, 0.0, 0.0);
-            atom_bs.add_shell(
-              chemist::ShellType::pure, 0,
-              std::vector<double>{1.5432896730e-01, 5.3532814230e-01,
-                                  4.4463454220e-01},
-              std::vector<double>{3.4252509140e+00, 6.2391372980e-01,
-                                  1.6885540400e-01});
+            shells_t shells;
+            shells.emplace_back(make_shell(
+              pure_t::pure, 0,
+              doubles_t{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01},
+              doubles_t{3.4252509140e+00, 6.2391372980e-01, 1.6885540400e-01}));
+            abs_t atom_bs(name, Z, r0, shells.begin(), shells.end());
             return atomic_basis_pt::wrap_results(rv, atom_bs);
         }
         case(8): {
-            atomic_basis_t atom_bs("sto-3g", 8, 0.0, 0.0, 0.0);
-            atom_bs.add_shell(
-              chemist::ShellType::pure, 0,
-              std::vector<double>{1.5432896730e-01, 5.3532814230e-01,
-                                  4.4463454220e-01},
-              std::vector<double>{1.3070932140e+02, 2.3808866050e+01,
-                                  6.4436083130e+00});
-            atom_bs.add_shell(
-              chemist::ShellType::pure, 0,
-              std::vector<double>{-9.9967229190e-02, 3.9951282610e-01,
-                                  7.0011546890e-01},
-              std::vector<double>{5.0331513190e+00, 1.1695961250e+00,
-                                  3.8038896000e-01});
-            atom_bs.add_shell(
-              chemist::ShellType::pure, 1,
-              std::vector<double>{1.5591627500e-01, 6.0768371860e-01,
-                                  3.9195739310e-01},
-              std::vector<double>{5.0331513190e+00, 1.1695961250e+00,
-                                  3.8038896000e-01});
+            shells_t shells;
+            shells.emplace_back(make_shell(
+              pure_t::pure, 0,
+              doubles_t{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01},
+              doubles_t{1.3070932140e+02, 2.3808866050e+01, 6.4436083130e+00}));
+            shells.emplace_back(make_shell(
+              pure_t::pure, 0,
+              doubles_t{-9.9967229190e-02, 3.9951282610e-01, 7.0011546890e-01},
+              doubles_t{5.0331513190e+00, 1.1695961250e+00, 3.8038896000e-01}));
+            shells.emplace_back(make_shell(
+              pure_t::pure, 1,
+              doubles_t{1.5591627500e-01, 6.0768371860e-01, 3.9195739310e-01},
+              doubles_t{5.0331513190e+00, 1.1695961250e+00, 3.8038896000e-01}));
+            abs_t atom_bs(name, Z, r0, shells.begin(), shells.end());
             return atomic_basis_pt::wrap_results(rv, atom_bs);
         }
         default: {
