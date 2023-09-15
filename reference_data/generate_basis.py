@@ -102,14 +102,14 @@ class Shell:
         :type tab: str, optional
         """
 
-        add_shell = "{t}{c}.add_shell(\n{t}  chemist::ShellType::{shelltype}, {l},"
+        add_shell = "{t}{c}.emplace_back(make_shell(\n{t}  pure_t::{shelltype}, {l},"
 
         lines = []
         for i in range(self.gen):
             l = self.ls[i]
             lines.append(add_shell.format(t=tab * 3, c=center, l=l, shelltype = self.shelltype))
-            cs = "{t}std::vector<double>{{".format(t=tab * 3)
-            es = "{t}std::vector<double>{{".format(t=tab * 3)
+            cs = "  doubles_t{"
+            es = "  doubles_t{"
             for j, ai in enumerate(self.exp):
                 ci = format(float(self.coefs[j][i].replace('D', 'E')
                                   .replace('E', 'e')), self.number_format)
@@ -123,8 +123,8 @@ class Shell:
                 else:
                     cs += '}'
                     es += '}'
-            lines.append("{}{},".format(tab*2, cs))
-            lines.append("{}{});".format(tab*2, es))
+            lines.append("{}{},".format(tab * 3, cs))
+            lines.append("{}{}));".format(tab * 3, es))
         return "\n".join(lines)
 
 
@@ -138,7 +138,12 @@ def _write_basis_files(out_file: str, bs_name: str, basis_set: dict,
 namespace chemcache {{
 
 using atomic_basis_pt = simde::AtomicBasisSetFromZ;
-using atomic_basis_t  = simde::type::atomic_basis_set;
+using abs_t           = simde::type::atomic_basis_set;
+using shell_t         = simde::type::shell;
+using center_t        = simde::type::point;
+using shells_t        = std::vector<shell_t>;
+using doubles_t       = std::vector<double>;
+using pure_t          = chemist::ShellType;
 
 static constexpr auto module_desc = R"(
 {d_name} atomic basis set
@@ -157,6 +162,15 @@ MODULE_RUN({s_name}_atom_basis) {{
     const auto& [Z] = atomic_basis_pt::unwrap_inputs(inputs);
     auto rv         = results();
 
+    // Basis Set name and origin point
+    std::string name("{d_name}");
+    center_t r0(0.0, 0.0, 0.0);
+
+    auto make_shell = [&r0](auto pure, auto l, const doubles_t& cs,
+                            const doubles_t& es) {{
+        return shell_t(pure, l, cs.begin(), cs.end(), es.begin(), es.end(), r0);
+    }};
+
     switch(Z) {{
 {cases}
         default: {{
@@ -169,8 +183,9 @@ MODULE_RUN({s_name}_atom_basis) {{
 '''
 
     cases_template = '''{t}{t}case({Z}): {{
-{t}{t}{t}atomic_basis_t atom_bs("{d_name}", {Z}, 0.0, 0.0, 0.0);
+{t}{t}{t}shells_t shells;
 {shells}
+{t}{t}{t}abs_t atom_bs(name, Z, r0, shells.begin(), shells.end());
 {t}{t}{t}return atomic_basis_pt::wrap_results(rv, atom_bs);
 {t}{t}}}'''
 
@@ -181,7 +196,7 @@ MODULE_RUN({s_name}_atom_basis) {{
     for z in sorted([int(x) for x in basis_set.keys()]):
         shells = []
         for shell in basis_set[str(z)]:
-            shells.append(shell.cxxify("atom_bs", tab))
+            shells.append(shell.cxxify("shells", tab))
         cases.append(cases_template.format(
             t=tab, Z=z, d_name=d_name, shells="\n".join(shells)))
 
