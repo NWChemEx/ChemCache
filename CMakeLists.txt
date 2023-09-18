@@ -86,8 +86,14 @@ if("${BUILD_TESTING}")
 	    VERSION v2.x
     )
     cmaize_add_tests(
-        test_${PROJECT_NAME}
-        SOURCE_DIR "${CXX_TEST_DIR}/unit_tests"
+        test_unit_${PROJECT_NAME}
+        SOURCE_DIR "${CXX_TEST_DIR}/unit"
+        INCLUDE_DIRS "${project_src_dir}"
+        DEPENDS Catch2 ${PROJECT_NAME}
+    )
+    cmaize_add_tests(
+        test_integration_${PROJECT_NAME}
+        SOURCE_DIR "${CXX_TEST_DIR}/integration"
         INCLUDE_DIRS "${project_src_dir}"
         DEPENDS Catch2 ${PROJECT_NAME}
     )
