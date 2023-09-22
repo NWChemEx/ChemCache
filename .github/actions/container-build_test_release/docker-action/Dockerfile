@@ -20,7 +20,7 @@ FROM ghcr.io/nwchemex-project/base_chemcache:$base_tag
 
 COPY --from=0 /install /install
 
-RUN apt-get update \
+RUN apt-get update \ 
     && DEBIAN_FRONTEND=noninteractive apt-get install -y python3-venv
 
 COPY build_test.sh /build_test.sh

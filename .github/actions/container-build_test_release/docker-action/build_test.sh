@@ -32,6 +32,7 @@ cd ChemCache
 
 # generate data
 python3 -m venv venv
+. venv/bin/activate
 pip install -r reference_data/requirements.txt
 .github/workflows/scripts/download_reference_data.sh
 .github/workflows/scripts/generate_reference_data.sh
