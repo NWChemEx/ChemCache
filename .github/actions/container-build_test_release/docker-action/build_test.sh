@@ -30,6 +30,12 @@ set -e # Exit with error if any command fails
 git clone -b ${env_branch_name} https://$env_user:$env_cr_pat@github.com/NWChemEx-Project/ChemCache.git
 cd ChemCache
 
+# generate data
+python3 -m venv venv
+pip install -r reference_data/requirements.txt
+.github/workflows/scripts/download_reference_data.sh
+.github/workflows/scripts/generate_reference_data.sh
+
 cmake_command=cmake
 ctest_command=ctest
 toolchain_file=$(pwd)/toolchain.cmake
