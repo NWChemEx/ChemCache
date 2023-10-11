@@ -430,7 +430,7 @@ def main(args: argparse.Namespace) -> None:
 
     # Add metadata value filters at this point
     scraper.add_filter(
-        "family", ["pople", "dunning", "dunning_fit", "dunning_pp_fit", "sto"])
+        "family", ["pople", "dunning", "dunning_fit", "dunning_pp_fit", "sto", "ahlrichs", "ahlrichs_fit" ])
 
     for name in scraper.filtered_basis_sets:
         clean_name, text = scraper.download_basis_set(name)
