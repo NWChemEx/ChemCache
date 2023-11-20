@@ -50,16 +50,14 @@ jobs:
         password: ${{ secrets.CONTAINER_REPO_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      # These next two steps will configure CMake if required
-      - name: Configure Only Docs
-        if: |
-          inputs.generate_module_docs == false && 
-          inputs.doc_target != 'Sphinx'
+      - name: Build Reference Data Documentation
         run: |
-          cmake -Bbuild -H. -GNinja -DBUILD_DOCS=ON -DONLY_BUILD_DOCS=ON
+          sphinx-apidoc --force --separate --no-toc \
+            -o docs/source/python_api/reference_data reference_data
+
+          rm docs/source/python_api/reference_data/reference_data.rst
         shell: bash
-      - name: Configure Library
-        if: inputs.generate_module_docs == true
+      - name: CMake Configure and Build
         env:
           CMAIZE_GITHUB_TOKEN: ${{secrets.CMAIZE_GITHUB_TOKEN}}
         run: |
@@ -69,29 +67,19 @@ jobs:
           cmake -Bbuild -H. -GNinja -DBUILD_DOCS=ON \
           -DCMAKE_INSTALL_PREFIX=./install \
           -DCMAKE_TOOLCHAIN_FILE="${toolchain}"
-      # Build the Doxygen docs
-      - name: Build Doxygen Docs
-        if: ${{ inputs.doc_target != 'Sphinx' }}
-        run: |
-          cmake --build build --target ${{ inputs.doc_target }} --parallel
+
+          cmake --build build --parallel
+          cmake --build build --target chemcache_cxx_api --parallel
 
           # Migrate the Doxygen documentation to the docs source
           mkdir docs/build
           mkdir docs/build/html
-          mv build/html "docs/build/html/${{ inputs.doc_target }}"
+          mv build/html "docs/build/html/chemcache_cxx_api"
         shell: bash
-      # Build the C++ Library if building module docs
-      - name: Build Library
-        if: inputs.generate_module_docs == 'true'
-        run: cmake --build build --parallel
-        shell: bash
-      # Generate the module docs source files
       - name: Generate Module Docs
-        if: inputs.generate_module_docs == 'true'
-        uses: NWChemEx-Project/.github/actions/generate_module_docs@master
+        uses: NWChemEx-Project/PluginPlay/.github/actions/generate_module_docs@master
         with:
-          doc_target: $${{ inputs.doc_target }}
-      # Build the Sphinx docs and then deploy
+          doc_target: chemcache_cxx_api
       - name: Sphinx Docs
         run: |
           cd docs
@@ -105,3 +93,38 @@ jobs:
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           publish_dir: ./docs/build/html  
+
+  download-and-generate-reference-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: fregante/setup-git-user@v1
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install venv and dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install -r reference_data/requirements.txt
+        shell: bash
+      - name: Overwrite 'generated_data' with 'master'
+        run: |
+          git fetch
+          git checkout --track origin/generated_data
+          git checkout master
+          git merge -s ours generated_data -m "Merge branch 'generated_data'" --allow-unrelated-histories
+          git checkout generated_data
+          git merge master -m "Merge master -> generated_data"
+        shell: bash
+      - name: Download reference data
+        run: .github/workflows/scripts/download_reference_data.sh
+      - name: Generate reference data source code
+        run: .github/workflows/scripts/generate_reference_data.sh
+      - name: Format generated code
+        run: find src/ -iname '*.cpp' | xargs clang-format --verbose -i
+      - name: Commit and push changes to data branch
+        uses: github-actions-x/commit@v2.9
+        with:
+          push-branch: generated_data
+          commit-message: Automatically updated reference data using GitHub Actions
