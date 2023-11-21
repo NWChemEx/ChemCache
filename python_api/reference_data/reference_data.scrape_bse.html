@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>reference_data.scrape_bse module &mdash; ChemCache 1.0.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -13,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -91,12 +90,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-reference_data.scrape_bse">
-<span id="reference-data-scrape-bse-module"></span><h1>reference_data.scrape_bse module<a class="headerlink" href="#module-reference_data.scrape_bse" title="Permalink to this heading"></a></h1>
+  <section id="module-reference_data.scrape_bse">
+<span id="reference-data-scrape-bse-module"></span><h1>reference_data.scrape_bse module<a class="headerlink" href="#module-reference_data.scrape_bse" title="Permalink to this headline"></a></h1>
 <p>This script uses a web scraper to download all basis sets from the Basis 
 Set Exchange (BSE) in the specified output format.</p>
-<div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">scrape_bse</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTFORMAT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span> <span class="n">destination</span>
 
 <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
@@ -114,7 +113,6 @@ Set Exchange (BSE) in the specified output format.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">destination</span>
 <span class="o">|</span>       <span class="o">&lt;</span><span class="n">all_basis_set_files</span><span class="o">&gt;</span>
 </pre></div>
-</div>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="reference_data.scrape_bse.BSEBasisSetScraper">
@@ -305,7 +303,7 @@ retrieved from BSE.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.scrape_bse.main">
-<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.main" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.main" title="Permalink to this definition"></a></dt>
 <dd><p>Entry point function to generate basis set files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -316,7 +314,7 @@ retrieved from BSE.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.scrape_bse.parse_args">
-<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Namespace</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.parse_args" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">argparse.Namespace</span></span></span><a class="headerlink" href="#reference_data.scrape_bse.parse_args" title="Permalink to this definition"></a></dt>
 <dd><p>Parse command line arguments.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -328,7 +326,8 @@ retrieved from BSE.</p>
 </dl>
 </dd></dl>
 
-</div>
+</section>
+</section>
 
 
            </div>

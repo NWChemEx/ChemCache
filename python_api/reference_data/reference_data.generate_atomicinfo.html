@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>reference_data.generate_atomicinfo module &mdash; ChemCache 1.0.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -13,9 +14,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -91,8 +90,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="module-reference_data.generate_atomicinfo">
-<span id="reference-data-generate-atomicinfo-module"></span><h1>reference_data.generate_atomicinfo module<a class="headerlink" href="#module-reference_data.generate_atomicinfo" title="Permalink to this heading"></a></h1>
+  <section id="module-reference_data.generate_atomicinfo">
+<span id="reference-data-generate-atomicinfo-module"></span><h1>reference_data.generate_atomicinfo module<a class="headerlink" href="#module-reference_data.generate_atomicinfo" title="Permalink to this headline"></a></h1>
 <p>This script is used to create the experimental data look up tables for the
 atom class.</p>
 <div class="line-block">
@@ -108,8 +107,8 @@ script:</p>
 <li><p>Z: the atomic number of an atom</p></li>
 <li><p>Sym: the atomic symbol of an atom (e.g. H for hydrogen, He for helium)</p></li>
 </ul>
-<div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_atomicinfo</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">amu2me</span> <span class="n">AMU2ME</span><span class="p">]</span> <span class="n">data_dir</span> <span class="n">src_dir</span>
 
 <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
@@ -133,7 +132,6 @@ script:</p>
 <span class="o">|</span>       <span class="n">load_elements</span><span class="o">.</span><span class="n">hpp</span>
 </pre></div>
 </div>
-</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="reference_data.generate_atomicinfo.AtomicData">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">reference_data.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">AtomicData</span></span><a class="headerlink" href="#reference_data.generate_atomicinfo.AtomicData" title="Permalink to this definition"></a></dt>
@@ -156,7 +154,7 @@ script:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.generate_atomicinfo.main">
-<span class="sig-prename descclassname"><span class="pre">reference_data.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.generate_atomicinfo.main" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#reference_data.generate_atomicinfo.main" title="Permalink to this definition"></a></dt>
 <dd><p>Entry point function to generate atomic info files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -167,7 +165,7 @@ script:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.generate_atomicinfo.parse_args">
-<span class="sig-prename descclassname"><span class="pre">reference_data.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Namespace</span></span></span><a class="headerlink" href="#reference_data.generate_atomicinfo.parse_args" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">argparse.Namespace</span></span></span><a class="headerlink" href="#reference_data.generate_atomicinfo.parse_args" title="Permalink to this definition"></a></dt>
 <dd><p>Parse command line arguments.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -194,7 +192,8 @@ collection.</p>
 </dl>
 </dd></dl>
 
-</div>
+</section>
+</section>
 
 
            </div>
