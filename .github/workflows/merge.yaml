@@ -77,9 +77,7 @@ jobs:
           mv build/html "docs/build/html/chemcache_cxx_api"
         shell: bash
       - name: Generate Module Docs
-        uses: NWChemEx-Project/.github/actions/generate_module_docs@master
-        with:
-          doc_target: chemcache_cxx_api
+        run: python3 /scripts/generate_module_dox.py chemcache_cxx_api
       - name: Sphinx Docs
         run: |
           cd docs
