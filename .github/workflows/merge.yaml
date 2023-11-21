@@ -1,0 +1,130 @@
+# Copyright 2023 NWChemEx-Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+name: .github Merge Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  # Common-Merge:
+  #   uses: NWChemEx-Project/.github/.github/workflows/common_merge.yaml@master
+  #   with:
+  #     doc_target: 'chemcache_cxx_api'
+  #     generate_module_docs: true
+  #   secrets: inherit
+
+  # Bump the version tag
+  bump_tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: haya14busa/action-bumpr@v1
+        with:
+          default_bump_level: patch
+          github_token: ${{ secrets.TAG_TOKEN }}
+          tag_as_user: .github[bot]
+          tag_as_email: .github[bot]@github.com
+
+  # Deploy updated documentation
+  deploy_docs:
+    runs-on: ubuntu-latest
+    container: 
+      image: ghcr.io/nwchemex-project/nwx_buildenv:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.CONTAINER_REPO_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Reference Data Documentation
+        run: |
+          sphinx-apidoc --force --separate --no-toc \
+            -o docs/source/python_api/reference_data reference_data
+
+          rm docs/source/python_api/reference_data/reference_data.rst
+        shell: bash
+      - name: CMake Configure and Build
+        env:
+          CMAIZE_GITHUB_TOKEN: ${{secrets.CMAIZE_GITHUB_TOKEN}}
+        run: |
+          toolchain=/toolchains/nwx_gcc-11.cmake
+          echo 'set(CMAIZE_GITHUB_TOKEN '${CMAIZE_GITHUB_TOKEN}')' >> $toolchain
+
+          cmake -Bbuild -H. -GNinja -DBUILD_DOCS=ON \
+          -DCMAKE_INSTALL_PREFIX=./install \
+          -DCMAKE_TOOLCHAIN_FILE="${toolchain}"
+
+          cmake --build build --parallel
+          cmake --build build --target chemcache_cxx_api --parallel
+
+          # Migrate the Doxygen documentation to the docs source
+          mkdir docs/build
+          mkdir docs/build/html
+          mv build/html "docs/build/html/chemcache_cxx_api"
+        shell: bash
+      - name: Generate Module Docs
+        uses: NWChemEx-Project/PluginPlay/.github/actions/generate_module_docs@master
+        with:
+          doc_target: chemcache_cxx_api
+      - name: Sphinx Docs
+        run: |
+          cd docs
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+          make html
+        shell: bash
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          publish_dir: ./docs/build/html  
+
+  download-and-generate-reference-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: fregante/setup-git-user@v1
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install venv and dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install -r reference_data/requirements.txt
+        shell: bash
+      - name: Overwrite 'generated_data' with 'master'
+        run: |
+          git fetch
+          git checkout --track origin/generated_data
+          git checkout master
+          git merge -s ours generated_data -m "Merge branch 'generated_data'" --allow-unrelated-histories
+          git checkout generated_data
+          git merge master -m "Merge master -> generated_data"
+        shell: bash
+      - name: Download reference data
+        run: .github/workflows/scripts/download_reference_data.sh
+      - name: Generate reference data source code
+        run: .github/workflows/scripts/generate_reference_data.sh
+      - name: Format generated code
+        run: find src/ -iname '*.cpp' | xargs clang-format --verbose -i
+      - name: Commit and push changes to data branch
+        uses: github-actions-x/commit@v2.9
+        with:
+          push-branch: generated_data
+          commit-message: Automatically updated reference data using GitHub Actions

@@ -47,9 +47,9 @@ TEST_CASE("Atom Isotope") {
     SECTION("Out of Range") {
         SECTION("Z Out of Range") {
             input_t in{1000ul, 1ul};
-            REQUIRE_THROWS_MATCHES(
-              atom_mod.run_as<isotope_pt>(in), std::out_of_range,
-              Message("Isotopes not available for Z"));
+            REQUIRE_THROWS_MATCHES(atom_mod.run_as<isotope_pt>(in),
+                                   std::out_of_range,
+                                   Message("Isotopes not available for Z"));
         }
         SECTION("N Out of Range") {
             input_t in{1ul, 10000ul};
