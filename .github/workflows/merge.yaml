@@ -22,7 +22,7 @@ on:
 
 jobs:
   # Common-Merge:
-  #   uses: NWChemEx-Project/.github/.github/workflows/common_merge.yaml@master
+  #   uses: NWChemEx/.github/.github/workflows/common_merge.yaml@master
   #   with:
   #     doc_target: 'chemcache_cxx_api'
   #     generate_module_docs: true
@@ -44,7 +44,7 @@ jobs:
   deploy_docs:
     runs-on: ubuntu-latest
     container: 
-      image: ghcr.io/nwchemex-project/nwx_buildenv:latest
+      image: ghcr.io/nwchemex/nwx_buildenv:latest
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.CONTAINER_REPO_TOKEN }}
