@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>reference_data.helper_fxns module &mdash; ChemCache 1.0.0 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -86,22 +89,22 @@
            <div itemprop="articleBody">
              
   <section id="module-reference_data.helper_fxns">
-<span id="reference-data-helper-fxns-module"></span><h1>reference_data.helper_fxns module<a class="headerlink" href="#module-reference_data.helper_fxns" title="Permalink to this headline"></a></h1>
+<span id="reference-data-helper-fxns-module"></span><h1>reference_data.helper_fxns module<a class="headerlink" href="#module-reference_data.helper_fxns" title="Link to this heading"></a></h1>
 <p>This file contains helper functions used throughout the various parsing 
 scripts in this directory.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.desanitize_basis_name">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">desanitize_basis_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bs_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.desanitize_basis_name" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">desanitize_basis_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bs_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.desanitize_basis_name" title="Link to this definition"></a></dt>
 <dd><p>“Desanitizes” the basis set name. For example, replace “_star” with
 an asterisk character ‘*’.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>bs_name</strong> (<em>str</em>) – Sanitized basis set name</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Unsanitized basis set name</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -109,23 +112,23 @@ an asterisk character ‘*’.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.find_files">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">find_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.find_files" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">find_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.find_files" title="Link to this definition"></a></dt>
 <dd><p>Recursively find all files in the given directory with the provided
 extensions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>source_root</strong> (<em>str</em>) – Root directory containing relevant files.</p></li>
-<li><p><strong>extensions</strong> (<em>list of str</em>) – File extensions to search for.</p></li>
+<li><p><strong>extensions</strong> (<em>list</em><em> of </em><em>str</em>) – File extensions to search for.</p></li>
 <li><p><strong>recursive</strong> (<em>bool</em>) – Whether or not to recursively search in subdirectories,
 defaults to False</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Dictionary of file extensions mapping to lists of full paths to 
 files found with the respective extension</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict of lists</p>
 </dd>
 </dl>
@@ -133,16 +136,16 @@ files found with the respective extension</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.lookup_extension">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">lookup_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.lookup_extension" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">lookup_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.lookup_extension" title="Link to this definition"></a></dt>
 <dd><p>Looks up the extension for a basis set file format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>format</strong> (<em>str</em>) – BSE basis set file format identifier.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Extension for the file format.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -150,18 +153,18 @@ files found with the respective extension</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.sanitize_basis_name">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">sanitize_basis_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bs_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.sanitize_basis_name" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">sanitize_basis_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bs_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.sanitize_basis_name" title="Link to this definition"></a></dt>
 <dd><p>Sanitizes the basis set name. For example, replace numbers with the
 corresponding word and hyphens, plus-signs, and other symbols with 
 underscores.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>bs_name</strong> (<em>str</em>) – Basis set name</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Sanitized basis set name</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -169,11 +172,11 @@ underscores.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="reference_data.helper_fxns.write_warning">
-<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">write_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">script_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.write_warning" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">reference_data.helper_fxns.</span></span><span class="sig-name descname"><span class="pre">write_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">script_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reference_data.helper_fxns.write_warning" title="Link to this definition"></a></dt>
 <dd><p>Writes a warning saying the file was auto-generated by the given script
 and will be overwritten the next time it is run.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fout</strong> (<em>:class:io.TextIOBase</em>) – Text file opened for output.</p></li>
 <li><p><strong>script_name</strong> (<em>str</em>) – Name of the script that generates the file.</p></li>
