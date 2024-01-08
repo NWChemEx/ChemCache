@@ -22,11 +22,13 @@
  */
 
 #include "atoms.hpp"
-#include <simde/simde.hpp>
+#include <simde/atoms/symbol_from_Z.hpp>
+#include <simde/types.hpp>
 
 namespace chemcache {
 
 using sym_pt = simde::SymbolFromZ;
+using sym_t  = simde::type::atomic_symbol;
 
 static constexpr auto module_desc = R"(
 Atomic Symbol from Atomic Number
@@ -44,7 +46,7 @@ MODULE_CTOR(sym_from_Z) {
 MODULE_RUN(sym_from_Z) {
     const auto& [Z] = sym_pt::unwrap_inputs(inputs);
 
-    simde::type::atomic_symbol sym;
+    sym_t sym;
     if(Z == 1) {
         sym = "H";
     } else if(Z == 8) {

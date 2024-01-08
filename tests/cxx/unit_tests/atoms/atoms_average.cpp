@@ -16,30 +16,34 @@
 
 #include "chemcache/chemcache.hpp"
 #include <catch2/catch.hpp>
-#include <simde/simde.hpp>
+#include <simde/atoms/atom.hpp>
+#include <simde/types.hpp>
 
-using z_pt = simde::ZFromSymbol;
+using atom_pt = simde::AtomFromZ;
+using atom_t  = simde::type::atom;
 
 using Catch::Matchers::Message;
 
-TEST_CASE("Z from Symbol") {
+TEST_CASE("Atom") {
     pluginplay::ModuleManager mm;
     chemcache::load_modules(mm);
-    auto& z_mod = mm.at("Z From Symbol");
+    auto& atom_mod = mm.at("Atom");
 
-    SECTION("sto-3g Hydrogen") {
-        auto rv = z_mod.run_as<z_pt>("H");
-        REQUIRE(rv == 1ul);
+    SECTION("Hydrogen") {
+        auto rv = atom_mod.run_as<atom_pt>(1ul);
+        atom_t corr{"H", 1ul, 1837.4260218693814, 0.0, 0.0, 0.0};
+        REQUIRE(rv == corr);
     }
 
-    SECTION("sto-3g Oxygen") {
-        auto rv = z_mod.run_as<z_pt>("O");
-        REQUIRE(rv == 8ul);
+    SECTION("Oxygen") {
+        auto rv = atom_mod.run_as<atom_pt>(8ul);
+        atom_t corr{"O", 8ul, 29165.122045980286, 0.0, 0.0, 0.0};
+        REQUIRE(rv == corr);
     }
 
     SECTION("Out of Range") {
-        REQUIRE_THROWS_MATCHES(z_mod.run_as<z_pt>("Not a symbol"),
+        REQUIRE_THROWS_MATCHES(atom_mod.run_as<atom_pt>(1000ul),
                                std::out_of_range,
-                               Message("Z not available for Symbol"));
+                               Message("Atom not available for Z"));
     }
 }

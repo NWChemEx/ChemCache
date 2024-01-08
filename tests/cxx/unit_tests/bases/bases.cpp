@@ -16,7 +16,8 @@
 
 #include "chemcache/chemcache.hpp"
 #include <catch2/catch.hpp>
-#include <simde/simde.hpp>
+#include <simde/basis_sets/basis_sets.hpp>
+#include <simde/types.hpp>
 
 using atomic_basis_pt    = simde::AtomicBasisSetFromZ;
 using atomic_basis_t     = simde::type::atomic_basis_set;

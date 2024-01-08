@@ -16,9 +16,10 @@
 
 #include "chemcache/chemcache.hpp"
 #include <catch2/catch.hpp>
-#include <simde/simde.hpp>
+#include <simde/atoms/atom.hpp>
+#include <simde/types.hpp>
 
-using size_t     = simde::type::size;
+using size_t     = std::size_t;
 using input_t    = std::pair<size_t, size_t>;
 using isotope_pt = simde::Atom<input_t>;
 using atom_t     = simde::type::atom;

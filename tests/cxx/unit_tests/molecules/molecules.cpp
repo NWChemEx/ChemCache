@@ -16,7 +16,9 @@
 
 #include "chemcache/chemcache.hpp"
 #include <catch2/catch.hpp>
-#include <simde/simde.hpp>
+#include <simde/atoms/atom.hpp>
+#include <simde/molecule_from_string.hpp>
+#include <simde/types.hpp>
 
 using molecule_pt = simde::MoleculeFromString;
 using atom_pt     = simde::AtomFromZ;
