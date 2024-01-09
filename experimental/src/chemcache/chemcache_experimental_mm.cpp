@@ -14,12 +14,22 @@
  * limitations under the License.
  */
 
-#define CATCH_CONFIG_RUNNER
-#include <catch2/catch.hpp>
-#include <parallelzone/parallelzone.hpp>
+#include "atomic_densities/atomic_densities.hpp"
+#include "chemcache/chemcache_experimental_mm.hpp"
+#include "electronic_configurations/electronic_configurations.hpp"
 
-int main(int argc, char* argv[]) {
-    auto rt = parallelzone::runtime::RuntimeView(argc, argv);
-    int res = Catch::Session().run(argc, argv);
-    return res;
+namespace chemcache {
+
+inline void set_defaults(pluginplay::ModuleManager& mm) {
+    // Default submodules between collections can be set here
 }
+
+void load_experimental_modules(pluginplay::ModuleManager& mm) {
+    // Add subcollection load calls here
+    atom_dm_mods::load_modules(mm);
+    elec_config_mods::load_modules(mm);
+    
+    set_defaults(mm);
+}
+
+} // namespace chemcache

@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-#define CATCH_CONFIG_RUNNER
-#include <catch2/catch.hpp>
-#include <parallelzone/parallelzone.hpp>
+#pragma once
+#include <pluginplay/module_manager.hpp>
 
-int main(int argc, char* argv[]) {
-    auto rt = parallelzone::runtime::RuntimeView(argc, argv);
-    int res = Catch::Session().run(argc, argv);
-    return res;
-}
+namespace chemcache {
+/** @brief Loads the modules contained in the experimental ChemCache module 
+ *         collection into the provided ModuleManager instance.
+ */
+void load_experimental_modules(pluginplay::ModuleManager& mm);
+
+} // namespace chemcache

@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-#include "atomic_densities/atomic_densities.hpp"
 #include "atoms/atoms.hpp"
 #include "bases/bases.hpp"
 #include "chemcache/chemcache_mm.hpp"
-#include "electronic_configurations/electronic_configurations.hpp"
 #include "molecules/molecules.hpp"
 
 namespace chemcache {
@@ -32,8 +30,6 @@ void load_modules(pluginplay::ModuleManager& mm) {
     // Add subcollection load calls here
     atom_mods::load_modules(mm);
     bases_mods::load_modules(mm);
-    atom_dm_mods::load_modules(mm);
-    elec_config_mods::load_modules(mm);
     molecule_mods::load_modules(mm);
 
     set_defaults(mm);
