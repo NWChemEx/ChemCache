@@ -60,6 +60,46 @@ MODULE_RUN(atoms_isotope) {
         } else {
             throw std::out_of_range(message2);
         }
+    } else if(Z == 2) {
+        if(N == 3) {
+            atom = atom_t{"He", 2ul, 5497.885121445487, 0.0, 0.0, 0.0};
+        } else if(N == 4) {
+            atom = atom_t{"He", 2ul, 7296.299386693523, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 3) {
+        if(N == 6) {
+            atom = atom_t{"Li", 3ul, 10964.898253742283, 0.0, 0.0, 0.0};
+        } else if(N == 7) {
+            atom = atom_t{"Li", 3ul, 12789.391889859466, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 4) {
+        if(N == 9) {
+            atom = atom_t{"Be", 4ul, 16428.204808444127, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 5) {
+        if(N == 10) {
+            atom = atom_t{"B", 5ul, 18252.467570265868, 0.0, 0.0, 0.0};
+        } else if(N == 11) {
+            atom = atom_t{"B", 5ul, 20068.735325476016, 0.0, 0.0, 0.0};
+        } else if(N == 13) {
+            atom = atom_t{"B", 5ul, 23703.665810590574, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 7) {
+        if(N == 14) {
+            atom = atom_t{"N", 7ul, 25526.04237318611, 0.0, 0.0, 0.0};
+        } else if(N == 15) {
+            atom = atom_t{"N", 7ul, 27343.52580361326, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
     } else if(Z == 8) {
         if(N == 16) {
             atom = atom_t{"O", 8ul, 29156.94569842209, 0.0, 0.0, 0.0};
@@ -67,6 +107,870 @@ MODULE_RUN(atoms_isotope) {
             atom = atom_t{"O", 8ul, 30987.521555096086, 0.0, 0.0, 0.0};
         } else if(N == 18) {
             atom = atom_t{"O", 8ul, 32810.46081966976, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 9) {
+        if(N == 19) {
+            atom = atom_t{"F", 9ul, 34631.97038186638, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 10) {
+        if(N == 20) {
+            atom = atom_t{"Ne", 10ul, 36443.989015004314, 0.0, 0.0, 0.0};
+        } else if(N == 21) {
+            atom = atom_t{"Ne", 10ul, 38269.44143030991, 0.0, 0.0, 0.0};
+        } else if(N == 22) {
+            atom = atom_t{"Ne", 10ul, 40087.8426942043, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 11) {
+        if(N == 23) {
+            atom = atom_t{"Na", 11ul, 41907.785720722546, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 12) {
+        if(N == 24) {
+            atom = atom_t{"Mg", 12ul, 43722.056355764995, 0.0, 0.0, 0.0};
+        } else if(N == 25) {
+            atom = atom_t{"Mg", 12ul, 45546.39458517006, 0.0, 0.0, 0.0};
+        } else if(N == 26) {
+            atom = atom_t{"Mg", 12ul, 47363.36962111286, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 13) {
+        if(N == 27) {
+            atom = atom_t{"Al", 13ul, 49184.335871396164, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 14) {
+        if(N == 28) {
+            atom = atom_t{"Si", 14ul, 50998.81725969095, 0.0, 0.0, 0.0};
+        } else if(N == 29) {
+            atom = atom_t{"Si", 14ul, 52820.91849503242, 0.0, 0.0, 0.0};
+        } else if(N == 30) {
+            atom = atom_t{"Si", 14ul, 54638.84023899607, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 15) {
+        if(N == 31) {
+            atom = atom_t{"P", 15ul, 56461.71412020552, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 16) {
+        if(N == 32) {
+            atom = atom_t{"S", 16ul, 58281.520422795744, 0.0, 0.0, 0.0};
+        } else if(N == 33) {
+            atom = atom_t{"S", 16ul, 60103.292819991635, 0.0, 0.0, 0.0};
+        } else if(N == 34) {
+            atom = atom_t{"S", 16ul, 61919.63365480119, 0.0, 0.0, 0.0};
+        } else if(N == 36) {
+            atom = atom_t{"S", 16ul, 65563.97783683505, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 17) {
+        if(N == 35) {
+            atom = atom_t{"Cl", 17ul, 63744.31896217403, 0.0, 0.0, 0.0};
+        } else if(N == 37) {
+            atom = atom_t{"Cl", 17ul, 67384.71823123492, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 18) {
+        if(N == 36) {
+            atom = atom_t{"Ar", 18ul, 65564.8238393815, 0.0, 0.0, 0.0};
+        } else if(N == 38) {
+            atom = atom_t{"Ar", 18ul, 69201.8270671926, 0.0, 0.0, 0.0};
+        } else if(N == 40) {
+            atom = atom_t{"Ar", 18ul, 72846.96807024154, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 19) {
+        if(N == 39) {
+            atom = atom_t{"K", 19ul, 71026.49193998551, 0.0, 0.0, 0.0};
+        } else if(N == 40) {
+            atom = atom_t{"K", 19ul, 72849.91218097782, 0.0, 0.0, 0.0};
+        } else if(N == 41) {
+            atom = atom_t{"K", 19ul, 74668.83963986262, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 20) {
+        if(N == 40) {
+            atom = atom_t{"Ca", 20ul, 72847.3468300112, 0.0, 0.0, 0.0};
+        } else if(N == 42) {
+            atom = atom_t{"Ca", 20ul, 76485.8816487284, 0.0, 0.0, 0.0};
+        } else if(N == 43) {
+            atom = atom_t{"Ca", 20ul, 78309.03992241636, 0.0, 0.0, 0.0};
+        } else if(N == 44) {
+            atom = atom_t{"Ca", 20ul, 80125.94204281972, 0.0, 0.0, 0.0};
+        } else if(N == 46) {
+            atom = atom_t{"Ca", 20ul, 83768.45239903645, 0.0, 0.0, 0.0};
+        } else if(N == 48) {
+            atom = atom_t{"Ca", 20ul, 87412.10169597936, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 21) {
+        if(N == 45) {
+            atom = atom_t{"Sc", 21ul, 81949.60707950682, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 22) {
+        if(N == 46) {
+            atom = atom_t{"Ti", 22ul, 83766.5164914641, 0.0, 0.0, 0.0};
+        } else if(N == 47) {
+            atom = atom_t{"Ti", 22ul, 85587.82088756163, 0.0, 0.0, 0.0};
+        } else if(N == 48) {
+            atom = atom_t{"Ti", 22ul, 87403.75140840182, 0.0, 0.0, 0.0};
+        } else if(N == 49) {
+            atom = atom_t{"Ti", 22ul, 89226.50135506886, 0.0, 0.0, 0.0};
+        } else if(N == 50) {
+            atom = atom_t{"Ti", 22ul, 91043.77716761189, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 23) {
+        if(N == 50) {
+            atom = atom_t{"V", 23ul, 91048.09559043567, 0.0, 0.0, 0.0};
+        } else if(N == 51) {
+            atom = atom_t{"V", 23ul, 92865.15265636034, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 24) {
+        if(N == 50) {
+            atom = atom_t{"Cr", 24ul, 91046.06489266205, 0.0, 0.0, 0.0};
+        } else if(N == 52) {
+            atom = atom_t{"Cr", 24ul, 94681.7503543865, 0.0, 0.0, 0.0};
+        } else if(N == 53) {
+            atom = atom_t{"Cr", 24ul, 96504.89769074354, 0.0, 0.0, 0.0};
+        } else if(N == 54) {
+            atom = atom_t{"Cr", 24ul, 98324.56148720346, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 25) {
+        if(N == 55) {
+            atom = atom_t{"Mn", 25ul, 100145.9278615095, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 26) {
+        if(N == 54) {
+            atom = atom_t{"Fe", 26ul, 98325.89219579838, 0.0, 0.0, 0.0};
+        } else if(N == 56) {
+            atom = atom_t{"Fe", 26ul, 101963.1508102864, 0.0, 0.0, 0.0};
+        } else if(N == 57) {
+            atom = atom_t{"Fe", 26ul, 103786.8723565166, 0.0, 0.0, 0.0};
+        } else if(N == 58) {
+            atom = atom_t{"Fe", 26ul, 105605.89814200635, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 27) {
+        if(N == 59) {
+            atom = atom_t{"Co", 27ul, 107428.64079711946, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 28) {
+        if(N == 58) {
+            atom = atom_t{"Ni", 28ul, 105609.6678753958, 0.0, 0.0, 0.0};
+        } else if(N == 60) {
+            atom = atom_t{"Ni", 28ul, 109247.1397678367, 0.0, 0.0, 0.0};
+        } else if(N == 61) {
+            atom = atom_t{"Ni", 28ul, 111070.52043391998, 0.0, 0.0, 0.0};
+        } else if(N == 62) {
+            atom = atom_t{"Ni", 28ul, 112888.46706942591, 0.0, 0.0, 0.0};
+        } else if(N == 64) {
+            atom = atom_t{"Ni", 28ul, 116533.55498996214, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 29) {
+        if(N == 63) {
+            atom = atom_t{"Cu", 29ul, 114713.63963489111, 0.0, 0.0, 0.0};
+        } else if(N == 65) {
+            atom = atom_t{"Cu", 29ul, 118356.12082489209, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 30) {
+        if(N == 64) {
+            atom = atom_t{"Zn", 30ul, 116535.69688393341, 0.0, 0.0, 0.0};
+        } else if(N == 66) {
+            atom = atom_t{"Zn", 30ul, 120175.80831890233, 0.0, 0.0, 0.0};
+        } else if(N == 67) {
+            atom = atom_t{"Zn", 30ul, 122000.69104509821, 0.0, 0.0, 0.0};
+        } else if(N == 68) {
+            atom = atom_t{"Zn", 30ul, 123819.41787687625, 0.0, 0.0, 0.0};
+        } else if(N == 70) {
+            atom = atom_t{"Zn", 30ul, 127466.06072129119, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 31) {
+        if(N == 69) {
+            atom = atom_t{"Ga", 31ul, 125643.63524877468, 0.0, 0.0, 0.0};
+        } else if(N == 71) {
+            atom = atom_t{"Ga", 31ul, 129287.8244852872, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 32) {
+        if(N == 70) {
+            atom = atom_t{"Ge", 32ul, 127464.10840772248, 0.0, 0.0, 0.0};
+        } else if(N == 72) {
+            atom = atom_t{"Ge", 32ul, 131105.9238788483, 0.0, 0.0, 0.0};
+        } else if(N == 73) {
+            atom = atom_t{"Ge", 32ul, 132931.33378439437, 0.0, 0.0, 0.0};
+        } else if(N == 74) {
+            atom = atom_t{"Ge", 32ul, 134750.06382445616, 0.0, 0.0, 0.0};
+        } else if(N == 76) {
+            atom = atom_t{"Ge", 32ul, 138396.25083737622, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 33) {
+        if(N == 75) {
+            atom = atom_t{"As", 33ul, 136573.71289264012, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 34) {
+        if(N == 74) {
+            atom = atom_t{"Se", 34ul, 134752.4301889156, 0.0, 0.0, 0.0};
+        } else if(N == 76) {
+            atom = atom_t{"Se", 34ul, 138392.26053447995, 0.0, 0.0, 0.0};
+        } else if(N == 77) {
+            atom = atom_t{"Se", 34ul, 140216.42595405653, 0.0, 0.0, 0.0};
+        } else if(N == 78) {
+            atom = atom_t{"Se", 34ul, 142034.56545116432, 0.0, 0.0, 0.0};
+        } else if(N == 80) {
+            atom = atom_t{"Se", 34ul, 145678.90781030967, 0.0, 0.0, 0.0};
+        } else if(N == 82) {
+            atom = atom_t{"Se", 34ul, 149325.00925684423, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 35) {
+        if(N == 79) {
+            atom = atom_t{"Br", 35ul, 143859.3296896086, 0.0, 0.0, 0.0};
+        } else if(N == 81) {
+            atom = atom_t{"Br", 35ul, 147501.37338637287, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 36) {
+        if(N == 78) {
+            atom = atom_t{"Kr", 36ul, 142040.1361983781, 0.0, 0.0, 0.0};
+        } else if(N == 80) {
+            atom = atom_t{"Kr", 36ul, 145678.64531436766, 0.0, 0.0, 0.0};
+        } else if(N == 82) {
+            atom = atom_t{"Kr", 36ul, 149319.14502458414, 0.0, 0.0, 0.0};
+        } else if(N == 83) {
+            atom = atom_t{"Kr", 36ul, 151143.20745096123, 0.0, 0.0, 0.0};
+        } else if(N == 84) {
+            atom = atom_t{"Kr", 36ul, 152961.30307114313, 0.0, 0.0, 0.0};
+        } else if(N == 86) {
+            atom = atom_t{"Kr", 36ul, 156605.46295915105, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 37) {
+        if(N == 85) {
+            atom = atom_t{"Rb", 37ul, 154784.723859002, 0.0, 0.0, 0.0};
+        } else if(N == 87) {
+            atom = atom_t{"Rb", 37ul, 158425.74453251893, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 38) {
+        if(N == 84) {
+            atom = atom_t{"Sr", 38ul, 152964.80533210502, 0.0, 0.0, 0.0};
+        } else if(N == 86) {
+            atom = atom_t{"Sr", 38ul, 156603.00273416343, 0.0, 0.0, 0.0};
+        } else if(N == 87) {
+            atom = atom_t{"Sr", 38ul, 158425.19305406522, 0.0, 0.0, 0.0};
+        } else if(N == 88) {
+            atom = atom_t{"Sr", 38ul, 160242.1298093498, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 39) {
+        if(N == 89) {
+            atom = atom_t{"Y", 39ul, 162065.43209122817, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 40) {
+        if(N == 90) {
+            atom = atom_t{"Zr", 40ul, 163886.24248454592, 0.0, 0.0, 0.0};
+        } else if(N == 91) {
+            atom = atom_t{"Zr", 40ul, 165710.84448591495, 0.0, 0.0, 0.0};
+        } else if(N == 92) {
+            atom = atom_t{"Zr", 40ul, 167532.62101013036, 0.0, 0.0, 0.0};
+        } else if(N == 94) {
+            atom = atom_t{"Zr", 40ul, 171180.7312797767, 0.0, 0.0, 0.0};
+        } else if(N == 96) {
+            atom = atom_t{"Zr", 40ul, 174830.08111359362, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 41) {
+        if(N == 93) {
+            atom = atom_t{"Nb", 41ul, 169357.95216689384, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 42) {
+        if(N == 92) {
+            atom = atom_t{"Mo", 42ul, 167535.8621058588, 0.0, 0.0, 0.0};
+        } else if(N == 94) {
+            atom = atom_t{"Mo", 42ul, 171178.49824138108, 0.0, 0.0, 0.0};
+        } else if(N == 95) {
+            atom = atom_t{"Mo", 42ul, 173002.7611854917, 0.0, 0.0, 0.0};
+        } else if(N == 96) {
+            atom = atom_t{"Mo", 42ul, 174823.52965237424, 0.0, 0.0, 0.0};
+        } else if(N == 97) {
+            atom = atom_t{"Mo", 42ul, 176648.86445491473, 0.0, 0.0, 0.0};
+        } else if(N == 98) {
+            atom = atom_t{"Mo", 42ul, 178470.63551046466, 0.0, 0.0, 0.0};
+        } else if(N == 100) {
+            atom = atom_t{"Mo", 42ul, 182120.18039334964, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 43) {
+        if(N == 98) {
+            atom = atom_t{"Tc", 43ul, 178473.92582418225, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 44) {
+        if(N == 96) {
+            atom = atom_t{"Ru", 44ul, 174828.841549423, 0.0, 0.0, 0.0};
+        } else if(N == 98) {
+            atom = atom_t{"Ru", 44ul, 178470.42587828875, 0.0, 0.0, 0.0};
+        } else if(N == 99) {
+            atom = atom_t{"Ru", 44ul, 180294.48830466587, 0.0, 0.0, 0.0};
+        } else if(N == 100) {
+            atom = atom_t{"Ru", 44ul, 182114.2414226616, 0.0, 0.0, 0.0};
+        } else if(N == 101) {
+            atom = atom_t{"Ru", 44ul, 183939.61450586029, 0.0, 0.0, 0.0};
+        } else if(N == 102) {
+            atom = atom_t{"Ru", 44ul, 185760.2553705488, 0.0, 0.0, 0.0};
+        } else if(N == 104) {
+            atom = atom_t{"Ru", 44ul, 189408.01199982883, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 45) {
+        if(N == 103) {
+            atom = atom_t{"Rh", 45ul, 187585.25111583088, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 46) {
+        if(N == 102) {
+            atom = atom_t{"Pd", 46ul, 185762.5449184875, 0.0, 0.0, 0.0};
+        } else if(N == 104) {
+            atom = atom_t{"Pd", 46ul, 189405.46177883664, 0.0, 0.0, 0.0};
+        } else if(N == 105) {
+            atom = atom_t{"Pd", 46ul, 191230.26247505067, 0.0, 0.0, 0.0};
+        } else if(N == 106) {
+            atom = atom_t{"Pd", 46ul, 193050.23433966475, 0.0, 0.0, 0.0};
+        } else if(N == 108) {
+            atom = atom_t{"Pd", 46ul, 196696.76234210507, 0.0, 0.0, 0.0};
+        } else if(N == 110) {
+            atom = atom_t{"Pd", 46ul, 200344.87261175137, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 47) {
+        if(N == 107) {
+            atom = atom_t{"Ag", 47ul, 194876.05767631953, 0.0, 0.0, 0.0};
+        } else if(N == 109) {
+            atom = atom_t{"Ag", 47ul, 198521.22398106064, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 48) {
+        if(N == 106) {
+            atom = atom_t{"Cd", 48ul, 193055.6665473536, 0.0, 0.0, 0.0};
+        } else if(N == 108) {
+            atom = atom_t{"Cd", 48ul, 196697.29280265456, 0.0, 0.0, 0.0};
+        } else if(N == 110) {
+            atom = atom_t{"Cd", 48ul, 200340.9260581788, 0.0, 0.0, 0.0};
+        } else if(N == 111) {
+            atom = atom_t{"Cd", 48ul, 202165.95826123055, 0.0, 0.0, 0.0};
+        } else if(N == 112) {
+            atom = atom_t{"Cd", 48ul, 203986.25824577216, 0.0, 0.0, 0.0};
+        } else if(N == 113) {
+            atom = atom_t{"Cd", 48ul, 205812.14538352395, 0.0, 0.0, 0.0};
+        } else if(N == 114) {
+            atom = atom_t{"Cd", 48ul, 207633.13259702484, 0.0, 0.0, 0.0};
+        } else if(N == 116) {
+            atom = atom_t{"Cd", 48ul, 211281.45796751254, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 49) {
+        if(N == 113) {
+            atom = atom_t{"In", 49ul, 205811.5146641077, 0.0, 0.0, 0.0};
+        } else if(N == 115) {
+            atom = atom_t{"In", 49ul, 209456.95764686327, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 50) {
+        if(N == 112) {
+            atom = atom_t{"Sn", 50ul, 203990.0152189422, 0.0, 0.0, 0.0};
+        } else if(N == 114) {
+            atom = atom_t{"Sn", 50ul, 207632.0716759259, 0.0, 0.0, 0.0};
+        } else if(N == 115) {
+            atom = atom_t{"Sn", 50ul, 209455.98407858057, 0.0, 0.0, 0.0};
+        } else if(N == 116) {
+            atom = atom_t{"Sn", 50ul, 211275.95284428424, 0.0, 0.0, 0.0};
+        } else if(N == 117) {
+            atom = atom_t{"Sn", 50ul, 213101.048848433, 0.0, 0.0, 0.0};
+        } else if(N == 118) {
+            atom = atom_t{"Sn", 50ul, 214921.48190383412, 0.0, 0.0, 0.0};
+        } else if(N == 119) {
+            atom = atom_t{"Sn", 50ul, 216747.4765920066, 0.0, 0.0, 0.0};
+        } else if(N == 120) {
+            atom = atom_t{"Sn", 50ul, 218568.3434948674, 0.0, 0.0, 0.0};
+        } else if(N == 122) {
+            atom = atom_t{"Sn", 50ul, 222216.3772031973, 0.0, 0.0, 0.0};
+        } else if(N == 124) {
+            atom = atom_t{"Sn", 50ul, 225865.50282173045, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 51) {
+        if(N == 121) {
+            atom = atom_t{"Sb", 51ul, 220394.1631857452, 0.0, 0.0, 0.0};
+        } else if(N == 123) {
+            atom = atom_t{"Sb", 51ul, 224040.6693135237, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 52) {
+        if(N == 120) {
+            atom = atom_t{"Te", 52ul, 218571.73042167476, 0.0, 0.0, 0.0};
+        } else if(N == 122) {
+            atom = atom_t{"Te", 52ul, 222215.64804780285, 0.0, 0.0, 0.0};
+        } else if(N == 123) {
+            atom = atom_t{"Te", 52ul, 224040.77868683284, 0.0, 0.0, 0.0};
+        } else if(N == 124) {
+            atom = atom_t{"Te", 52ul, 225861.02398471988, 0.0, 0.0, 0.0};
+        } else if(N == 125) {
+            atom = atom_t{"Te", 52ul, 227686.84732137466, 0.0, 0.0, 0.0};
+        } else if(N == 126) {
+            atom = atom_t{"Te", 52ul, 229507.6941724621, 0.0, 0.0, 0.0};
+        } else if(N == 128) {
+            atom = atom_t{"Te", 52ul, 233155.5692894937, 0.0, 0.0, 0.0};
+        } else if(N == 130) {
+            atom = atom_t{"Te", 52ul, 236804.5577356683, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 53) {
+        if(N == 127) {
+            atom = atom_t{"I", 53ul, 231332.6972092981, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 54) {
+        if(N == 124) {
+            atom = atom_t{"Xe", 54ul, 225866.6202523725, 0.0, 0.0, 0.0};
+        } else if(N == 126) {
+            atom = atom_t{"Xe", 54ul, 229509.49883206346, 0.0, 0.0, 0.0};
+        } else if(N == 128) {
+            atom = atom_t{"Xe", 54ul, 233153.87400320155, 0.0, 0.0, 0.0};
+        } else if(N == 129) {
+            atom = atom_t{"Xe", 54ul, 234979.0408447969, 0.0, 0.0, 0.0};
+        } else if(N == 130) {
+            atom = atom_t{"Xe", 54ul, 236799.61160119422, 0.0, 0.0, 0.0};
+        } else if(N == 131) {
+            atom = atom_t{"Xe", 54ul, 238625.37040759658, 0.0, 0.0, 0.0};
+        } else if(N == 132) {
+            atom = atom_t{"Xe", 54ul, 240446.5655944449, 0.0, 0.0, 0.0};
+        } else if(N == 134) {
+            atom = atom_t{"Xe", 54ul, 244094.6027844918, 0.0, 0.0, 0.0};
+        } else if(N == 136) {
+            atom = atom_t{"Xe", 54ul, 247743.69646601865, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 55) {
+        if(N == 133) {
+            atom = atom_t{"Cs", 55ul, 242271.81813002797, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 56) {
+        if(N == 130) {
+            atom = atom_t{"Ba", 56ul, 236804.73501157353, 0.0, 0.0, 0.0};
+        } else if(N == 132) {
+            atom = atom_t{"Ba", 56ul, 240448.2169673534, 0.0, 0.0, 0.0};
+        } else if(N == 134) {
+            atom = atom_t{"Ba", 56ul, 244092.98588240455, 0.0, 0.0, 0.0};
+        } else if(N == 135) {
+            atom = atom_t{"Ba", 56ul, 245918.02537701026, 0.0, 0.0, 0.0};
+        } else if(N == 136) {
+            atom = atom_t{"Ba", 56ul, 247738.88681120562, 0.0, 0.0, 0.0};
+        } else if(N == 137) {
+            atom = atom_t{"Ba", 56ul, 249564.05573089383, 0.0, 0.0, 0.0};
+        } else if(N == 138) {
+            atom = atom_t{"Ba", 56ul, 251385.88694176386, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 57) {
+        if(N == 138) {
+            atom = atom_t{"La", 57ul, 251389.30121189848, 0.0, 0.0, 0.0};
+        } else if(N == 139) {
+            atom = atom_t{"La", 57ul, 253210.80430284102, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 58) {
+        if(N == 136) {
+            atom = atom_t{"Ce", 58ul, 247743.54064551086, 0.0, 0.0, 0.0};
+        } else if(N == 138) {
+            atom = atom_t{"Ce", 58ul, 251387.24134790912, 0.0, 0.0, 0.0};
+        } else if(N == 140) {
+            atom = atom_t{"Ce", 58ul, 255032.0157316257, 0.0, 0.0, 0.0};
+        } else if(N == 142) {
+            atom = atom_t{"Ce", 58ul, 258684.73790914207, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 59) {
+        if(N == 141) {
+            atom = atom_t{"Pr", 59ul, 256858.95103025704, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 60) {
+        if(N == 142) {
+            atom = atom_t{"Nd", 60ul, 258681.96711864305, 0.0, 0.0, 0.0};
+        } else if(N == 143) {
+            atom = atom_t{"Nd", 60ul, 260508.6654417712, 0.0, 0.0, 0.0};
+        } else if(N == 144) {
+            atom = atom_t{"Nd", 60ul, 262332.04610785446, 0.0, 0.0, 0.0};
+        } else if(N == 145) {
+            atom = atom_t{"Nd", 60ul, 264159.4735863771, 0.0, 0.0, 0.0};
+        } else if(N == 146) {
+            atom = atom_t{"Nd", 60ul, 265983.3464323516, 0.0, 0.0, 0.0};
+        } else if(N == 148) {
+            atom = atom_t{"Nd", 60ul, 269636.01392321347, 0.0, 0.0, 0.0};
+        } else if(N == 150) {
+            atom = atom_t{"Nd", 60ul, 273289.0824495422, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 61) {
+        if(N == 145) {
+            atom = atom_t{"Pm", 61ul, 264159.8017063046, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 62) {
+        if(N == 144) {
+            atom = atom_t{"Sm", 62ul, 262335.546053748, 0.0, 0.0, 0.0};
+        } else if(N == 147) {
+            atom = atom_t{"Sm", 62ul, 267809.479660049, 0.0, 0.0, 0.0};
+        } else if(N == 148) {
+            atom = atom_t{"Sm", 62ul, 269632.24054404703, 0.0, 0.0, 0.0};
+        } else if(N == 149) {
+            atom = atom_t{"Sm", 62ul, 271459.43104706646, 0.0, 0.0, 0.0};
+        } else if(N == 150) {
+            atom = atom_t{"Sm", 62ul, 273282.4835932222, 0.0, 0.0, 0.0};
+        } else if(N == 152) {
+            atom = atom_t{"Sm", 62ul, 276932.74487128225, 0.0, 0.0, 0.0};
+        } else if(N == 154) {
+            atom = atom_t{"Sm", 62ul, 280583.04260711203, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 63) {
+        if(N == 151) {
+            atom = atom_t{"Eu", 63ul, 275110.0751317086, 0.0, 0.0, 0.0};
+        } else if(N == 153) {
+            atom = atom_t{"Eu", 63ul, 278758.36769020354, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 64) {
+        if(N == 152) {
+            atom = atom_t{"Gd", 64ul, 276932.85424459144, 0.0, 0.0, 0.0};
+        } else if(N == 154) {
+            atom = atom_t{"Gd", 64ul, 280580.5817076556, 0.0, 0.0, 0.0};
+        } else if(N == 155) {
+            atom = atom_t{"Gd", 64ul, 282406.67847758334, 0.0, 0.0, 0.0};
+        } else if(N == 156) {
+            atom = atom_t{"Gd", 64ul, 284228.6555195323, 0.0, 0.0, 0.0};
+        } else if(N == 157) {
+            atom = atom_t{"Gd", 64ul, 286054.89812053886, 0.0, 0.0, 0.0};
+        } else if(N == 158) {
+            atom = atom_t{"Gd", 64ul, 287878.04181111895, 0.0, 0.0, 0.0};
+        } else if(N == 160) {
+            atom = atom_t{"Gd", 64ul, 291529.1963045372, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 65) {
+        if(N == 159) {
+            atom = atom_t{"Tb", 65ul, 289703.1906790338, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 66) {
+        if(N == 156) {
+            atom = atom_t{"Dy", 66ul, 284232.5747297776, 0.0, 0.0, 0.0};
+        } else if(N == 158) {
+            atom = atom_t{"Dy", 66ul, 287878.6069065496, 0.0, 0.0, 0.0};
+        } else if(N == 160) {
+            atom = atom_t{"Dy", 66ul, 291525.80573195283, 0.0, 0.0, 0.0};
+        } else if(N == 161) {
+            atom = atom_t{"Dy", 66ul, 293351.86604411085, 0.0, 0.0, 0.0};
+        } else if(N == 162) {
+            atom = atom_t{"Dy", 66ul, 295174.5175547996, 0.0, 0.0, 0.0};
+        } else if(N == 163) {
+            atom = atom_t{"Dy", 66ul, 297000.92421577, 0.0, 0.0, 0.0};
+        } else if(N == 164) {
+            atom = atom_t{"Dy", 66ul, 298824.6147728959, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 67) {
+        if(N == 165) {
+            atom = atom_t{"Ho", 67ul, 300649.599580847, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 68) {
+        if(N == 162) {
+            atom = atom_t{"Er", 68ul, 295178.1268740023, 0.0, 0.0, 0.0};
+        } else if(N == 164) {
+            atom = atom_t{"Er", 68ul, 298824.6694595505, 0.0, 0.0, 0.0};
+        } else if(N == 166) {
+            atom = atom_t{"Er", 68ul, 302472.4333803844, 0.0, 0.0, 0.0};
+        } else if(N == 167) {
+            atom = atom_t{"Er", 68ul, 304298.51192142727, 0.0, 0.0, 0.0};
+        } else if(N == 168) {
+            atom = atom_t{"Er", 68ul, 306122.0019608197, 0.0, 0.0, 0.0};
+        } else if(N == 170) {
+            atom = atom_t{"Er", 68ul, 309773.41165862605, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 69) {
+        if(N == 169) {
+            atom = atom_t{"Tm", 69ul, 307948.24456182634, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 70) {
+        if(N == 168) {
+            atom = atom_t{"Yb", 70ul, 306124.75452243385, 0.0, 0.0, 0.0};
+        } else if(N == 170) {
+            atom = atom_t{"Yb", 70ul, 309772.1356366857, 0.0, 0.0, 0.0};
+        } else if(N == 171) {
+            atom = atom_t{"Yb", 70ul, 311597.8678289162, 0.0, 0.0, 0.0};
+        } else if(N == 172) {
+            atom = atom_t{"Yb", 70ul, 313420.86568841734, 0.0, 0.0, 0.0};
+        } else if(N == 173) {
+            atom = atom_t{"Yb", 70ul, 315247.0900605391, 0.0, 0.0, 0.0};
+        } else if(N == 174) {
+            atom = atom_t{"Yb", 70ul, 317071.1634242471, 0.0, 0.0, 0.0};
+        } else if(N == 176) {
+            atom = atom_t{"Yb", 70ul, 320723.7033129149, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 71) {
+        if(N == 175) {
+            atom = atom_t{"Lu", 71ul, 318897.53362744773, 0.0, 0.0, 0.0};
+        } else if(N == 176) {
+            atom = atom_t{"Lu", 71ul, 320723.90383064834, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 72) {
+        if(N == 174) {
+            atom = atom_t{"Hf", 72ul, 317073.3144326608, 0.0, 0.0, 0.0};
+        } else if(N == 176) {
+            atom = atom_t{"Hf", 72ul, 320721.570533386, 0.0, 0.0, 0.0};
+        } else if(N == 177) {
+            atom = atom_t{"Hf", 72ul, 322547.7766766229, 0.0, 0.0, 0.0};
+        } else if(N == 178) {
+            atom = atom_t{"Hf", 72ul, 324371.5401492883, 0.0, 0.0, 0.0};
+        } else if(N == 179) {
+            atom = atom_t{"Hf", 72ul, 326198.2749301861, 0.0, 0.0, 0.0};
+        } else if(N == 180) {
+            atom = atom_t{"Hf", 72ul, 328022.5123538579, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 73) {
+        if(N == 180) {
+            atom = atom_t{"Ta", 73ul, 328024.1529534955, 0.0, 0.0, 0.0};
+        } else if(N == 181) {
+            atom = atom_t{"Ta", 73ul, 329848.02579947, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 74) {
+        if(N == 180) {
+            atom = atom_t{"W", 74ul, 328022.7857871308, 0.0, 0.0, 0.0};
+        } else if(N == 182) {
+            atom = atom_t{"W", 74ul, 331671.2861549132, 0.0, 0.0, 0.0};
+        } else if(N == 183) {
+            atom = atom_t{"W", 74ul, 333497.8550529588, 0.0, 0.0, 0.0};
+        } else if(N == 184) {
+            atom = atom_t{"W", 74ul, 335322.03414419905, 0.0, 0.0, 0.0};
+        } else if(N == 186) {
+            atom = atom_t{"W", 74ul, 338974.06180120225, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 75) {
+        if(N == 185) {
+            atom = atom_t{"Re", 75ul, 337148.61215668713, 0.0, 0.0, 0.0};
+        } else if(N == 187) {
+            atom = atom_t{"Re", 75ul, 340799.48410239, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 76) {
+        if(N == 184) {
+            atom = atom_t{"Os", 76ul, 335324.8742044606, 0.0, 0.0, 0.0};
+        } else if(N == 186) {
+            atom = atom_t{"Os", 76ul, 338973.1138991894, 0.0, 0.0, 0.0};
+        } else if(N == 187) {
+            atom = atom_t{"Os", 76ul, 340799.48410239, 0.0, 0.0, 0.0};
+        } else if(N == 188) {
+            atom = atom_t{"Os", 76ul, 342622.53664854576, 0.0, 0.0, 0.0};
+        } else if(N == 189) {
+            atom = atom_t{"Os", 76ul, 344449.617778256, 0.0, 0.0, 0.0};
+        } else if(N == 190) {
+            atom = atom_t{"Os", 76ul, 346273.05313099385, 0.0, 0.0, 0.0};
+        } else if(N == 192) {
+            atom = atom_t{"Os", 76ul, 349924.37168437586, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 77) {
+        if(N == 191) {
+            atom = atom_t{"Ir", 77ul, 348099.8608274312, 0.0, 0.0, 0.0};
+        } else if(N == 193) {
+            atom = atom_t{"Ir", 77ul, 351749.885129988, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 78) {
+        if(N == 190) {
+            atom = atom_t{"Pt", 78ul, 346275.7692348383, 0.0, 0.0, 0.0};
+        } else if(N == 192) {
+            atom = atom_t{"Pt", 78ul, 349923.56961344194, 0.0, 0.0, 0.0};
+        } else if(N == 194) {
+            atom = atom_t{"Pt", 78ul, 353572.3379458318, 0.0, 0.0, 0.0};
+        } else if(N == 195) {
+            atom = atom_t{"Pt", 78ul, 355399.0745496181, 0.0, 0.0, 0.0};
+        } else if(N == 196) {
+            atom = atom_t{"Pt", 78ul, 357222.25469796796, 0.0, 0.0, 0.0};
+        } else if(N == 198) {
+            atom = atom_t{"Pt", 78ul, 360873.3873167244, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 79) {
+        if(N == 197) {
+            atom = atom_t{"Au", 79ul, 359048.0907948421, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 80) {
+        if(N == 196) {
+            atom = atom_t{"Hg", 80ul, 357223.85519405885, 0.0, 0.0, 0.0};
+        } else if(N == 198) {
+            atom = atom_t{"Hg", 80ul, 360871.3438587314, 0.0, 0.0, 0.0};
+        } else if(N == 199) {
+            atom = atom_t{"Hg", 80ul, 362696.98855231446, 0.0, 0.0, 0.0};
+        } else if(N == 200) {
+            atom = atom_t{"Hg", 80ul, 364519.96089137683, 0.0, 0.0, 0.0};
+        } else if(N == 201) {
+            atom = atom_t{"Hg", 80ul, 366346.4514052176, 0.0, 0.0, 0.0};
+        } else if(N == 202) {
+            atom = atom_t{"Hg", 80ul, 368169.95967349486, 0.0, 0.0, 0.0};
+        } else if(N == 204) {
+            atom = atom_t{"Hg", 80ul, 371820.93370095297, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 81) {
+        if(N == 203) {
+            atom = atom_t{"Tl", 81ul, 369995.9507158903, 0.0, 0.0, 0.0};
+        } else if(N == 205) {
+            atom = atom_t{"Tl", 81ul, 373645.5247649911, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 82) {
+        if(N == 204) {
+            atom = atom_t{"Pb", 82ul, 371820.1134011342, 0.0, 0.0, 0.0};
+        } else if(N == 206) {
+            atom = atom_t{"Pb", 82ul, 375468.4825209456, 0.0, 0.0, 0.0};
+        } else if(N == 207) {
+            atom = atom_t{"Pb", 82ul, 377293.97956056136, 0.0, 0.0, 0.0};
+        } else if(N == 208) {
+            atom = atom_t{"Pb", 82ul, 379118.24615044886, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 83) {
+        if(N == 209) {
+            atom = atom_t{"Bi", 83ul, 380947.9649997987, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 90) {
+        if(N == 230) {
+            atom = atom_t{"Th", 90ul, 419324.74411970755, 0.0, 0.0, 0.0};
+        } else if(N == 232) {
+            atom = atom_t{"Th", 90ul, 422979.5079323285, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 91) {
+        if(N == 231) {
+            atom = atom_t{"Pa", 91ul, 421152.64554923656, 0.0, 0.0, 0.0};
+        } else {
+            throw std::out_of_range(message2);
+        }
+    } else if(Z == 92) {
+        if(N == 233) {
+            atom = atom_t{"U", 92ul, 424805.27658232866, 0.0, 0.0, 0.0};
+        } else if(N == 234) {
+            atom = atom_t{"U", 92ul, 426630.5530524376, 0.0, 0.0, 0.0};
+        } else if(N == 235) {
+            atom = atom_t{"U", 92ul, 428458.8737463184, 0.0, 0.0, 0.0};
+        } else if(N == 238) {
+            atom = atom_t{"U", 92ul, 433940.0442199097, 0.0, 0.0, 0.0};
         } else {
             throw std::out_of_range(message2);
         }
