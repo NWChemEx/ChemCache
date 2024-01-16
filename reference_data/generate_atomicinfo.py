@@ -218,11 +218,13 @@ def _write_z_from_sym(out_dir: str, amu2me: float, atoms: dict) -> None:
     # The template we'll be filling values into
     src_template = '''
 #include "atoms.hpp"
-#include <simde/simde.hpp>
+#include <simde/atoms/Z_from_symbol.hpp>
+#include <simde/types.hpp>
 
 namespace chemcache {{
 
 using z_pt = simde::ZFromSymbol;
+using z_t  = simde::type::atomic_number;
 
 static constexpr auto module_desc = R"(
 Atomic Number from Atomic Symbol
@@ -237,7 +239,7 @@ MODULE_CTOR(Z_from_sym) {{ satisfies_property_type<z_pt>(); }}
 MODULE_RUN(Z_from_sym) {{
     const auto& [sym] = z_pt::unwrap_inputs(inputs);
 
-    simde::type::atomic_number Z;
+    z_t Z;
     {entries} else {{
         throw std::out_of_range("Z not available for Symbol");
     }}
@@ -281,11 +283,13 @@ def _write_sym_from_z(out_dir: str, amu2me: float, atoms: dict) -> None:
     # The template we'll be filling values into
     src_template = '''
 #include "atoms.hpp"
-#include <simde/simde.hpp>
+#include <simde/atoms/symbol_from_Z.hpp>
+#include <simde/types.hpp>
 
 namespace chemcache {{
 
 using sym_pt = simde::SymbolFromZ;
+using sym_t  = simde::type::atomic_symbol;
 
 static constexpr auto module_desc = R"(
 Atomic Symbol from Atomic Number
@@ -303,7 +307,7 @@ MODULE_CTOR(sym_from_Z) {{
 MODULE_RUN(sym_from_Z) {{
     const auto& [Z] = sym_pt::unwrap_inputs(inputs);
 
-    simde::type::atomic_symbol sym;
+    sym_t sym;
     {entries} else {{
         throw std::out_of_range("Symbol not available for Z");
     }}
@@ -347,7 +351,8 @@ def _write_atoms_average(out_dir: str, amu2me: float, atoms: dict) -> None:
     # The template we'll be filling values into
     src_template = '''
 #include "atoms.hpp"
-#include <simde/simde.hpp>
+#include <simde/atoms/atom.hpp>
+#include <simde/types.hpp>
 
 namespace chemcache {{
 
@@ -419,11 +424,12 @@ def _write_atoms_isotope(out_dir: str, amu2me: float, atoms: dict) -> None:
     # The template we'll be filling values into
     src_template = '''
 #include "atoms.hpp"
-#include <simde/simde.hpp>
+#include <simde/atoms/atom.hpp>
+#include <simde/types.hpp>
 
 namespace chemcache {{
 
-using size_t     = simde::type::size;
+using size_t     = std::size_t;
 using isotope_pt = simde::Atom<std::pair<size_t, size_t>>;
 using atom_t     = simde::type::atom;
 

@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-/**
- * @file chemcache.hpp
- *
- * This is the main header of the chemcache library, defining the public API
- * of the library. This file should NOT be included in any other chemcache
- * header files, source files, or tests (except tests/chemcache.cpp, which
- * tests the functions defined in this header file).
- */
+#define CATCH_CONFIG_RUNNER
+#include <catch2/catch.hpp>
+#include <parallelzone/parallelzone.hpp>
 
-#pragma once
-
-#include "chemcache_mm.hpp"
+int main(int argc, char* argv[]) {
+    auto rt = parallelzone::runtime::RuntimeView(argc, argv);
+    int res = Catch::Session().run(argc, argv);
+    return res;
+}

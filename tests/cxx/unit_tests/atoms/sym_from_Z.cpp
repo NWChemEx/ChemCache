@@ -16,7 +16,7 @@
 
 #include "chemcache/chemcache.hpp"
 #include <catch2/catch.hpp>
-#include <simde/simde.hpp>
+#include <simde/atoms/symbol_from_Z.hpp>
 
 using sym_pt = simde::SymbolFromZ;
 

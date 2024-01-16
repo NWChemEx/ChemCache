@@ -22,11 +22,12 @@
  */
 
 #include "atoms.hpp"
-#include <simde/simde.hpp>
+#include <simde/atoms/atom.hpp>
+#include <simde/types.hpp>
 
 namespace chemcache {
 
-using size_t     = simde::type::size;
+using size_t     = std::size_t;
 using isotope_pt = simde::Atom<std::pair<size_t, size_t>>;
 using atom_t     = simde::type::atom;
 

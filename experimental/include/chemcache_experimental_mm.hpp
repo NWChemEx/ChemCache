@@ -14,15 +14,13 @@
  * limitations under the License.
  */
 
-/**
- * @file chemcache.hpp
- *
- * This is the main header of the chemcache library, defining the public API
- * of the library. This file should NOT be included in any other chemcache
- * header files, source files, or tests (except tests/chemcache.cpp, which
- * tests the functions defined in this header file).
- */
-
 #pragma once
+#include <pluginplay/module_manager.hpp>
 
-#include "chemcache_mm.hpp"
+namespace chemcache {
+/** @brief Loads the modules contained in the experimental ChemCache module 
+ *         collection into the provided ModuleManager instance.
+ */
+void load_experimental_modules(pluginplay::ModuleManager& mm);
+
+} // namespace chemcache

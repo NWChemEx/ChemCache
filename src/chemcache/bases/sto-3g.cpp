@@ -22,7 +22,8 @@
  */
 
 #include "bases.hpp"
-#include <simde/simde.hpp>
+#include <simde/basis_sets/atomic_basis_set.hpp>
+#include <simde/types.hpp>
 
 namespace chemcache {
 

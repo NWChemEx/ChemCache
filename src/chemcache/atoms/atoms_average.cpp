@@ -22,7 +22,8 @@
  */
 
 #include "atoms.hpp"
-#include <simde/simde.hpp>
+#include <simde/atoms/atom.hpp>
+#include <simde/types.hpp>
 
 namespace chemcache {
 

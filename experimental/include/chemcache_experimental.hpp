@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 NWChemEx-Project
+ * Copyright 2022 NWChemEx-Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-#define CATCH_CONFIG_MAIN
-#include <catch2/catch.hpp>
-#include <iostream>
+/**
+ * @file chemcache.hpp
+ *
+ * This is the main header of the chemcache library, defining the public API
+ * of the library. This file should NOT be included in any other chemcache
+ * header files, source files, or tests (except tests/chemcache.cpp, which
+ * tests the functions defined in this header file).
+ */
 
-int print_and_return(int ii) {
-    std::cout << "This is only a blank model for an integration test."
-              << std::endl;
-    return 0;
-}
+#pragma once
 
-TEST_CASE("Blank test", "[classic]") { REQUIRE(print_and_return(0) == 0); }
+#include "chemcache_experimental_mm.hpp"

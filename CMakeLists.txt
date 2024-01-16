@@ -13,98 +13,118 @@
 # limitations under the License.
 
 cmake_minimum_required(VERSION 3.14)
-set(VERSION 1.0.0) #TODO: Get from git
-project(chemcache VERSION "${VERSION}" LANGUAGES CXX)
 
-include(FetchContent)
-FetchContent_Declare(
-    nwx_cmake
-    GIT_REPOSITORY https://github.com/NWChemEx/NWXCMake
-)
-FetchContent_MakeAvailable(nwx_cmake)
-list(APPEND CMAKE_MODULE_PATH "${nwx_cmake_SOURCE_DIR}/cmake")
+#Downloads common CMake modules used throughout NWChemEx
+include(cmake/get_nwx_cmake.cmake)
 
-set(
-    CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${PROJECT_SOURCE_DIR}/cmake"
-    CACHE STRING "" FORCE
-)
+#Sets the version to whatever git thinks it is
+include(get_version_from_git)
+get_version_from_git(chemcache_version "${CMAKE_CURRENT_LIST_DIR}")
+project(chemcache VERSION "${chemcache_version}" LANGUAGES CXX)
 
+include(nwx_versions)
 include(get_cmaize)
 include(nwx_cxx_api_docs)
 
-# Work out the project paths
-set(project_inc_dir "${CMAKE_CURRENT_LIST_DIR}/include/${PROJECT_NAME}")
-set(project_src_dir "${CMAKE_CURRENT_LIST_DIR}/src/${PROJECT_NAME}")
+### Paths ###
+set(CHEMCACHE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(CHEMCACHE_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(CHEMCACHE_TESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tests")
+set(CHEMCACHE_EXP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/experimental")
+
+nwx_cxx_api_docs("${CHEMCACHE_SOURCE_DIR}" "${CHEMCACHE_INCLUDE_DIR}")
 
 ### Options ###
-option(BUILD_TESTING "Should we build the tests?" OFF)
-option(BUILD_DOCS "Should we build the documentation?" OFF)
-option(
-    ONLY_BUILD_DOCS
-    "If enabled and BUILD_DOCS is true no libraries will be built" OFF
+cmaize_option_list(
+    BUILD_TESTING OFF "Should we build the tests?"
+    BUILD_PYBIND11_PYBINDINGS OFF "Build pybind11 python3 bindings?"
+    ENABLE_EXPERIMENTAL_FEATURES OFF "Build features which are not 1.0-ed yet?"
 )
-option(BUILD_PYBIND11_PYBINDINGS "Use pybind11 to build Python3 bindings?" OFF)
-option(BUILD_CPPYY_PYBINDINGS "Use Cppyy to build Python3 bindings?" OFF)
-
-# Generate C++ API documentation, if BUILD_DOCS is set
-nwx_cxx_api_docs("${project_inc_dir}")
 
 cmaize_find_or_build_dependency(
     simde
     URL github.com/NWChemEx/SimDE
     PRIVATE TRUE
+    VERSION ${NWX_SIMDE_VERSION}
     BUILD_TARGET simde
     FIND_TARGET nwx::simde
     CMAKE_ARGS BUILD_TESTING=OFF
+               BUILD_PYBIND11_PYBINDINGS=${BUILD_PYBIND11_PYBINDINGS}
+               ENABLE_EXPERIMENTAL_FEATURES=${ENABLE_EXPERIMENTAL_FEATURES}
 )
 
 cmaize_add_library(
     ${PROJECT_NAME}
-    SOURCE_DIR "${project_src_dir}"
-    INCLUDE_DIRS "${project_inc_dir}"
-    DEPENDS nwx::simde
+    SOURCE_DIR "${CHEMCACHE_SOURCE_DIR}/${PROJECT_NAME}"
+    INCLUDE_DIRS "${CHEMCACHE_INCLUDE_DIR}/${PROJECT_NAME}"
+    DEPENDS simde
 )
 
+if("${ENABLE_EXPERIMENTAL_FEATURES}")
+
+    cmaize_add_library(
+        experimental_${PROJECT_NAME}
+        SOURCE_DIR "${CHEMCACHE_EXP_DIR}/src/${PROJECT_NAME}"
+        INCLUDE_DIRS "${CHEMCACHE_EXP_DIR}/include/${PROJECT_NAME}"
+        DEPENDS ${PROJECT_NAME}
+    )
+
+else()
+    add_library(experimental_${PROJECT_NAME} INTERFACE)
+endif()
+
+# N.B. this is a no-op if BUILD_PYBIND11_PYBINDINGS is not turned on
 include(nwx_pybind11)
 nwx_add_pybind11_module(
     ${PROJECT_NAME}
-    SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/src/python"
+    SOURCE_DIR "${CHEMCACHE_SOURCE_DIR}/python"
     DEPENDS "${PROJECT_NAME}"
 )
 
-include(nwx_python_mods)
-cppyy_make_python_package(PACKAGE chemcache NAMESPACES chemcache DEPPACKAGES simde )
-
 if("${BUILD_TESTING}")
-    set(CXX_TEST_DIR "${CMAKE_CURRENT_LIST_DIR}/tests/cxx")
-    set(PYTHON_TEST_DIR "${CMAKE_CURRENT_LIST_DIR}/tests/python")
+    set(CXX_TEST_DIR ${CHEMCACHE_TESTS_DIR}/cxx)
+    set(PYTHON_TEST_DIR ${CHEMCACHE_TESTS_DIR}/python)
+
     cmaize_find_or_build_dependency(
         Catch2
         URL github.com/catchorg/Catch2
         BUILD_TARGET Catch2
         FIND_TARGET Catch2::Catch2
-	    VERSION v2.x
+	    VERSION ${NWX_CATCH2_VERSION}
     )
+
     cmaize_add_tests(
         test_unit_${PROJECT_NAME}
-        SOURCE_DIR "${CXX_TEST_DIR}/unit"
-        INCLUDE_DIRS "${project_src_dir}"
+        SOURCE_DIR "${CXX_TEST_DIR}/unit_tests"
+        INCLUDE_DIRS "${CHEMCACHE_SOURCE_DIR}/${PROJECT_NAME}"
         DEPENDS Catch2 ${PROJECT_NAME}
     )
-    cmaize_add_tests(
-        test_integration_${PROJECT_NAME}
-        SOURCE_DIR "${CXX_TEST_DIR}/integration"
-        INCLUDE_DIRS "${project_src_dir}"
-        DEPENDS Catch2 ${PROJECT_NAME}
-    )
-    # Based on previous comment, not sure this test actually worked.
-    #nwx_pybind11_tests(
-    #scrape_bse ${PYTHON_TEST_DIR}/reference_data/test_scrape_bse.py
-    #)
+
+    # N.B. these are no-ops if BUILD_PYBIND11_PYBINDINGS is not turned on
     nwx_pybind11_tests(
-        py_chem_cache ${PYTHON_TEST_DIR}/unit_tests/test_chemcache.py
+        py_chem_cache "${PYTHON_TEST_DIR}/unit_tests/test_chemcache.py"
         SUBMODULES parallelzone pluginplay chemist simde
     )
+
+    if("${ENABLE_EXPERIMENTAL_FEATURES}")
+
+        cmaize_add_tests(
+            test_unit_experimental_${PROJECT_NAME}
+            SOURCE_DIR "${CHEMCACHE_EXP_DIR}/tests/cxx/unit_tests"
+            INCLUDE_DIRS "${CHEMCACHE_EXP_DIR}/src/${PROJECT_NAME}"
+            DEPENDS Catch2::Catch2 experimental_${PROJECT_NAME}
+        )
+
+        nwx_pybind11_tests(
+            py_experimental_${PROJECT_NAME}
+            "${CHEMCACHE_EXP_DIR}/tests/python/unit_tests/test_python.py"
+            SUBMODULES pluginplay chemist parallelzone
+        )
+
+    endif()
+
 endif()
 
-cmaize_add_package(${PROJECT_NAME} NAMESPACE nwx::)
+cmaize_add_package(
+    ${PROJECT_NAME} experimental_${PROJECT_NAME} NAMESPACE nwx::
+)

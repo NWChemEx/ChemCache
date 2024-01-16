@@ -15,7 +15,8 @@
  */
 
 #include "bases.hpp"
-#include <simde/simde.hpp>
+#include <simde/basis_sets/basis_sets.hpp>
+#include <simde/types.hpp>
 
 namespace chemcache {
 

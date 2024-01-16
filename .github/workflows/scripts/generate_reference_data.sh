@@ -19,10 +19,11 @@ REF_DATA="reference_data"
 
 # Set source code output directories
 SRC="src/chemcache"
-ATOM_DEN="${SRC}/atomic_densities"
+EXP_SRC="experimental/src/chemcache"
+ATOM_DEN="${EXP_SRC}/atomic_densities"
 ATOM="${SRC}/atoms"
 BASES="${SRC}/bases"
-ELEC_CONFIGS="${SRC}/electronic_configurations"
+ELEC_CONFIGS="${EXP_SRC}/electronic_configurations"
 MOLES="${SRC}/molecules"
 
 # Set data directories
@@ -53,7 +54,7 @@ TESTS="tests/chemcache"
 echo "Calling ${REF_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${ATOM}"
 ${PYTHON} ${REF_DATA}/generate_atomicinfo.py ${ATOMIC_INFO} ${ATOM}
 
-echo "Calling ${REF_DATA}/generate_densities.py ${DENSITIES} ${ATOM_DEN} ${TESTS} -r" 
+echo "Calling ${REF_DATA}/generate_densities.py ${DENSITIES} ${ATOM_DEN} -r" 
 ${PYTHON} ${REF_DATA}/generate_densities.py ${DENSITIES} ${ATOM_DEN} -r
 
 echo "Calling ${REF_DATA}/generate_molecules.py ${MOLECULES} ${MOLES} -r"
