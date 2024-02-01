@@ -22,8 +22,8 @@
  */
 
 #include "molecules.hpp"
-#include <simde/atoms/atom.hpp>
-#include <simde/molecule_from_string.hpp>
+#include <simde/chemical_system/atom.hpp>
+#include <simde/chemical_system/molecule_from_string.hpp>
 #include <simde/types.hpp>
 
 namespace chemcache {

@@ -53,7 +53,7 @@ release = version
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
+    'autoapi.extension',
     'sphinx.ext.doctest',
     #'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
@@ -92,6 +92,8 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# Should figures be numbered?
+numfig = True
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -177,6 +179,20 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
+autoapi_dirs = [
+    '../../src',
+    # '../../tests',
+]
+autoapi_add_toctree_entry = False
+autoapi_options = [
+    'members',
+    'undoc-members',
+    'private-members',
+    'show-inheritance',
+    'show-module-summary',
+    'special-members',
+    #    'imported-members',
+]
 
 # -- Options for intersphinx extension ---------------------------------------
 

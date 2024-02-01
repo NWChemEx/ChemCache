@@ -22,7 +22,7 @@
  */
 
 #include "atoms.hpp"
-#include <simde/atoms/symbol_from_Z.hpp>
+#include <simde/chemical_system/symbol_from_Z.hpp>
 #include <simde/types.hpp>
 
 namespace chemcache {

@@ -37,7 +37,7 @@ nwx_cxx_api_docs("${CHEMCACHE_SOURCE_DIR}" "${CHEMCACHE_INCLUDE_DIR}")
 ### Options ###
 cmaize_option_list(
     BUILD_TESTING OFF "Should we build the tests?"
-    BUILD_PYBIND11_PYBINDINGS OFF "Build pybind11 python3 bindings?"
+    BUILD_PYBIND11_PYBINDINGS ON "Build pybind11 python3 bindings?"
     ENABLE_EXPERIMENTAL_FEATURES OFF "Build features which are not 1.0-ed yet?"
 )
 
