@@ -17,8 +17,8 @@ ChemCache Documentation
 #######################
 
 .. toctree::
-   :maxdepth: 1
-   :caption: API Documentation
+   :maxdepth: 2
+   :caption: APIs:
 
+   autoapi/reference_data/index
    module_api/index
-   python_api/index
