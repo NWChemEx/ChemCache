@@ -44,7 +44,6 @@ cmaize_option_list(
 cmaize_find_or_build_dependency(
     simde
     URL github.com/NWChemEx/SimDE
-    PRIVATE TRUE
     VERSION ${NWX_SIMDE_VERSION}
     BUILD_TARGET simde
     FIND_TARGET nwx::simde

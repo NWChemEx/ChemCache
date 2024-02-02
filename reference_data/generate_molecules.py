@@ -215,8 +215,8 @@ def _write_load_molecules(src_dir: str, mols: dict, tab: str = "    ") -> None:
     # The template we'll be filling values into
     src_template = '''
 #include "molecules.hpp"
-#include <simde/atoms/atom.hpp>
-#include <simde/molecule_from_string.hpp>
+#include <simde/chemical_system/atom.hpp>
+#include <simde/chemical_system/molecule_from_string.hpp>
 #include <simde/types.hpp>
 
 namespace chemcache {{

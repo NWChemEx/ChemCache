@@ -133,7 +133,7 @@ def _write_basis_files(out_file: str, bs_name: str, basis_set: dict,
 
     source_template = '''
 #include "bases.hpp"
-#include <simde/basis_sets/atomic_basis_set.hpp>
+#include <simde/basis_set/atomic_basis_set.hpp>
 #include <simde/types.hpp>
 
 namespace chemcache {{
