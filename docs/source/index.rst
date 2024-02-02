@@ -20,5 +20,5 @@ ChemCache Documentation
    :maxdepth: 2
    :caption: APIs:
 
-   autoapi/reference_data/index
+   autoapi/data_management/index
    module_api/index

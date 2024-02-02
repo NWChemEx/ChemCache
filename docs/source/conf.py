@@ -180,9 +180,9 @@ texinfo_documents = [
 
 # -- Extension configuration -------------------------------------------------
 autoapi_dirs = [
-    '../../reference_data',
+    '../../utils/data_management',
 ]
-autoapi_ignore = ['*atomic_densities*']
+# autoapi_ignore = ['*atomic_densities*']
 autoapi_add_toctree_entry = False
 autoapi_options = [
     'members',
