@@ -53,8 +53,8 @@ import argparse
 import os
 import xml.etree.ElementTree as ET
 
-from generate_atomicinfo import parse_symbols
-import helper_fxns as helpers
+from data_management.generate_atomicinfo import parse_symbols
+import data_management.helper_fxns as helpers
 
 
 def make_square_arr(a: list, spacer='\n'):

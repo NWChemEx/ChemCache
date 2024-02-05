@@ -55,7 +55,7 @@ import os
 import re
 from collections import defaultdict
 
-import helper_fxns as helpers
+import data_management.helper_fxns as helpers
 
 LMAX = 3
 NMAX = 7

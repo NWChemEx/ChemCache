@@ -44,7 +44,7 @@ import os  # for os.path manipulation
 import requests
 import sys  # for sys.stdout.flush
 
-import helper_fxns as helpers
+import data_management.helper_fxns as helpers
 
 
 class BSEBasisSetScraper:

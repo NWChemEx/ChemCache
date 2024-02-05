@@ -101,8 +101,12 @@ if("${BUILD_TESTING}")
 
     # N.B. these are no-ops if BUILD_PYBIND11_PYBINDINGS is not turned on
     nwx_pybind11_tests(
-        py_chem_cache "${PYTHON_TEST_DIR}/unit_tests/test_chemcache.py"
+        py_test_unit_${PROJECT_NAME} "${PYTHON_TEST_DIR}/unit_tests/test_chemcache.py"
         SUBMODULES parallelzone pluginplay chemist simde
+    )
+
+    nwx_pybind11_tests(
+        py_test_utils_test "${PYTHON_TEST_DIR}/utils_tests/test_utils.py"
     )
 
     if("${ENABLE_EXPERIMENTAL_FEATURES}")

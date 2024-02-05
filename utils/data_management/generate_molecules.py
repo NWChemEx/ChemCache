@@ -50,8 +50,8 @@ import os
 import re
 import sys
 
-from generate_atomicinfo import parse_symbols
-import helper_fxns as helpers
+from data_management.generate_atomicinfo import parse_symbols
+import data_management.helper_fxns as helpers
 
 
 class Molecule:

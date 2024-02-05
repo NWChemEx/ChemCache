@@ -62,7 +62,7 @@ import argparse
 import os
 import re
 
-import helper_fxns as helpers
+import data_management.helper_fxns as helpers
 
 
 class AtomicData:
