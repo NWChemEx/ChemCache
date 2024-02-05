@@ -23,15 +23,17 @@ Usage
 
 ::
 
-   usage: generate_basis.py [-h] [-r] basis_set_source src_dir
+   usage: generate_basis.py [-h] [-r] [-a ATOMS_DIR] basis_set_source src_dir
 
    positional arguments:
-     basis_set_source  Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
-     src_dir           Destination directory for generated source files.
-
-   optional arguments:
-     -h, --help        show this help message and exit
-     -r, --recursive   Toggle on recursive search through the basis set source directory. Default OFF.
+   basis_set_source      Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+   src_dir               Destination directory for generated source files.
+   
+   options:
+   -h, --help            show this help message and exit
+   -r, --recursive       Toggle on recursive search through the basis set source directory. Default OFF.
+   -a ATOMS_DIR, --atoms_dir ATOMS_DIR 
+                         The path to where ElementNames.txt can be found.
 
 This script creates the following files based on the include and source
 directories given. The directories are not created by this script and must
@@ -60,7 +62,10 @@ class Shell:
     """Class representing a shell for an element.
     """
 
-    def __init__(self, ls: list, num_format: str = ".10e", is_pure = True) -> None:
+    def __init__(self,
+                 ls: list,
+                 num_format: str = ".10e",
+                 is_pure=True) -> None:
         """Initialization function.
 
         :param ls: List of angular momenta
@@ -107,14 +112,20 @@ class Shell:
         lines = []
         for i in range(self.gen):
             l = self.ls[i]
-            lines.append(add_shell.format(t=tab * 3, c=center, l=l, shelltype = self.shelltype))
+            lines.append(
+                add_shell.format(t=tab * 3,
+                                 c=center,
+                                 l=l,
+                                 shelltype=self.shelltype))
             cs = "  doubles_t{"
             es = "  doubles_t{"
             for j, ai in enumerate(self.exp):
-                ci = format(float(self.coefs[j][i].replace('D', 'E')
-                                  .replace('E', 'e')), self.number_format)
-                ai_f = format(float(ai.replace('D', 'E')
-                                    .replace('E', 'e')), self.number_format)
+                ci = format(
+                    float(self.coefs[j][i].replace(
+                        'D', 'E').replace('E', 'e')),
+                    self.number_format)
+                ai_f = format(float(ai.replace('D', 'E').replace('E', 'e')),
+                              self.number_format)
                 cs += ci
                 es += ai_f
                 if j < len(self.exp) - 1:
@@ -423,7 +434,8 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -
                     coefs = [row for row in exp_coefs_t[1:]]
 
                     for j in range(len(coefs) - rowspan + 1):
-                        shell = Shell([l2num(l.lower()) for l in ls], is_pure = is_pure)
+                        shell = Shell([l2num(l.lower())
+                                      for l in ls], is_pure=is_pure)
 
                         for i in range(len(exp)):
                             coef = [row[i] for row in coefs[j:j + rowspan:]]
@@ -442,7 +454,10 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -
     return bases
 
 
-def _parse_bases(basis_set_filepaths: list, sym2Z: dict, l2num: "function", format: str = "nwchem") -> dict:
+def _parse_bases(basis_set_filepaths: list,
+                 sym2Z: dict,
+                 l2num: "function",
+                 format: str = "nwchem") -> dict:
     """Parse basis set files of the specified format.
 
     This function redirects to the correct parsing function based on the file
@@ -475,9 +490,7 @@ def _parse_bases(basis_set_filepaths: list, sym2Z: dict, l2num: "function", form
     :raises RuntimeError: Unsupported basis file format.
     """
 
-    if (format == "gaussian94" or
-        format == "psi4" or
-            format == "xtron"):
+    if (format == "gaussian94" or format == "psi4" or format == "xtron"):
 
         return _parse_bases_gbs(basis_set_filepaths, sym2Z, l2num)
     elif (format == "nwchem"):
@@ -498,7 +511,8 @@ def main(args: argparse.Namespace) -> None:
     # Create some paths
     my_dir = os.path.dirname(os.path.realpath(__file__))
     src_dir = os.path.abspath(args.src_dir)
-    name_file = os.path.join(my_dir, "physical_data", "ElementNames.txt")
+    name_file = os.path.abspath(os.path.join(
+        args.atoms_dir, "ElementNames.txt"))
 
     # Discover basis set files
     basis_set_dir = os.path.abspath(args.basis_set_source)
@@ -545,25 +559,32 @@ def parse_args() -> argparse.Namespace:
 
     parser = argparse.ArgumentParser(description="This script will loop over a series of basis sets and write out a "
                                      "file that will fill them in. The format of the resulting basis sets "
-                                     "is suitable for use with the BasisSetExchange class."
-                                     )
+                                     "is suitable for use with the BasisSetExchange class.")
 
-    parser.add_argument('basis_set_source', type=str,
+    parser.add_argument('basis_set_source',
+                        type=str,
                         help="""Source directory for basis set files. If combined
                              with the \"-r\" flag, this directory will be
                              recursively searched for basis sets.""")
 
-    parser.add_argument('src_dir', type=str,
-                        help="Destination directory for generated source files.")
+    parser.add_argument(
+        'src_dir', type=str, help="Destination directory for generated source files.")
 
-    parser.add_argument('-r', '--recursive', action="store_true",
+    parser.add_argument('-r',
+                        '--recursive',
+                        action="store_true",
                         help="""Toggle on recursive search through the basis
                              set source directory. Default OFF.""")
+
+    parser.add_argument("-a",
+                        "--atoms_dir",
+                        action="store",
+                        type=str,
+                        default="reference_data/physical_data",
+                        help="The path to where ElementNames.txt can be found.")
 
     return parser.parse_args()
 
 
 if __name__ == "__main__":
-    args = parse_args()
-
-    main(args)
+    main(parse_args())

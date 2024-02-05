@@ -465,6 +465,4 @@ def parse_args() -> argparse.Namespace:
 
 
 if __name__ == '__main__':
-    args = parse_args()
-
-    main(args)
+    main(parse_args)
