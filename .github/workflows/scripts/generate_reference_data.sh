@@ -30,6 +30,9 @@ ELEC_CONFIGS="${EXP_SRC}/electronic_configurations"
 # Activate virtual environment
 . venv/bin/activate
 
+# Add utility modules to PYTHONPATH
+PYTHONPATH="${PYTHONPATH}:${PWD}/utils"
+
 # Call generation script(s)
 SCRIPTS_DIR="utils/data_management"
 

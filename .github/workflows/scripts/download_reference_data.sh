@@ -23,6 +23,9 @@ MOLECULES="${REF_DATA}/molecules/default"
 # Activate virtual environment
 . venv/bin/activate
 
+# Add utility modules to PYTHONPATH
+PYTHONPATH="${PYTHONPATH}:${PWD}/utils"
+
 # Call download script(s)
 SCRIPTS_DIR="utils/data_management"
 
