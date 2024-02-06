@@ -15,12 +15,16 @@
 #
 
 import os
-import parallelzone as pz
 import sys
 import unittest
 
+# Add utils into the path
+my_dir = os.path.dirname(os.path.realpath(__file__))
+utils_path = os.path.join("..", "..", "..", "utils")
+utils_dir = os.path.abspath(os.path.join(my_dir, utils_path))
+sys.path.append(utils_dir)
+
 if __name__ == '__main__':
-    rv = pz.runtime.RuntimeView()
 
     my_dir = os.path.dirname(os.path.realpath(__file__))
 

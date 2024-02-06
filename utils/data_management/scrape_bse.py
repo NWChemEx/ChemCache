@@ -44,7 +44,7 @@ import os  # for os.path manipulation
 import requests
 import sys  # for sys.stdout.flush
 
-import helper_fxns as helpers
+import data_management.helper_fxns as helpers
 
 
 class BSEBasisSetScraper:
@@ -465,6 +465,4 @@ def parse_args() -> argparse.Namespace:
 
 
 if __name__ == '__main__':
-    args = parse_args()
-
-    main(args)
+    main(parse_args())

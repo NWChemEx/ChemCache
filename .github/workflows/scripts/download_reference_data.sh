@@ -11,34 +11,23 @@
 
 set -e # Exit with error if any command fails
 
-# Set some environment-specific values
-PYTHON="python"
-
 # Set reference data directory
-REFERENCE_DATA="reference_data"
+REF_DATA="reference_data"
 
 # Set data directories
-ATOMIC_INFO="${REFERENCE_DATA}/physical_data"
-BASIS_SETS="${REFERENCE_DATA}/basis_sets/default"
-DENSITIES="${REFERENCE_DATA}/atomic_densities/default"
-MOLECULES="${REFERENCE_DATA}/molecules/default"
-
-# Remove existing downloaded data files
-# rm -rf "${ATOMIC_INFO}"
-#rm -rf "${BASIS_SETS}"
-# rm -rf "${DENSITIES}"
-# rm -rf "${MOLECULES}"
-
-# Recreate necessary data subdirectories
-# mkdir -p "${ATOMIC_INFO}"
-# mkdir -p "${BASIS_SETS}"
-# mkdir -p "${DENSITIES}"
-# mkdir -p "${MOLECULES}"
+ATOMIC_INFO="${REF_DATA}/physical_data"
+BASIS_SETS="${REF_DATA}/basis_sets"
+DENSITIES="${REF_DATA}/atomic_densities"
+MOLECULES="${REF_DATA}/molecules"
 
 # Activate virtual environment
 . venv/bin/activate
 
-# Call download script(s)
+# Add utility modules to PYTHONPATH
+PYTHONPATH="${PYTHONPATH}:${PWD}/utils"
 
-echo "Calling ${REFERENCE_DATA}/scrape_bse.py ${BASIS_SETS}"
-${PYTHON} ${REFERENCE_DATA}/scrape_bse.py ${BASIS_SETS}
+# Call download script(s)
+SCRIPTS_DIR="utils/data_management"
+
+echo "Calling ${SCRIPTS_DIR}/scrape_bse.py ${BASIS_SETS}"
+python ${SCRIPTS_DIR}/scrape_bse.py ${BASIS_SETS}

@@ -53,7 +53,7 @@ release = version
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
+    'autoapi.extension',
     'sphinx.ext.doctest',
     #'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
@@ -82,7 +82,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -92,6 +92,8 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# Should figures be numbered?
+numfig = True
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -177,6 +179,20 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
+autoapi_dirs = [
+    '../../utils/data_management',
+]
+# autoapi_ignore = ['*atomic_densities*']
+autoapi_add_toctree_entry = False
+autoapi_options = [
+    'members',
+    'undoc-members',
+    'private-members',
+    'show-inheritance',
+    'show-module-summary',
+    'special-members',
+    #    'imported-members',
+]
 
 # -- Options for intersphinx extension ---------------------------------------
 
@@ -187,3 +203,15 @@ intersphinx_mapping = {'https://docs.python.org/': None}
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
+
+# -- Nitpick Ignore options --------------------------------------------------
+
+# Nitpick requires all references to be resolved
+# This will ignore those that references that can't be linked
+nitpick_ignore = []
+for line in open('nitpick_exceptions'):
+    if line.strip() == "" or line.startswith("#"):
+        continue
+    dtype, target = line.split(None, 1)
+    target = target.strip()
+    nitpick_ignore.append((dtype, target))

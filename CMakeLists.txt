@@ -37,14 +37,13 @@ nwx_cxx_api_docs("${CHEMCACHE_SOURCE_DIR}" "${CHEMCACHE_INCLUDE_DIR}")
 ### Options ###
 cmaize_option_list(
     BUILD_TESTING OFF "Should we build the tests?"
-    BUILD_PYBIND11_PYBINDINGS OFF "Build pybind11 python3 bindings?"
+    BUILD_PYBIND11_PYBINDINGS ON "Build pybind11 python3 bindings?"
     ENABLE_EXPERIMENTAL_FEATURES OFF "Build features which are not 1.0-ed yet?"
 )
 
 cmaize_find_or_build_dependency(
     simde
     URL github.com/NWChemEx/SimDE
-    PRIVATE TRUE
     VERSION ${NWX_SIMDE_VERSION}
     BUILD_TARGET simde
     FIND_TARGET nwx::simde
@@ -102,8 +101,12 @@ if("${BUILD_TESTING}")
 
     # N.B. these are no-ops if BUILD_PYBIND11_PYBINDINGS is not turned on
     nwx_pybind11_tests(
-        py_chem_cache "${PYTHON_TEST_DIR}/unit_tests/test_chemcache.py"
+        py_test_unit_${PROJECT_NAME} "${PYTHON_TEST_DIR}/unit_tests/test_chemcache.py"
         SUBMODULES parallelzone pluginplay chemist simde
+    )
+
+    nwx_pybind11_tests(
+        py_test_utils_test "${PYTHON_TEST_DIR}/utils_tests/test_utils.py"
     )
 
     if("${ENABLE_EXPERIMENTAL_FEATURES}")

@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright 2023 NWChemEx-Project
+  ~ Copyright 2022 NWChemEx-Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -14,5 +14,9 @@
   ~ limitations under the License.
 -->
 
-General instructions for building documentation found throughout the NWChemEx project are available at:
-https://github.com/NWChemEx/NWChemEx/blob/master/docs/README.md
+Data Management
+========================
+
+The scripts in this directory are used to populate the `reference_data` 
+directory and then generate source code from that data.
+    

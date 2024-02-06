@@ -62,7 +62,7 @@ import argparse
 import os
 import re
 
-import helper_fxns as helpers
+import data_management.helper_fxns as helpers
 
 
 class AtomicData:
@@ -218,7 +218,7 @@ def _write_z_from_sym(out_dir: str, amu2me: float, atoms: dict) -> None:
     # The template we'll be filling values into
     src_template = '''
 #include "atoms.hpp"
-#include <simde/atoms/Z_from_symbol.hpp>
+#include <simde/chemical_system/Z_from_symbol.hpp>
 #include <simde/types.hpp>
 
 namespace chemcache {{
@@ -283,7 +283,7 @@ def _write_sym_from_z(out_dir: str, amu2me: float, atoms: dict) -> None:
     # The template we'll be filling values into
     src_template = '''
 #include "atoms.hpp"
-#include <simde/atoms/symbol_from_Z.hpp>
+#include <simde/chemical_system/symbol_from_Z.hpp>
 #include <simde/types.hpp>
 
 namespace chemcache {{
@@ -351,7 +351,7 @@ def _write_atoms_average(out_dir: str, amu2me: float, atoms: dict) -> None:
     # The template we'll be filling values into
     src_template = '''
 #include "atoms.hpp"
-#include <simde/atoms/atom.hpp>
+#include <simde/chemical_system/atom.hpp>
 #include <simde/types.hpp>
 
 namespace chemcache {{
@@ -424,7 +424,7 @@ def _write_atoms_isotope(out_dir: str, amu2me: float, atoms: dict) -> None:
     # The template we'll be filling values into
     src_template = '''
 #include "atoms.hpp"
-#include <simde/atoms/atom.hpp>
+#include <simde/chemical_system/atom.hpp>
 #include <simde/types.hpp>
 
 namespace chemcache {{
@@ -551,6 +551,4 @@ def parse_args() -> argparse.Namespace:
 
 
 if __name__ == '__main__':
-    args = parse_args()
-
-    main(args)
+    main(parse_args())

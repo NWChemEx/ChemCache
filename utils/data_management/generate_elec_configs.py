@@ -55,7 +55,7 @@ import os
 import re
 from collections import defaultdict
 
-import helper_fxns as helpers
+import data_management.helper_fxns as helpers
 
 LMAX = 3
 NMAX = 7
@@ -328,6 +328,4 @@ def parse_args() -> argparse.Namespace:
 
 
 if __name__ == '__main__':
-    args = parse_args()
-
-    main(args)
+    main(parse_args())
