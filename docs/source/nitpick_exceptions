@@ -1,0 +1,8 @@
+py:class argparse.Namespace
+py:class Namespace
+py:class optional
+py:class function
+py:class str to :class:Molecule
+py:class lists
+py:class list and dict
+py:class :class:io.TextIOBase
