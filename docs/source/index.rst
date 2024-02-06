@@ -12,9 +12,9 @@
 .. See the License for the specific language governing permissions and
 .. limitations under the License.
 
-#######################
-ChemCache Documentation
-#######################
+#########
+ChemCache
+#########
 
 .. toctree::
    :maxdepth: 2
@@ -29,3 +29,4 @@ ChemCache Documentation
 
    autoapi/data_management/index
    module_api/index
+   C++ API <https://nwchemex.github.io/ChemCache/chemcache_cxx_api/index.html>
