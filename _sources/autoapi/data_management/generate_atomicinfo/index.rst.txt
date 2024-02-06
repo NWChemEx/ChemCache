@@ -1,0 +1,212 @@
+:py:mod:`data_management.generate_atomicinfo`
+=============================================
+
+.. py:module:: data_management.generate_atomicinfo
+
+.. autoapi-nested-parse::
+
+   This script is used to create the experimental data look up tables for the
+   atom class.
+
+   | Original author: Ben Pritchard
+   | Modified by: Zachery Crandall
+
+   In order to run, this script needs to know the location of the data directory
+   to read from and the `src` code directory to output the result into. One can
+   also optionally provide a nondefault value for the electron mass to Dalton ratio.
+
+   For readability and convenience we use a few abbreviations throughout this
+   script:
+
+   - Z: the atomic number of an atom
+   - Sym: the atomic symbol of an atom (e.g. H for hydrogen, He for helium)
+
+   Usage
+   -----
+
+   ::
+
+      usage: generate_atomicinfo.py [-h] [--amu2me AMU2ME] data_dir src_dir
+
+      positional arguments:
+        data_dir         Data directory for atomic information files.
+        src_dir          Destination directory for generated source files.
+
+      optional arguments:
+        -h, --help       show this help message and exit
+        --amu2me AMU2ME  Ratio of mass of electron to one Dalton. (Default: 1822.888486192)
+
+   This script looks for the following file(s)::
+
+      +---data_dir
+      |       ElementNames.txt
+      |       CIAAW-ISOTOPEMASSES.txt
+      |       CIAAW-MASSES.txt
+
+   This script creates the following file(s)::
+
+      +---src_dir
+      |       load_elements.hpp
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   data_management.generate_atomicinfo.AtomicData
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   data_management.generate_atomicinfo.parse_symbols
+   data_management.generate_atomicinfo._parse_ciaaw_isotopes
+   data_management.generate_atomicinfo._parse_ciaww_mass
+   data_management.generate_atomicinfo._write_z_from_sym
+   data_management.generate_atomicinfo._write_sym_from_z
+   data_management.generate_atomicinfo._write_atoms_average
+   data_management.generate_atomicinfo._write_atoms_isotope
+   data_management.generate_atomicinfo.main
+   data_management.generate_atomicinfo.parse_args
+
+
+
+.. py:class:: AtomicData
+
+
+   .. py:method:: add_isotope(num: int, mass: float) -> None
+
+      Add a new isotope mass to the list of isotopes for this element.
+
+      :param num: Isotope mass number (Z + number of neutrons, N)
+      :type num: int
+
+      :param mass: Isotope mass value
+      :type mass: float
+
+
+   .. py:method:: __repr__()
+
+      Return a formatted text representation of the atomic data.
+
+      :return: Formatted representation of the atomic data
+      :rtype: str
+
+
+
+.. py:function:: parse_symbols(name_file: str, atoms: dict) -> None
+
+   Parse the given symbols file and add them to the existing atom
+   collection.
+
+   :param name_file: File with atomic numbers, symbols, and names for atoms.
+   :type name_file: str
+
+   :param atoms: Current collection of atoms. Loaded atoms will be added here.
+   :type atoms: dict
+
+
+.. py:function:: _parse_ciaaw_isotopes(iso_file: str, atoms: dict) -> None
+
+   Parses an isotope mass file from the Commission on Isotopic Abundances
+   and Atomic Weights (CIAAW) and adds it to a given atomic collection.
+
+   :param iso_file: CIAAW isotope mass file
+   :type iso_file: str
+
+   :param atoms: Collection of atoms. Loaded isotopes will be added here.
+   :type atoms: dict of AtomicData
+
+
+.. py:function:: _parse_ciaww_mass(mass_file: str, atoms: dict) -> None
+
+   Parses a mass file from the Commission on Isotopic Abundances
+   and Atomic Weights (CIAAW) and adds it to a given atomic collection.
+
+   :param iso_file: CIAAW mass file
+   :type iso_file: str
+
+   :param atoms: Collection of atoms. Loaded masses will be added here.
+   :type atoms: dict of AtomicData
+
+
+.. py:function:: _write_z_from_sym(out_dir: str, amu2me: float, atoms: dict) -> None
+
+   Generate the Z_from_sym.cpp source file.
+
+   :param out_dir: Output directory for the generated header file.
+   :type out_dir: str
+
+   :param amu2me: Ratio of mass of electron to a Dalton.
+   :type amu2me: float
+
+   :param atoms: Collection of atoms.
+   :type atoms: dict of AtomicData
+
+
+.. py:function:: _write_sym_from_z(out_dir: str, amu2me: float, atoms: dict) -> None
+
+   Generate the sym_from_Z.cpp source file.
+
+   :param out_dir: Output directory for the generated header file.
+   :type out_dir: str
+
+   :param amu2me: Ratio of mass of electron to a Dalton.
+   :type amu2me: float
+
+   :param atoms: Collection of atoms.
+   :type atoms: dict of AtomicData
+
+
+.. py:function:: _write_atoms_average(out_dir: str, amu2me: float, atoms: dict) -> None
+
+   Generate the atoms_average.cpp source file.
+
+   :param out_dir: Output directory for the generated header file.
+   :type out_dir: str
+
+   :param amu2me: Ratio of mass of electron to a Dalton.
+   :type amu2me: float
+
+   :param atoms: Collection of atoms.
+   :type atoms: dict of AtomicData
+
+
+.. py:function:: _write_atoms_isotope(out_dir: str, amu2me: float, atoms: dict) -> None
+
+   Generate the atoms_isotopes.cpp source file.
+
+   :param out_dir: Output directory for the generated header file.
+   :type out_dir: str
+
+   :param amu2me: Ratio of mass of electron to a Dalton.
+   :type amu2me: float
+
+   :param atoms: Collection of atoms.
+   :type atoms: dict of AtomicData
+
+
+.. py:function:: main(args: argparse.Namespace) -> None
+
+   Entry point function to generate atomic info files.
+
+   :param args: Command line argument namespace
+   :type args: argparse.Namespace
+
+
+.. py:function:: parse_args() -> argparse.Namespace
+
+   Parse command line arguments.
+
+   :return: Values of command line arguments.
+   :rtype: argparse.Namespace
+
+

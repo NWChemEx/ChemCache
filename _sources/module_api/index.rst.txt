@@ -7,10 +7,8 @@ Modules API
 
    Atom
    Atom_Isotope
-   Elec_Config_from_Z
    NWX_Molecules
    sto-3g
    sto-3g_atomic_basis
-   sto-3g_atomic_dm
    Symbol_from_Z
    Z_from_Symbol

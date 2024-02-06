@@ -1,0 +1,242 @@
+:py:mod:`data_management.scrape_bse`
+====================================
+
+.. py:module:: data_management.scrape_bse
+
+.. autoapi-nested-parse::
+
+   This script uses a web scraper to download all basis sets from the Basis 
+   Set Exchange (BSE) in the specified output format.
+
+   Usage
+   -----
+
+   ::
+
+      usage: scrape_bse.py [-h] [-o OUTFORMAT] [-g] destination
+
+      positional arguments:
+        destination           Destination directory for basis set files.
+
+      optional arguments:
+        -h, --help            show this help message and exit
+        -o OUTFORMAT, --outformat OUTFORMAT
+                              Output format. (Default: NWChem)
+        -g, --optimize_general
+                              Toggle on optimizing general contractions. Default OFF.
+
+   This script creates the following files in the given destination::
+
+      +---destination
+      |       <all_basis_set_files>
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   data_management.scrape_bse.BSEBasisSetScraper
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   data_management.scrape_bse._write_basis_set
+   data_management.scrape_bse.main
+   data_management.scrape_bse.parse_args
+
+
+
+.. py:class:: BSEBasisSetScraper(base_url: str = 'https://www.basissetexchange.org', user_agent: str = 'NWChemEx BSE Basis Set Scraper', email: str = '', format: str = 'nwchem', uncontract_general: bool = False, uncontract_segmented: bool = False, uncontract_spdf: bool = False, optimize_general: bool = False, make_general: bool = False, header_toggle: bool = True)
+
+
+   Web scraper to download basis sets from the Basis Set Exchange (BSE).
+       
+
+   .. py:method:: add_filter(metadata_key: str, values: list) -> None
+
+      Add a metadata filter to the basis set list and update the filtered
+      basis set list and metadata.
+
+      This function adds filters to the list of valid basis sets contained
+      by this class based on metadata values scraped from BSE. If filters 
+      already exist for the metadata key given, the new values will be 
+      appended to the existing filter value list. Values must match exactly!
+
+      When multiple filter values exist for a metadata key, basis sets are 
+      guaranteed to contain at least one of the filter values, but not 
+      necessarily all filter values for the metadata key. However, filter
+      values of different metadata keys are applied sequentially, so 
+      the filtered basis sets must contain at least one of the
+      filter values for each metadata key.
+
+      For example::
+
+         scraper.add_filter("family", ["pople", "dunning"])
+         scraper.add_filter("role", ["orbital", "optri"])
+
+      will filter to all basis sets that are of either the "pople" or 
+      "dunning" families, but only if they have a role of "orbital" or 
+      "optri".
+
+      The filtered basis set names can be retrieved using the data member
+      `filtered_basis_sets` or the full filtered metadata can be 
+      retrieved with `filtered_metadata`. 
+
+      :param metadata_key: Key for the desired value in basis set metadata.
+      :type metadata_key: str
+
+      :param values: Values of the metadata to filter by.
+      :type values: list
+
+
+   .. py:method:: download_basis_set(basis_name: str, elements: str = '') -> tuple
+
+      Download a single basis set. An optional string of elements can be
+      provided or left empty to get all elements.
+
+      :param basis_name: BSE basis set name identifier.
+      :type basis_name: str
+
+      :param elements: Comma-separated string of atomic numbers, 
+          defaults to ""
+      :type elements: str, optional
+
+      :raises RuntimeError: Basis set could not be obtained from BSE.
+
+      :return: Basis set name cleaned to be a file name and the text for the 
+          basis set file.
+      :rtype: tuple
+
+
+   .. py:method:: download_valid_basis_sets() -> tuple
+
+      Download the list of basis sets available from BSE.
+
+      :return: Collections of basis set names and metadata
+      :rtype: tuple of list and dict
+
+
+   .. py:method:: download_valid_formats() -> list
+
+      Download the list of formats available from BSE.
+
+      :return: Collection of format names
+      :rtype: list
+
+
+   .. py:method:: get_extension(format: str = '') -> str
+
+      Get the extension for the given BSE format identifier. If no 
+      format identifier is given, the class default is used.
+
+      :param format: BSE format identifier, defaults to ""
+      :type format: str, optional
+
+      :return: Basis set file extension
+      :rtype: str
+
+
+   .. py:method:: set_header(user_agent: str = '', email: str = '') -> None
+
+      Generates the header to use in requests.
+
+      :param user_agent: Description of who is pinging the BSE API, 
+          defaults to ""
+      :type user_agent: str, optional
+
+      :param email: Email to send to BSE (not shared), defaults to ""
+      :type email: str, optional
+
+
+   .. py:method:: set_default_format(format: str) -> None
+
+      Set the default format for basis sets.
+
+      :param format: Valid BSE format identifier for basis sets.
+      :type format: str
+
+
+   .. py:method:: get_filtered_basis_sets() -> tuple
+
+      Filter the existing valid basis sets based on metadata filters 
+      currently set in the class. This function does not change the class.
+
+      :return: Returns a filtered list of basis set names and the filtered
+          metadata dict
+      :rtype: tuple of list and dict
+
+
+   .. py:method:: validate_basis_set_name(basis_name: str) -> None
+
+      Validate the basis name against the list of valid basis names 
+      retrieved from BSE.
+
+      :param basis_name: Name of the basis set
+      :type basis_name: str
+
+      :raises RuntimeError: Invalid basis name was given.
+
+
+   .. py:method:: validate_format_name(format: str) -> None
+
+      Validate the format name against the list of valid format names 
+      retrieved from BSE.
+
+      :param format: Name of the formatting option
+      :type format: str
+
+      :raises RuntimeError: Invalid format option was given
+
+
+   .. py:method:: _create_params(elements: str = '') -> dict
+
+      Create the parameter dictionary for a BSE request.
+
+      :param elements: Elements to retrieve bases for, defaults to ""
+      :type elements: str, optional
+
+      :return: Dictionary of parameter names (keys) and their values
+      :rtype: dict
+
+
+
+.. py:function:: _write_basis_set(destination: str, basis_name: str, basis_data: str, extension: str) -> None
+
+   Write the basis set out to a file.
+
+   :param basis_name: Name of the basis set.
+   :type basis_name: str
+
+   :param basis_data: Text data to write to the basis set file
+   :type basis_data: str
+
+   :param extension: Extension for the basis set file. Must include the dot 
+       '.' separator if one is needed.
+   :type extension: str
+
+
+.. py:function:: main(args: argparse.Namespace) -> None
+
+   Entry point function to generate basis set files.
+
+   :param args: Command line argument namespace
+   :type args: Namespace
+
+
+.. py:function:: parse_args() -> argparse.Namespace
+
+   Parse command line arguments.
+
+   :return: Values of command line arguments.
+   :rtype: Namespace
+
+

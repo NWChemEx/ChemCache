@@ -1,7 +1,0 @@
-reference\_data.generate\_atomicinfo module
-===========================================
-
-.. automodule:: reference_data.generate_atomicinfo
-   :members:
-   :undoc-members:
-   :show-inheritance:

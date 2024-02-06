@@ -1,7 +1,0 @@
-reference\_data.generate\_elec\_configs module
-==============================================
-
-.. automodule:: reference_data.generate_elec_configs
-   :members:
-   :undoc-members:
-   :show-inheritance:

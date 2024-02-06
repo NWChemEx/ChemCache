@@ -1,0 +1,29 @@
+:py:mod:`data_management`
+=========================
+
+.. py:module:: data_management
+
+.. autoapi-nested-parse::
+
+   The ``data_management`` package contains scripts and reference data 
+   needed to generate C++-accessible versions of the reference data, 
+   currently in the form of C++ source code. Some of the reference data is 
+   downloaded, and those download scripts are also contained here.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   generate_atomicinfo/index.rst
+   generate_basis/index.rst
+   generate_densities/index.rst
+   generate_elec_configs/index.rst
+   generate_molecules/index.rst
+   helper_fxns/index.rst
+   scrape_bse/index.rst
+
+

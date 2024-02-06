@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; ChemCache 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ChemCache Design" href="design.html" />
+    <link rel="prev" title="ChemCache" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ChemCache
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-command">Install Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-options">Configuration Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#required-dependencies">Required Dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cmake">CMake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-compiler">C++ Compiler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-dependencies">Optional Dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#doxygen">Doxygen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python">Python</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#other-dependencies">Other Dependencies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#simde">SimDE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#catch2">Catch2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">ChemCache Design</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">APIs:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/data_management/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_api/index.html">Modules API</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://nwchemex.github.io/ChemCache/chemcache_cxx_api/index.html">C++ API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChemCache</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<section id="install-command">
+<h2>Install Command<a class="headerlink" href="#install-command" title="Link to this heading"></a></h2>
+<p>ChemCache uses <a class="reference external" href="https://cmakepp.github.io/CMaize/index.html">CMaize</a> as
+its build system, more detailed build instructions can be found
+<a class="reference external" href="https://cmakepp.github.io/CMaize/getting_started/building/index.html">here</a>.
+ChemCache can be installed using the usual CMake commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-H.<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-B&lt;build_dir&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-DCMAKE_INSTALL_PREFIX:PATH<span class="o">=</span>&lt;where/to/install/libraries&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-DCMAKE_TOOLCHAIN_FILE:PATH<span class="o">=</span>&lt;path/to/toolchain.cmake&gt;
+cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>install<span class="w"> </span>--parallel<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">&lt;build_dir&gt;</span></code> is the name of the build directory CMake should use (most
+users just set this to <code class="docutils literal notranslate"><span class="pre">-Bbuild</span></code>), <code class="docutils literal notranslate"><span class="pre">&lt;where/to/install/libraries&gt;</span></code> should
+be set to where you want to install the dependencies ChemCache builds for you,
+and <code class="docutils literal notranslate"><span class="pre">&lt;path/to/toolchain.cmake&gt;</span></code> should point to your <code class="docutils literal notranslate"><span class="pre">toolchain.cmake</span></code> file.
+Of particular note, make sure that in your toolchain file you set
+<code class="docutils literal notranslate"><span class="pre">NWX_MODULE_PATH</span></code> to where you want ChemCache installed and you may want to
+set both <code class="docutils literal notranslate"><span class="pre">Python_EXECUTABLE</span></code> and <code class="docutils literal notranslate"><span class="pre">Python3_EXECUTABLE</span></code> to the Python
+interpreter from your virtual environment (with the environment activated
+run <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python3</span></code> to get it’s path).</p>
+</section>
+<section id="configuration-options">
+<h2>Configuration Options<a class="headerlink" href="#configuration-options" title="Link to this heading"></a></h2>
+<p>This is a list of configuration options recognized by ChemCache’s build
+system.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">BUILD_TESTING</span></code>.</dt><dd><p>Off by default. Set to a truth-y value to enable testing.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">BUILD_DOCS</span></code>.</dt><dd><p>Off by default. Set to a truth-y value to build the C++ API documentation.
+This variable is defined by the <code class="docutils literal notranslate"><span class="pre">nwx_cxx_api_docs</span></code> CMake module.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ONLY_BUILD_DOCS</span></code>.</dt><dd><p>Off by default. If <code class="docutils literal notranslate"><span class="pre">BUILD_DOCS</span></code> is set to a truth-y value and
+<code class="docutils literal notranslate"><span class="pre">ONLY_BUILD_DOCS</span></code> is also set to a truth-y value, then the configure
+process will skip all other aspects of the configuration aside from creating
+the <code class="docutils literal notranslate"><span class="pre">chemcache_cxx_api</span></code> target. This variable is defined by the
+<code class="docutils literal notranslate"><span class="pre">nwx_cxx_api_docs</span></code> CMake module.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">BUILD_PYBIND11_PYBINDINGS</span></code>.</dt><dd><p>On by default. When enabled the optional Python API is built.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ENABLE_EXPERIMENTAL_FEATURES</span></code>.</dt><dd><p>Off by default. When set to a truth-y value classes and functions which are in
+a pre-release state will be built.</p>
+</dd>
+</dl>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<section id="required-dependencies">
+<h3>Required Dependencies<a class="headerlink" href="#required-dependencies" title="Link to this heading"></a></h3>
+<p>These are dependencies which must be pre-installed and can not be built by
+ChemCache’s build system.</p>
+<section id="cmake">
+<h4>CMake<a class="headerlink" href="#cmake" title="Link to this heading"></a></h4>
+<p>CMake is the basis of CMaize, and minimum version of 3.14 is required to
+properly build ChemCache.</p>
+</section>
+<section id="c-compiler">
+<h4>C++ Compiler<a class="headerlink" href="#c-compiler" title="Link to this heading"></a></h4>
+<p>ChemCache relies on the C++17 standard and should work with any C++17
+compliant compiler (GCC 9.x or newer).</p>
+</section>
+</section>
+<section id="optional-dependencies">
+<h3>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Link to this heading"></a></h3>
+<p>These are dependencies that ChemCache’s build system can not build; however,
+they are only required if certain features are enabled.</p>
+<section id="doxygen">
+<h4>Doxygen<a class="headerlink" href="#doxygen" title="Link to this heading"></a></h4>
+<p><a class="reference external" href="https://www.doxygen.nl/">Home Page</a></p>
+<p>Used to generate the C++ API documentation. Only needed if <code class="docutils literal notranslate"><span class="pre">BUILD_DOCS</span></code> is
+set to a truth-y value.</p>
+</section>
+<section id="python">
+<h4>Python<a class="headerlink" href="#python" title="Link to this heading"></a></h4>
+<p>Needed if <code class="docutils literal notranslate"><span class="pre">BUILD_PYBIND11_PYTHONBINDINGS</span></code> is enabled. You will need the
+developer headers and libraries for Python.</p>
+</section>
+</section>
+<section id="other-dependencies">
+<h3>Other Dependencies<a class="headerlink" href="#other-dependencies" title="Link to this heading"></a></h3>
+<p>The dependencies in this section can be built by ChemCache’s build system
+when they are not located. Under normal circumstances users can ignore them.
+They are listed here primarily for completeness.</p>
+<section id="simde">
+<h4>SimDE<a class="headerlink" href="#simde" title="Link to this heading"></a></h4>
+<p>URL: <a class="reference external" href="https://github.com/NWChemEx/SimDE">https://github.com/NWChemEx/SimDE</a></p>
+<p>ChemCache is build off of the Simulation Development Environment (SimDE). See
+<a class="reference external" href="https://nwchemex.github.io/SimDE/install.html#simde-dependencies">here</a> for
+the list of dependencies inherited from SimDE.</p>
+</section>
+<section id="catch2">
+<h4>Catch2<a class="headerlink" href="#catch2" title="Link to this heading"></a></h4>
+<p>URL: <a class="reference external" href="https://github.com/catchorg/Catch2">https://github.com/catchorg/Catch2</a></p>
+<p>Used for unit testing. Only needed if unit testing is enabled (controlled by
+the CMake variable <code class="docutils literal notranslate"><span class="pre">BUILD_TESTING</span></code>, which is <code class="docutils literal notranslate"><span class="pre">OFF</span></code> by default).</p>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="ChemCache" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="design.html" class="btn btn-neutral float-right" title="ChemCache Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, NWChemEx Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

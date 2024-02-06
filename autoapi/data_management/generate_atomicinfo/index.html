@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>data_management.generate_atomicinfo &mdash; ChemCache 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="data_management.generate_basis" href="../generate_basis/index.html" />
+    <link rel="prev" title="data_management" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ChemCache
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../design.html">ChemCache Design</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">APIs:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_atomicinfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../generate_basis/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_basis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../generate_densities/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_densities</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../generate_elec_configs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_elec_configs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../generate_molecules/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_molecules</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../helper_fxns/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.helper_fxns</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scrape_bse/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.scrape_bse</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_api/index.html">Modules API</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://nwchemex.github.io/ChemCache/chemcache_cxx_api/index.html">C++ API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ChemCache</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_atomicinfo</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/data_management/generate_atomicinfo/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-data_management.generate_atomicinfo">
+<span id="data-management-generate-atomicinfo"></span><h1><a class="reference internal" href="#module-data_management.generate_atomicinfo" title="data_management.generate_atomicinfo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_atomicinfo</span></code></a><a class="headerlink" href="#module-data_management.generate_atomicinfo" title="Link to this heading"></a></h1>
+<p>This script is used to create the experimental data look up tables for the
+atom class.</p>
+<div class="line-block">
+<div class="line">Original author: Ben Pritchard</div>
+<div class="line">Modified by: Zachery Crandall</div>
+</div>
+<p>In order to run, this script needs to know the location of the data directory
+to read from and the <cite>src</cite> code directory to output the result into. One can
+also optionally provide a nondefault value for the electron mass to Dalton ratio.</p>
+<p>For readability and convenience we use a few abbreviations throughout this
+script:</p>
+<ul class="simple">
+<li><p>Z: the atomic number of an atom</p></li>
+<li><p>Sym: the atomic symbol of an atom (e.g. H for hydrogen, He for helium)</p></li>
+</ul>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_atomicinfo</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">amu2me</span> <span class="n">AMU2ME</span><span class="p">]</span> <span class="n">data_dir</span> <span class="n">src_dir</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="n">data_dir</span>         <span class="n">Data</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">atomic</span> <span class="n">information</span> <span class="n">files</span><span class="o">.</span>
+  <span class="n">src_dir</span>          <span class="n">Destination</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">generated</span> <span class="n">source</span> <span class="n">files</span><span class="o">.</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">amu2me</span> <span class="n">AMU2ME</span>  <span class="n">Ratio</span> <span class="n">of</span> <span class="n">mass</span> <span class="n">of</span> <span class="n">electron</span> <span class="n">to</span> <span class="n">one</span> <span class="n">Dalton</span><span class="o">.</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="mf">1822.888486192</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This script looks for the following file(s):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">data_dir</span>
+<span class="o">|</span>       <span class="n">ElementNames</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">|</span>       <span class="n">CIAAW</span><span class="o">-</span><span class="n">ISOTOPEMASSES</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">|</span>       <span class="n">CIAAW</span><span class="o">-</span><span class="n">MASSES</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>This script creates the following file(s):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">src_dir</span>
+<span class="o">|</span>       <span class="n">load_elements</span><span class="o">.</span><span class="n">hpp</span>
+</pre></div>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.AtomicData" title="data_management.generate_atomicinfo.AtomicData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AtomicData</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.parse_symbols" title="data_management.generate_atomicinfo.parse_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_symbols</span></code></a>(→ None)</p></td>
+<td><p>Parse the given symbols file and add them to the existing atom</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._parse_ciaaw_isotopes" title="data_management.generate_atomicinfo._parse_ciaaw_isotopes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_ciaaw_isotopes</span></code></a>(→ None)</p></td>
+<td><p>Parses an isotope mass file from the Commission on Isotopic Abundances</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._parse_ciaww_mass" title="data_management.generate_atomicinfo._parse_ciaww_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_ciaww_mass</span></code></a>(→ None)</p></td>
+<td><p>Parses a mass file from the Commission on Isotopic Abundances</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_z_from_sym" title="data_management.generate_atomicinfo._write_z_from_sym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_z_from_sym</span></code></a>(→ None)</p></td>
+<td><p>Generate the Z_from_sym.cpp source file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_sym_from_z" title="data_management.generate_atomicinfo._write_sym_from_z"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_sym_from_z</span></code></a>(→ None)</p></td>
+<td><p>Generate the sym_from_Z.cpp source file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_atoms_average" title="data_management.generate_atomicinfo._write_atoms_average"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_atoms_average</span></code></a>(→ None)</p></td>
+<td><p>Generate the atoms_average.cpp source file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_atoms_isotope" title="data_management.generate_atomicinfo._write_atoms_isotope"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_atoms_isotope</span></code></a>(→ None)</p></td>
+<td><p>Generate the atoms_isotopes.cpp source file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.main" title="data_management.generate_atomicinfo.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(→ None)</p></td>
+<td><p>Entry point function to generate atomic info files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.parse_args" title="data_management.generate_atomicinfo.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>(→ argparse.Namespace)</p></td>
+<td><p>Parse command line arguments.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo.AtomicData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">AtomicData</span></span><a class="headerlink" href="#data_management.generate_atomicinfo.AtomicData" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo.AtomicData.add_isotope">
+<span class="sig-name descname"><span class="pre">add_isotope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo.AtomicData.add_isotope" title="Link to this definition"></a></dt>
+<dd><p>Add a new isotope mass to the list of isotopes for this element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num</strong> (<em>int</em>) – Isotope mass number (Z + number of neutrons, N)</p></li>
+<li><p><strong>mass</strong> (<em>float</em>) – Isotope mass value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo.AtomicData.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_management.generate_atomicinfo.AtomicData.__repr__" title="Link to this definition"></a></dt>
+<dd><p>Return a formatted text representation of the atomic data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Formatted representation of the atomic data</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo.parse_symbols">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">parse_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo.parse_symbols" title="Link to this definition"></a></dt>
+<dd><p>Parse the given symbols file and add them to the existing atom
+collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name_file</strong> (<em>str</em>) – File with atomic numbers, symbols, and names for atoms.</p></li>
+<li><p><strong>atoms</strong> (<em>dict</em>) – Current collection of atoms. Loaded atoms will be added here.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo._parse_ciaaw_isotopes">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">_parse_ciaaw_isotopes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iso_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo._parse_ciaaw_isotopes" title="Link to this definition"></a></dt>
+<dd><p>Parses an isotope mass file from the Commission on Isotopic Abundances
+and Atomic Weights (CIAAW) and adds it to a given atomic collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iso_file</strong> (<em>str</em>) – CIAAW isotope mass file</p></li>
+<li><p><strong>atoms</strong> (<em>dict</em><em> of </em><a class="reference internal" href="#data_management.generate_atomicinfo.AtomicData" title="data_management.generate_atomicinfo.AtomicData"><em>AtomicData</em></a>) – Collection of atoms. Loaded isotopes will be added here.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo._parse_ciaww_mass">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">_parse_ciaww_mass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo._parse_ciaww_mass" title="Link to this definition"></a></dt>
+<dd><p>Parses a mass file from the Commission on Isotopic Abundances
+and Atomic Weights (CIAAW) and adds it to a given atomic collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iso_file</strong> (<em>str</em>) – CIAAW mass file</p></li>
+<li><p><strong>atoms</strong> (<em>dict</em><em> of </em><a class="reference internal" href="#data_management.generate_atomicinfo.AtomicData" title="data_management.generate_atomicinfo.AtomicData"><em>AtomicData</em></a>) – Collection of atoms. Loaded masses will be added here.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo._write_z_from_sym">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">_write_z_from_sym</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amu2me</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo._write_z_from_sym" title="Link to this definition"></a></dt>
+<dd><p>Generate the Z_from_sym.cpp source file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_dir</strong> (<em>str</em>) – Output directory for the generated header file.</p></li>
+<li><p><strong>amu2me</strong> (<em>float</em>) – Ratio of mass of electron to a Dalton.</p></li>
+<li><p><strong>atoms</strong> (<em>dict</em><em> of </em><a class="reference internal" href="#data_management.generate_atomicinfo.AtomicData" title="data_management.generate_atomicinfo.AtomicData"><em>AtomicData</em></a>) – Collection of atoms.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo._write_sym_from_z">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">_write_sym_from_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amu2me</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo._write_sym_from_z" title="Link to this definition"></a></dt>
+<dd><p>Generate the sym_from_Z.cpp source file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_dir</strong> (<em>str</em>) – Output directory for the generated header file.</p></li>
+<li><p><strong>amu2me</strong> (<em>float</em>) – Ratio of mass of electron to a Dalton.</p></li>
+<li><p><strong>atoms</strong> (<em>dict</em><em> of </em><a class="reference internal" href="#data_management.generate_atomicinfo.AtomicData" title="data_management.generate_atomicinfo.AtomicData"><em>AtomicData</em></a>) – Collection of atoms.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo._write_atoms_average">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">_write_atoms_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amu2me</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo._write_atoms_average" title="Link to this definition"></a></dt>
+<dd><p>Generate the atoms_average.cpp source file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_dir</strong> (<em>str</em>) – Output directory for the generated header file.</p></li>
+<li><p><strong>amu2me</strong> (<em>float</em>) – Ratio of mass of electron to a Dalton.</p></li>
+<li><p><strong>atoms</strong> (<em>dict</em><em> of </em><a class="reference internal" href="#data_management.generate_atomicinfo.AtomicData" title="data_management.generate_atomicinfo.AtomicData"><em>AtomicData</em></a>) – Collection of atoms.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo._write_atoms_isotope">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">_write_atoms_isotope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amu2me</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo._write_atoms_isotope" title="Link to this definition"></a></dt>
+<dd><p>Generate the atoms_isotopes.cpp source file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_dir</strong> (<em>str</em>) – Output directory for the generated header file.</p></li>
+<li><p><strong>amu2me</strong> (<em>float</em>) – Ratio of mass of electron to a Dalton.</p></li>
+<li><p><strong>atoms</strong> (<em>dict</em><em> of </em><a class="reference internal" href="#data_management.generate_atomicinfo.AtomicData" title="data_management.generate_atomicinfo.AtomicData"><em>AtomicData</em></a>) – Collection of atoms.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo.main">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo.main" title="Link to this definition"></a></dt>
+<dd><p>Entry point function to generate atomic info files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>argparse.Namespace</em>) – Command line argument namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_atomicinfo.parse_args">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_atomicinfo.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">argparse.Namespace</span></span></span><a class="headerlink" href="#data_management.generate_atomicinfo.parse_args" title="Link to this definition"></a></dt>
+<dd><p>Parse command line arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Values of command line arguments.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>argparse.Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="data_management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../generate_basis/index.html" class="btn btn-neutral float-right" title="data_management.generate_basis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, NWChemEx Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

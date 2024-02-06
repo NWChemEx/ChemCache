@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>data_management.generate_densities &mdash; ChemCache 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="data_management.generate_elec_configs" href="../generate_elec_configs/index.html" />
+    <link rel="prev" title="data_management.generate_basis" href="../generate_basis/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ChemCache
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../design.html">ChemCache Design</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">APIs:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../generate_atomicinfo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_atomicinfo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../generate_basis/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_basis</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_densities</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../generate_elec_configs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_elec_configs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../generate_molecules/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_molecules</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../helper_fxns/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.helper_fxns</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scrape_bse/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.scrape_bse</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_api/index.html">Modules API</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://nwchemex.github.io/ChemCache/chemcache_cxx_api/index.html">C++ API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ChemCache</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_densities</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/data_management/generate_densities/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-data_management.generate_densities">
+<span id="data-management-generate-densities"></span><h1><a class="reference internal" href="#module-data_management.generate_densities" title="data_management.generate_densities"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_management.generate_densities</span></code></a><a class="headerlink" href="#module-data_management.generate_densities" title="Link to this heading"></a></h1>
+<p>Reads files with atomic densities and write to cpp files.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_densities</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">a</span> <span class="n">ATOMS_DIR</span><span class="p">]</span> <span class="n">atomic_density_dir</span> <span class="n">src_dir</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="n">atomic_density_dir</span>    <span class="n">Source</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">basis</span> <span class="nb">set</span> <span class="n">files</span><span class="o">.</span> <span class="n">If</span> <span class="n">combined</span> <span class="k">with</span> <span class="n">the</span> <span class="s2">&quot;-r&quot;</span> <span class="n">flag</span><span class="p">,</span> <span class="n">this</span> <span class="n">directory</span> <span class="n">will</span> <span class="n">be</span> <span class="n">recursively</span> <span class="n">searched</span> <span class="k">for</span> <span class="n">basis</span> <span class="n">sets</span><span class="o">.</span>
+  <span class="n">src_dir</span>               <span class="n">Destination</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">generated</span> <span class="n">source</span> <span class="n">files</span><span class="o">.</span>
+
+<span class="n">options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="o">--</span><span class="n">recursive</span>       <span class="n">Toggle</span> <span class="n">on</span> <span class="n">recursive</span> <span class="n">search</span> <span class="n">through</span> <span class="n">the</span> <span class="n">basis</span> <span class="nb">set</span> <span class="n">source</span> <span class="n">directory</span><span class="o">.</span> <span class="n">Default</span> <span class="n">OFF</span><span class="o">.</span>
+  <span class="o">-</span><span class="n">a</span> <span class="n">ATOMS_DIR</span><span class="p">,</span> <span class="o">--</span><span class="n">atoms_dir</span> <span class="n">ATOMS_DIR</span>
+                        <span class="n">The</span> <span class="n">path</span> <span class="n">to</span> <span class="n">where</span> <span class="n">ElementNames</span><span class="o">.</span><span class="n">txt</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This script creates the following files based on the include and source
+directories given. The directories are not created by this script and must
+be present before running it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">include</span>
+<span class="o">|</span>       <span class="n">nwx_atomic_densities</span><span class="o">.</span><span class="n">hpp</span>
+<span class="o">|</span>
+<span class="o">+---</span><span class="n">src</span>
+<span class="o">|</span>   \<span class="o">---</span><span class="n">atomic_densities</span> <span class="p">(</span><span class="n">this</span> <span class="n">directory</span> <span class="n">must</span> <span class="n">be</span> <span class="n">made</span> <span class="n">manually</span> <span class="n">before</span> <span class="n">run</span> <span class="n">this</span> <span class="n">python</span> <span class="n">script</span><span class="p">)</span>
+<span class="o">|</span>           <span class="n">add_density</span><span class="o">.</span><span class="n">cmake</span>
+<span class="o">|</span>           <span class="o">&lt;</span><span class="n">all_basis_set_files</span><span class="o">&gt;</span>
+<span class="o">|</span>       <span class="n">nwx_atomic_densities</span><span class="o">.</span><span class="n">cpp</span>
+</pre></div>
+</div>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_densities.make_square_arr" title="data_management.generate_densities.make_square_arr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_square_arr</span></code></a>(a[, spacer])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_densities._write_den_files" title="data_management.generate_densities._write_den_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_den_files</span></code></a>(→ None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_densities._write_densities" title="data_management.generate_densities._write_densities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_densities</span></code></a>(→ None)</p></td>
+<td><p>Writes basis set data to C++ files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_densities._parse_densities_xml" title="data_management.generate_densities._parse_densities_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_densities_xml</span></code></a>(→ dict)</p></td>
+<td><p>Parse atomic density files in XML format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_densities._parse_densities_dat" title="data_management.generate_densities._parse_densities_dat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_densities_dat</span></code></a>(→ dict)</p></td>
+<td><p>Parse atomic density files in .dat format.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_densities._parse_densities" title="data_management.generate_densities._parse_densities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_densities</span></code></a>(→ dict)</p></td>
+<td><p>Parse atomic density files of the specified format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_densities.main" title="data_management.generate_densities.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(→ None)</p></td>
+<td><p>Entry point function to generate atomic density files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_densities.parse_args" title="data_management.generate_densities.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>(→ argparse.Namespace)</p></td>
+<td><p>Parse command line arguments.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_densities.make_square_arr">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">make_square_arr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_management.generate_densities.make_square_arr" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_densities._write_den_files">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">_write_den_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bs_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tab</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span>&#160;&#160;&#160; <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_densities._write_den_files" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_densities._write_densities">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">_write_densities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tab</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span>&#160;&#160;&#160; <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_densities._write_densities" title="Link to this definition"></a></dt>
+<dd><p>Writes basis set data to C++ files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_dir</strong> (<em>str</em>) – Source directory for source files.</p></li>
+<li><p><strong>bases</strong> (<em>dict</em>) – Collection of basis sets parsed from files</p></li>
+<li><p><strong>tab</strong> – String representing a tab, defaults to “    ”
+:type tab: str, optional</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_densities._parse_densities_xml">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">_parse_densities_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepaths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_densities._parse_densities_xml" title="Link to this definition"></a></dt>
+<dd><p>Parse atomic density files in XML format.
+Deprecated as new atomic density format is adopted. Y. Z. 02/23/23</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepaths</strong> (<em>list</em><em> of </em><em>str</em>) – Full paths to atomic density files.</p></li>
+<li><p><strong>sym2Z</strong> (<em>dict</em>) – Mapping from lowercased atomic symbols to atomic numbers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Collection of atomic densities sorted by basis set and element</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_densities._parse_densities_dat">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">_parse_densities_dat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepaths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_densities._parse_densities_dat" title="Link to this definition"></a></dt>
+<dd><p>Parse atomic density files in .dat format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepaths</strong> (<em>list</em><em> of </em><em>str</em>) – Full paths to atomic density files.</p></li>
+<li><p><strong>sym2Z</strong> (<em>dict</em>) – Mapping from lowercased atomic symbols to atomic numbers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Collection of atomic densities sorted by basis set and element</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_densities._parse_densities">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">_parse_densities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepaths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.dat'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_densities._parse_densities" title="Link to this definition"></a></dt>
+<dd><p>Parse atomic density files of the specified format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepaths</strong> (<em>list</em><em> of </em><em>str</em>) – Full paths to atomic density files.</p></li>
+<li><p><strong>sym2Z</strong> (<em>dict</em>) – Mapping from lowercased atomic symbols to atomic numbers</p></li>
+<li><p><strong>extension</strong> (<em>str</em><em>, </em><em>optional</em>) – File format extension to parse, defaults to”.dat”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Unsupported atomic density file format.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Collection of atomic densities sorted by basis set and element</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_densities.main">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">argparse.Namespace</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_densities.main" title="Link to this definition"></a></dt>
+<dd><p>Entry point function to generate atomic density files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>argparse.Namespace</em>) – Command line argument namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_management.generate_densities.parse_args">
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">argparse.Namespace</span></span></span><a class="headerlink" href="#data_management.generate_densities.parse_args" title="Link to this definition"></a></dt>
+<dd><p>Parse command line arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Values of command line arguments.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>argparse.Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../generate_basis/index.html" class="btn btn-neutral float-left" title="data_management.generate_basis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../generate_elec_configs/index.html" class="btn btn-neutral float-right" title="data_management.generate_elec_configs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, NWChemEx Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

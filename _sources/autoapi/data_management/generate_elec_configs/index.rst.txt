@@ -1,0 +1,194 @@
+:py:mod:`data_management.generate_elec_configs`
+===============================================
+
+.. py:module:: data_management.generate_elec_configs
+
+.. autoapi-nested-parse::
+
+   This script parses a file containing ground state atomic electronic
+   configurations and generates a function to load that data into a PeriodicTable
+   object.
+
+   For readability and convenience we use a few abbreviations throughout this
+   script:
+
+   - Z: the atomic number of an atom
+   - Sym: the atomic symbol of an atom (e.g. H for hydrogen, He for helium)
+
+   Usage
+   -----
+
+   ::
+
+      usage: generate_ptable_configs.py [-h] data_dir src_dir
+
+      positional arguments:
+        data_dir         Data directory for atomic information files.
+        src_dir          Destination directory for generated source files.
+
+      optional arguments:
+        -h, --help       show this help message and exit
+
+   This script looks for the following file(s)::
+
+      +---data_dir  
+      |       ElementNames.txt  
+      |       NIST-ATOMICION.txt  
+
+   This script creates the following file(s)::
+
+      +---src_dir/atomic_configurations  
+      |       atomconfigs.cpp  
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   data_management.generate_elec_configs.AtomicData
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   data_management.generate_elec_configs.parse_symbols
+   data_management.generate_elec_configs.parse_config_str
+   data_management.generate_elec_configs.parse_nist_configs
+   data_management.generate_elec_configs._write_configs
+   data_management.generate_elec_configs.main
+   data_management.generate_elec_configs.parse_args
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   data_management.generate_elec_configs.LMAX
+   data_management.generate_elec_configs.NMAX
+   data_management.generate_elec_configs.i_to_lchar
+   data_management.generate_elec_configs.lchar_to_i
+
+
+.. py:data:: LMAX
+   :value: 3
+
+   
+
+.. py:data:: NMAX
+   :value: 7
+
+   
+
+.. py:data:: i_to_lchar
+
+   
+
+.. py:data:: lchar_to_i
+
+   
+
+.. py:class:: AtomicData
+
+
+   .. py:property:: config_full
+
+      return full electronic configuration (number of electrons for each (l, n))
+
+      :return: number of electrons for each (l, n); indexed by [l][n-(l+1)]
+      :rtype: list[list[int]]
+
+
+
+   .. py:property:: config
+
+      return reduced config (number of electrons per l)
+
+      :return: (Ns, Np, Nd, ...)
+      :rtype: tuple[int]
+
+
+   .. py:method:: __repr__()
+
+      Return repr(self).
+
+
+
+.. py:function:: parse_symbols(name_file: str, atoms: dict) -> None
+
+   Parse the given symbols file and add them to the existing atom 
+   collection.
+   Atoms will be added twice (same data with two keys) to allow access via
+   either Z or Sym
+
+   :param name_file: File with atomic numbers, symbols, and names for atoms.
+   :type name_file: str
+
+   :param atoms: Current collection of atoms. Loaded atoms will be added here.
+   :type atoms: dict
+
+
+.. py:function:: parse_config_str(sconf: str) -> dict
+
+   parse an electronic configuration and return dict containing number
+   of electrons in each shell, indexed by (n,l)
+
+   :return: dictionary with number of electrons in each shell, indexed by
+            (n, l) where n is an int and l is a str with length 1
+   :rtype: dict[tuple[int,str],int]
+
+
+.. py:function:: parse_nist_configs(ip_file: str, atoms: dict) -> None
+
+   Parses file containing ionization energy data from the NIST Atomic
+   Spectra Database or other file with similar format
+   each line should contain "Z element_name atomic_config [...]"
+
+   If an element symbol is used to represent a closed-shell core in a config,
+   the config for that element must be parsed and added to `atoms` before
+   it is used to represent a core configuration.
+   e.g. Ne config must be added before [Ne]3s2
+
+   :param ip_file: path to file containing configs
+   :type iso_file: str
+
+   :param atoms: Collection of atoms. Loaded configs will be added here.
+   :type atoms: dict of AtomicData
+
+
+.. py:function:: _write_configs(out_dir: str, atoms: dict) -> None
+
+   Generate the electronic_configurations.cpp source file.
+
+   :param out_dir: Output directory for the generated header file.
+   :type out_dir: str
+
+   :param atoms: Collection of atoms.
+   :type atoms: dict of AtomicData
+
+
+.. py:function:: main(args: argparse.Namespace) -> None
+
+   Entry point function to generate atomic info files.
+
+   :param args: Command line argument namespace
+   :type args: argparse.Namespace
+
+
+.. py:function:: parse_args() -> argparse.Namespace
+
+   Parse command line arguments.
+
+   :return: Values of command line arguments.
+   :rtype: argparse.Namespace
+
+

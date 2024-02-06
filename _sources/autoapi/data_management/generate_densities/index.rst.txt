@@ -1,0 +1,147 @@
+:py:mod:`data_management.generate_densities`
+============================================
+
+.. py:module:: data_management.generate_densities
+
+.. autoapi-nested-parse::
+
+   Reads files with atomic densities and write to cpp files.
+
+   Usage
+   -----
+
+   ::
+
+      usage: generate_densities.py [-h] [-r] [-a ATOMS_DIR] atomic_density_dir src_dir
+
+      positional arguments:
+        atomic_density_dir    Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+        src_dir               Destination directory for generated source files.
+      
+      options:
+        -h, --help            show this help message and exit
+        -r, --recursive       Toggle on recursive search through the basis set source directory. Default OFF.
+        -a ATOMS_DIR, --atoms_dir ATOMS_DIR
+                              The path to where ElementNames.txt can be found.
+
+   This script creates the following files based on the include and source
+   directories given. The directories are not created by this script and must
+   be present before running it.
+
+   ::
+
+      +---include
+      |       nwx_atomic_densities.hpp
+      |
+      +---src
+      |   \---atomic_densities (this directory must be made manually before run this python script)
+      |           add_density.cmake
+      |           <all_basis_set_files>
+      |       nwx_atomic_densities.cpp
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   data_management.generate_densities.make_square_arr
+   data_management.generate_densities._write_den_files
+   data_management.generate_densities._write_densities
+   data_management.generate_densities._parse_densities_xml
+   data_management.generate_densities._parse_densities_dat
+   data_management.generate_densities._parse_densities
+   data_management.generate_densities.main
+   data_management.generate_densities.parse_args
+
+
+
+.. py:function:: make_square_arr(a: list, spacer='\n')
+
+
+.. py:function:: _write_den_files(out_file: str, bs_name: str, basis_set: dict, tab: str = '    ') -> None
+
+
+.. py:function:: _write_densities(src_dir: str, bases: dict, tab='    ') -> None
+
+   Writes basis set data to C++ files.
+
+   :param src_dir: Source directory for source files.
+   :type src_dir: str
+
+   :param bases: Collection of basis sets parsed from files
+   :type bases: dict
+
+   :param tab: String representing a tab, defaults to "    "
+       :type tab: str, optional
+
+
+.. py:function:: _parse_densities_xml(filepaths, sym2Z) -> dict
+
+   Parse atomic density files in XML format. 
+   Deprecated as new atomic density format is adopted. Y. Z. 02/23/23
+
+   :param filepaths: Full paths to atomic density files.
+   :type filepaths: list of str
+
+   :param sym2Z: Mapping from lowercased atomic symbols to atomic numbers
+   :type sym2Z: dict
+
+   :return: Collection of atomic densities sorted by basis set and element
+   :rtype: dict
+
+
+.. py:function:: _parse_densities_dat(filepaths, sym2Z) -> dict
+
+   Parse atomic density files in .dat format. 
+
+   :param filepaths: Full paths to atomic density files.
+   :type filepaths: list of str
+
+   :param sym2Z: Mapping from lowercased atomic symbols to atomic numbers
+   :type sym2Z: dict
+
+   :return: Collection of atomic densities sorted by basis set and element
+   :rtype: dict
+
+
+.. py:function:: _parse_densities(filepaths, sym2Z, extension='.dat') -> dict
+
+   Parse atomic density files of the specified format.
+
+   :param filepaths: Full paths to atomic density files.
+   :type filepaths: list of str
+
+   :param sym2Z: Mapping from lowercased atomic symbols to atomic numbers
+   :type sym2Z: dict
+
+   :param extension: File format extension to parse, defaults to".dat"
+   :type extension: str, optional
+
+   :raises RuntimeError: Unsupported atomic density file format.
+
+   :return: Collection of atomic densities sorted by basis set and element
+   :rtype: dict
+
+
+.. py:function:: main(args: argparse.Namespace) -> None
+
+   Entry point function to generate atomic density files.
+
+   :param args: Command line argument namespace
+   :type args: argparse.Namespace
+
+
+.. py:function:: parse_args() -> argparse.Namespace
+
+   Parse command line arguments.
+
+   :return: Values of command line arguments.
+   :rtype: argparse.Namespace
+
+
