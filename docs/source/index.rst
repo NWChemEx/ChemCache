@@ -18,6 +18,13 @@ ChemCache Documentation
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
+
+   installation
+   design
+
+.. toctree::
+   :maxdepth: 2
    :caption: APIs:
 
    autoapi/data_management/index

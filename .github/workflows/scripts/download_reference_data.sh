@@ -16,9 +16,9 @@ REF_DATA="reference_data"
 
 # Set data directories
 ATOMIC_INFO="${REF_DATA}/physical_data"
-BASIS_SETS="${REF_DATA}/basis_sets/default"
-DENSITIES="${REF_DATA}/atomic_densities/default"
-MOLECULES="${REF_DATA}/molecules/default"
+BASIS_SETS="${REF_DATA}/basis_sets"
+DENSITIES="${REF_DATA}/atomic_densities"
+MOLECULES="${REF_DATA}/molecules"
 
 # Activate virtual environment
 . venv/bin/activate

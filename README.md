@@ -22,10 +22,6 @@ ChemCache
 This repo contains chemical reference data, *e.g.*, atomic basis sets, physical 
 constants, molecular geometries, *etc.*.
 
-# Features
-
-Write me...
-
 # Repo structure
 
 ChemCache has two release branches: `master` and `generated_data`. `master` only
