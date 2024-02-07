@@ -24,7 +24,7 @@ MOLECULES="${REF_DATA}/molecules"
 . venv/bin/activate
 
 # Add utility modules to PYTHONPATH
-PYTHONPATH="${PYTHONPATH}:${PWD}/utils"
+export PYTHONPATH="${PYTHONPATH}:${PWD}/utils"
 
 # Call download script(s)
 SCRIPTS_DIR="utils/data_management"
