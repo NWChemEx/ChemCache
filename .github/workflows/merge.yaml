@@ -40,7 +40,7 @@ jobs:
         run: |
           python -m venv venv
           . venv/bin/activate
-          pip install -r reference_data/requirements.txt
+          pip install -r utils/data_management/requirements.txt
         shell: bash
       - name: Overwrite 'generated_data' with 'master'
         run: |
