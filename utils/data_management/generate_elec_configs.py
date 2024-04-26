@@ -12,8 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 """This script parses a file containing ground state atomic electronic
 configurations and generates a function to load that data into a PeriodicTable
 object.
@@ -59,11 +57,12 @@ import data_management.helper_fxns as helpers
 
 LMAX = 3
 NMAX = 7
-i_to_lchar = 'spdfgh'[:LMAX+1]
+i_to_lchar = 'spdfgh'[:LMAX + 1]
 lchar_to_i = {c: i for i, c in enumerate(i_to_lchar)}
 
 
 class AtomicData:
+
     def __init__(self):
         self.sym = ""
         self.name = ""
@@ -81,10 +80,10 @@ class AtomicData:
 
         """
         confs = []
-        for li in range(LMAX+1):
+        for li in range(LMAX + 1):
             tmp = []
             for ni in range(NMAX):
-                tmp.append(self.confdict[ni+li+1, i_to_lchar[li]])
+                tmp.append(self.confdict[ni + li + 1, i_to_lchar[li]])
             confs.append(tmp)
         return confs
 
@@ -96,10 +95,10 @@ class AtomicData:
         :return: (Ns, Np, Nd, ...)
         :rtype: tuple[int]
         """
-        confs = [0]*(LMAX+1)
-        for li in range(LMAX+1):
+        confs = [0] * (LMAX + 1)
+        for li in range(LMAX + 1):
             for ni in range(NMAX):
-                confs[li] += self.confdict[ni+li+1, i_to_lchar[li]]
+                confs[li] += self.confdict[ni + li + 1, i_to_lchar[li]]
         return tuple(confs)
 
     def __repr__(self):
@@ -315,14 +314,18 @@ def parse_args() -> argparse.Namespace:
     :return: Values of command line arguments.
     :rtype: argparse.Namespace
     """
-    parser = argparse.ArgumentParser(description="This script is used to create the experimental data look up tables "
-                                     "for the atom class."
-                                     )
+    parser = argparse.ArgumentParser(
+        description=
+        "This script is used to create the experimental data look up tables "
+        "for the atom class.")
 
-    parser.add_argument('data_dir', type=str,
+    parser.add_argument('data_dir',
+                        type=str,
                         help="Data directory for atomic information files.")
-    parser.add_argument('src_dir', type=str,
-                        help="Destination directory for generated source files.")
+    parser.add_argument(
+        'src_dir',
+        type=str,
+        help="Destination directory for generated source files.")
 
     return parser.parse_args()
 

@@ -11,12 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """This file contains helper functions used throughout the various parsing 
 scripts in this directory.
 """
 
 import os
+
 
 def find_files(source_root, extensions, recursive=False):
     """Recursively find all files in the given directory with the provided
@@ -50,8 +50,7 @@ def find_files(source_root, extensions, recursive=False):
                 # Case insensitive comparison of extensions
                 if (ext.lower() == extension.lower()):
                     found_files[extension].append(
-                        os.path.join(dirpath, filename)
-                    )
+                        os.path.join(dirpath, filename))
 
             # Stop the recursive search before diving into subdirectories
             # if recursion is not requested
@@ -59,6 +58,7 @@ def find_files(source_root, extensions, recursive=False):
                 break
 
     return found_files
+
 
 def lookup_extension(format):
     """Looks up the extension for a basis set file format.
@@ -70,30 +70,31 @@ def lookup_extension(format):
     """
 
     known_formats = {
-        "acesii"    : ".acesii", 
-        "bdf"       : ".bdf", 
-        "bsedebug"  : ".bse", 
-        "cfour"     : ".c4bas", 
-        "cp2k"      : ".cp2k", 
-        "dalton"    : ".dalton", 
-        "demon2k"   : ".d2k", 
-        "gamess_uk" : ".bas", 
-        "gamess_us" : ".bas", 
-        "gaussian94": ".gbs", 
-        "json"      : ".json", 
-        "molcas"    : ".molcas", 
-        "molpro"    : ".mpro", 
-        "nwchem"    : ".nw", 
-        "orca"      : ".orca", 
-        "pqs"       : ".pqs", 
-        "psi4"      : ".gbs", 
-        "qchem"     : ".qchem", 
-        "qcschema"  : ".json", 
-        "turbomole" : ".tm", 
-        "xtron"     : ".gbs"
+        "acesii": ".acesii",
+        "bdf": ".bdf",
+        "bsedebug": ".bse",
+        "cfour": ".c4bas",
+        "cp2k": ".cp2k",
+        "dalton": ".dalton",
+        "demon2k": ".d2k",
+        "gamess_uk": ".bas",
+        "gamess_us": ".bas",
+        "gaussian94": ".gbs",
+        "json": ".json",
+        "molcas": ".molcas",
+        "molpro": ".mpro",
+        "nwchem": ".nw",
+        "orca": ".orca",
+        "pqs": ".pqs",
+        "psi4": ".gbs",
+        "qchem": ".qchem",
+        "qcschema": ".json",
+        "turbomole": ".tm",
+        "xtron": ".gbs"
     }
 
     return known_formats[format.lower()]
+
 
 def sanitize_basis_name(bs_name):
     """Sanitizes the basis set name. For example, replace numbers with the
@@ -122,6 +123,7 @@ def sanitize_basis_name(bs_name):
 
     return temp
 
+
 def desanitize_basis_name(bs_name):
     """\"Desanitizes\" the basis set name. For example, replace "_star" with
     an asterisk character '*'.
@@ -134,8 +136,9 @@ def desanitize_basis_name(bs_name):
     """
 
     temp = bs_name.replace("_star", "*")
-    
+
     return temp
+
 
 # Writes warning about auto-generation to file
 def write_warning(fout, script_name, prefix=""):
@@ -155,8 +158,7 @@ def write_warning(fout, script_name, prefix=""):
     :type prefix: str
     """
 
-    warning = (
-"""{1}/*
+    warning = ("""{1}/*
 {1} * Copyright 2022 NWChemEx-Project
 {1} *
 {1} * Licensed under the Apache License, Version 2.0 (the "License");
@@ -179,5 +181,5 @@ def write_warning(fout, script_name, prefix=""):
 {1} *       {0} is run.
 {1} */
 """).format(script_name, prefix)
-    
+
     fout.write(warning)

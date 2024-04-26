@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """This script uses a web scraper to download all basis sets from the Basis 
 Set Exchange (BSE) in the specified output format.
 
@@ -51,13 +50,17 @@ class BSEBasisSetScraper:
     """Web scraper to download basis sets from the Basis Set Exchange (BSE).
     """
 
-    def __init__(self, base_url: str = "https://www.basissetexchange.org",
+    def __init__(self,
+                 base_url: str = "https://www.basissetexchange.org",
                  user_agent: str = "NWChemEx BSE Basis Set Scraper",
-                 email: str = "", format: str = "nwchem",
+                 email: str = "",
+                 format: str = "nwchem",
                  uncontract_general: bool = False,
                  uncontract_segmented: bool = False,
-                 uncontract_spdf: bool = False, optimize_general: bool = False,
-                 make_general: bool = False, header_toggle: bool = True) -> None:
+                 uncontract_spdf: bool = False,
+                 optimize_general: bool = False,
+                 make_general: bool = False,
+                 header_toggle: bool = True) -> None:
         """Initializer for BSEBasisSetScraper. Many of the parameter 
         descriptions come from the 
         `BSE REST API documentation <https://molssi-bse.github.io/
@@ -167,7 +170,8 @@ class BSEBasisSetScraper:
         else:
             self.filters[metadata_key] = values
 
-        self.filtered_basis_sets, self.filtered_metadata = self.get_filtered_basis_sets()
+        self.filtered_basis_sets, self.filtered_metadata = self.get_filtered_basis_sets(
+        )
 
     def download_basis_set(self, basis_name: str, elements: str = "") -> tuple:
         """Download a single basis set. An optional string of elements can be
@@ -210,8 +214,8 @@ class BSEBasisSetScraper:
             print(response.text)
             raise RuntimeError("Could not obtain {}.".format(self.basis_set))
 
-        clean_basis_set_name = bs.lower().replace(
-            '%20', '_').replace('_st_', "_star").replace('/', '_')
+        clean_basis_set_name = bs.lower().replace('%20', '_').replace(
+            '_st_', "_star").replace('/', '_')
 
         # Notify the user that the download is complete
         print("complete.")
@@ -293,10 +297,7 @@ class BSEBasisSetScraper:
         :type email: str, optional
         """
 
-        self.headers = {
-            "User-Agent": user_agent,
-            "From": email
-        }
+        self.headers = {"User-Agent": user_agent, "From": email}
 
     def set_default_format(self, format: str) -> None:
         """Set the default format for basis sets.
@@ -388,7 +389,7 @@ class BSEBasisSetScraper:
 
 
 def _write_basis_set(destination: str, basis_name: str, basis_data: str,
-                    extension: str) -> None:
+                     extension: str) -> None:
     """Write the basis set out to a file.
 
     :param basis_name: Name of the basis set.
@@ -423,20 +424,21 @@ def main(args: argparse.Namespace) -> None:
     """
 
     scraper = BSEBasisSetScraper(format=args.outformat,
-                                 optimize_general=args.optimize_general
-                                 )
+                                 optimize_general=args.optimize_general)
 
     print("---")
 
     # Add metadata value filters at this point
-    scraper.add_filter(
-        "family", ["pople", "dunning", "dunning_fit", "dunning_pp_fit", "sto", "ahlrichs", "ahlrichs_fit" ])
+    scraper.add_filter("family", [
+        "pople", "dunning", "dunning_fit", "dunning_pp_fit", "sto", "ahlrichs",
+        "ahlrichs_fit"
+    ])
 
     for name in scraper.filtered_basis_sets:
         clean_name, text = scraper.download_basis_set(name)
 
         _write_basis_set(args.destination, clean_name, text,
-                        scraper.get_extension())
+                         scraper.get_extension())
 
         print("---")
 
@@ -447,17 +449,22 @@ def parse_args() -> argparse.Namespace:
     :return: Values of command line arguments.
     :rtype: Namespace
     """
-    parser = argparse.ArgumentParser(description=
+    parser = argparse.ArgumentParser(
+        description=
         "This script uses a web scraper to download all basis sets from the "
-        "Basis Set Exchange (BSE) in the specified output format."
-    )
+        "Basis Set Exchange (BSE) in the specified output format.")
 
-    parser.add_argument('destination', type=str,
+    parser.add_argument('destination',
+                        type=str,
                         help="Destination directory for basis set files.")
-    parser.add_argument('-o', '--outformat', type=str,
+    parser.add_argument('-o',
+                        '--outformat',
+                        type=str,
                         default="NWChem",
                         help="Output format. (Default: NWChem)")
-    parser.add_argument('-g', '--optimize_general', action="store_true",
+    parser.add_argument('-g',
+                        '--optimize_general',
+                        action="store_true",
                         help="""Toggle on optimizing general contractions. 
                              Default OFF.""")
 

@@ -12,8 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 """This script is used to create the experimental data look up tables for the
 atom class.
 
@@ -66,12 +64,13 @@ import data_management.helper_fxns as helpers
 
 
 class AtomicData:
+
     def __init__(self):
         self.sym = ""
         self.name = ""
         self.Z = 0
         self.mass = 0.0
-        self.isotopes = []       # List of isotope mass numbers
+        self.isotopes = []  # List of isotope mass numbers
         self.isotope_masses = {}  # Isotope mass values, indexed by mass number
 
     def add_isotope(self, num: int, mass: float) -> None:
@@ -398,8 +397,12 @@ MODULE_RUN(atoms_average) {{
     sorted_Z = sorted([int(x) for x in atoms.keys()])
     for Z in sorted_Z:
         ai = atoms[str(Z)]
-        entries.append(case_template.format(Z=Z, sym=ai.sym, mass=ai.mass *
-                       amu2me, two_tabs=tab + tab, three_tabs=tab + tab + tab))
+        entries.append(
+            case_template.format(Z=Z,
+                                 sym=ai.sym,
+                                 mass=ai.mass * amu2me,
+                                 two_tabs=tab + tab,
+                                 three_tabs=tab + tab + tab))
 
     # Print the filled out src to the output
     out_file = os.path.join(out_dir, "atoms_average.cpp")
@@ -486,11 +489,19 @@ MODULE_RUN(atoms_isotope) {{
         for mn in sorted_mass_numbers:
             mi = ai.isotope_masses[str(mn)] * amu2me
             atom = atom_ctor.format(ai.sym, Z, mi)
-            internal_entries.append(entry_template.format(
-                n="N", v=mn, c=atom, t1=tab*3, t2=tab*2))
-        internal_entries.append(error_msg.format(tab*3, tab*2))
-        entries.append(entry_template.format(
-            n="Z", v=Z, c=' else '.join(internal_entries), t1=tab*2, t2=tab))
+            internal_entries.append(
+                entry_template.format(n="N",
+                                      v=mn,
+                                      c=atom,
+                                      t1=tab * 3,
+                                      t2=tab * 2))
+        internal_entries.append(error_msg.format(tab * 3, tab * 2))
+        entries.append(
+            entry_template.format(n="Z",
+                                  v=Z,
+                                  c=' else '.join(internal_entries),
+                                  t1=tab * 2,
+                                  t2=tab))
 
     # Print the filled out src to the output
     out_file = os.path.join(out_dir, "atoms_isotope.cpp")
@@ -534,15 +545,20 @@ def parse_args() -> argparse.Namespace:
     :return: Values of command line arguments.
     :rtype: argparse.Namespace
     """
-    parser = argparse.ArgumentParser(description="This script is used to create the experimental data look up tables "
-                                     "for the atom class."
-                                     )
+    parser = argparse.ArgumentParser(
+        description=
+        "This script is used to create the experimental data look up tables "
+        "for the atom class.")
 
-    parser.add_argument('data_dir', type=str,
+    parser.add_argument('data_dir',
+                        type=str,
                         help="Data directory for atomic information files.")
-    parser.add_argument('src_dir', type=str,
-                        help="Destination directory for generated source files.")
-    parser.add_argument('--amu2me', type=float,
+    parser.add_argument(
+        'src_dir',
+        type=str,
+        help="Destination directory for generated source files.")
+    parser.add_argument('--amu2me',
+                        type=float,
                         default=1822.888486192,
                         help="""Ratio of mass of electron to one Dalton. 
                              (Default: 1822.888486192)""")
