@@ -34,7 +34,7 @@ class ScrapeBSETest(unittest.TestCase):
 
     def test_add_filter(self):
         corr = ['sto-2g', 'sto-3g', 'sto-3g_st_', 'sto-4g', 'sto-5g', 'sto-6g']
-        
+
         self.scraper.add_filter("family", ["sto"])
         self.scraper.add_filter("role", ["orbital"])
         self.assertEqual(len(self.scraper.filtered_basis_sets), len(corr))
@@ -47,7 +47,8 @@ class ScrapeBSETest(unittest.TestCase):
 
         # Read golden file
         current_dir = os.path.dirname(os.path.realpath(__file__))
-        ref_path = os.path.join("..", "..", "..", "reference_data", "basis_sets", "default")
+        ref_path = os.path.join("..", "..", "..", "reference_data",
+                                "basis_sets", "default")
         ref_dir = os.path.abspath(os.path.join(current_dir, ref_path))
         basis_file = f"{basis_name}.nw"
 

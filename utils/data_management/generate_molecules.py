@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """This script will read each molecule file in the provided directory
 and generate a C++ source file with commands to make each molecule.
 
@@ -289,13 +288,13 @@ def main(args: argparse.Namespace) -> None:
     # Create some paths
     my_dir = os.path.dirname(os.path.realpath(__file__))
     src_dir = os.path.abspath(args.src_dir)
-    name_file = os.path.abspath(os.path.join(
-        args.atoms_dir, "ElementNames.txt"))
+    name_file = os.path.abspath(
+        os.path.join(args.atoms_dir, "ElementNames.txt"))
 
     # Discover molecule files
     molecule_dir = os.path.abspath(args.molecule_dir)
-    molecule_filepaths = helpers.find_files(
-        molecule_dir, extensions, args.recursive)
+    molecule_filepaths = helpers.find_files(molecule_dir, extensions,
+                                            args.recursive)
 
     # Parse element information
     atoms = {}
@@ -310,8 +309,9 @@ def main(args: argparse.Namespace) -> None:
         #       and the new dict returned from `parse_molecules()`, the
         #       `molecules` version will be replaced by the
         #       `parse_molecules()` version.
-        molecules.update(_parse_molecules(
-            molecule_filepaths[extension], sym2Z, args.ang2au, extension))
+        molecules.update(
+            _parse_molecules(molecule_filepaths[extension], sym2Z, args.ang2au,
+                             extension))
 
     print("Writing molecules to file...", end='')
     sys.stdout.flush()
@@ -328,8 +328,10 @@ def parse_args() -> argparse.Namespace:
     :rtype: Namespace
     """
 
-    parser = argparse.ArgumentParser(description="This script will read each molecule file in the provided directory"
-                                     "and generate a C++ source file with commands to make each molecule.")
+    parser = argparse.ArgumentParser(
+        description=
+        "This script will read each molecule file in the provided directory"
+        "and generate a C++ source file with commands to make each molecule.")
 
     parser.add_argument('molecule_dir',
                         type=str,
@@ -338,7 +340,9 @@ def parse_args() -> argparse.Namespace:
                              will be recursively searched.""")
 
     parser.add_argument(
-        'src_dir', type=str, help="Destination directory for generated source files.")
+        'src_dir',
+        type=str,
+        help="Destination directory for generated source files.")
 
     parser.add_argument('--ang2au',
                         type=float,
@@ -352,12 +356,13 @@ def parse_args() -> argparse.Namespace:
                         help="""Toggle on recursive search through molecule_dir
                              directory. Default OFF.""")
 
-    parser.add_argument("-a",
-                        "--atoms_dir",
-                        action="store",
-                        type=str,
-                        default="reference_data/physical_data",
-                        help="The path to where ElementNames.txt can be found.")
+    parser.add_argument(
+        "-a",
+        "--atoms_dir",
+        action="store",
+        type=str,
+        default="reference_data/physical_data",
+        help="The path to where ElementNames.txt can be found.")
 
     return parser.parse_args()
 

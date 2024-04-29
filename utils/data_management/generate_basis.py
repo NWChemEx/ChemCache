@@ -12,8 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 """This script will loop over a series of basis sets and write out a file
 that will fill them in. The format of the resulting basis sets is suitable
 for use with the BasisSetExchange class.
@@ -121,8 +119,8 @@ class Shell:
             es = "  doubles_t{"
             for j, ai in enumerate(self.exp):
                 ci = format(
-                    float(self.coefs[j][i].replace(
-                        'D', 'E').replace('E', 'e')),
+                    float(self.coefs[j][i].replace('D', 'E').replace('E',
+                                                                     'e')),
                     self.number_format)
                 ai_f = format(float(ai.replace('D', 'E').replace('E', 'e')),
                               self.number_format)
@@ -139,7 +137,9 @@ class Shell:
         return "\n".join(lines)
 
 
-def _write_basis_files(out_file: str, bs_name: str, basis_set: dict,
+def _write_basis_files(out_file: str,
+                       bs_name: str,
+                       basis_set: dict,
                        tab: str = "    ") -> None:
 
     source_template = '''
@@ -209,13 +209,18 @@ MODULE_RUN({s_name}_atom_basis) {{
         shells = []
         for shell in basis_set[str(z)]:
             shells.append(shell.cxxify("shells", tab))
-        cases.append(cases_template.format(
-            t=tab, Z=z, d_name=d_name, shells="\n".join(shells)))
+        cases.append(
+            cases_template.format(t=tab,
+                                  Z=z,
+                                  d_name=d_name,
+                                  shells="\n".join(shells)))
 
     with open(out_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
-        fout.write(source_template.format(
-            d_name=d_name, s_name=s_name, cases="\n".join(cases)))
+        fout.write(
+            source_template.format(d_name=d_name,
+                                   s_name=s_name,
+                                   cases="\n".join(cases)))
 
 
 def _write_bases(src_dir: str, bases: dict, tab="    ") -> None:
@@ -287,8 +292,11 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
     bases_file = os.path.join(src_dir, "bases.hpp")
     with open(bases_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
-        fout.write(bases_template.format(d="\n".join(ds),
-                   s=ntab.join(ss), m=ntab.join(ms), b=ntab.join(bs)))
+        fout.write(
+            bases_template.format(d="\n".join(ds),
+                                  s=ntab.join(ss),
+                                  m=ntab.join(ms),
+                                  b=ntab.join(bs)))
 
 
 def _parse_bases_gbs(basis_set_filenames: list, sym2Z: dict,
@@ -317,8 +325,7 @@ def _parse_bases_gbs(basis_set_filenames: list, sym2Z: dict,
         bs = os.path.splitext(os.path.basename(filepath))[0]
 
         # Let the user know which basis set is being parsed
-        print("Parsing {}...".format(os.path.basename(filepath)),
-              end='')
+        print("Parsing {}...".format(os.path.basename(filepath)), end='')
         # Print immediately
         sys.stdout.flush()
 
@@ -344,7 +351,8 @@ def _parse_bases_gbs(basis_set_filenames: list, sym2Z: dict,
     return bases
 
 
-def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -> dict:
+def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict,
+                    l2num: "function") -> dict:
     """Parses basis set files from the filepaths given.
 
     :param basis_set_filepaths: Full paths to basis set files.
@@ -372,8 +380,7 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -
         basis_set = os.path.splitext(os.path.basename(filepath))[0]
 
         # Let the user know which basis set is being parsed
-        print("Parsing {}...".format(os.path.basename(filepath)),
-              end='')
+        print("Parsing {}...".format(os.path.basename(filepath)), end='')
         # Print immediately
         sys.stdout.flush()
 
@@ -381,8 +388,8 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -
         tmp_basis = {}
         is_pure = True
         with open(filepath, 'r') as fin:
-            atom_z = 0     # Atomic number of current element
-            ls = ""        # Angular momenta of current shells
+            atom_z = 0  # Atomic number of current element
+            ls = ""  # Angular momenta of current shells
 
             basis_block = False
 
@@ -434,8 +441,8 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: "function") -
                     coefs = [row for row in exp_coefs_t[1:]]
 
                     for j in range(len(coefs) - rowspan + 1):
-                        shell = Shell([l2num(l.lower())
-                                      for l in ls], is_pure=is_pure)
+                        shell = Shell([l2num(l.lower()) for l in ls],
+                                      is_pure=is_pure)
 
                         for i in range(len(exp)):
                             coef = [row[i] for row in coefs[j:j + rowspan:]]
@@ -511,23 +518,24 @@ def main(args: argparse.Namespace) -> None:
     # Create some paths
     my_dir = os.path.dirname(os.path.realpath(__file__))
     src_dir = os.path.abspath(args.src_dir)
-    name_file = os.path.abspath(os.path.join(
-        args.atoms_dir, "ElementNames.txt"))
+    name_file = os.path.abspath(
+        os.path.join(args.atoms_dir, "ElementNames.txt"))
 
     # Discover basis set files
     basis_set_dir = os.path.abspath(args.basis_set_source)
     basis_set_filepaths = helpers.find_files(
         basis_set_dir,
         [helpers.lookup_extension(format) for format in formats],
-        recursive=args.recursive
-    )
+        recursive=args.recursive)
 
     # Parse element information
     atoms = {}
     parse_symbols(name_file, atoms)
 
     sym2Z = {ai.sym.lower(): ai.Z for ai in atoms.values()}
-    def l2num(l): return "spdfghijklmnoqrtuvwxyzabce".find(l.lower())
+
+    def l2num(l):
+        return "spdfghijklmnoqrtuvwxyzabce".find(l.lower())
 
     basis_sets = {}
     for format in formats:
@@ -538,9 +546,11 @@ def main(args: argparse.Namespace) -> None:
         #       and the new dict returned from parse_bases(), the
         #       basis_sets version will be replaced by the
         #       parse_bases() version.
-        basis_sets.update(_parse_bases(
-            basis_set_filepaths[extension], sym2Z, l2num, format=format
-        ))
+        basis_sets.update(
+            _parse_bases(basis_set_filepaths[extension],
+                         sym2Z,
+                         l2num,
+                         format=format))
 
     print("Writing basis sets to file...", end='')
     sys.stdout.flush()
@@ -557,18 +567,23 @@ def parse_args() -> argparse.Namespace:
     :rtype: argparse.Namespace
     """
 
-    parser = argparse.ArgumentParser(description="This script will loop over a series of basis sets and write out a "
-                                     "file that will fill them in. The format of the resulting basis sets "
-                                     "is suitable for use with the BasisSetExchange class.")
+    parser = argparse.ArgumentParser(
+        description=
+        "This script will loop over a series of basis sets and write out a "
+        "file that will fill them in. The format of the resulting basis sets "
+        "is suitable for use with the BasisSetExchange class.")
 
-    parser.add_argument('basis_set_source',
-                        type=str,
-                        help="""Source directory for basis set files. If combined
+    parser.add_argument(
+        'basis_set_source',
+        type=str,
+        help="""Source directory for basis set files. If combined
                              with the \"-r\" flag, this directory will be
                              recursively searched for basis sets.""")
 
     parser.add_argument(
-        'src_dir', type=str, help="Destination directory for generated source files.")
+        'src_dir',
+        type=str,
+        help="Destination directory for generated source files.")
 
     parser.add_argument('-r',
                         '--recursive',
@@ -576,12 +591,13 @@ def parse_args() -> argparse.Namespace:
                         help="""Toggle on recursive search through the basis
                              set source directory. Default OFF.""")
 
-    parser.add_argument("-a",
-                        "--atoms_dir",
-                        action="store",
-                        type=str,
-                        default="reference_data/physical_data",
-                        help="The path to where ElementNames.txt can be found.")
+    parser.add_argument(
+        "-a",
+        "--atoms_dir",
+        action="store",
+        type=str,
+        default="reference_data/physical_data",
+        help="The path to where ElementNames.txt can be found.")
 
     return parser.parse_args()
 
