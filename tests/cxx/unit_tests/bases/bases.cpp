@@ -26,6 +26,7 @@ using molecular_basis_pt = simde::MolecularBasisSet;
 using molecular_basis_t  = simde::type::ao_basis_set;
 using molecule_t         = simde::type::molecule;
 using atom_t             = simde::type::atom;
+using atomic_number_t    = simde::type::atomic_number;
 using doubles_t          = std::vector<double>;
 
 using Catch::Matchers::Message;
@@ -36,7 +37,8 @@ TEST_CASE("Atomic Basis Set") {
     auto& atom_bs_mod = mm.at("sto-3g atomic basis");
 
     SECTION("sto-3g Hydrogen") {
-        auto rv = atom_bs_mod.run_as<atomic_basis_pt>(1ul);
+        atomic_number_t Z = 1;
+        auto rv = atom_bs_mod.run_as<atomic_basis_pt>(Z);
         doubles_t cs{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01};
         doubles_t es{3.4252509140e+00, 6.2391372980e-01, 1.6885540400e-01};
         cg_t cg(cs.begin(), cs.end(), es.begin(), es.end(), 0.0, 0.0, 0.0);
@@ -47,7 +49,8 @@ TEST_CASE("Atomic Basis Set") {
     }
 
     SECTION("sto-3g Oxygen") {
-        auto rv = atom_bs_mod.run_as<atomic_basis_pt>(8ul);
+        atomic_number_t Z = 8;
+        auto rv = atom_bs_mod.run_as<atomic_basis_pt>(Z);
         doubles_t cs0{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01};
         doubles_t es0{1.3070932140e+02, 2.3808866050e+01, 6.4436083130e+00};
         cg_t cg0(cs0.begin(), cs0.end(), es0.begin(), es0.end(), 0.0, 0.0, 0.0);
@@ -66,7 +69,8 @@ TEST_CASE("Atomic Basis Set") {
     }
 
     SECTION("Out of Range") {
-        REQUIRE_THROWS_MATCHES(atom_bs_mod.run_as<atomic_basis_pt>(1000ul),
+        atomic_number_t Z = 1000;
+        REQUIRE_THROWS_MATCHES(atom_bs_mod.run_as<atomic_basis_pt>(Z),
                                std::out_of_range,
                                Message("Basis Set not available for Z"));
     }
@@ -77,8 +81,8 @@ TEST_CASE("Molecular Basis Set") {
     chemcache::load_modules(mm);
     auto& mol_bs_mod = mm.at("sto-3g");
 
-    atom_t h1{"H", 1ul, 0.0, 1.0, 1.0, 1.0};
-    atom_t h2{"H", 1ul, 0.0, 2.0, 2.0, 2.0};
+    atom_t h1{"H", 1, 0.0, 1.0, 1.0, 1.0};
+    atom_t h2{"H", 1, 0.0, 2.0, 2.0, 2.0};
     molecule_t in{h1, h2};
 
     auto h_aos = [](auto r) {

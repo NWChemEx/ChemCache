@@ -32,6 +32,7 @@ using molecule_pt = simde::MoleculeFromString;
 using atom_pt     = simde::AtomFromZ;
 using molecule_t  = simde::type::molecule;
 using atom_t      = simde::type::atom;
+using z_t         = simde::type::atomic_number;
 
 static constexpr auto module_desc = R"(
 NWChemEx Molecules
@@ -60,15 +61,15 @@ MODULE_RUN(default_molecules) {
     atom_t atm;
     molecule_t mol;
     if(name == "water") {
-        atm = atoms_mod.run_as<atom_pt>(8ul);
+        atm = atoms_mod.run_as<atom_pt>(z_t{8});
         translate(atm, 0.0, -0.1432223429807816, 0.0);
         mol.push_back(atm);
 
-        atm = atoms_mod.run_as<atom_pt>(1ul);
+        atm = atoms_mod.run_as<atom_pt>(z_t{1});
         translate(atm, 1.6380335020342418, 1.1365568803584036, 0.0);
         mol.push_back(atm);
 
-        atm = atoms_mod.run_as<atom_pt>(1ul);
+        atm = atoms_mod.run_as<atom_pt>(z_t{1});
         translate(atm, -1.6380335020342418, 1.1365568803584036, 0.0);
         mol.push_back(atm);
 

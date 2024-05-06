@@ -19,8 +19,9 @@
 #include <simde/chemical_system/atom.hpp>
 #include <simde/types.hpp>
 
-using atom_pt = simde::AtomFromZ;
-using atom_t  = simde::type::atom;
+using atom_pt         = simde::AtomFromZ;
+using atom_t          = simde::type::atom;
+using atomic_number_t = simde::type::atomic_number;
 
 using Catch::Matchers::Message;
 
@@ -28,21 +29,25 @@ TEST_CASE("Atom") {
     pluginplay::ModuleManager mm;
     chemcache::load_modules(mm);
     auto& atom_mod = mm.at("Atom");
+    atomic_number_t Z;
 
     SECTION("Hydrogen") {
-        auto rv = atom_mod.run_as<atom_pt>(1ul);
-        atom_t corr{"H", 1ul, 1837.4260218693814, 0.0, 0.0, 0.0};
+        Z = 1;
+        auto rv = atom_mod.run_as<atom_pt>(Z);
+        atom_t corr{"H", 1, 1837.4260218693814, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
     }
 
     SECTION("Oxygen") {
-        auto rv = atom_mod.run_as<atom_pt>(8ul);
-        atom_t corr{"O", 8ul, 29165.122045980286, 0.0, 0.0, 0.0};
+        Z = 8;
+        auto rv = atom_mod.run_as<atom_pt>(Z);
+        atom_t corr{"O", 8, 29165.122045980286, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
     }
 
     SECTION("Out of Range") {
-        REQUIRE_THROWS_MATCHES(atom_mod.run_as<atom_pt>(1000ul),
+        Z = 1000;
+        REQUIRE_THROWS_MATCHES(atom_mod.run_as<atom_pt>(Z),
                                std::out_of_range,
                                Message("Atom not available for Z"));
     }

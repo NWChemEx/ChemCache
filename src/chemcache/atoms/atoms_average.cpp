@@ -49,11 +49,11 @@ MODULE_RUN(atoms_average) {
 
     switch(Z) {
         case(1): {
-            atom_t atom{"H", 1ul, 1837.4260218693814, 0.0, 0.0, 0.0};
+            atom_t atom{"H", Z, 1837.4260218693814, 0.0, 0.0, 0.0};
             return atom_pt::wrap_results(rv, atom);
         }
         case(8): {
-            atom_t atom{"O", 8ul, 29165.122045980286, 0.0, 0.0, 0.0};
+            atom_t atom{"O", Z, 29165.122045980286, 0.0, 0.0, 0.0};
             return atom_pt::wrap_results(rv, atom);
         }
         default: {

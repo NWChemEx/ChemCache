@@ -18,7 +18,8 @@
 #include <catch2/catch.hpp>
 #include <simde/chemical_system/symbol_from_Z.hpp>
 
-using sym_pt = simde::SymbolFromZ;
+using sym_pt          = simde::SymbolFromZ;
+using atomic_number_t = simde::type::atomic_number;
 
 using Catch::Matchers::Message;
 
@@ -26,19 +27,23 @@ TEST_CASE("Symbol from Z") {
     pluginplay::ModuleManager mm;
     chemcache::load_modules(mm);
     auto& sym_mod = mm.at("Symbol from Z");
+    atomic_number_t Z;
 
     SECTION("Hydrogen") {
-        auto rv = sym_mod.run_as<sym_pt>(1ul);
+        Z = 1;
+        auto rv = sym_mod.run_as<sym_pt>(Z);
         REQUIRE(rv == "H");
     }
 
     SECTION("Oxygen") {
-        auto rv = sym_mod.run_as<sym_pt>(8ul);
+        Z = 8;
+        auto rv = sym_mod.run_as<sym_pt>(Z);
         REQUIRE(rv == "O");
     }
 
     SECTION("Out of Range") {
-        REQUIRE_THROWS_MATCHES(sym_mod.run_as<sym_pt>(1000ul),
+        Z = 1000;
+        REQUIRE_THROWS_MATCHES(sym_mod.run_as<sym_pt>(Z),
                                std::out_of_range,
                                Message("Symbol not available for Z"));
     }

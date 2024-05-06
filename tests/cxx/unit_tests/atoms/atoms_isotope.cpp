@@ -19,8 +19,8 @@
 #include <simde/chemical_system/atom.hpp>
 #include <simde/types.hpp>
 
-using size_t     = std::size_t;
-using input_t    = std::pair<size_t, size_t>;
+using z_t        = simde::type::atomic_number;
+using input_t    = std::pair<z_t, z_t>;
 using isotope_pt = simde::Atom<input_t>;
 using atom_t     = simde::type::atom;
 
@@ -32,28 +32,28 @@ TEST_CASE("Atom Isotope") {
     auto& atom_mod = mm.at("Atom Isotope");
 
     SECTION("Hydrogen-2") {
-        input_t in{1ul, 2ul};
+        input_t in{1, 2};
         auto rv = atom_mod.run_as<isotope_pt>(in);
-        atom_t corr{"H", 1ul, 3671.4829413173247, 0.0, 0.0, 0.0};
+        atom_t corr{"H", 1, 3671.4829413173247, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
     }
 
     SECTION("Oxygen-18") {
-        input_t in{8ul, 18ul};
+        input_t in{8, 18};
         auto rv = atom_mod.run_as<isotope_pt>(in);
-        atom_t corr{"O", 8ul, 32810.46081966976, 0.0, 0.0, 0.0};
+        atom_t corr{"O", 8, 32810.46081966976, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
     }
 
     SECTION("Out of Range") {
         SECTION("Z Out of Range") {
-            input_t in{1000ul, 1ul};
+            input_t in{1000, 1};
             REQUIRE_THROWS_MATCHES(atom_mod.run_as<isotope_pt>(in),
                                    std::out_of_range,
                                    Message("Isotopes not available for Z"));
         }
         SECTION("N Out of Range") {
-            input_t in{1ul, 10000ul};
+            input_t in{1, 10000};
             REQUIRE_THROWS_MATCHES(
               atom_mod.run_as<isotope_pt>(in), std::out_of_range,
               Message("Isotope not available for Z and mass number"));
