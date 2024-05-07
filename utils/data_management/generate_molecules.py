@@ -102,7 +102,7 @@ class Molecule:
         :rtype: str
         """
 
-        atom = "{t}{t}atm = atoms_mod.run_as<atom_pt>({z}ul);"
+        atom = "{t}{t}atm = atoms_mod.run_as<atom_pt>(z_t{{{z}}});"
         xyz = "{t}{t}translate(atm, {x}, {y}, {z});"
         push = "{t}{t}mol.push_back(atm);\n"
 
@@ -225,6 +225,7 @@ using molecule_pt = simde::MoleculeFromString;
 using atom_pt     = simde::AtomFromZ;
 using molecule_t  = simde::type::molecule;
 using atom_t      = simde::type::atom;
+using z_t         = simde::type::atomic_number;
 
 static constexpr auto module_desc = R"(
 NWChemEx Molecules

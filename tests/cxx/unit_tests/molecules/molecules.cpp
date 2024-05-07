@@ -38,8 +38,8 @@ TEST_CASE("NWX Molecules") {
 
         auto atom_mod = pluginplay::make_lambda<atom_pt>([=](auto&& Z) {
             REQUIRE(((Z == 8) || (Z == 1)));
-            if(Z == 8) return atom_t{"O", 8ul, o_mass, 0.0, 0.0, 0.0};
-            return atom_t{"H", 1ul, h_mass, 0.0, 0.0, 0.0};
+            if(Z == 8) return atom_t{"O", 8, o_mass, 0.0, 0.0, 0.0};
+            return atom_t{"H", 1, h_mass, 0.0, 0.0, 0.0};
         });
         mol_mod.change_submod("Atoms", atom_mod);
 
@@ -49,9 +49,9 @@ TEST_CASE("NWX Molecules") {
         double o_y = -0.1432223429807816;
         double h_x = 1.6380335020342418;
         double h_y = 1.1365568803584036;
-        atom_t o{"O", 8ul, o_mass, 0.0, o_y, 0.0};
-        atom_t h1{"H", 1ul, h_mass, h_x, h_y, 0.0};
-        atom_t h2{"H", 1ul, h_mass, -h_x, h_y, 0.0};
+        atom_t o{"O", 8, o_mass, 0.0, o_y, 0.0};
+        atom_t h1{"H", 1, h_mass, h_x, h_y, 0.0};
+        atom_t h2{"H", 1, h_mass, -h_x, h_y, 0.0};
         molecule_t corr{o, h1, h2};
 
         REQUIRE(rv == corr);

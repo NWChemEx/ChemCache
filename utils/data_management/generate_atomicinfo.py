@@ -387,7 +387,7 @@ MODULE_RUN(atoms_average) {{
 '''
 
     case_template = """{two_tabs}case({Z}): {{
-{three_tabs}atom_t atom{{"{sym}", {Z}ul, {mass}, 0.0, 0.0, 0.0}};
+{three_tabs}atom_t atom{{"{sym}", Z, {mass}, 0.0, 0.0, 0.0}};
 {three_tabs}return atom_pt::wrap_results(rv, atom);
 {two_tabs}}}"""
 
@@ -432,9 +432,9 @@ def _write_atoms_isotope(out_dir: str, amu2me: float, atoms: dict) -> None:
 
 namespace chemcache {{
 
-using size_t     = std::size_t;
-using isotope_pt = simde::Atom<std::pair<size_t, size_t>>;
+using z_t        = simde::type::atomic_number;
 using atom_t     = simde::type::atom;
+using isotope_pt = simde::Atom<std::pair<z_t, z_t>>;
 
 static constexpr auto module_desc = R"(
 Atoms with Isotope Mass
@@ -471,7 +471,7 @@ MODULE_RUN(atoms_isotope) {{
 {t1}{c}
 {t2}}}'''
 
-    atom_ctor = 'atom = atom_t{{"{}", {}ul, {}, 0.0, 0.0, 0.0}};'
+    atom_ctor = 'atom = atom_t{{"{}", Z, {}, 0.0, 0.0, 0.0}};'
 
     error_msg = "{{\n{}throw std::out_of_range(message2);\n{}}}"
 
@@ -488,7 +488,7 @@ MODULE_RUN(atoms_isotope) {{
             continue
         for mn in sorted_mass_numbers:
             mi = ai.isotope_masses[str(mn)] * amu2me
-            atom = atom_ctor.format(ai.sym, Z, mi)
+            atom = atom_ctor.format(ai.sym, mi)
             internal_entries.append(
                 entry_template.format(n="N",
                                       v=mn,

@@ -29,12 +29,12 @@ TEST_CASE("Z from Symbol") {
 
     SECTION("sto-3g Hydrogen") {
         auto rv = z_mod.run_as<z_pt>("H");
-        REQUIRE(rv == 1ul);
+        REQUIRE(rv == 1);
     }
 
     SECTION("sto-3g Oxygen") {
         auto rv = z_mod.run_as<z_pt>("O");
-        REQUIRE(rv == 8ul);
+        REQUIRE(rv == 8);
     }
 
     SECTION("Out of Range") {
