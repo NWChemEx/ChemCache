@@ -25,7 +25,7 @@ Property Types
 
 The following is a list of property types that this module satisfies.
 
-- ``simde::Atom<std::pair<unsigned long, unsigned long>>``
+- ``simde::Atom<std::pair<unsigned int, unsigned int>>``
 
 *************
 Module Inputs
@@ -75,7 +75,7 @@ Atom ID
 - Opaque? : True
 - Domain Restrictions :
 
-  - Type == std::pair<unsigned long, unsigned long>
+  - Type == std::pair<unsigned int, unsigned int>
 
 
 **************

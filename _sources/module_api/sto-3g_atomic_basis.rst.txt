@@ -25,7 +25,7 @@ Property Types
 
 The following is a list of property types that this module satisfies.
 
-- ``simde::AtomicBasisSet<unsigned long>``
+- ``simde::AtomicBasisSet<unsigned int>``
 
 *************
 Module Inputs
@@ -75,7 +75,7 @@ Atom ID
 - Opaque? : True
 - Domain Restrictions :
 
-  - Type == unsigned long
+  - Type == unsigned int
 
 
 **************

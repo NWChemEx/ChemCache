@@ -113,8 +113,8 @@ submodule we have listed:
 - Property Type : The property type that the submodule must satisfy.
 - Description : How the module will use the submodule.
 
-+--------------+--------------------------------------+-------------+
-| Key          | Property Type                        | Description |
-+==============+======================================+=============+
-| Atomic Basis | simde::AtomicBasisSet<unsigned long> | N/A         |
-+--------------+--------------------------------------+-------------+
++--------------+-------------------------------------+-------------+
+| Key          | Property Type                       | Description |
++==============+=====================================+=============+
+| Atomic Basis | simde::AtomicBasisSet<unsigned int> | N/A         |
++--------------+-------------------------------------+-------------+

@@ -89,11 +89,11 @@ columns respectively are:
    Additional results can be accessed by using other property types or by using
    the Module class's advanced API.
 
-+-----+---------------+---------------+
-| Key | Type          | Description   |
-+=====+===============+===============+
-| Z   | unsigned long | Atomic Number |
-+-----+---------------+---------------+
++-----+--------------+---------------+
+| Key | Type         | Description   |
++=====+==============+===============+
+| Z   | unsigned int | Atomic Number |
++-----+--------------+---------------+
 
 
 **********

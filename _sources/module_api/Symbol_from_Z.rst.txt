@@ -75,7 +75,7 @@ Z
 - Opaque? : True
 - Domain Restrictions :
 
-  - Type == unsigned long
+  - Type == unsigned int
 
 
 **************
