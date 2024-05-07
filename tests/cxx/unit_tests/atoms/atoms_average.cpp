@@ -32,14 +32,14 @@ TEST_CASE("Atom") {
     atomic_number_t Z;
 
     SECTION("Hydrogen") {
-        Z = 1;
+        Z       = 1;
         auto rv = atom_mod.run_as<atom_pt>(Z);
         atom_t corr{"H", 1, 1837.4260218693814, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
     }
 
     SECTION("Oxygen") {
-        Z = 8;
+        Z       = 8;
         auto rv = atom_mod.run_as<atom_pt>(Z);
         atom_t corr{"O", 8, 29165.122045980286, 0.0, 0.0, 0.0};
         REQUIRE(rv == corr);
@@ -47,8 +47,7 @@ TEST_CASE("Atom") {
 
     SECTION("Out of Range") {
         Z = 1000;
-        REQUIRE_THROWS_MATCHES(atom_mod.run_as<atom_pt>(Z),
-                               std::out_of_range,
+        REQUIRE_THROWS_MATCHES(atom_mod.run_as<atom_pt>(Z), std::out_of_range,
                                Message("Atom not available for Z"));
     }
 }

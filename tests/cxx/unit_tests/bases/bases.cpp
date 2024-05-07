@@ -38,7 +38,7 @@ TEST_CASE("Atomic Basis Set") {
 
     SECTION("sto-3g Hydrogen") {
         atomic_number_t Z = 1;
-        auto rv = atom_bs_mod.run_as<atomic_basis_pt>(Z);
+        auto rv           = atom_bs_mod.run_as<atomic_basis_pt>(Z);
         doubles_t cs{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01};
         doubles_t es{3.4252509140e+00, 6.2391372980e-01, 1.6885540400e-01};
         cg_t cg(cs.begin(), cs.end(), es.begin(), es.end(), 0.0, 0.0, 0.0);
@@ -50,7 +50,7 @@ TEST_CASE("Atomic Basis Set") {
 
     SECTION("sto-3g Oxygen") {
         atomic_number_t Z = 8;
-        auto rv = atom_bs_mod.run_as<atomic_basis_pt>(Z);
+        auto rv           = atom_bs_mod.run_as<atomic_basis_pt>(Z);
         doubles_t cs0{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01};
         doubles_t es0{1.3070932140e+02, 2.3808866050e+01, 6.4436083130e+00};
         cg_t cg0(cs0.begin(), cs0.end(), es0.begin(), es0.end(), 0.0, 0.0, 0.0);

@@ -30,21 +30,20 @@ TEST_CASE("Symbol from Z") {
     atomic_number_t Z;
 
     SECTION("Hydrogen") {
-        Z = 1;
+        Z       = 1;
         auto rv = sym_mod.run_as<sym_pt>(Z);
         REQUIRE(rv == "H");
     }
 
     SECTION("Oxygen") {
-        Z = 8;
+        Z       = 8;
         auto rv = sym_mod.run_as<sym_pt>(Z);
         REQUIRE(rv == "O");
     }
 
     SECTION("Out of Range") {
         Z = 1000;
-        REQUIRE_THROWS_MATCHES(sym_mod.run_as<sym_pt>(Z),
-                               std::out_of_range,
+        REQUIRE_THROWS_MATCHES(sym_mod.run_as<sym_pt>(Z), std::out_of_range,
                                Message("Symbol not available for Z"));
     }
 }
