@@ -14,7 +14,6 @@
 
 import unittest
 import os
-import sys
 from data_management import scrape_bse
 
 
