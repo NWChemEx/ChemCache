@@ -1,5 +1,5 @@
-:py:mod:`data_management.generate_atomicinfo`
-=============================================
+data_management.generate_atomicinfo
+===================================
 
 .. py:module:: data_management.generate_atomicinfo
 
@@ -50,20 +50,16 @@
 
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    data_management.generate_atomicinfo.AtomicData
 
 
-
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
@@ -78,9 +74,10 @@ Functions
    data_management.generate_atomicinfo.parse_args
 
 
+Module Contents
+---------------
 
 .. py:class:: AtomicData
-
 
    .. py:method:: add_isotope(num: int, mass: float) -> None
 
@@ -91,6 +88,7 @@ Functions
 
       :param mass: Isotope mass value
       :type mass: float
+
 
 
    .. py:method:: __repr__()

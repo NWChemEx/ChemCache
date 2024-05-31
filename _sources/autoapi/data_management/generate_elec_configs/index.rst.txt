@@ -1,5 +1,5 @@
-:py:mod:`data_management.generate_elec_configs`
-===============================================
+data_management.generate_elec_configs
+=====================================
 
 .. py:module:: data_management.generate_elec_configs
 
@@ -42,20 +42,27 @@
 
 
 
-Module Contents
----------------
+Attributes
+----------
+
+.. autoapisummary::
+
+   data_management.generate_elec_configs.LMAX
+   data_management.generate_elec_configs.NMAX
+   data_management.generate_elec_configs.i_to_lchar
+   data_management.generate_elec_configs.lchar_to_i
+
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    data_management.generate_elec_configs.AtomicData
 
 
-
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
@@ -67,41 +74,24 @@ Functions
    data_management.generate_elec_configs.parse_args
 
 
-
-Attributes
-~~~~~~~~~~
-
-.. autoapisummary::
-
-   data_management.generate_elec_configs.LMAX
-   data_management.generate_elec_configs.NMAX
-   data_management.generate_elec_configs.i_to_lchar
-   data_management.generate_elec_configs.lchar_to_i
-
+Module Contents
+---------------
 
 .. py:data:: LMAX
    :value: 3
 
-   
 
 .. py:data:: NMAX
    :value: 7
 
-   
 
 .. py:data:: i_to_lchar
 
-   
-
 .. py:data:: lchar_to_i
-
-   
 
 .. py:class:: AtomicData
 
-
    .. py:property:: config_full
-
       return full electronic configuration (number of electrons for each (l, n))
 
       :return: number of electrons for each (l, n); indexed by [l][n-(l+1)]
@@ -109,12 +99,13 @@ Attributes
 
 
 
-   .. py:property:: config
 
+   .. py:property:: config
       return reduced config (number of electrons per l)
 
       :return: (Ns, Np, Nd, ...)
       :rtype: tuple[int]
+
 
 
    .. py:method:: __repr__()

@@ -1,5 +1,5 @@
-:py:mod:`data_management.scrape_bse`
-====================================
+data_management.scrape_bse
+==========================
 
 .. py:module:: data_management.scrape_bse
 
@@ -32,20 +32,16 @@
 
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    data_management.scrape_bse.BSEBasisSetScraper
 
 
-
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
@@ -54,12 +50,14 @@ Functions
    data_management.scrape_bse.parse_args
 
 
+Module Contents
+---------------
 
 .. py:class:: BSEBasisSetScraper(base_url: str = 'https://www.basissetexchange.org', user_agent: str = 'NWChemEx BSE Basis Set Scraper', email: str = '', format: str = 'nwchem', uncontract_general: bool = False, uncontract_segmented: bool = False, uncontract_spdf: bool = False, optimize_general: bool = False, make_general: bool = False, header_toggle: bool = True)
 
-
    Web scraper to download basis sets from the Basis Set Exchange (BSE).
        
+
 
    .. py:method:: add_filter(metadata_key: str, values: list) -> None
 
@@ -98,6 +96,7 @@ Functions
       :type values: list
 
 
+
    .. py:method:: download_basis_set(basis_name: str, elements: str = '') -> tuple
 
       Download a single basis set. An optional string of elements can be
@@ -117,6 +116,7 @@ Functions
       :rtype: tuple
 
 
+
    .. py:method:: download_valid_basis_sets() -> tuple
 
       Download the list of basis sets available from BSE.
@@ -125,12 +125,14 @@ Functions
       :rtype: tuple of list and dict
 
 
+
    .. py:method:: download_valid_formats() -> list
 
       Download the list of formats available from BSE.
 
       :return: Collection of format names
       :rtype: list
+
 
 
    .. py:method:: get_extension(format: str = '') -> str
@@ -145,6 +147,7 @@ Functions
       :rtype: str
 
 
+
    .. py:method:: set_header(user_agent: str = '', email: str = '') -> None
 
       Generates the header to use in requests.
@@ -157,12 +160,14 @@ Functions
       :type email: str, optional
 
 
+
    .. py:method:: set_default_format(format: str) -> None
 
       Set the default format for basis sets.
 
       :param format: Valid BSE format identifier for basis sets.
       :type format: str
+
 
 
    .. py:method:: get_filtered_basis_sets() -> tuple
@@ -173,6 +178,7 @@ Functions
       :return: Returns a filtered list of basis set names and the filtered
           metadata dict
       :rtype: tuple of list and dict
+
 
 
    .. py:method:: validate_basis_set_name(basis_name: str) -> None
@@ -186,6 +192,7 @@ Functions
       :raises RuntimeError: Invalid basis name was given.
 
 
+
    .. py:method:: validate_format_name(format: str) -> None
 
       Validate the format name against the list of valid format names 
@@ -195,6 +202,7 @@ Functions
       :type format: str
 
       :raises RuntimeError: Invalid format option was given
+
 
 
    .. py:method:: _create_params(elements: str = '') -> dict

@@ -1,5 +1,5 @@
-:py:mod:`data_management`
-=========================
+data_management
+===============
 
 .. py:module:: data_management
 
@@ -14,16 +14,16 @@
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   generate_atomicinfo/index.rst
-   generate_basis/index.rst
-   generate_densities/index.rst
-   generate_elec_configs/index.rst
-   generate_molecules/index.rst
-   helper_fxns/index.rst
-   scrape_bse/index.rst
+   /autoapi/data_management/generate_atomicinfo/index
+   /autoapi/data_management/generate_basis/index
+   /autoapi/data_management/generate_densities/index
+   /autoapi/data_management/generate_elec_configs/index
+   /autoapi/data_management/generate_molecules/index
+   /autoapi/data_management/helper_fxns/index
+   /autoapi/data_management/scrape_bse/index
 
 

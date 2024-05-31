@@ -1,5 +1,5 @@
-:py:mod:`data_management.generate_densities`
-============================================
+data_management.generate_densities
+==================================
 
 .. py:module:: data_management.generate_densities
 
@@ -41,12 +41,8 @@
 
 
 
-Module Contents
----------------
-
-
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
@@ -60,12 +56,12 @@ Functions
    data_management.generate_densities.parse_args
 
 
+Module Contents
+---------------
 
 .. py:function:: make_square_arr(a: list, spacer='\n')
 
-
 .. py:function:: _write_den_files(out_file: str, bs_name: str, basis_set: dict, tab: str = '    ') -> None
-
 
 .. py:function:: _write_densities(src_dir: str, bases: dict, tab='    ') -> None
 

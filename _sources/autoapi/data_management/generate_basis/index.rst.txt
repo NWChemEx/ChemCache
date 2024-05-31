@@ -1,5 +1,5 @@
-:py:mod:`data_management.generate_basis`
-========================================
+data_management.generate_basis
+==============================
 
 .. py:module:: data_management.generate_basis
 
@@ -40,20 +40,16 @@
 
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    data_management.generate_basis.Shell
 
 
-
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
@@ -66,12 +62,14 @@ Functions
    data_management.generate_basis.parse_args
 
 
+Module Contents
+---------------
 
 .. py:class:: Shell(ls: list, num_format: str = '.10e', is_pure=True)
 
-
    Class representing a shell for an element.
        
+
 
    .. py:method:: add_prim(exp: str, coefs: list) -> None
 
@@ -82,6 +80,7 @@ Functions
 
       :param coefs: Primitive contraction coefficients
       :type coefs: list of str
+
 
 
    .. py:method:: cxxify(center: str, tab: str = '    ') -> str
@@ -97,7 +96,6 @@ Functions
 
 
 .. py:function:: _write_basis_files(out_file: str, bs_name: str, basis_set: dict, tab: str = '    ') -> None
-
 
 .. py:function:: _write_bases(src_dir: str, bases: dict, tab='    ') -> None
 

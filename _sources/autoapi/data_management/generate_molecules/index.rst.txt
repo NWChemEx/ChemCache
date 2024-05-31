@@ -1,5 +1,5 @@
-:py:mod:`data_management.generate_molecules`
-============================================
+data_management.generate_molecules
+==================================
 
 .. py:module:: data_management.generate_molecules
 
@@ -37,20 +37,16 @@
 
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    data_management.generate_molecules.Molecule
 
 
-
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
@@ -61,12 +57,14 @@ Functions
    data_management.generate_molecules.parse_args
 
 
+Module Contents
+---------------
 
 .. py:class:: Molecule
 
-
    Representation of a molecule.
        
+
 
    .. py:method:: add_atom(Z: int, carts: list) -> None
 
@@ -78,12 +76,14 @@ Functions
       :type carts: list of float
 
 
+
    .. py:method:: __repr__() -> str
 
       Text representation of the molecule.
 
       :return: Text representation of the molecule
       :rtype: str
+
 
 
    .. py:method:: cxxify(tab: str = '    ') -> str

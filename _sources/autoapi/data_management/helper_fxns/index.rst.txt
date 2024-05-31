@@ -1,5 +1,5 @@
-:py:mod:`data_management.helper_fxns`
-=====================================
+data_management.helper_fxns
+===========================
 
 .. py:module:: data_management.helper_fxns
 
@@ -10,12 +10,8 @@
 
 
 
-Module Contents
----------------
-
-
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
@@ -26,6 +22,8 @@ Functions
    data_management.helper_fxns.write_warning
 
 
+Module Contents
+---------------
 
 .. py:function:: find_files(source_root, extensions, recursive=False)
 
