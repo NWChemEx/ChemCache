@@ -422,6 +422,12 @@ def _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict,
                     # Indicate that we are in a basis block and should parse
                     basis_block = True
                     is_pure = (bstart_match['shelltype'] == "SPHERICAL")
+        
+        # Did we get anythin out of the file?
+        if not tmp_basis:
+            print("no basis information parsed")
+            sys.stdout.flush()
+            continue
 
         # Process the data read from the file
         bases[basis_set] = {}
