@@ -15,7 +15,7 @@
  */
 
 #pragma once
-#include <pluginplay/module_manager.hpp>
+#include <pluginplay/pluginplay.hpp>
 
 namespace chemcache {
 /** @brief Loads the modules contained in the ChemCache module collection into
