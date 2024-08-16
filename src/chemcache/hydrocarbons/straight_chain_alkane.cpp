@@ -207,4 +207,4 @@ MODULE_RUN(MakeHydrocarbon) {
     return simde::MoleculeFromString::wrap_results(rv, hc);
 }
 
-} // namespace chemcache
+} // namespace chemcache::hydrocarbons

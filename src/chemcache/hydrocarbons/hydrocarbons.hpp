@@ -30,4 +30,4 @@ inline void load_modules(pluginplay::ModuleManager& mm) {
     set_defaults(mm);
 }
 
-} // namespace chemcache
+} // namespace chemcache::hydrocarbons
