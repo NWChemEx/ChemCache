@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
+#include <catch2/catch.hpp>
 #include <chemcache/chemcache.hpp>
+#include <simde/simde.hpp>
 
 namespace {
 inline chemist::Molecule Methane() {
@@ -146,11 +148,11 @@ TEST_CASE("StraightChainAlkane") {
     auto& mod = mm.at("Straight chain alkane");
 
     auto methane = mod.run_as<pt>("1");
-    REQUIRE(testing::AreMoleculesEqual(Methane(), methane));
+    REQUIRE(AreMoleculesEqual(Methane(), methane));
 
     auto ethane = mod.run_as<pt>("2");
-    REQUIRE(testing::AreMoleculesEqual(Ethane(), ethane));
+    REQUIRE(AreMoleculesEqual(Ethane(), ethane));
 
     auto propane = mod.run_as<pt>("3");
-    REQUIRE(testing::AreMoleculesEqual(Propane(), propane));
+    REQUIRE(AreMoleculesEqual(Propane(), propane));
 }

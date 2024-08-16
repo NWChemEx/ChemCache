@@ -15,6 +15,8 @@
  */
 
 #include "hydrocarbons.hpp"
+#include <simde/simde.hpp>
+
 namespace chemcache::hydrocarbons {
 namespace {
 
@@ -191,12 +193,12 @@ Hydrocarbon Chain Generator
 ---------------------------
 )";
 
-MODULE_CTOR(MakeHydrocarbon) {
+MODULE_CTOR(StraightChainAlkane) {
     description(mod_desc);
     satisfies_property_type<simde::MoleculeFromString>();
 }
 
-MODULE_RUN(MakeHydrocarbon) {
+MODULE_RUN(StraightChainAlkane) {
     const auto& [num_carbon_string] =
       simde::MoleculeFromString::unwrap_inputs(inputs);
 
