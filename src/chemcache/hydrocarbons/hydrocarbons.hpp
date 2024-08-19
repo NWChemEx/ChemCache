@@ -14,27 +14,20 @@
  * limitations under the License.
  */
 
-#include "atoms/atoms.hpp"
-#include "bases/bases.hpp"
-#include "chemcache/chemcache_mm.hpp"
-#include "hydrocarbons/hydrocarbons.hpp"
-#include "molecules/molecules.hpp"
+#pragma once
+#include <pluginplay/pluginplay.hpp>
 
-namespace chemcache {
+namespace chemcache::hydrocarbons {
+
+DECLARE_MODULE(StraightChainAlkane);
 
 inline void set_defaults(pluginplay::ModuleManager& mm) {
-    // Default submodules between collections can be set here
-    mm.change_submod("NWX Molecules", "Atoms", "Atom");
+    // Default submodules within this subcollection will be set here
 }
 
-void load_modules(pluginplay::ModuleManager& mm) {
-    // Add subcollection load calls here
-    atom_mods::load_modules(mm);
-    bases_mods::load_modules(mm);
-    hydrocarbons::load_modules(mm);
-    molecule_mods::load_modules(mm);
-
+inline void load_modules(pluginplay::ModuleManager& mm) {
+    mm.add_module<StraightChainAlkane>("Straight Chain Alkane");
     set_defaults(mm);
 }
 
-} // namespace chemcache
+} // namespace chemcache::hydrocarbons
