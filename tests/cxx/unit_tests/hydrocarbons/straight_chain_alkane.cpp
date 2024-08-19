@@ -145,7 +145,7 @@ using pt = simde::MoleculeFromString;
 TEST_CASE("StraightChainAlkane") {
     pluginplay::ModuleManager mm;
     chemcache::load_modules(mm);
-    auto& mod = mm.at("Straight chain alkane");
+    auto& mod = mm.at("Straight Chain Alkane");
 
     auto methane = mod.run_as<pt>("1");
     REQUIRE(AreMoleculesEqual(Methane(), methane));
