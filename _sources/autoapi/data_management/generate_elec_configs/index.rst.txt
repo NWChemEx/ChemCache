@@ -91,6 +91,29 @@ Module Contents
 
 .. py:class:: AtomicData
 
+   .. py:attribute:: sym
+      :value: ''
+
+
+
+   .. py:attribute:: name
+      :value: ''
+
+
+
+   .. py:attribute:: Z
+      :value: 0
+
+
+
+   .. py:attribute:: confstr
+      :value: ''
+
+
+
+   .. py:attribute:: confdict
+
+
    .. py:property:: config_full
       return full electronic configuration (number of electrons for each (l, n))
 

@@ -79,6 +79,34 @@ Module Contents
 
 .. py:class:: AtomicData
 
+   .. py:attribute:: sym
+      :value: ''
+
+
+
+   .. py:attribute:: name
+      :value: ''
+
+
+
+   .. py:attribute:: Z
+      :value: 0
+
+
+
+   .. py:attribute:: mass
+      :value: 0.0
+
+
+
+   .. py:attribute:: isotopes
+      :value: []
+
+
+
+   .. py:attribute:: isotope_masses
+
+
    .. py:method:: add_isotope(num: int, mass: float) -> None
 
       Add a new isotope mass to the list of isotopes for this element.

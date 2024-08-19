@@ -66,6 +66,16 @@ Module Contents
        
 
 
+   .. py:attribute:: carts
+      :value: []
+
+
+
+   .. py:attribute:: atoms
+      :value: []
+
+
+
    .. py:method:: add_atom(Z: int, carts: list) -> None
 
       Adds an atom at the specified cartesian coordinates.

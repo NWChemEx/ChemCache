@@ -59,6 +59,39 @@ Module Contents
        
 
 
+   .. py:attribute:: base_url
+
+
+   .. py:attribute:: filtered_basis_sets
+
+
+   .. py:attribute:: filtered_metadata
+
+
+   .. py:attribute:: filters
+
+
+   .. py:attribute:: valid_formats
+
+
+   .. py:attribute:: default_header_toggle
+
+
+   .. py:attribute:: default_make_general
+
+
+   .. py:attribute:: default_optimize_general
+
+
+   .. py:attribute:: default_uncontract_general
+
+
+   .. py:attribute:: default_uncontract_segmented
+
+
+   .. py:attribute:: default_uncontract_spdf
+
+
    .. py:method:: add_filter(metadata_key: str, values: list) -> None
 
       Add a metadata filter to the basis set list and update the filtered

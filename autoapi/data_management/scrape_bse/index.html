@@ -160,6 +160,61 @@ Set Exchange (BSE) in the specified output format.</p>
 <dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_management.scrape_bse.</span></span><span class="sig-name descname"><span class="pre">BSEBasisSetScraper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://www.basissetexchange.org'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'NWChemEx</span> <span class="pre">BSE</span> <span class="pre">Basis</span> <span class="pre">Set</span> <span class="pre">Scraper'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nwchem'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncontract_general</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncontract_segmented</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncontract_spdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimize_general</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_general</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_toggle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper" title="Link to this definition"></a></dt>
 <dd><p>Web scraper to download basis sets from the Basis Set Exchange (BSE).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.base_url">
+<span class="sig-name descname"><span class="pre">base_url</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.base_url" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.filtered_basis_sets">
+<span class="sig-name descname"><span class="pre">filtered_basis_sets</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.filtered_basis_sets" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.filtered_metadata">
+<span class="sig-name descname"><span class="pre">filtered_metadata</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.filtered_metadata" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.filters">
+<span class="sig-name descname"><span class="pre">filters</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.filters" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.valid_formats">
+<span class="sig-name descname"><span class="pre">valid_formats</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.valid_formats" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.default_header_toggle">
+<span class="sig-name descname"><span class="pre">default_header_toggle</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.default_header_toggle" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.default_make_general">
+<span class="sig-name descname"><span class="pre">default_make_general</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.default_make_general" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.default_optimize_general">
+<span class="sig-name descname"><span class="pre">default_optimize_general</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.default_optimize_general" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.default_uncontract_general">
+<span class="sig-name descname"><span class="pre">default_uncontract_general</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.default_uncontract_general" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.default_uncontract_segmented">
+<span class="sig-name descname"><span class="pre">default_uncontract_segmented</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.default_uncontract_segmented" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.default_uncontract_spdf">
+<span class="sig-name descname"><span class="pre">default_uncontract_spdf</span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.default_uncontract_spdf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="data_management.scrape_bse.BSEBasisSetScraper.add_filter">
 <span class="sig-name descname"><span class="pre">add_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.scrape_bse.BSEBasisSetScraper.add_filter" title="Link to this definition"></a></dt>

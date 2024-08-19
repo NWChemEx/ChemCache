@@ -71,6 +71,30 @@ Module Contents
        
 
 
+   .. py:attribute:: ls
+
+
+   .. py:attribute:: exp
+      :value: []
+
+
+
+   .. py:attribute:: coefs
+      :value: []
+
+
+
+   .. py:attribute:: gen
+      :value: 0
+
+
+
+   .. py:attribute:: number_format
+
+
+   .. py:attribute:: shelltype
+
+
    .. py:method:: add_prim(exp: str, coefs: list) -> None
 
       Add a primitive for the shell.
