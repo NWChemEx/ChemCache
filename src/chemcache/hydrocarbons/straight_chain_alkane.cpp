@@ -189,8 +189,18 @@ chemist::Molecule straight_chain_alkane(int num_carbon) {
 } // namespace
 
 const auto mod_desc = R"(
-Hydrocarbon Chain Generator
----------------------------
+Straight-Chain Alkane Generator
+-------------------------------
+
+This module performs basic geometry to compute the positions of the carbons and
+hydrogens in an arbitrary length straight-chain alkane. The resulting alkane
+will have carbon-carbon bonds determined by ``c_c_bond`` parameter and carbon-
+hydrogen bonds determined by the ``h_c_bond`` parameter. All angles will be set
+to 109.5 (idealized tetrahedron).
+
+TODO: Expose the bond length and angle parameters.
+TODO: Use non-idealized angles.
+TODO: Make masses parameters.
 )";
 
 MODULE_CTOR(StraightChainAlkane) {

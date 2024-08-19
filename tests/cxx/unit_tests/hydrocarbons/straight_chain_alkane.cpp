@@ -147,12 +147,12 @@ TEST_CASE("StraightChainAlkane") {
     chemcache::load_modules(mm);
     auto& mod = mm.at("Straight Chain Alkane");
 
-    auto methane = mod.run_as<pt>("1");
+    auto methane = mod.run_as<pt>(std::string("1"));
     REQUIRE(AreMoleculesEqual(Methane(), methane));
 
-    auto ethane = mod.run_as<pt>("2");
+    auto ethane = mod.run_as<pt>(std::string("2"));
     REQUIRE(AreMoleculesEqual(Ethane(), ethane));
 
-    auto propane = mod.run_as<pt>("3");
+    auto propane = mod.run_as<pt>(std::string("3"));
     REQUIRE(AreMoleculesEqual(Propane(), propane));
 }
