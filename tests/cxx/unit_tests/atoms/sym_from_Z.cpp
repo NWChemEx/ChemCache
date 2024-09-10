@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
+#include "../catch.hpp"
 #include "chemcache/chemcache.hpp"
-#include <catch2/catch.hpp>
 #include <simde/chemical_system/symbol_from_Z.hpp>
 
 using sym_pt          = simde::SymbolFromZ;

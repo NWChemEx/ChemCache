@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <catch2/catch.hpp>
+#include "../catch.hpp"
 #include <chemcache/chemcache.hpp>
 #include <simde/simde.hpp>
 
@@ -128,11 +128,11 @@ inline bool AreMoleculesEqual(chemist::Molecule m1, chemist::Molecule m2) {
 
         // Checking coordinates using a tolerance of 8 digits
         // X coordinate
-        REQUIRE(atom1.x() == Approx(atom2.x()).margin(0.000001));
+        REQUIRE(atom1.x() == Catch::Approx(atom2.x()).margin(0.000001));
         // Y coordinate
-        REQUIRE(atom1.y() == Approx(atom2.y()).margin(0.000001));
+        REQUIRE(atom1.y() == Catch::Approx(atom2.y()).margin(0.000001));
         // Z coordinate
-        REQUIRE(atom1.y() == Approx(atom2.y()).margin(0.000001));
+        REQUIRE(atom1.y() == Catch::Approx(atom2.y()).margin(0.000001));
     }
 
     return true;

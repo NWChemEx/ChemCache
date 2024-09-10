@@ -44,7 +44,6 @@ cmaize_option_list(
 cmaize_find_or_build_dependency(
     simde
     URL github.com/NWChemEx/SimDE
-    VERSION ${NWX_SIMDE_VERSION}
     BUILD_TARGET simde
     FIND_TARGET nwx::simde
     CMAKE_ARGS BUILD_TESTING=OFF
@@ -89,7 +88,7 @@ if("${BUILD_TESTING}")
         URL github.com/catchorg/Catch2
         BUILD_TARGET Catch2
         FIND_TARGET Catch2::Catch2
-	    VERSION ${NWX_CATCH2_VERSION}
+	    VERSION v3.6.0
     )
 
     cmaize_add_tests(

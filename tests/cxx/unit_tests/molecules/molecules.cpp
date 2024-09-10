@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
+#include "../catch.hpp"
 #include "chemcache/chemcache.hpp"
-#include <catch2/catch.hpp>
 #include <simde/chemical_system/atom.hpp>
 #include <simde/chemical_system/molecule_from_string.hpp>
 #include <simde/types.hpp>

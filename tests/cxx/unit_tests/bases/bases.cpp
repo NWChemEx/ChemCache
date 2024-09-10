@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
+#include "../catch.hpp"
 #include "chemcache/chemcache.hpp"
-#include <catch2/catch.hpp>
 #include <simde/basis_set/basis_set.hpp>
 #include <simde/types.hpp>
 
