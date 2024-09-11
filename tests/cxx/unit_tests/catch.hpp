@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NWChemEx-Project
+ * Copyright 2024 NWChemEx-Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,9 @@
  * limitations under the License.
  */
 
-#define CATCH_CONFIG_RUNNER
-#include <catch2/catch_session.hpp>
-#include <parallelzone/parallelzone.hpp>
-
-int main(int argc, char* argv[]) {
-    auto rt = parallelzone::runtime::RuntimeView(argc, argv);
-    int res = Catch::Session().run(argc, argv);
-    return res;
-}
+#pragma once
+#include <catch2/catch_approx.hpp>
+#include <catch2/catch_template_test_macros.hpp>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers.hpp>
+#include <catch2/matchers/catch_matchers_exception.hpp>
