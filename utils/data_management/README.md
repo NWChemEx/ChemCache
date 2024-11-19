@@ -15,8 +15,22 @@
 -->
 
 Data Management
-========================
+===============
 
 The scripts in this directory are used to populate the `reference_data` 
 directory and then generate source code from that data.
     
+To Test generate_basis.py Locally
+=================================
+
+1. Run scrape_bse.py to get basis sets. Try:
+   ```
+   PYTHONPATH=/path/to/chemcache/utils python3 scrape_bse.py _bases
+   ```
+2. Run generate_basis.py
+   ```
+   PYTHONPATH=/path/to/chemcache/utils \
+   python3 generate_basis.py \
+   -a /path/to/reference_data/physical_data \
+   _bases src/chemcache/bases/
+   ```

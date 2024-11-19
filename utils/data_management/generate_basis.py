@@ -13,8 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """This script will loop over a series of basis sets and write out a file
-that will fill them in. The format of the resulting basis sets is suitable
-for use with the BasisSetExchange class.
+that will fill them in. 
 
 Usage
 -----
@@ -24,12 +23,15 @@ Usage
    usage: generate_basis.py [-h] [-r] [-a ATOMS_DIR] basis_set_source src_dir
 
    positional arguments:
-   basis_set_source      Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+   basis_set_source      Source directory for basis set files. If combined with 
+                         the "-r" flag, this directory will be recursively 
+                         searched for basis sets.
    src_dir               Destination directory for generated source files.
    
    options:
    -h, --help            show this help message and exit
-   -r, --recursive       Toggle on recursive search through the basis set source directory. Default OFF.
+   -r, --recursive       Toggle on recursive search through the basis set 
+                         source directory. Default OFF.
    -a ATOMS_DIR, --atoms_dir ATOMS_DIR 
                          The path to where ElementNames.txt can be found.
 
@@ -195,10 +197,7 @@ MODULE_RUN({s_name}_atom_basis) {{
 '''
 
     cases_template = '''{t}{t}case({Z}): {{
-{t}{t}{t}shells_t shells;
-{shells}
-{t}{t}{t}abs_t atom_bs(name, Z, r0, shells.begin(), shells.end());
-{t}{t}{t}return atomic_basis_pt::wrap_results(rv, atom_bs);
+{t}{t}{t}return atomic_basis_pt::wrap_results(rv, atomic_basis_{d_name}_{Z}());
 {t}{t}}}'''
 
     s_name = helpers.sanitize_basis_name(bs_name)
@@ -209,18 +208,42 @@ MODULE_RUN({s_name}_atom_basis) {{
         shells = []
         for shell in basis_set[str(z)]:
             shells.append(shell.cxxify("shells", tab))
-        cases.append(
-            cases_template.format(t=tab,
-                                  Z=z,
-                                  d_name=d_name,
-                                  shells="\n".join(shells)))
+        _write_atomic_basis('', tab, d_name, z, shells="\n".join(shells))
+        cases_template.format(t=tab, Z=z, d_name=d_name)
 
-    with open(out_file, 'w') as fout:
-        helpers.write_warning(fout, os.path.basename(__file__))
-        fout.write(
-            source_template.format(d_name=d_name,
-                                   s_name=s_name,
-                                   cases="\n".join(cases)))
+    #with open(out_file, 'w') as fout:
+    #    helpers.write_warning(fout, os.path.basename(__file__))
+    #    fout.write(
+    #        source_template.format(d_name=d_name,
+    #                               s_name=s_name,
+    #                               cases="\n".join(cases)))
+
+
+def _write_atomic_basis(src_dir: str, tab: str, d_name: str, z: str,
+                        shells: str) -> None:
+    source_template = '''
+#include "bases.hpp"
+#include <simde/basis_set/atomic_basis_set.hpp>
+#include <simde/types.hpp>
+
+namespace chemcache {{
+
+using abs_t           = simde::type::atomic_basis_set;
+using shell_t         = simde::type::shell;
+using center_t        = simde::type::point;
+using shells_t        = std::vector<shell_t>;
+using doubles_t       = std::vector<double>;
+using pure_t          = chemist::ShellType;
+
+abs_t atomic_basis_{basis_name}_{Z}(){{
+{t}{t}{t}shells_t shells;
+{shells}
+{t}{t}{t} return abs_t(name, Z, r0, shells.begin(), shells.end());
+}} // atomic_basis_{basis_name}_{Z}
+
+}} // chemcache
+'''
+    print(source_template.format(Z=z, basis_name=d_name, t=tab, shells=shells))
 
 
 def _write_bases(src_dir: str, bases: dict, tab="    ") -> None:
