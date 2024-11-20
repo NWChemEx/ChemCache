@@ -145,7 +145,7 @@ def _write_basis_files(src_dir: str,
                        tab: str = "    ") -> None:
 
     source_template = '''
-#include "bases.hpp"
+#include "../bases.hpp"
 #include "{d_name}.hpp"
 #include <simde/basis_set/atomic_basis_set.hpp>
 #include <simde/types.hpp>
