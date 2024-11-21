@@ -23,9 +23,10 @@ directory and then generate source code from that data.
 To Test generate_basis.py Locally
 =================================
 
-1. Run scrape_bse.py to get basis sets. Try:
+1. Get the data. Try running (in the root of the repo):
    ```
-   PYTHONPATH=/path/to/chemcache/utils python3 scrape_bse.py _bases
+   python3 -m venv venv
+   .github/scripts/download_reference_data.sh
    ```
 2. Run generate_basis.py
    ```

@@ -21,7 +21,7 @@
  *       generate_basis_sets.py is run.
  */
 
-#include "bases.hpp"
+#include "../bases.hpp"
 #include <simde/basis_set/atomic_basis_set.hpp>
 #include <simde/types.hpp>
 
