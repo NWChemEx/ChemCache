@@ -146,7 +146,7 @@ def _write_basis_files(src_dir: str,
 
     source_template = '''
 #include "../bases.hpp"
-#include "{d_name}.hpp"
+#include "{s_name}.hpp"
 #include <simde/basis_set/atomic_basis_set.hpp>
 #include <simde/types.hpp>
 
@@ -177,15 +177,6 @@ MODULE_RUN({s_name}_atom_basis) {{
     const auto& [Z] = atomic_basis_pt::unwrap_inputs(inputs);
     auto rv         = results();
 
-    // Basis Set name and origin point
-    std::string name("{d_name}");
-    center_t r0(0.0, 0.0, 0.0);
-
-    auto make_shell = [&r0](auto pure, auto l, const doubles_t& cs,
-                            const doubles_t& es) {{
-        return shell_t(pure, l, cs.begin(), cs.end(), es.begin(), es.end(), r0);
-    }};
-
     switch(Z) {{
 {cases}
         default: {{
@@ -204,7 +195,7 @@ MODULE_RUN({s_name}_atom_basis) {{
     s_name = helpers.sanitize_basis_name(bs_name)
     d_name = helpers.desanitize_basis_name(bs_name)
 
-    basis_dir = os.path.join(src_dir, d_name)
+    basis_dir = os.path.join(src_dir, s_name)
     if not os.path.exists(basis_dir):
         os.mkdir(basis_dir)
 
@@ -224,7 +215,7 @@ MODULE_RUN({s_name}_atom_basis) {{
                             shells="\n".join(shells))
         cases.append(cases_template.format(t=tab, Z=z, s_name=s_name))
 
-    out_file = os.path.join(basis_dir, d_name + ".cpp")
+    out_file = os.path.join(basis_dir, s_name + ".cpp")
     with open(out_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
         fout.write(
@@ -232,7 +223,7 @@ MODULE_RUN({s_name}_atom_basis) {{
                                    s_name=s_name,
                                    cases="\n".join(cases)))
 
-    with open(os.path.join(basis_dir, d_name + ".hpp"), 'w') as fout:
+    with open(os.path.join(basis_dir, s_name + ".hpp"), 'w') as fout:
         fout.write("#pragma once\n")
         fout.write("#include <simde/types.hpp>\n")
         helpers.write_warning(fout, os.path.basename(__file__))
@@ -244,28 +235,38 @@ MODULE_RUN({s_name}_atom_basis) {{
 def _write_atomic_basis(src_dir: str, tab: str, d_name: str, s_name: str,
                         z: str, shells: str) -> None:
     source_template = '''
-#include "{d_name}.hpp"
+#include "{basis_name}.hpp"
 #include <simde/basis_set/atomic_basis_set.hpp>
 #include <simde/types.hpp>
 
 namespace chemcache {{
 
-using abs_t           = simde::type::atomic_basis_set;
-using shell_t         = simde::type::shell;
-using center_t        = simde::type::point;
-using shells_t        = std::vector<shell_t>;
-using doubles_t       = std::vector<double>;
-using pure_t          = chemist::ShellType;
+using abs_t     = simde::type::atomic_basis_set;
+using shell_t   = simde::type::shell;
+using center_t  = simde::type::point;
+using shells_t  = std::vector<shell_t>;
+using doubles_t = std::vector<double>;
+using pure_t    = chemist::ShellType;
 
 abs_t {basis_name}_{Z}(){{
-{t}{t}{t}shells_t shells;
+
+{t}// Basis Set name and origin point
+{t}std::string name("{d_name}");
+{t}center_t r0(0.0, 0.0, 0.0);
+
+{t}auto make_shell = [&r0](auto pure, auto l, const doubles_t& cs,
+                            const doubles_t& es) {{
+{t}{t}return shell_t(pure, l, cs.begin(), cs.end(), es.begin(), es.end(), r0);
+{t}}};
+
+{t}shells_t shells;
 {shells}
-{t}{t}{t} return abs_t(name, Z, r0, shells.begin(), shells.end());
+{t} return abs_t(name, {Z}, r0, shells.begin(), shells.end());
 }} // {basis_name}_{Z}
 
 }} // chemcache
 '''
-    out_file = os.path.join(src_dir, d_name + "_" + str(z) + ".cpp")
+    out_file = os.path.join(src_dir, s_name + "_" + str(z) + ".cpp")
     with open(out_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
         fout.write(
