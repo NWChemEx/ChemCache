@@ -23,6 +23,9 @@ directory and then generate source code from that data.
 To Test generate_basis.py Locally
 =================================
 
+We strongly recommend testing in a git branch you can delete (these commands
+will create A LOT of files that you don't want to track)
+
 1. Get the data. Try running (in the root of the repo):
    ```
    python3 -m venv venv
