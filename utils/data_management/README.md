@@ -26,6 +26,8 @@ To Test generate_basis.py Locally
 1. Get the data. Try running (in the root of the repo):
    ```
    python3 -m venv venv
+   source venv/bin/activate
+   pip install -r utils/data_management/requirements.txt
    .github/scripts/download_reference_data.sh
    ```
 2. Run generate_basis.py
