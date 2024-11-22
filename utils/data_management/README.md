@@ -15,8 +15,28 @@
 -->
 
 Data Management
-========================
+===============
 
 The scripts in this directory are used to populate the `reference_data` 
 directory and then generate source code from that data.
     
+To Test generate_basis.py Locally
+=================================
+
+We strongly recommend testing in a git branch you can delete (these commands
+will create A LOT of files that you don't want to track)
+
+1. Get the data. Try running (in the root of the repo):
+   ```
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r utils/data_management/requirements.txt
+   .github/scripts/download_reference_data.sh
+   ```
+2. Run generate_basis.py
+   ```
+   PYTHONPATH=/path/to/chemcache/utils \
+   python3 generate_basis.py \
+   -a /path/to/reference_data/physical_data \
+   _bases src/chemcache/bases/
+   ```

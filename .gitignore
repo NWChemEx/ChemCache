@@ -45,3 +45,7 @@ install/
 
 # Users commonly store their specific CMake settings in a toolchain file
 toolchain.cmake
+
+# Recommended directory for downloading basis sets
+reference_data/basis_sets
+!reference_data/basis_set/defaults

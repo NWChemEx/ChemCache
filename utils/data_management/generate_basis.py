@@ -13,8 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """This script will loop over a series of basis sets and write out a file
-that will fill them in. The format of the resulting basis sets is suitable
-for use with the BasisSetExchange class.
+that will fill them in. 
 
 Usage
 -----
@@ -24,12 +23,15 @@ Usage
    usage: generate_basis.py [-h] [-r] [-a ATOMS_DIR] basis_set_source src_dir
 
    positional arguments:
-   basis_set_source      Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+   basis_set_source      Source directory for basis set files. If combined with 
+                         the "-r" flag, this directory will be recursively 
+                         searched for basis sets.
    src_dir               Destination directory for generated source files.
    
    options:
    -h, --help            show this help message and exit
-   -r, --recursive       Toggle on recursive search through the basis set source directory. Default OFF.
+   -r, --recursive       Toggle on recursive search through the basis set 
+                         source directory. Default OFF.
    -a ATOMS_DIR, --atoms_dir ATOMS_DIR 
                          The path to where ElementNames.txt can be found.
 
@@ -137,13 +139,14 @@ class Shell:
         return "\n".join(lines)
 
 
-def _write_basis_files(out_file: str,
+def _write_basis_files(src_dir: str,
                        bs_name: str,
                        basis_set: dict,
                        tab: str = "    ") -> None:
 
     source_template = '''
-#include "bases.hpp"
+#include "../bases.hpp"
+#include "{s_name}.hpp"
 #include <simde/basis_set/atomic_basis_set.hpp>
 #include <simde/types.hpp>
 
@@ -174,15 +177,6 @@ MODULE_RUN({s_name}_atom_basis) {{
     const auto& [Z] = atomic_basis_pt::unwrap_inputs(inputs);
     auto rv         = results();
 
-    // Basis Set name and origin point
-    std::string name("{d_name}");
-    center_t r0(0.0, 0.0, 0.0);
-
-    auto make_shell = [&r0](auto pure, auto l, const doubles_t& cs,
-                            const doubles_t& es) {{
-        return shell_t(pure, l, cs.begin(), cs.end(), es.begin(), es.end(), r0);
-    }};
-
     switch(Z) {{
 {cases}
         default: {{
@@ -195,32 +189,92 @@ MODULE_RUN({s_name}_atom_basis) {{
 '''
 
     cases_template = '''{t}{t}case({Z}): {{
-{t}{t}{t}shells_t shells;
-{shells}
-{t}{t}{t}abs_t atom_bs(name, Z, r0, shells.begin(), shells.end());
-{t}{t}{t}return atomic_basis_pt::wrap_results(rv, atom_bs);
+{t}{t}{t}return atomic_basis_pt::wrap_results(rv, {s_name}_{Z}());
 {t}{t}}}'''
 
     s_name = helpers.sanitize_basis_name(bs_name)
     d_name = helpers.desanitize_basis_name(bs_name)
 
+    basis_dir = os.path.join(src_dir, s_name)
+    if not os.path.exists(basis_dir):
+        os.mkdir(basis_dir)
+
     cases = []
+    headers = []
     for z in sorted([int(x) for x in basis_set.keys()]):
         shells = []
         for shell in basis_set[str(z)]:
             shells.append(shell.cxxify("shells", tab))
-        cases.append(
-            cases_template.format(t=tab,
-                                  Z=z,
-                                  d_name=d_name,
-                                  shells="\n".join(shells)))
+        headers.append("simde::type::atomic_basis_set {s_name}_{Z}();".format(
+            s_name=s_name, Z=z))
+        _write_atomic_basis(basis_dir,
+                            tab,
+                            d_name,
+                            s_name,
+                            z,
+                            shells="\n".join(shells))
+        cases.append(cases_template.format(t=tab, Z=z, s_name=s_name))
 
+    out_file = os.path.join(basis_dir, s_name + ".cpp")
     with open(out_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
         fout.write(
             source_template.format(d_name=d_name,
                                    s_name=s_name,
                                    cases="\n".join(cases)))
+
+    with open(os.path.join(basis_dir, s_name + ".hpp"), 'w') as fout:
+        fout.write("#pragma once\n")
+        fout.write("#include <simde/types.hpp>\n")
+        helpers.write_warning(fout, os.path.basename(__file__))
+        fout.write("namespace chemcache {\n")
+        fout.write("\n".join(headers))
+        fout.write("\n}\n")
+
+
+def _write_atomic_basis(src_dir: str, tab: str, d_name: str, s_name: str,
+                        z: str, shells: str) -> None:
+    source_template = '''
+#include "{basis_name}.hpp"
+#include <simde/basis_set/atomic_basis_set.hpp>
+#include <simde/types.hpp>
+
+namespace chemcache {{
+
+using abs_t     = simde::type::atomic_basis_set;
+using shell_t   = simde::type::shell;
+using center_t  = simde::type::point;
+using shells_t  = std::vector<shell_t>;
+using doubles_t = std::vector<double>;
+using pure_t    = chemist::ShellType;
+
+abs_t {basis_name}_{Z}(){{
+
+{t}// Basis Set name and origin point
+{t}std::string name("{d_name}");
+{t}center_t r0(0.0, 0.0, 0.0);
+
+{t}auto make_shell = [&r0](auto pure, auto l, const doubles_t& cs,
+                            const doubles_t& es) {{
+{t}{t}return shell_t(pure, l, cs.begin(), cs.end(), es.begin(), es.end(), r0);
+{t}}};
+
+{t}shells_t shells;
+{shells}
+{t} return abs_t(name, {Z}, r0, shells.begin(), shells.end());
+}} // {basis_name}_{Z}
+
+}} // chemcache
+'''
+    out_file = os.path.join(src_dir, s_name + "_" + str(z) + ".cpp")
+    with open(out_file, 'w') as fout:
+        helpers.write_warning(fout, os.path.basename(__file__))
+        fout.write(
+            source_template.format(Z=z,
+                                   d_name=d_name,
+                                   basis_name=s_name,
+                                   t=tab,
+                                   shells=shells))
 
 
 def _write_bases(src_dir: str, bases: dict, tab="    ") -> None:
@@ -279,8 +333,8 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
     bs = []
 
     for bs_name, basis_set in sorted(bases.items()):
-        basis_file = os.path.join(src_dir, bs_name + ".cpp")
-        _write_basis_files(basis_file, bs_name, basis_set)
+
+        _write_basis_files(src_dir, bs_name, basis_set)
 
         s_name = helpers.sanitize_basis_name(bs_name)
         d_name = helpers.desanitize_basis_name(bs_name)
