@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
@@ -6,19 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>data_management.generate_elec_configs &mdash; ChemCache 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../../../_static/documentation_options.js?v=8d563738"></script>
-        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -37,9 +35,6 @@
           <a href="../../../index.html" class="icon icon-home">
             ChemCache
           </a>
-              <div class="version">
-                1.0.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -246,9 +241,8 @@ script:</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="data_management.generate_elec_configs.AtomicData.config_full">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config_full</span></span><a class="headerlink" href="#data_management.generate_elec_configs.AtomicData.config_full" title="Link to this definition"></a></dt>
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">return</span> <span class="pre">full</span> <span class="pre">electronic</span> <span class="pre">configuration</span> <span class="pre">(number</span> <span class="pre">of</span> <span class="pre">electrons</span> <span class="pre">for</span> <span class="pre">each</span> <span class="pre">(l,</span> <span class="pre">n))</span></span></dt>
-<dd><dl class="field-list simple">
+<dd><p>return full electronic configuration (number of electrons for each (l, n))</p>
+<dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>number of electrons for each (l, n); indexed by [l][n-(l+1)]</p>
 </dd>
@@ -261,9 +255,8 @@ script:</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="data_management.generate_elec_configs.AtomicData.config">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#data_management.generate_elec_configs.AtomicData.config" title="Link to this definition"></a></dt>
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">return</span> <span class="pre">reduced</span> <span class="pre">config</span> <span class="pre">(number</span> <span class="pre">of</span> <span class="pre">electrons</span> <span class="pre">per</span> <span class="pre">l)</span></span></dt>
-<dd><dl class="field-list simple">
+<dd><p>return reduced config (number of electrons per l)</p>
+<dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(Ns, Np, Nd, …)</p>
 </dd>

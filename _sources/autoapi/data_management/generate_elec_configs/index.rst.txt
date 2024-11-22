@@ -115,6 +115,7 @@ Module Contents
 
 
    .. py:property:: config_full
+
       return full electronic configuration (number of electrons for each (l, n))
 
       :return: number of electrons for each (l, n); indexed by [l][n-(l+1)]
@@ -124,6 +125,7 @@ Module Contents
 
 
    .. py:property:: config
+
       return reduced config (number of electrons per l)
 
       :return: (Ns, Np, Nd, ...)
