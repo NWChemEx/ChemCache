@@ -16,6 +16,7 @@ scripts in this directory.
 """
 
 import os
+import datetime
 
 
 def find_files(source_root, extensions, recursive=False):
@@ -159,7 +160,7 @@ def write_warning(fout, script_name, prefix=""):
     """
 
     warning = ("""{1}/*
-{1} * Copyright 2022 NWChemEx-Project
+{1} * Copyright {2} NWChemEx-Project
 {1} *
 {1} * Licensed under the Apache License, Version 2.0 (the "License");
 {1} * you may not use this file except in compliance with the License.
@@ -180,6 +181,6 @@ def write_warning(fout, script_name, prefix=""):
 {1} * NOTE: Any modifications made in this file will be lost next time 
 {1} *       {0} is run.
 {1} */
-""").format(script_name, prefix)
+""").format(script_name, prefix, datetime.datetime.today().year)
 
     fout.write(warning)

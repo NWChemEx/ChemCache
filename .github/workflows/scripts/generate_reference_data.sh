@@ -23,8 +23,8 @@ SRC="src/chemcache"
 ATOM="${SRC}/atoms"
 BASES="${SRC}/bases"
 MOLES="${SRC}/molecules"
+ATOM_DEN="${SRC}/density"
 EXP_SRC="experimental/src/chemcache"
-ATOM_DEN="${EXP_SRC}/atomic_densities"
 ELEC_CONFIGS="${EXP_SRC}/electronic_configurations"
 
 # Activate virtual environment
@@ -48,5 +48,5 @@ python ${SCRIPTS_DIR}/generate_molecules.py ${MOLECULES} ${MOLES} -r
 echo "Calling ${SCRIPTS_DIR}/generate_densities.py ${DENSITIES} ${ATOM_DEN} -r" 
 python ${SCRIPTS_DIR}/generate_densities.py ${DENSITIES} ${ATOM_DEN} -r
 
-echo "Calling ${SCRIPTS_DIR}/generate_elec_configs.py ${ATOMIC_INFO} ${ELEC_CONFIGS}"
-python ${SCRIPTS_DIR}/generate_elec_configs.py ${ATOMIC_INFO} ${ELEC_CONFIGS}
+# echo "Calling ${SCRIPTS_DIR}/generate_elec_configs.py ${ATOMIC_INFO} ${ELEC_CONFIGS}"
+# python ${SCRIPTS_DIR}/generate_elec_configs.py ${ATOMIC_INFO} ${ELEC_CONFIGS}
