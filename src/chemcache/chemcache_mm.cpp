@@ -16,6 +16,7 @@
 
 #include "atoms/atoms.hpp"
 #include "bases/bases.hpp"
+#include "density/density.hpp"
 #include "chemcache/chemcache_mm.hpp"
 #include "hydrocarbons/hydrocarbons.hpp"
 #include "molecules/molecules.hpp"
@@ -31,6 +32,7 @@ void load_modules(pluginplay::ModuleManager& mm) {
     // Add subcollection load calls here
     atom_mods::load_modules(mm);
     bases_mods::load_modules(mm);
+    density_mods::load_modules(mm);
     hydrocarbons::load_modules(mm);
     molecule_mods::load_modules(mm);
 
