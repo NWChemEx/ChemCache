@@ -30,22 +30,7 @@ Usage
      -r, --recursive       Toggle on recursive search through the basis set source directory. Default OFF.
      -a ATOMS_DIR, --atoms_dir ATOMS_DIR
                            The path to where ElementNames.txt can be found.
-
-This script creates the following files based on the include and source
-directories given. The directories are not created by this script and must
-be present before running it.
-
-::
-
-   +---include
-   |   |---nwx_atomic_densities.hpp
-   |
-   +---src
-   |   |---nwx_atomic_densities.cpp
-   |   |---atomic_densities (this directory must be made manually before run this python script)
-   |       |---add_density.cmake
-   |       |---<all_basis_set_files>
-   |       
+       
 """
 
 import argparse
