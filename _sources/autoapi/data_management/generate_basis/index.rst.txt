@@ -93,9 +93,13 @@ Module Contents
 
 
    .. py:attribute:: number_format
+      :value: '.10e'
+
 
 
    .. py:attribute:: shelltype
+      :value: 'pure'
+
 
 
    .. py:method:: add_prim(exp: str, coefs: list) -> None

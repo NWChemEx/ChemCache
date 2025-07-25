@@ -60,6 +60,8 @@ Module Contents
 
 
    .. py:attribute:: base_url
+      :value: 'https://www.basissetexchange.org'
+
 
 
    .. py:attribute:: filtered_basis_sets
@@ -75,21 +77,33 @@ Module Contents
 
 
    .. py:attribute:: default_header_toggle
+      :value: True
+
 
 
    .. py:attribute:: default_make_general
+      :value: False
+
 
 
    .. py:attribute:: default_optimize_general
+      :value: False
+
 
 
    .. py:attribute:: default_uncontract_general
+      :value: False
+
 
 
    .. py:attribute:: default_uncontract_segmented
+      :value: False
+
 
 
    .. py:attribute:: default_uncontract_spdf
+      :value: False
+
 
 
    .. py:method:: add_filter(metadata_key: str, values: list) -> None

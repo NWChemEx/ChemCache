@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Atom &mdash; ChemCache 1.0.0 documentation</title>
+  <title>sto-3g atomic density matrix &mdash; ChemCache 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Atom Isotope" href="Atom_Isotope.html" />
-    <link rel="prev" title="Modules API" href="index.html" /> 
+    <link rel="next" title="sto-3g SAD density" href="sto-3g_SAD_density.html" />
+    <link rel="prev" title="sto-3g atomic basis" href="sto-3g_atomic_basis.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,25 +52,26 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../autoapi/data_management/index.html">data_management</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules API</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Atom</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#atoms-with-abundance-weighted-mass">Atoms with Abundance-Weighted Mass</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Atom.html">Atom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Atom_Isotope.html">Atom Isotope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NWX_Molecules.html">NWX Molecules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sto-3g.html">sto-3g</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sto-3g_atomic_basis.html">sto-3g atomic basis</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">sto-3g atomic density matrix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sto-3g-atomic-density-matrices">sto-3g atomic density matrices</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#please-cite">Please Cite</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#property-types">Property Types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-inputs">Module Inputs</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#atom-id">Atom ID</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#atom-id">Atom ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#with-uq">With UQ?</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-results">Module Results</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="Atom_Isotope.html">Atom Isotope</a></li>
-<li class="toctree-l2"><a class="reference internal" href="NWX_Molecules.html">NWX Molecules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sto-3g.html">sto-3g</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sto-3g_atomic_basis.html">sto-3g atomic basis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sto-3g_atomic_density_matrix.html">sto-3g atomic density matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sto-3g_SAD_density.html">sto-3g SAD density</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Straight_Chain_Alkane.html">Straight Chain Alkane</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Symbol_from_Z.html">Symbol from Z</a></li>
@@ -95,9 +96,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Modules API</a></li>
-      <li class="breadcrumb-item active">Atom</li>
+      <li class="breadcrumb-item active">sto-3g atomic density matrix</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/module_api/Atom.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/module_api/sto-3g_atomic_density_matrix.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -105,11 +106,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="atom">
-<h1>Atom<a class="headerlink" href="#atom" title="Link to this heading"></a></h1>
-<section id="atoms-with-abundance-weighted-mass">
-<h2>Atoms with Abundance-Weighted Mass<a class="headerlink" href="#atoms-with-abundance-weighted-mass" title="Link to this heading"></a></h2>
-<p>This module returns an atom with abundance-weighted mass.
+  <section id="sto-3g-atomic-density-matrix">
+<h1>sto-3g atomic density matrix<a class="headerlink" href="#sto-3g-atomic-density-matrix" title="Link to this heading"></a></h1>
+<section id="sto-3g-atomic-density-matrices">
+<h2>sto-3g atomic density matrices<a class="headerlink" href="#sto-3g-atomic-density-matrices" title="Link to this heading"></a></h2>
+<p>This module returns precomputed atomic densities in this basis set.
 This module was autogenerated.</p>
 <section id="please-cite">
 <h3>Please Cite<a class="headerlink" href="#please-cite" title="Link to this heading"></a></h3>
@@ -119,7 +120,7 @@ This module was autogenerated.</p>
 <h3>Property Types<a class="headerlink" href="#property-types" title="Link to this heading"></a></h3>
 <p>The following is a list of property types that this module satisfies.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">simde::Atom&lt;unsigned</span> <span class="pre">int&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">simde::AtomicDensityMatrix&lt;unsigned</span> <span class="pre">int&gt;</span></code></p></li>
 </ul>
 </section>
 <section id="module-inputs">
@@ -148,6 +149,10 @@ module. The columns are:</p>
 <tr class="row-even"><td><p>Atom ID</p></td>
 <td><p>N/A</p></td>
 <td><p>The identifying feature of the atom</p></td>
+</tr>
+<tr class="row-odd"><td><p>With UQ?</p></td>
+<td><p>0</p></td>
+<td><p>N/A</p></td>
 </tr>
 </tbody>
 </table>
@@ -180,6 +185,20 @@ subsection we list:</p>
 </ul>
 </li>
 </ul>
+</section>
+<section id="with-uq">
+<h2>With UQ?<a class="headerlink" href="#with-uq" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Description : N/A</p></li>
+<li><p>Default Value : 0</p></li>
+<li><p>Optional? : False</p></li>
+<li><p>Opaque? : True</p></li>
+<li><p>Domain Restrictions :</p>
+<ul>
+<li><p>Type == bool</p></li>
+</ul>
+</li>
+</ul>
 <section id="module-results">
 <h3>Module Results<a class="headerlink" href="#module-results" title="Link to this heading"></a></h3>
 <p>This section tabulates the full list of results that the module returns. The
@@ -203,9 +222,9 @@ the Module class’s advanced API.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Atom</p></td>
-<td><p>chemist::Atom</p></td>
-<td><p>The requested Atom</p></td>
+<tr class="row-even"><td><p>Atomic Density Matrix</p></td>
+<td><p>tensorwrapper::Tensor</p></td>
+<td><p>The requested Atomic Density Matrix</p></td>
 </tr>
 </tbody>
 </table>
@@ -221,8 +240,8 @@ the Module class’s advanced API.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Modules API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Atom_Isotope.html" class="btn btn-neutral float-right" title="Atom Isotope" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sto-3g_atomic_basis.html" class="btn btn-neutral float-left" title="sto-3g atomic basis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sto-3g_SAD_density.html" class="btn btn-neutral float-right" title="sto-3g SAD density" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

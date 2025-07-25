@@ -10,6 +10,8 @@ Modules API
    NWX_Molecules
    sto-3g
    sto-3g_atomic_basis
+   sto-3g_atomic_density_matrix
+   sto-3g_SAD_density
    Straight_Chain_Alkane
    Symbol_from_Z
    Z_from_Symbol

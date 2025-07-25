@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>data_management.generate_densities &mdash; ChemCache 1.0.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
 
@@ -115,19 +115,6 @@
                         <span class="n">The</span> <span class="n">path</span> <span class="n">to</span> <span class="n">where</span> <span class="n">ElementNames</span><span class="o">.</span><span class="n">txt</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>This script creates the following files based on the include and source
-directories given. The directories are not created by this script and must
-be present before running it.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">include</span>
-<span class="o">|</span>       <span class="n">nwx_atomic_densities</span><span class="o">.</span><span class="n">hpp</span>
-<span class="o">|</span>
-<span class="o">+---</span><span class="n">src</span>
-<span class="o">|</span>   \<span class="o">---</span><span class="n">atomic_densities</span> <span class="p">(</span><span class="n">this</span> <span class="n">directory</span> <span class="n">must</span> <span class="n">be</span> <span class="n">made</span> <span class="n">manually</span> <span class="n">before</span> <span class="n">run</span> <span class="n">this</span> <span class="n">python</span> <span class="n">script</span><span class="p">)</span>
-<span class="o">|</span>           <span class="n">add_density</span><span class="o">.</span><span class="n">cmake</span>
-<span class="o">|</span>           <span class="o">&lt;</span><span class="n">all_basis_set_files</span><span class="o">&gt;</span>
-<span class="o">|</span>       <span class="n">nwx_atomic_densities</span><span class="o">.</span><span class="n">cpp</span>
-</pre></div>
-</div>
 </section>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
@@ -142,19 +129,16 @@ be present before running it.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_densities._write_densities" title="data_management.generate_densities._write_densities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_densities</span></code></a>(→ None)</p></td>
 <td><p>Writes basis set data to C++ files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_densities._parse_densities_xml" title="data_management.generate_densities._parse_densities_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_densities_xml</span></code></a>(→ dict)</p></td>
-<td><p>Parse atomic density files in XML format.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_densities._parse_densities_dat" title="data_management.generate_densities._parse_densities_dat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_densities_dat</span></code></a>(→ dict)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_densities._parse_densities_dat" title="data_management.generate_densities._parse_densities_dat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_densities_dat</span></code></a>(→ dict)</p></td>
 <td><p>Parse atomic density files in .dat format.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_densities._parse_densities" title="data_management.generate_densities._parse_densities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_densities</span></code></a>(→ dict)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_densities._parse_densities" title="data_management.generate_densities._parse_densities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_densities</span></code></a>(→ dict)</p></td>
 <td><p>Parse atomic density files of the specified format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_densities.main" title="data_management.generate_densities.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(→ None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_densities.main" title="data_management.generate_densities.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(→ None)</p></td>
 <td><p>Entry point function to generate atomic density files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_densities.parse_args" title="data_management.generate_densities.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>(→ argparse.Namespace)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_densities.parse_args" title="data_management.generate_densities.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>(→ argparse.Namespace)</p></td>
 <td><p>Parse command line arguments.</p></td>
 </tr>
 </tbody>
@@ -169,7 +153,7 @@ be present before running it.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_management.generate_densities._write_den_files">
-<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">_write_den_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bs_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tab</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span>&#160;&#160;&#160; <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_densities._write_den_files" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">_write_den_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bs_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basis_set</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tab</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span>&#160;&#160;&#160; <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#data_management.generate_densities._write_den_files" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -184,27 +168,6 @@ be present before running it.</p>
 <li><p><strong>tab</strong> – String representing a tab, defaults to “    ”
 :type tab: str, optional</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="data_management.generate_densities._parse_densities_xml">
-<span class="sig-prename descclassname"><span class="pre">data_management.generate_densities.</span></span><span class="sig-name descname"><span class="pre">_parse_densities_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepaths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_densities._parse_densities_xml" title="Link to this definition"></a></dt>
-<dd><p>Parse atomic density files in XML format.
-Deprecated as new atomic density format is adopted. Y. Z. 02/23/23</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filepaths</strong> (<em>list</em><em> of </em><em>str</em>) – Full paths to atomic density files.</p></li>
-<li><p><strong>sym2Z</strong> (<em>dict</em>) – Mapping from lowercased atomic symbols to atomic numbers</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Collection of atomic densities sorted by basis set and element</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>

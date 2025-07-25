@@ -86,6 +86,8 @@ Module Contents
 
 
 .. py:data:: i_to_lchar
+   :value: 'spdf'
+
 
 .. py:data:: lchar_to_i
 
