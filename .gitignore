@@ -48,4 +48,4 @@ toolchain.cmake
 
 # Recommended directory for downloading basis sets
 reference_data/basis_sets
-!reference_data/basis_set/defaults
+!reference_data/basis_set/default
