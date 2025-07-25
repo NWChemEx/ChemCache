@@ -80,7 +80,7 @@ simde::type::tensor {s_name}_atom_density_matrix_(
 }} // namespace chemcache
 '''
 
-    source_template='''
+    source_template = '''
 #include "../density.hpp"
 #include "{s_name}.hpp"
 
@@ -134,8 +134,7 @@ MODULE_RUN({s_name}_atom_density_matrix) {{
         values = make_square_arr(basis_set[str(z)].split(),
                                  spacer="\n" + tab * 4)
         n = int(len(basis_set[str(z)].split())**0.5)
-        cases.append(
-            cases_template.format(t=tab, Z=z, n=n, values=values))
+        cases.append(cases_template.format(t=tab, Z=z, n=n, values=values))
 
     header_file = os.path.join(out_dir, s_name + ".hpp")
     with open(header_file, 'w') as fout:
@@ -148,9 +147,7 @@ MODULE_RUN({s_name}_atom_density_matrix) {{
     source_file = os.path.join(out_dir, s_name + ".cpp")
     with open(source_file, 'w') as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
-        fout.write(
-            source_template.format(d_name=d_name,
-                                   s_name=s_name))
+        fout.write(source_template.format(d_name=d_name, s_name=s_name))
 
 
 def _write_densities(src_dir: str, bases: dict, tab="    ") -> None:
@@ -225,7 +222,6 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
         dm_submodules.append(dm_submod_template.format(d_name, d_name))
         guess_modules.append(guess_mod_template.format(d_name))
         density_modules.append(den_mod_template.format(s_name, d_name))
-
 
     bases_file = os.path.join(src_dir, "density.hpp")
     with open(bases_file, 'w') as fout:

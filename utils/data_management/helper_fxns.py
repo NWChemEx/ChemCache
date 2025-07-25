@@ -181,6 +181,7 @@ def write_warning(fout, script_name, prefix=""):
 {1} * NOTE: Any modifications made in this file will be lost next time 
 {1} *       {0} is run.
 {1} */
-""").format(script_name, prefix, datetime.datetime.today().year)
+""").format(script_name, prefix,
+            datetime.datetime.today().year)
 
     fout.write(warning)
