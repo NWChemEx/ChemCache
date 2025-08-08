@@ -55,7 +55,7 @@ release = version
 extensions = [
     "autoapi.extension",
     "sphinx.ext.doctest",
-    #'sphinx.ext.intersphinx',
+    # "sphinx.ext.intersphinx",
     "sphinx.ext.todo",
     "sphinx.ext.coverage",
     "sphinx.ext.mathjax",
