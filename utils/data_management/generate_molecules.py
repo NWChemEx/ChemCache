@@ -43,8 +43,8 @@ be present before running it.
 
 ::
 
-   +---src
-   |       load_molecules.cpp
+   <src_dir>
+   └── load_molecules.cpp
 """
 
 import argparse

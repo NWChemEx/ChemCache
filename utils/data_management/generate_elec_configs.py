@@ -38,14 +38,15 @@ Usage
 
 This script looks for the following file(s)::
 
-   +---data_dir
-   |       ElementNames.txt
-   |       NIST-ATOMICION.txt
+   <data_dir>
+   ├── ElementNames.txt
+   └── NIST-ATOMICION.txt
 
 This script creates the following file(s)::
 
-   +---src_dir/atomic_configurations
-   |       atomconfigs.cpp
+   <src_dir>
+   └── atomic_configurations
+       └── atomconfigs.cpp
 """
 
 import argparse

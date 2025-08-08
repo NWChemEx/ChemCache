@@ -41,11 +41,11 @@ be present before running it.
 
 ::
 
-   +---src_dir
-   |   \---bases
-   |           <all_basis_set_files>
-   |       basis_set_list.hpp
-   |       load_basis_sets.cpp
+   <src_dir>
+   ├── bases
+   │   └── <all_basis_set_files>
+   ├── basis_set_list.hpp
+   └── load_basis_sets.cpp
 """
 
 import argparse
