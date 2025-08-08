@@ -52,6 +52,7 @@ import argparse
 import os
 import re
 import sys
+from typing import Callable
 
 import data_management.helper_fxns as helpers
 from data_management.generate_atomicinfo import parse_symbols
@@ -358,7 +359,7 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
 
 
 def _parse_bases_gbs(
-    basis_set_filenames: list, sym2Z: dict, l2num: "function"
+    basis_set_filenames: list, sym2Z: dict, l2num: Callable[str]
 ) -> dict:
     """Parses basis set files from the filepaths given.
 
@@ -369,15 +370,15 @@ def _parse_bases_gbs(
     :type sym2Z: dict
 
     :param l2num: Function associating orbital letters with a number
-    :type l2num: function
+    :type l2num: Callable[str]
 
     :return: Collection of basis sets and the supported elements of each.
     :rtype: dict
     """
 
-    new_atom = re.compile("^\s*\D{1,2}\s*0\s*$")
-    new_shell = re.compile("^\s*[a-zA-Z]+\s*\d+\s*1.00\s*$")
-    same_shell = re.compile("^\s*(?:-?\d+.\d+(?:(E|e)(\+|-)\d\d)*\s*)+")
+    new_atom = re.compile(r"^\s*\D{1,2}\s*0\s*$")
+    new_shell = re.compile(r"^\s*[a-zA-Z]+\s*\d+\s*1.00\s*$")
+    same_shell = re.compile(r"^\s*(?:-?\d+.\d+(?:(E|e)(\+|-)\d\d)*\s*)+")
     bases = {}
     for filepath in basis_set_filenames:
         # Extract file name without extension
@@ -411,7 +412,7 @@ def _parse_bases_gbs(
 
 
 def _parse_bases_nw(
-    basis_set_filepaths: list, sym2Z: dict, l2num: "function"
+    basis_set_filepaths: list, sym2Z: dict, l2num: Callable[str]
 ) -> dict:
     """Parses basis set files from the filepaths given.
 
@@ -422,18 +423,18 @@ def _parse_bases_nw(
     :type sym2Z: dict
 
     :param l2num: Function associating orbital letters with a number
-    :type l2num: function
+    :type l2num: Callable[str]
 
     :return: Collection of basis sets and the supported elements of each.
     :rtype: dict
     """
 
-    atom_shell_line = re.compile("^[a-zA-Z]{1,3}\s+[a-zA-Z]+\s*$")
+    atom_shell_line = re.compile(r"^[a-zA-Z]{1,3}\s+[a-zA-Z]+\s*$")
     shell_data = re.compile(
-        "^\s*(?:-?\d*\.\d+(?:(?:E|e|D|d)(?:\+|-)\d+)*\s*)+$"
+        r"^\s*(?:-?\d*\.\d+(?:(?:E|e|D|d)(?:\+|-)\d+)*\s*)+$"
     )
-    basis_start = re.compile('^BASIS "ao basis" (?P<shelltype>\w+) PRINT')
-    block_end = re.compile("^END$")
+    basis_start = re.compile(r'^BASIS "ao basis" (?P<shelltype>\w+) PRINT')
+    block_end = re.compile(r"^END$")
 
     bases = {}
     for filepath in basis_set_filepaths:
@@ -463,9 +464,9 @@ def _parse_bases_nw(
                         atom_z = sym2Z[atom_sym.lower()]
 
                         # Add the new element to basis set list
-                        if not atom_z in tmp_basis.keys():
+                        if atom_z not in tmp_basis.keys():
                             tmp_basis[atom_z] = {}
-                        if not ls in tmp_basis[atom_z].keys():
+                        if ls not in tmp_basis[atom_z].keys():
                             tmp_basis[atom_z][ls] = []
 
                         tmp_basis[atom_z][ls].append([])
@@ -532,7 +533,7 @@ def _parse_bases_nw(
 def _parse_bases(
     basis_set_filepaths: list,
     sym2Z: dict,
-    l2num: "function",
+    l2num: Callable[str],
     format: str = "nwchem",
 ) -> dict:
     """Parse basis set files of the specified format.
@@ -556,7 +557,7 @@ def _parse_bases(
 
     :param l2num: Conversion function from shell symbol (s, p, d, f, etc)
         to the corresponding number (0, 1, 2, 3, etc)
-    :type l2num: function
+    :type l2num: Callable[str]
 
     :param format: File formatting to parse, defaults to "nwchem"
     :type format: str, optional
@@ -604,8 +605,6 @@ def main(args: argparse.Namespace) -> None:
 
     sym2Z = {ai.sym.lower(): ai.Z for ai in atoms.values()}
 
-    # TODO: Name this and all instances of 'l' less ambiguously. Something
-    #       like "subshell_label_to_quantum_number" probably would be better
     def l2num(l: str):
         return "spdfghijklmnoqrtuvwxyzabce".find(l.lower())
 
