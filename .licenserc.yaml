@@ -19,6 +19,7 @@ header:
 
   paths-ignore:
     - .github/
+    - build/
     - docs/Makefile
     - docs/source/nitpick_exceptions
     - reference_data/atomic_densities/default
