@@ -22,7 +22,7 @@ run.  The files contained in the subdirectories are ASCII lists/tables of the
 data.  Python scripts exist to turn this data into source files and should be
 used to update files should the need arise.
 
-The reference data within this directory is further subdivided into the 
+The reference data within this directory is further subdivided into the
 following types:
 
 - Physical Data
@@ -32,7 +32,5 @@ following types:
 - Atomic guesses
   - Precomputed atomic SCF results for initial guesses, from select basis sets
 - Molecules
-  - Pre-defined molecules for quickly and easily building tests or running 
+  - Pre-defined molecules for quickly and easily building tests or running
   pre-defined sets
-      
-    

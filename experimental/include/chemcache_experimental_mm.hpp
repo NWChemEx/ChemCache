@@ -18,7 +18,7 @@
 #include <pluginplay/module_manager.hpp>
 
 namespace chemcache {
-/** @brief Loads the modules contained in the experimental ChemCache module 
+/** @brief Loads the modules contained in the experimental ChemCache module
  *         collection into the provided ModuleManager instance.
  */
 void load_experimental_modules(pluginplay::ModuleManager& mm);

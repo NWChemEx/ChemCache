@@ -16,19 +16,14 @@
 
 import unittest
 
-from chemcache import load_modules
-
 from chemist import Atom
-
 from pluginplay import ModuleManager
+from simde import AtomFromZ, SymbolFromZ, ZFromSymbol
 
-from simde import AtomFromZ
-from simde import SymbolFromZ
-from simde import ZFromSymbol
+from chemcache import load_modules
 
 
 class TestAtoms(unittest.TestCase):
-
     def test_atoms_average(self):
         h = Atom("H", 1, 1837.4260218693814, 0.0, 0.0, 0.0)
         o = Atom("O", 8, 29165.122045980286, 0.0, 0.0, 0.0)

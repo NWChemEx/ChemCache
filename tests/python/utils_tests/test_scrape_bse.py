@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
 import os
+import unittest
+
 from data_management import scrape_bse
 
 
 class ScrapeBSETest(unittest.TestCase):
-
     # This method prevents multiple downloads, greatly reducing the testing
     # time. However, the same scraper object will be used in each test, so
     # care must be taken to reset the state of the scraper in a test if
@@ -32,7 +32,7 @@ class ScrapeBSETest(unittest.TestCase):
         self.scraper = scrape_bse.BSEBasisSetScraper()
 
     def test_add_filter(self):
-        corr = ['sto-2g', 'sto-3g', 'sto-3g_st_', 'sto-4g', 'sto-5g', 'sto-6g']
+        corr = ["sto-2g", "sto-3g", "sto-3g_st_", "sto-4g", "sto-5g", "sto-6g"]
 
         self.scraper.add_filter("family", ["sto"])
         self.scraper.add_filter("role", ["orbital"])
@@ -46,12 +46,13 @@ class ScrapeBSETest(unittest.TestCase):
 
         # Read golden file
         current_dir = os.path.dirname(os.path.realpath(__file__))
-        ref_path = os.path.join("..", "..", "..", "reference_data",
-                                "basis_sets", "default")
+        ref_path = os.path.join(
+            "..", "..", "..", "reference_data", "basis_sets", "default"
+        )
         ref_dir = os.path.abspath(os.path.join(current_dir, ref_path))
         basis_file = f"{basis_name}.nw"
 
-        with open(os.path.join(ref_dir, basis_file), 'r') as fin:
+        with open(os.path.join(ref_dir, basis_file), "r") as fin:
             corr = fin.read()
 
         self.assertEqual(clean_name, basis_name)

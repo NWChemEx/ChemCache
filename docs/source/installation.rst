@@ -80,7 +80,7 @@ ChemCache's build system.
 CMake
 -----
 
-CMake is the basis of CMaize, and minimum version of 3.14 is required to 
+CMake is the basis of CMaize, and minimum version of 3.14 is required to
 properly build ChemCache.
 
 
