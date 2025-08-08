@@ -19,6 +19,7 @@ header:
 
   paths-ignore:
     - .github/
+    - .flake8
     - build/
     - docs/Makefile
     - docs/source/nitpick_exceptions
