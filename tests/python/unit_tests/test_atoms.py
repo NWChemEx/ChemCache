@@ -41,7 +41,7 @@ class TestAtoms(unittest.TestCase):
         rv_sym = self.mm.run_as(SymbolFromZ(), "Symbol from Z", 8)
         self.assertEqual(rv_sym, "O")
 
-        with self.assertRaises(IndexError) as cm:
+        with self.assertRaises(IndexError):
             rv_sym = self.mm.run_as(SymbolFromZ(), "Symbol from Z", 1000)
 
     def test_Z_from_sym(self):
@@ -51,7 +51,7 @@ class TestAtoms(unittest.TestCase):
         rv_Z = self.mm.run_as(ZFromSymbol(), "Z From Symbol", "O")
         self.assertEqual(rv_Z, 8)
 
-        with self.assertRaises(IndexError) as cm:
+        with self.assertRaises(IndexError):
             rv_Z = self.mm.run_as(ZFromSymbol(), "Z From Symbol", "NWX")
 
     def setUp(self):
