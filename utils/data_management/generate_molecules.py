@@ -20,16 +20,20 @@ Usage
 
 ::
 
-   usage: generate_molecules.py [-h] [--ang2au ANG2AU] [-r] [-a ATOMS_DIR] molecule_dir src_dir
+   usage: generate_molecules.py [OPTIONS]... molecule_dir src_dir
 
    positional arguments:
-     molecule_dir          Data directory for molecule files. If combined with the "-r" flag, this directory will be recursively searched.
+     molecule_dir          Data directory for molecule files. If combined with
+                           the "-r" flag, this directory will be recursively
+                           searched.
      src_dir               Destination directory for generated source files.
 
    options:
      -h, --help            show this help message and exit
-     --ang2au ANG2AU       Ratio of angstroms to atomic units. (Default: 1.8897161646320724)
-     -r, --recursive       Toggle on recursive search through molecule_dir directory. Default OFF.
+     --ang2au ANG2AU       Ratio of angstroms to atomic units.
+                           (Default: 1.8897161646320724)
+     -r, --recursive       Toggle on recursive search through molecule_dir
+                           directory. (Default: OFF)
      -a ATOMS_DIR, --atoms_dir ATOMS_DIR
                            The path to where ElementNames.txt can be found.
 
@@ -44,7 +48,6 @@ be present before running it.
 """
 
 import argparse
-import io
 import os
 import re
 import sys
@@ -287,7 +290,6 @@ def main(args: argparse.Namespace) -> None:
     extensions = [".xyz"]
 
     # Create some paths
-    my_dir = os.path.dirname(os.path.realpath(__file__))
     src_dir = os.path.abspath(args.src_dir)
     name_file = os.path.abspath(
         os.path.join(args.atoms_dir, "ElementNames.txt")
@@ -334,8 +336,11 @@ def parse_args() -> argparse.Namespace:
     """
 
     parser = argparse.ArgumentParser(
-        description="This script will read each molecule file in the provided directory"
-        "and generate a C++ source file with commands to make each molecule."
+        description=(
+            "This script will read each molecule file in the provided"
+            "directory and generate a C++ source file with commands to make"
+            "each molecule."
+        )
     )
 
     parser.add_argument(

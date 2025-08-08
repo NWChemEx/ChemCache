@@ -19,18 +19,20 @@ Usage
 
 ::
 
-   usage: generate_densities.py [-h] [-r] [-a ATOMS_DIR] atomic_density_dir src_dir
+   usage: generate_densities.py [OPTIONS]... atomic_density_dir src_dir
 
    positional arguments:
-     atomic_density_dir    Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+     atomic_density_dir    Source directory for basis set files. If combined
+                           with the "-r" flag, this directory will be
+                           recursively searched for basis sets.
      src_dir               Destination directory for generated source files.
 
    options:
      -h, --help            show this help message and exit
-     -r, --recursive       Toggle on recursive search through the basis set source directory. Default OFF.
+     -r, --recursive       Toggle on recursive search through the basis set
+                           source directory. (Default: OFF)
      -a ATOMS_DIR, --atoms_dir ATOMS_DIR
                            The path to where ElementNames.txt can be found.
-
 """
 
 import argparse
@@ -200,8 +202,14 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
 """
 
     declaration_template = "DECLARE_MODULE({}_atom_density_matrix);"
-    ao_submod_template = 'mm.change_submod("{} SAD density", "Atomic Basis", "{} atomic basis");'
-    dm_submod_template = 'mm.change_submod("{} SAD density", "Atomic Density", "{} atomic density matrix");'
+    ao_submod_template = (
+        'mm.change_submod("{} SAD density", "Atomic Basis", '
+        '"{} atomic basis");'
+    )
+    dm_submod_template = (
+        'mm.change_submod("{} SAD density", '
+        '"Atomic Density", "{} atomic density matrix");'
+    )
     guess_mod_template = 'mm.add_module<sad_density>("{} SAD density");'
     den_mod_template = (
         'mm.add_module<{}_atom_density_matrix>("{} atomic density matrix");'
@@ -314,7 +322,6 @@ def main(args: argparse.Namespace) -> None:
     extensions = [".dat"]
 
     # Create some paths
-    my_dir = os.path.dirname(os.path.realpath(__file__))
     src_dir = os.path.abspath(args.src_dir)
     name_file = os.path.abspath(
         os.path.join(args.atoms_dir, "ElementNames.txt")

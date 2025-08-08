@@ -29,7 +29,8 @@ Usage
      -o OUTFORMAT, --outformat OUTFORMAT
                            Output format. (Default: NWChem)
      -g, --optimize_general
-                           Toggle on optimizing general contractions. Default OFF.
+                           Toggle on optimizing general contractions.
+                           (Default: OFF)
 
 This script creates the following files in the given destination::
 
@@ -215,7 +216,7 @@ class BSEBasisSetScraper:
 
         if response.status_code != 200:
             print(response.text)
-            raise RuntimeError("Could not obtain {}.".format(self.basis_set))
+            raise RuntimeError("Could not obtain {}.".format(basis_name))
 
         clean_basis_set_name = (
             bs.lower()
@@ -460,8 +461,10 @@ def parse_args() -> argparse.Namespace:
     :rtype: Namespace
     """
     parser = argparse.ArgumentParser(
-        description="This script uses a web scraper to download all basis sets from the "
-        "Basis Set Exchange (BSE) in the specified output format."
+        description=(
+            "This script uses a web scraper to download all basis sets from "
+            "the Basis Set Exchange (BSE) in the specified output format."
+        )
     )
 
     parser.add_argument(

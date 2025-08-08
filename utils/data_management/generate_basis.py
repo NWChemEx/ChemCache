@@ -20,7 +20,7 @@ Usage
 
 ::
 
-   usage: generate_basis.py [-h] [-r] [-a ATOMS_DIR] basis_set_source src_dir
+   usage: generate_basis.py [OPTIONS]... basis_set_source src_dir
 
    positional arguments:
    basis_set_source      Source directory for basis set files. If combined with
@@ -49,13 +49,12 @@ be present before running it.
 """
 
 import argparse
-import io
 import os
 import re
 import sys
 
 import data_management.helper_fxns as helpers
-from data_management.generate_atomicinfo import AtomicData, parse_symbols
+from data_management.generate_atomicinfo import parse_symbols
 
 
 class Shell:
@@ -586,7 +585,6 @@ def main(args: argparse.Namespace) -> None:
     formats = ["nwchem"]
 
     # Create some paths
-    my_dir = os.path.dirname(os.path.realpath(__file__))
     src_dir = os.path.abspath(args.src_dir)
     name_file = os.path.abspath(
         os.path.join(args.atoms_dir, "ElementNames.txt")
@@ -606,7 +604,9 @@ def main(args: argparse.Namespace) -> None:
 
     sym2Z = {ai.sym.lower(): ai.Z for ai in atoms.values()}
 
-    def l2num(l):
+    # TODO: Name this and all instances of 'l' less ambiguously. Something
+    #       like "subshell_label_to_quantum_number" probably would be better
+    def l2num(l: str):
         return "spdfghijklmnoqrtuvwxyzabce".find(l.lower())
 
     basis_sets = {}
@@ -640,9 +640,11 @@ def parse_args() -> argparse.Namespace:
     """
 
     parser = argparse.ArgumentParser(
-        description="This script will loop over a series of basis sets and write out a "
-        "file that will fill them in. The format of the resulting basis sets "
-        "is suitable for use with the BasisSetExchange class."
+        description=(
+            "This script will loop over a series of basis sets and write out "
+            "a file that will fill them in. The format of the resulting "
+            "basis sets is suitable for use with the BasisSetExchange class."
+        )
     )
 
     parser.add_argument(
