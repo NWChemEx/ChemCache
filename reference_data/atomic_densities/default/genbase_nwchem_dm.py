@@ -1,24 +1,28 @@
 #!/usr/bin/python3
-""" Python script to generate all atomic density matrices for a specifice general basis set
-    (not in the NWChem library) with NWChem calculations
+"""Generates all atomic density matrices for a specific general basis set
+(not in the NWChem library) with NWChem calculations
 
-  To properly run this script, one need to have a NWChem basis set file
-  (setting below: nw_basis_file = basis_name+".nw") under the working directory. Usually this
-  file can be obtained from the basis set exchange website.
-  In addition, one needs to set a dictionary containing the basis set name and all elements
-  associated to it (setting below: small_basis_elements = { *** }.
-  Once all those settings are done, simply run the script as "./genbase_nwchem_dm.py" in the
-  command line.
-#
-# The script write a NWChem input file (tmp.nw) for each atom in the value list corresponding to
-# the basis name key, and call NWChem to run a simple SAD guess generation calculaton (noscf).
-#
-# After the calculation the SAD guess (atomic density matrix) is extracted and reformmated, and
-# stored accumulatively in a "basis_name.dat" file (e. g., STO-3G.dat).
-#
-# The atomic density matrices are stored as text blocks representing the 1-D flatten version of
-# the corresponding 2-D matrices.
+To properly run this script, one need to have a NWChem basis set file
+(setting below: nw_basis_file = basis_name+".nw") under the working
+directory. Usually this file can be obtained from the basis set exchange
+website. In addition, one needs to set a dictionary containing the basis set
+name and all elements associated to it (setting below:
+small_basis_elements = { *** }). Once all those settings are done, simply run
+the script as "./genbase_nwchem_dm.py" in the command line.
+
+The script write a NWChem input file (tmp.nw) for each atom in the value list
+corresponding to the basis name key, and call NWChem to run a simple SAD guess
+generation calculaton (noscf).
+
+After the calculation the SAD guess (atomic density matrix) is extracted and
+reformatted, and stored accumulatively in a "basis_name.dat" file
+(e. g., STO-3G.dat).
+
+The atomic density matrices are stored as text blocks representing the 1-D
+flatten version of the corresponding 2-D matrices.
 """
+# TODO: Add a more canonical usage statement here showing how to call from
+#       the command line.
 
 import os
 import subprocess
@@ -148,22 +152,24 @@ def atom_sym2num(sym):
         "Og": 118,
     }
 
+    # TODO: Why not just let the exception propagate?
     try:
         return elements[sym]
-    except:
+    except KeyError:
         print("Cannot find the atomic number for", sym, "!")
 
 
 # To get the atomic symbol from the corresponding atomic number
 # print(list(elements.keys())[list(elements.values()).index(3)])
 
-# small_basis_elements = {'mini' : '  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn'}
-
+# small_basis_elements = {"mini": ("  H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn")}  # noqa: 501
 # small_basis_elements = {'mini' : '  H He Li'}
 small_basis_elements = {"mini": "  La"}
 
 for basis_name in small_basis_elements:
-    # nwchemex_basis_name = basis_name.lower().replace("*","_st_").replace(" ","_")
+    # nwchemex_basis_name = (
+    #     basis_name.lower().replace("*", "_st_").replace(" ", "_")
+    # )
 
     print("Generating atomic density matrices for basis set", basis_name, ":")
     outfile = basis_name + ".dat"
@@ -180,11 +186,14 @@ for basis_name in small_basis_elements:
         print("Running NWChem calculation for atom " + cc)
         with open("tmp.nw", "w") as nwInp:
             if atom_sym2num(cc) % 2 == 0:
+                # TODO: This may be easier to read as a list of strings that
+                #       has nwInp.write("\n".join(<list>)) called at the end.
                 nwInp.write("echo\n")
                 nwInp.write("start test-scf-sad\n")
                 nwInp.write(
-                    'title "Test atom HF calculation in {} to check SAD guess"\n'.format(
-                        basis_name
+                    (
+                        f'title "Test atom HF calculation in {basis_name} to '
+                        'check SAD guess"\n'
                     )
                 )
                 nwInp.write("\n")
@@ -195,12 +204,11 @@ for basis_name in small_basis_elements:
                 nwInp.write("\n")
                 nwInp.write("geometry\n")
                 nwInp.write(
-                    "  {}      0.00000000    0.00000000    0.00000000\n".format(
-                        cc
-                    )
+                    f"  {cc}      0.00000000    0.00000000    0.00000000\n"
                 )
                 nwInp.write("end\n")
                 nwInp.write("\n")
+
                 # Read the general basis set from external basis set file
                 with open(nw_basis_file, "r") as nwBasis:
                     inBlock = 0
@@ -220,6 +228,7 @@ for basis_name in small_basis_elements:
                             break
                         else:
                             pass
+
                 nwInp.write("\n")
                 nwInp.write("scf\n")
                 nwInp.write(" singlet\n")
@@ -232,8 +241,9 @@ for basis_name in small_basis_elements:
                 nwInp.write("echo\n")
                 nwInp.write("start test-scf-sad\n")
                 nwInp.write(
-                    'title "Test atom HF calculation in {} to check SAD guess"\n'.format(
-                        basis_name
+                    (
+                        f'title "Test atom HF calculation in {basis_name} to '
+                        'check SAD guess"\n'
                     )
                 )
                 nwInp.write("\n")
@@ -244,9 +254,7 @@ for basis_name in small_basis_elements:
                 nwInp.write("\n")
                 nwInp.write("geometry\n")
                 nwInp.write(
-                    "  {}      0.00000000    0.00000000    0.00000000\n".format(
-                        cc
-                    )
+                    f"  {cc}      0.00000000    0.00000000    0.00000000\n"
                 )
                 nwInp.write("end\n")
                 nwInp.write("\n")
