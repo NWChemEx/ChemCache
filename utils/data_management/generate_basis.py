@@ -359,7 +359,7 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
 
 
 def _parse_bases_gbs(
-    basis_set_filenames: list, sym2Z: dict, l2num: Callable[str]
+    basis_set_filenames: list, sym2Z: dict, l2num: Callable[[str], int]
 ) -> dict:
     """Parses basis set files from the filepaths given.
 
@@ -370,7 +370,7 @@ def _parse_bases_gbs(
     :type sym2Z: dict
 
     :param l2num: Function associating orbital letters with a number
-    :type l2num: Callable[str]
+    :type l2num: Callable[[str], int]
 
     :return: Collection of basis sets and the supported elements of each.
     :rtype: dict
@@ -412,7 +412,7 @@ def _parse_bases_gbs(
 
 
 def _parse_bases_nw(
-    basis_set_filepaths: list, sym2Z: dict, l2num: Callable[str]
+    basis_set_filepaths: list, sym2Z: dict, l2num: Callable[[str], int]
 ) -> dict:
     """Parses basis set files from the filepaths given.
 
@@ -423,7 +423,7 @@ def _parse_bases_nw(
     :type sym2Z: dict
 
     :param l2num: Function associating orbital letters with a number
-    :type l2num: Callable[str]
+    :type l2num: Callable[[str], int]
 
     :return: Collection of basis sets and the supported elements of each.
     :rtype: dict
@@ -533,7 +533,7 @@ def _parse_bases_nw(
 def _parse_bases(
     basis_set_filepaths: list,
     sym2Z: dict,
-    l2num: Callable[str],
+    l2num: Callable[[str], int],
     format: str = "nwchem",
 ) -> dict:
     """Parse basis set files of the specified format.
@@ -557,7 +557,7 @@ def _parse_bases(
 
     :param l2num: Conversion function from shell symbol (s, p, d, f, etc)
         to the corresponding number (0, 1, 2, 3, etc)
-    :type l2num: Callable[str]
+    :type l2num: Callable[[str], int]
 
     :param format: File formatting to parse, defaults to "nwchem"
     :type format: str, optional
@@ -605,7 +605,7 @@ def main(args: argparse.Namespace) -> None:
 
     sym2Z = {ai.sym.lower(): ai.Z for ai in atoms.values()}
 
-    def l2num(l: str):
+    def l2num(l: str) -> int:
         return "spdfghijklmnoqrtuvwxyzabce".find(l.lower())
 
     basis_sets = {}
