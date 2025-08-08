@@ -28,7 +28,7 @@ void load_experimental_modules(pluginplay::ModuleManager& mm) {
     // Add subcollection load calls here
     atom_dm_mods::load_modules(mm);
     elec_config_mods::load_modules(mm);
-    
+
     set_defaults(mm);
 }
 

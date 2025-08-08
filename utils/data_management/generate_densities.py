@@ -19,43 +19,48 @@ Usage
 
 ::
 
-   usage: generate_densities.py [-h] [-r] [-a ATOMS_DIR] atomic_density_dir src_dir
+   usage: generate_densities.py [OPTIONS]... atomic_density_dir src_dir
 
    positional arguments:
-     atomic_density_dir    Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+     atomic_density_dir    Source directory for basis set files. If combined
+                           with the "-r" flag, this directory will be
+                           recursively searched for basis sets.
      src_dir               Destination directory for generated source files.
-   
+
    options:
      -h, --help            show this help message and exit
-     -r, --recursive       Toggle on recursive search through the basis set source directory. Default OFF.
+     -r, --recursive       Toggle on recursive search through the basis set
+                           source directory. (Default: OFF)
      -a ATOMS_DIR, --atoms_dir ATOMS_DIR
                            The path to where ElementNames.txt can be found.
-       
 """
 
 import argparse
 import os
 
-from data_management.generate_atomicinfo import parse_symbols
 import data_management.helper_fxns as helpers
+from data_management.generate_atomicinfo import parse_symbols
 
 
-def make_square_arr(a: list, spacer='\n'):
+def make_square_arr(a: list, spacer="\n"):
     n2 = len(a)
     n = int(n2**0.5)
     if n == 1:
-        return '{' + f'{a[0]}' + '}'
-    assert (n * n == n2)
-    return f"{spacer}{{" + f"}},{spacer}{{".join(
-        [", ".join(a[i * n:(i + 1) * n]) for i in range(n)]) + "}"
+        return "{" + f"{a[0]}" + "}"
+    assert n * n == n2
+    return (
+        f"{spacer}{{"
+        + f"}},{spacer}{{".join(
+            [", ".join(a[i * n : (i + 1) * n]) for i in range(n)]
+        )
+        + "}"
+    )
 
 
-def _write_den_files(out_dir: str,
-                     bs_name: str,
-                     basis_set: dict,
-                     tab: str = "    ") -> None:
-
-    header_template = '''
+def _write_den_files(
+    out_dir: str, bs_name: str, basis_set: dict, tab: str = "    "
+) -> None:
+    header_template = """
 #pragma once
 #include <simde/simde.hpp>
 
@@ -78,9 +83,9 @@ simde::type::tensor {s_name}_atom_density_matrix_(
 }}
 
 }} // namespace chemcache
-'''
+"""
 
-    source_template = '''
+    source_template = """
 #include "../density.hpp"
 #include "{s_name}.hpp"
 
@@ -119,33 +124,35 @@ MODULE_RUN({s_name}_atom_density_matrix) {{
 }}
 
 }} // namespace chemcache
-'''
+"""
 
-    cases_template = '''{t}{t}case({Z}): {{
+    cases_template = """{t}{t}case({Z}): {{
 {t}{t}{t}shape_t shape{{{n}, {n}}};
 {t}{t}{t}auto buffer = d_a.construct(rank2_il_t{{{values}}});
 {t}{t}{t}return simde::type::tensor(shape, std::move(buffer));
-{t}{t}}}'''
+{t}{t}}}"""
 
     d_name = helpers.desanitize_basis_name(bs_name)
     s_name = helpers.sanitize_basis_name(bs_name)
     cases = []
     for z in sorted([int(x) for x in basis_set.keys()]):
-        values = make_square_arr(basis_set[str(z)].split(),
-                                 spacer="\n" + tab * 4)
-        n = int(len(basis_set[str(z)].split())**0.5)
+        values = make_square_arr(
+            basis_set[str(z)].split(), spacer="\n" + tab * 4
+        )
+        n = int(len(basis_set[str(z)].split()) ** 0.5)
         cases.append(cases_template.format(t=tab, Z=z, n=n, values=values))
 
     header_file = os.path.join(out_dir, s_name + ".hpp")
-    with open(header_file, 'w') as fout:
+    with open(header_file, "w") as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
         fout.write(
-            header_template.format(d_name=d_name,
-                                   s_name=s_name,
-                                   cases="\n".join(cases)))
+            header_template.format(
+                d_name=d_name, s_name=s_name, cases="\n".join(cases)
+            )
+        )
 
     source_file = os.path.join(out_dir, s_name + ".cpp")
-    with open(source_file, 'w') as fout:
+    with open(source_file, "w") as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
         fout.write(source_template.format(d_name=d_name, s_name=s_name))
 
@@ -195,10 +202,18 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
 """
 
     declaration_template = "DECLARE_MODULE({}_atom_density_matrix);"
-    ao_submod_template = 'mm.change_submod("{} SAD density", "Atomic Basis", "{} atomic basis");'
-    dm_submod_template = 'mm.change_submod("{} SAD density", "Atomic Density", "{} atomic density matrix");'
+    ao_submod_template = (
+        'mm.change_submod("{} SAD density", "Atomic Basis", '
+        '"{} atomic basis");'
+    )
+    dm_submod_template = (
+        'mm.change_submod("{} SAD density", '
+        '"Atomic Density", "{} atomic density matrix");'
+    )
     guess_mod_template = 'mm.add_module<sad_density>("{} SAD density");'
-    den_mod_template = 'mm.add_module<{}_atom_density_matrix>("{} atomic density matrix");'
+    den_mod_template = (
+        'mm.add_module<{}_atom_density_matrix>("{} atomic density matrix");'
+    )
 
     ntab = "\n" + tab
 
@@ -224,18 +239,21 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
         density_modules.append(den_mod_template.format(s_name, d_name))
 
     bases_file = os.path.join(src_dir, "density.hpp")
-    with open(bases_file, 'w') as fout:
+    with open(bases_file, "w") as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
         fout.write(
-            bases_template.format(declarations="\n".join(declarations),
-                                  ao_submodules=ntab.join(ao_submodules),
-                                  dm_submodules=ntab.join(dm_submodules),
-                                  guess_modules=ntab.join(guess_modules),
-                                  density_modules=ntab.join(density_modules)))
+            bases_template.format(
+                declarations="\n".join(declarations),
+                ao_submodules=ntab.join(ao_submodules),
+                dm_submodules=ntab.join(dm_submodules),
+                guess_modules=ntab.join(guess_modules),
+                density_modules=ntab.join(density_modules),
+            )
+        )
 
 
 def _parse_densities_dat(filepaths, sym2Z) -> dict:
-    """Parse atomic density files in .dat format. 
+    """Parse atomic density files in .dat format.
 
     :param filepaths: Full paths to atomic density files.
     :type filepaths: list of str
@@ -256,12 +274,12 @@ def _parse_densities_dat(filepaths, sym2Z) -> dict:
         with open(filepath, "r") as f:
             for line in f:
                 line1 = line.strip().split()
-                if ((len(line1) == 1) and (line1[0].isalpha())):
+                if (len(line1) == 1) and (line1[0].isalpha()):
                     atom_z = sym2Z[line1[0].lower()]
-                    guessDM = ''
+                    guessDM = ""
                     line2 = f.readline().strip()
-                    while (len(line2) > 0):
-                        guessDM += (line2 + '\n')
+                    while len(line2) > 0:
+                        guessDM += line2 + "\n"
                         line2 = f.readline().strip()
                 basis_sets[basis_set][atom_z] = guessDM
 
@@ -286,11 +304,12 @@ def _parse_densities(filepaths, sym2Z, extension=".dat") -> dict:
     :rtype: dict
     """
 
-    if (extension == ".dat"):
+    if extension == ".dat":
         return _parse_densities_dat(filepaths, sym2Z)
     else:
         raise RuntimeError(
-            "Unsupported atomic density file format: {}".format(extension))
+            "Unsupported atomic density file format: {}".format(extension)
+        )
 
 
 def main(args: argparse.Namespace) -> None:
@@ -303,15 +322,16 @@ def main(args: argparse.Namespace) -> None:
     extensions = [".dat"]
 
     # Create some paths
-    my_dir = os.path.dirname(os.path.realpath(__file__))
     src_dir = os.path.abspath(args.src_dir)
     name_file = os.path.abspath(
-        os.path.join(args.atoms_dir, "ElementNames.txt"))
+        os.path.join(args.atoms_dir, "ElementNames.txt")
+    )
 
     # Discover atomic density files
     atomic_density_dir = os.path.abspath(args.atomic_density_dir)
-    atomic_density_filepaths = helpers.find_files(atomic_density_dir,
-                                                  extensions, args.recursive)
+    atomic_density_filepaths = helpers.find_files(
+        atomic_density_dir, extensions, args.recursive
+    )
 
     # Parse element information
     atoms = {}
@@ -328,8 +348,10 @@ def main(args: argparse.Namespace) -> None:
         #       atomic_densities version will be replaced by the
         #       parse_densities() version.
         basis_sets.update(
-            _parse_densities(atomic_density_filepaths[extension], sym2Z,
-                             extension))
+            _parse_densities(
+                atomic_density_filepaths[extension], sym2Z, extension
+            )
+        )
 
     _write_densities(src_dir, basis_sets)
 
@@ -346,22 +368,26 @@ def parse_args() -> argparse.Namespace:
     )
 
     parser.add_argument(
-        'atomic_density_dir',
+        "atomic_density_dir",
         type=str,
         help="""Source directory for basis set files. If combined
                              with the \"-r\" flag, this directory will be
-                             recursively searched for basis sets.""")
+                             recursively searched for basis sets.""",
+    )
 
     parser.add_argument(
-        'src_dir',
+        "src_dir",
         type=str,
-        help="Destination directory for generated source files.")
+        help="Destination directory for generated source files.",
+    )
 
-    parser.add_argument('-r',
-                        '--recursive',
-                        action="store_true",
-                        help="""Toggle on recursive search through the basis 
-                             set source directory. Default OFF.""")
+    parser.add_argument(
+        "-r",
+        "--recursive",
+        action="store_true",
+        help="""Toggle on recursive search through the basis
+                             set source directory. Default OFF.""",
+    )
 
     parser.add_argument(
         "-a",
@@ -369,7 +395,8 @@ def parse_args() -> argparse.Namespace:
         action="store",
         type=str,
         default="reference_data/physical_data",
-        help="The path to where ElementNames.txt can be found.")
+        help="The path to where ElementNames.txt can be found.",
+    )
 
     return parser.parse_args()
 

@@ -17,9 +17,9 @@
 Data Management
 ===============
 
-The scripts in this directory are used to populate the `reference_data` 
+The scripts in this directory are used to populate the `reference_data`
 directory and then generate source code from that data.
-    
+
 To Test generate_basis.py Locally
 =================================
 

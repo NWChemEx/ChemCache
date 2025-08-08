@@ -6,7 +6,7 @@
 #   download_reference_data.sh
 #
 # Notes:
-#   - This script assumes the dependencies in reference_data/requirements.txt 
+#   - This script assumes the dependencies in reference_data/requirements.txt
 #     have been installed using PIP into a virtual environment called "venv"
 
 set -e # Exit with error if any command fails

@@ -27,7 +27,7 @@ Usage
 
 ::
 
-   usage: generate_ptable_configs.py [-h] data_dir src_dir
+   usage: generate_ptable_configs.py [OPTIONS]... data_dir src_dir
 
    positional arguments:
      data_dir         Data directory for atomic information files.
@@ -38,14 +38,15 @@ Usage
 
 This script looks for the following file(s)::
 
-   +---data_dir  
-   |       ElementNames.txt  
-   |       NIST-ATOMICION.txt  
+   <data_dir>
+   ├── ElementNames.txt
+   └── NIST-ATOMICION.txt
 
 This script creates the following file(s)::
 
-   +---src_dir/atomic_configurations  
-   |       atomconfigs.cpp  
+   <src_dir>
+   └── atomic_configurations
+       └── atomconfigs.cpp
 """
 
 import argparse
@@ -57,12 +58,11 @@ import data_management.helper_fxns as helpers
 
 LMAX = 3
 NMAX = 7
-i_to_lchar = 'spdfgh'[:LMAX + 1]
+i_to_lchar = "spdfgh"[: LMAX + 1]
 lchar_to_i = {c: i for i, c in enumerate(i_to_lchar)}
 
 
 class AtomicData:
-
     def __init__(self):
         self.sym = ""
         self.name = ""
@@ -72,13 +72,12 @@ class AtomicData:
 
     @property
     def config_full(self):
-        """
-        return full electronic configuration (number of electrons for each (l, n))
+        """Full electronic configuration (number of electrons for each (l, n))
 
         :return: number of electrons for each (l, n); indexed by [l][n-(l+1)]
         :rtype: list[list[int]]
-
         """
+
         confs = []
         for li in range(LMAX + 1):
             tmp = []
@@ -89,12 +88,13 @@ class AtomicData:
 
     @property
     def config(self):
-        """
-        return reduced config (number of electrons per l)
+        """Reduced config (number of electrons per l)
 
         :return: (Ns, Np, Nd, ...)
         :rtype: tuple[int]
+
         """
+
         confs = [0] * (LMAX + 1)
         for li in range(LMAX + 1):
             for ni in range(NMAX):
@@ -102,11 +102,17 @@ class AtomicData:
         return tuple(confs)
 
     def __repr__(self):
-        return f"{self.Z} {self.name} {self.sym}\n{self.confstr}\n{self.config}\n{self.confdict}\n{self.config_full}"
+        repr_lines = [f"{self.Z} {self.name} {self.sym}"]
+        repr_lines.append(f"{self.confstr}")
+        repr_lines.append(f"{self.config}")
+        repr_lines.append(f"{self.confdict}")
+        repr_lines.append(f"{self.config_full}")
+
+        return repr_lines.join("\n")
 
 
 def parse_symbols(name_file: str, atoms: dict) -> None:
-    """Parse the given symbols file and add them to the existing atom 
+    """Parse the given symbols file and add them to the existing atom
     collection.
     Atoms will be added twice (same data with two keys) to allow access via
     either Z or Sym
@@ -116,16 +122,29 @@ def parse_symbols(name_file: str, atoms: dict) -> None:
 
     :param atoms: Current collection of atoms. Loaded atoms will be added here.
     :type atoms: dict
+
+    :raises RuntimeError: Z value was not able to be parsed properly.
     """
 
-    with open(name_file, 'r') as fin:
+    with open(name_file, "r") as fin:
+        line_number: int = 0
         for line in fin:
+            line_number += 1
             z, sym, name = line.strip().split()
-            z = int(z)
 
-            if not z in atoms:
+            try:
+                z = int(z)
+            except ValueError:
+                raise RuntimeError(
+                    (
+                        f"Invalid Z value: Failed to convert Z value of {z} "
+                        f"to an integer in {name_file}:{line_number}."
+                    )
+                )
+
+            if z not in atoms:
                 atoms[z] = AtomicData()
-            if not sym in atoms:
+            if sym not in atoms:
                 atoms[sym] = AtomicData()
 
             for k in (z, sym):
@@ -135,23 +154,43 @@ def parse_symbols(name_file: str, atoms: dict) -> None:
 
 
 def parse_config_str(sconf: str) -> dict:
-    """
-    parse an electronic configuration and return dict containing number
-    of electrons in each shell, indexed by (n,l)
+    """Parse an electronic configuration.
+
+    :param sconf: Electronic configuration string
+                  (TODO: specify exact format further)
+    :type sconf: str
+
+    :raises RuntimeError: Shell was unable to be parsed properly.
 
     :return: dictionary with number of electrons in each shell, indexed by
              (n, l) where n is an int and l is a str with length 1
     :rtype: dict[tuple[int,str],int]
     """
+
     conf_dict = defaultdict(int)
     rev_sconf = sconf[::-1]  # reverse config (easier to parse)
-    shells = re.findall(r'(\d*[a-z]\d)', rev_sconf)
+    shells = re.findall(r"(\d*[a-z]\d)", rev_sconf)
+
+    # TODO: Do we want the case of no shells found (len(shells) == 0) to be
+    #       an exception here?
+
     for shellrev in shells:
         shell = shellrev[::-1]  # put back in correct order
-        matches = re.match(r'(?P<n>\d)(?P<l>\w)(?P<e>\d*)', shell)
+        matches = re.match(r"(?P<n>\d)(?P<l>\w)(?P<e>\d*)", shell)
+
+        if matches is None:
+            # TODO: Make this a more specific exception
+            raise RuntimeError(
+                (
+                    "Invalid shell: unable to parse 'n', 'l', and 'e'."
+                    f"Shell: {shell}"
+                )
+            )
+
         # 1-elec shells have implicit 'e'
-        nelec = int(matches['e']) if matches['e'] else 1
-        conf_dict[int(matches['n']), matches['l']] += nelec
+        nelec = int(matches.group("e")) if matches.group("e") else 1
+        conf_dict[int(matches.group("n")), matches.group("l")] += nelec
+
     return dict(conf_dict)
 
 
@@ -170,6 +209,7 @@ def parse_nist_configs(ip_file: str, atoms: dict) -> None:
 
     :param atoms: Collection of atoms. Loaded configs will be added here.
     :type atoms: dict of AtomicData
+
     """
 
     def parse_cfg_line(line: str, atoms: dict) -> None:
@@ -181,15 +221,27 @@ def parse_nist_configs(ip_file: str, atoms: dict) -> None:
 
         :param atoms: dict of atoms
         :type atoms: dict[tuple[int,str],int]
+
+        :raises RuntimeError: Z value was not able to be parsed properly.
         """
+
         try:
             # ATOMCONFIGS-HF[S].txt have "Z, name, conf"
             # NIST-ATOMICION.txt has "Z, name, conf, IP sym"
             Z, name, conf_s0 = line.split()[:3]
-            Z = int(Z)
+
+            try:
+                Z = int(Z)
+            except ValueError:
+                raise RuntimeError(
+                    (
+                        f"Invalid Z value: Failed to convert Z value of {Z} "
+                        f"to an integer in {line}."
+                    )
+                )
 
             # get symbol for core if present
-            conf_s = conf_s0.strip('[').split(']')
+            conf_s = conf_s0.strip("[").split("]")
 
             # get core config as defaultdict
             if len(conf_s) == 2:
@@ -209,10 +261,14 @@ def parse_nist_configs(ip_file: str, atoms: dict) -> None:
             atoms[atoms[Z].sym].confdict = atoms[Z].confdict
             atoms[Z].confstr = conf_s0
             atoms[atoms[Z].sym].confstr = atoms[Z].confstr
-        except Exception as e:
+        # TODO: This should be moved out of this function and specifically name
+        #       exceptions that should not be fatal. Using the generic
+        #       Exception to catch everything can hide errors and is generally
+        #       considered bad practice.
+        except Exception:
             print(f"skipping line: {line.strip()}")
 
-    with open(ip_file, 'r') as fin:
+    with open(ip_file, "r") as fin:
         # parse config lines
         for line in fin:
             parse_cfg_line(line, atoms)
@@ -228,7 +284,7 @@ def _write_configs(out_dir: str, atoms: dict) -> None:
     :type atoms: dict of AtomicData
     """
 
-    src_template = '''
+    src_template = """
 #include "electronic_configurations.hpp"
 #include <simde/simde.hpp>
 
@@ -241,7 +297,7 @@ static constexpr auto module_desc = R"(
 Electronic Configurations
 ---------------------------------
 
-This module returns the electron configuration associated with the atomic 
+This module returns the electron configuration associated with the atomic
 number. This module was autogenerated.
 )";
 
@@ -262,7 +318,7 @@ MODULE_RUN(elec_configs) {{
     }}
 }}
 
-}} // namespace chemcache'''
+}} // namespace chemcache"""
 
     case_template = """{t}{t}case({Z}): {{
 {t}{t}{t}elec_config_t elec_config{{{values}}};
@@ -278,7 +334,7 @@ MODULE_RUN(elec_configs) {{
         entries.append(case_template.format(Z=Z, t=tab, values=values))
 
     out_file = os.path.join(out_dir, "electronic_configurations.cpp")
-    with open(out_file, 'w') as fout:
+    with open(out_file, "w") as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
         fout.write(src_template.format(cases="\n".join(entries)))
 
@@ -315,20 +371,25 @@ def parse_args() -> argparse.Namespace:
     :rtype: argparse.Namespace
     """
     parser = argparse.ArgumentParser(
-        description=
-        "This script is used to create the experimental data look up tables "
-        "for the atom class.")
+        description=(
+            "This script is used to create the experimental data look up "
+            "tables for the atom class."
+        )
+    )
 
-    parser.add_argument('data_dir',
-                        type=str,
-                        help="Data directory for atomic information files.")
     parser.add_argument(
-        'src_dir',
+        "data_dir",
         type=str,
-        help="Destination directory for generated source files.")
+        help="Data directory for atomic information files.",
+    )
+    parser.add_argument(
+        "src_dir",
+        type=str,
+        help="Destination directory for generated source files.",
+    )
 
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(parse_args())

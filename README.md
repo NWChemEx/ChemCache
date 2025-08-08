@@ -19,23 +19,23 @@ ChemCache
 
 [Documentation](https://nwchemex.github.io/ChemCache)
 
-This repo contains chemical reference data, *e.g.*, atomic basis sets, physical 
+This repo contains chemical reference data, *e.g.*, atomic basis sets, physical
 constants, molecular geometries, *etc.*.
 
 # Repo structure
 
 ChemCache has two release branches: `master` and `generated_data`. `master` only
-version controls the scripts for obtaining the reference data and the scripts 
-for generating the source files. `generated_data` additionally contains the 
-reference data and generated source files. Users of the repo can use whichever 
-branch of the repo is more convenient for them, as the branches are 
-automatically synchronized (*i.e*, changes to `master` will automatically cause 
+version controls the scripts for obtaining the reference data and the scripts
+for generating the source files. `generated_data` additionally contains the
+reference data and generated source files. Users of the repo can use whichever
+branch of the repo is more convenient for them, as the branches are
+automatically synchronized (*i.e*, changes to `master` will automatically cause
 `generated_data` to be updated).
 
 # Installation
 
-As with the majority of the NWChemEx stack, ChemCache uses CMake and the 
-[CMaize](https://github.com/CMakePP/CMaize) library for configuration and 
+As with the majority of the NWChemEx stack, ChemCache uses CMake and the
+[CMaize](https://github.com/CMakePP/CMaize) library for configuration and
 building. This means that installation is usually achieved via a variation on:
 
 ```.sh
@@ -56,6 +56,6 @@ More detailed install instructions can be found
 
 # Acknowledgments
 
-This research was supported by the Exascale Computing Project (17-SC-20-SC), a 
-collaborative effort of the U.S. Department of Energy Office of Science and the 
+This research was supported by the Exascale Computing Project (17-SC-20-SC), a
+collaborative effort of the U.S. Department of Energy Office of Science and the
 National Nuclear Security Administration.

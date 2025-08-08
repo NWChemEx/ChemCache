@@ -16,18 +16,14 @@
 
 import unittest
 
-from chemcache import load_modules
-
-from chemist import Atom
-from chemist import Molecule
-
+from chemist import Atom, Molecule
 from pluginplay import ModuleManager
-
 from simde import MoleculeFromString
+
+from chemcache import load_modules
 
 
 class TestMolecules(unittest.TestCase):
-
     def test_nwx_molecules(self):
         rv_mol = self.mm.run_as(MoleculeFromString(), "NWX Molecules", "water")
 

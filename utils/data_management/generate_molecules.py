@@ -20,16 +20,20 @@ Usage
 
 ::
 
-   usage: generate_molecules.py [-h] [--ang2au ANG2AU] [-r] [-a ATOMS_DIR] molecule_dir src_dir
-   
+   usage: generate_molecules.py [OPTIONS]... molecule_dir src_dir
+
    positional arguments:
-     molecule_dir          Data directory for molecule files. If combined with the "-r" flag, this directory will be recursively searched.
+     molecule_dir          Data directory for molecule files. If combined with
+                           the "-r" flag, this directory will be recursively
+                           searched.
      src_dir               Destination directory for generated source files.
-   
+
    options:
      -h, --help            show this help message and exit
-     --ang2au ANG2AU       Ratio of angstroms to atomic units. (Default: 1.8897161646320724)
-     -r, --recursive       Toggle on recursive search through molecule_dir directory. Default OFF.
+     --ang2au ANG2AU       Ratio of angstroms to atomic units.
+                           (Default: 1.8897161646320724)
+     -r, --recursive       Toggle on recursive search through molecule_dir
+                           directory. (Default: OFF)
      -a ATOMS_DIR, --atoms_dir ATOMS_DIR
                            The path to where ElementNames.txt can be found.
 
@@ -39,23 +43,21 @@ be present before running it.
 
 ::
 
-   +---src
-   |       load_molecules.cpp
+   <src_dir>
+   └── load_molecules.cpp
 """
 
 import argparse
-import io
 import os
 import re
 import sys
 
-from data_management.generate_atomicinfo import parse_symbols
 import data_management.helper_fxns as helpers
+from data_management.generate_atomicinfo import parse_symbols
 
 
 class Molecule:
-    """Representation of a molecule.
-    """
+    """Representation of a molecule."""
 
     def __init__(self) -> None:
         self.carts = []
@@ -116,11 +118,12 @@ class Molecule:
             lines.append(xyz.format(t=tab, x=x, y=y, z=z))
             lines.append(push.format(t=tab))
 
-        return '\n'.join(lines)
+        return "\n".join(lines)
 
 
-def _parse_molecules_xyz(filepaths: list, sym2Z: dict,
-                         ang2au: float) -> Molecule:
+def _parse_molecules_xyz(
+    filepaths: list, sym2Z: dict, ang2au: float
+) -> Molecule:
     """Parses an XYZ formatted molecule file.
 
     :param file_name: Full paths to molecule files.
@@ -142,13 +145,12 @@ def _parse_molecules_xyz(filepaths: list, sym2Z: dict,
 
     # Parse each molecule file
     for filepath in filepaths:
-
         # Let the user know which molecule is being parsed
-        print("Parsing {}...".format(os.path.basename(filepath)), end='')
+        print("Parsing {}...".format(os.path.basename(filepath)), end="")
         sys.stdout.flush()
 
         molecule = Molecule()
-        with open(filepath, 'r') as fin:
+        with open(filepath, "r") as fin:
             for line in fin:
                 is_match = re.match(an_atom, line)
 
@@ -156,7 +158,8 @@ def _parse_molecules_xyz(filepaths: list, sym2Z: dict,
                     (sym, str_carts) = is_match.groups()
                     Z = sym2Z[sym.lower()]
                     molecule.add_atom(
-                        Z, [float(x) * ang2au for x in str_carts.split()])
+                        Z, [float(x) * ang2au for x in str_carts.split()]
+                    )
 
         # Add the molecule to the dictionary of molecules
         molecule_name = os.path.splitext(os.path.basename(filepath))[0]
@@ -168,10 +171,9 @@ def _parse_molecules_xyz(filepaths: list, sym2Z: dict,
     return molecules
 
 
-def _parse_molecules(filepaths: list,
-                     sym2Z: dict,
-                     ang2au: float,
-                     extension: str = ".xyz") -> dict:
+def _parse_molecules(
+    filepaths: list, sym2Z: dict, ang2au: float, extension: str = ".xyz"
+) -> dict:
     """Parse molecule files of the specified format.
 
     :param filepaths: Full paths to molecule files.
@@ -192,11 +194,12 @@ def _parse_molecules(filepaths: list,
     :rtype: dict of Molecule
     """
 
-    if (extension == ".xyz"):
+    if extension == ".xyz":
         return _parse_molecules_xyz(filepaths, sym2Z, ang2au)
     else:
         raise RuntimeError(
-            "Unsupported molecule file format: {}".format(extension))
+            "Unsupported molecule file format: {}".format(extension)
+        )
 
 
 def _write_load_molecules(src_dir: str, mols: dict, tab: str = "    ") -> None:
@@ -213,7 +216,7 @@ def _write_load_molecules(src_dir: str, mols: dict, tab: str = "    ") -> None:
     """
 
     # The template we'll be filling values into
-    src_template = '''
+    src_template = """
 #include "molecules.hpp"
 #include <simde/chemical_system/atom.hpp>
 #include <simde/chemical_system/molecule_from_string.hpp>
@@ -262,7 +265,7 @@ MODULE_RUN(default_molecules) {{
 }}
 
 }} // namespace chemcache
-'''
+"""
 
     entry_template = 'if(name == "{n}") {{\n{c}\n{t}}}'
 
@@ -272,7 +275,7 @@ MODULE_RUN(default_molecules) {{
         contents = molecule.cxxify(tab)
         entries.append(entry_template.format(n=name, c=contents, t=tab))
 
-    with open(os.path.join(src_dir, "molecules.cpp"), 'w') as fout:
+    with open(os.path.join(src_dir, "molecules.cpp"), "w") as fout:
         helpers.write_warning(fout, os.path.basename(__file__))
         fout.write(src_template.format(entries=" else ".join(entries)))
 
@@ -287,15 +290,16 @@ def main(args: argparse.Namespace) -> None:
     extensions = [".xyz"]
 
     # Create some paths
-    my_dir = os.path.dirname(os.path.realpath(__file__))
     src_dir = os.path.abspath(args.src_dir)
     name_file = os.path.abspath(
-        os.path.join(args.atoms_dir, "ElementNames.txt"))
+        os.path.join(args.atoms_dir, "ElementNames.txt")
+    )
 
     # Discover molecule files
     molecule_dir = os.path.abspath(args.molecule_dir)
-    molecule_filepaths = helpers.find_files(molecule_dir, extensions,
-                                            args.recursive)
+    molecule_filepaths = helpers.find_files(
+        molecule_dir, extensions, args.recursive
+    )
 
     # Parse element information
     atoms = {}
@@ -311,10 +315,12 @@ def main(args: argparse.Namespace) -> None:
         #       `molecules` version will be replaced by the
         #       `parse_molecules()` version.
         molecules.update(
-            _parse_molecules(molecule_filepaths[extension], sym2Z, args.ang2au,
-                             extension))
+            _parse_molecules(
+                molecule_filepaths[extension], sym2Z, args.ang2au, extension
+            )
+        )
 
-    print("Writing molecules to file...", end='')
+    print("Writing molecules to file...", end="")
     sys.stdout.flush()
 
     _write_load_molecules(src_dir, molecules)
@@ -330,32 +336,42 @@ def parse_args() -> argparse.Namespace:
     """
 
     parser = argparse.ArgumentParser(
-        description=
-        "This script will read each molecule file in the provided directory"
-        "and generate a C++ source file with commands to make each molecule.")
-
-    parser.add_argument('molecule_dir',
-                        type=str,
-                        help="""Data directory for molecule files. If
-                             combined with the \"-r\" flag, this directory
-                             will be recursively searched.""")
+        description=(
+            "This script will read each molecule file in the provided"
+            "directory and generate a C++ source file with commands to make"
+            "each molecule."
+        )
+    )
 
     parser.add_argument(
-        'src_dir',
+        "molecule_dir",
         type=str,
-        help="Destination directory for generated source files.")
+        help="""Data directory for molecule files. If
+                             combined with the \"-r\" flag, this directory
+                             will be recursively searched.""",
+    )
 
-    parser.add_argument('--ang2au',
-                        type=float,
-                        default=1.8897161646320724,
-                        help="""Ratio of angstroms to atomic units.
-                             (Default: 1.8897161646320724)""")
+    parser.add_argument(
+        "src_dir",
+        type=str,
+        help="Destination directory for generated source files.",
+    )
 
-    parser.add_argument('-r',
-                        '--recursive',
-                        action="store_true",
-                        help="""Toggle on recursive search through molecule_dir
-                             directory. Default OFF.""")
+    parser.add_argument(
+        "--ang2au",
+        type=float,
+        default=1.8897161646320724,
+        help="""Ratio of angstroms to atomic units.
+                             (Default: 1.8897161646320724)""",
+    )
+
+    parser.add_argument(
+        "-r",
+        "--recursive",
+        action="store_true",
+        help="""Toggle on recursive search through molecule_dir
+                             directory. Default OFF.""",
+    )
 
     parser.add_argument(
         "-a",
@@ -363,7 +379,8 @@ def parse_args() -> argparse.Namespace:
         action="store",
         type=str,
         default="reference_data/physical_data",
-        help="The path to where ElementNames.txt can be found.")
+        help="The path to where ElementNames.txt can be found.",
+    )
 
     return parser.parse_args()
 

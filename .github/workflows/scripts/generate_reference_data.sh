@@ -45,7 +45,7 @@ python ${SCRIPTS_DIR}/generate_basis.py ${BASIS_SETS} ${BASES} -r
 echo "Calling ${SCRIPTS_DIR}/generate_molecules.py ${MOLECULES} ${MOLES} -r"
 python ${SCRIPTS_DIR}/generate_molecules.py ${MOLECULES} ${MOLES} -r
 
-echo "Calling ${SCRIPTS_DIR}/generate_densities.py ${DENSITIES} ${ATOM_DEN} -r" 
+echo "Calling ${SCRIPTS_DIR}/generate_densities.py ${DENSITIES} ${ATOM_DEN} -r"
 python ${SCRIPTS_DIR}/generate_densities.py ${DENSITIES} ${ATOM_DEN} -r
 
 # echo "Calling ${SCRIPTS_DIR}/generate_elec_configs.py ${ATOMIC_INFO} ${ELEC_CONFIGS}"
