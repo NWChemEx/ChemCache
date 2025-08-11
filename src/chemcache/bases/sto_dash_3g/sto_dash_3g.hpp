@@ -1,7 +1,7 @@
 #pragma once
 #include <simde/types.hpp>
 /*
- * Copyright 2022 NWChemEx-Project
+ * Copyright 2025 NWChemEx-Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,4 +77,4 @@ simde::type::atomic_basis_set sto_dash_3g_51();
 simde::type::atomic_basis_set sto_dash_3g_52();
 simde::type::atomic_basis_set sto_dash_3g_53();
 simde::type::atomic_basis_set sto_dash_3g_54();
-} // namespace chemcache
+}
