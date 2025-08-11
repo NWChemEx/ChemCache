@@ -16,24 +16,15 @@
 
 import unittest
 
-from chemcache import load_modules
-
-from chemist import Atom
-from chemist import Molecule
-from chemist import ShellType
-from chemist import PointD
-from chemist.basis_set import ShellD
-from chemist.basis_set import AtomicBasisSetD
-from chemist.basis_set import AOBasisSetD
-
+from chemist import Atom, Molecule, PointD, ShellType
+from chemist.basis_set import AOBasisSetD, AtomicBasisSetD, ShellD
 from pluginplay import ModuleManager
+from simde import AtomicBasisSetFromZ, MolecularBasisSet
 
-from simde import AtomicBasisSetFromZ
-from simde import MolecularBasisSet
+from chemcache import load_modules
 
 
 class TestBases(unittest.TestCase):
-
     def test_atomic_basis_set(self):
         rv_bs = self.mm.run_as(AtomicBasisSetFromZ(), "sto-3g atomic basis", 1)
         self.assertEqual(rv_bs, self._h(0.0))
@@ -60,7 +51,7 @@ class TestBases(unittest.TestCase):
 
     def _h(self, r):
         cs = [1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01]
-        es = [3.4252509140e+00, 6.2391372980e-01, 1.6885540400e-01]
+        es = [3.4252509140e00, 6.2391372980e-01, 1.6885540400e-01]
         shell = ShellD(ShellType.pure, 0, cs, es, r, r, r)
         h = AtomicBasisSetD("sto-3g", 1, PointD(r, r, r), [shell])
         return h

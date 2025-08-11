@@ -16,19 +16,14 @@
 
 import unittest
 
-from chemcache import load_modules
-
 from chemist import Atom
-
 from pluginplay import ModuleManager
+from simde import AtomFromZ, SymbolFromZ, ZFromSymbol
 
-from simde import AtomFromZ
-from simde import SymbolFromZ
-from simde import ZFromSymbol
+from chemcache import load_modules
 
 
 class TestAtoms(unittest.TestCase):
-
     def test_atoms_average(self):
         h = Atom("H", 1, 1837.4260218693814, 0.0, 0.0, 0.0)
         o = Atom("O", 8, 29165.122045980286, 0.0, 0.0, 0.0)
@@ -46,7 +41,7 @@ class TestAtoms(unittest.TestCase):
         rv_sym = self.mm.run_as(SymbolFromZ(), "Symbol from Z", 8)
         self.assertEqual(rv_sym, "O")
 
-        with self.assertRaises(IndexError) as cm:
+        with self.assertRaises(IndexError):
             rv_sym = self.mm.run_as(SymbolFromZ(), "Symbol from Z", 1000)
 
     def test_Z_from_sym(self):
@@ -56,7 +51,7 @@ class TestAtoms(unittest.TestCase):
         rv_Z = self.mm.run_as(ZFromSymbol(), "Z From Symbol", "O")
         self.assertEqual(rv_Z, 8)
 
-        with self.assertRaises(IndexError) as cm:
+        with self.assertRaises(IndexError):
             rv_Z = self.mm.run_as(ZFromSymbol(), "Z From Symbol", "NWX")
 
     def setUp(self):
