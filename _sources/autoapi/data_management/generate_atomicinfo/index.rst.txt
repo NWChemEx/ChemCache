@@ -13,7 +13,8 @@ data_management.generate_atomicinfo
 
    In order to run, this script needs to know the location of the data directory
    to read from and the `src` code directory to output the result into. One can
-   also optionally provide a nondefault value for the electron mass to Dalton ratio.
+   also optionally provide a nondefault value for the electron mass to Dalton
+   ratio.
 
    For readability and convenience we use a few abbreviations throughout this
    script:
@@ -26,7 +27,7 @@ data_management.generate_atomicinfo
 
    ::
 
-      usage: generate_atomicinfo.py [-h] [--amu2me AMU2ME] data_dir src_dir
+      usage: generate_atomicinfo.py [OPTIONS]... data_dir src_dir
 
       positional arguments:
         data_dir         Data directory for atomic information files.
@@ -34,19 +35,20 @@ data_management.generate_atomicinfo
 
       optional arguments:
         -h, --help       show this help message and exit
-        --amu2me AMU2ME  Ratio of mass of electron to one Dalton. (Default: 1822.888486192)
+        --amu2me AMU2ME  Ratio of mass of electron to one Dalton.
+                         (Default: 1822.888486192)
 
    This script looks for the following file(s)::
 
-      +---data_dir
-      |       ElementNames.txt
-      |       CIAAW-ISOTOPEMASSES.txt
-      |       CIAAW-MASSES.txt
+      <data_dir>
+      ├── ElementNames.txt
+      ├── CIAAW-ISOTOPEMASSES.txt
+      └── CIAAW-MASSES.txt
 
    This script creates the following file(s)::
 
-      +---src_dir
-      |       load_elements.hpp
+      <src_dir>
+      └── load_elements.hpp
 
 
 

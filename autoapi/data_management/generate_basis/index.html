@@ -104,7 +104,7 @@
 that will fill them in.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_basis</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">a</span> <span class="n">ATOMS_DIR</span><span class="p">]</span> <span class="n">basis_set_source</span> <span class="n">src_dir</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_basis</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span><span class="o">...</span> <span class="n">basis_set_source</span> <span class="n">src_dir</span>
 
 <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
 <span class="n">basis_set_source</span>      <span class="n">Source</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">basis</span> <span class="nb">set</span> <span class="n">files</span><span class="o">.</span> <span class="n">If</span> <span class="n">combined</span> <span class="k">with</span>
@@ -123,11 +123,11 @@ that will fill them in.</p>
 <p>This script creates the following files based on the include and source
 directories given. The directories are not created by this script and must
 be present before running it.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">src_dir</span>
-<span class="o">|</span>   \<span class="o">---</span><span class="n">bases</span>
-<span class="o">|</span>           <span class="o">&lt;</span><span class="n">all_basis_set_files</span><span class="o">&gt;</span>
-<span class="o">|</span>       <span class="n">basis_set_list</span><span class="o">.</span><span class="n">hpp</span>
-<span class="o">|</span>       <span class="n">load_basis_sets</span><span class="o">.</span><span class="n">cpp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;src_dir&gt;
+├── bases
+│   └── &lt;all_basis_set_files&gt;
+├── basis_set_list.hpp
+└── load_basis_sets.cpp
 </pre></div>
 </div>
 </section>
@@ -266,14 +266,14 @@ be present before running it.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_management.generate_basis._parse_bases_gbs">
-<span class="sig-prename descclassname"><span class="pre">data_management.generate_basis.</span></span><span class="sig-name descname"><span class="pre">_parse_bases_gbs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_set_filenames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_basis._parse_bases_gbs" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_basis.</span></span><span class="sig-name descname"><span class="pre">_parse_bases_gbs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_set_filenames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_basis._parse_bases_gbs" title="Link to this definition"></a></dt>
 <dd><p>Parses basis set files from the filepaths given.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>basis_set_filepaths</strong> (<em>list</em>) – Full paths to basis set files.</p></li>
 <li><p><strong>sym2Z</strong> (<em>dict</em>) – Dictionary associating atomic symbols to atomic numbers</p></li>
-<li><p><strong>l2num</strong> (<em>function</em>) – Function associating orbital letters with a number</p></li>
+<li><p><strong>l2num</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>, </em><em>int</em><em>]</em>) – Function associating orbital letters with a number</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -287,14 +287,14 @@ be present before running it.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_management.generate_basis._parse_bases_nw">
-<span class="sig-prename descclassname"><span class="pre">data_management.generate_basis.</span></span><span class="sig-name descname"><span class="pre">_parse_bases_nw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_set_filepaths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_basis._parse_bases_nw" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_basis.</span></span><span class="sig-name descname"><span class="pre">_parse_bases_nw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_set_filepaths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_basis._parse_bases_nw" title="Link to this definition"></a></dt>
 <dd><p>Parses basis set files from the filepaths given.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>basis_set_filepaths</strong> (<em>list</em>) – Full paths to basis set files.</p></li>
 <li><p><strong>sym2Z</strong> (<em>dict</em>) – Dictionary associating atomic symbols to atomic numbers</p></li>
-<li><p><strong>l2num</strong> (<em>function</em>) – Function associating orbital letters with a number</p></li>
+<li><p><strong>l2num</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>, </em><em>int</em><em>]</em>) – Function associating orbital letters with a number</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -308,7 +308,7 @@ be present before running it.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_management.generate_basis._parse_bases">
-<span class="sig-prename descclassname"><span class="pre">data_management.generate_basis.</span></span><span class="sig-name descname"><span class="pre">_parse_bases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_set_filepaths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nwchem'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_basis._parse_bases" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_management.generate_basis.</span></span><span class="sig-name descname"><span class="pre">_parse_bases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_set_filepaths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sym2Z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'nwchem'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_basis._parse_bases" title="Link to this definition"></a></dt>
 <dd><p>Parse basis set files of the specified format.</p>
 <p>This function redirects to the correct parsing function based on the file
 format given. The data structure returned is a dict with basis set
@@ -324,7 +324,7 @@ numbers as keys and a list of Shell as the values. This makes a structure,
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>basis_set_filepaths</strong> (<em>list</em><em> of </em><em>str</em>) – Full paths to basis set files.</p></li>
 <li><p><strong>sym2Z</strong> (<em>dict</em>) – Mapping from lowercased atomic symbols to atomic numbers</p></li>
-<li><p><strong>l2num</strong> (<em>function</em>) – Conversion function from shell symbol (s, p, d, f, etc)
+<li><p><strong>l2num</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>, </em><em>int</em><em>]</em>) – Conversion function from shell symbol (s, p, d, f, etc)
 to the corresponding number (0, 1, 2, 3, etc)</p></li>
 <li><p><strong>format</strong> (<em>str</em><em>, </em><em>optional</em>) – File formatting to parse, defaults to “nwchem”</p></li>
 </ul>

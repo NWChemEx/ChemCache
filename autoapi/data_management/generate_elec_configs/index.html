@@ -112,7 +112,7 @@ script:</p>
 </ul>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_ptable_configs</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">data_dir</span> <span class="n">src_dir</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_ptable_configs</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span><span class="o">...</span> <span class="n">data_dir</span> <span class="n">src_dir</span>
 
 <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
   <span class="n">data_dir</span>         <span class="n">Data</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">atomic</span> <span class="n">information</span> <span class="n">files</span><span class="o">.</span>
@@ -123,14 +123,15 @@ script:</p>
 </pre></div>
 </div>
 <p>This script looks for the following file(s):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">data_dir</span>
-<span class="o">|</span>       <span class="n">ElementNames</span><span class="o">.</span><span class="n">txt</span>
-<span class="o">|</span>       <span class="n">NIST</span><span class="o">-</span><span class="n">ATOMICION</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;data_dir&gt;
+├── ElementNames.txt
+└── NIST-ATOMICION.txt
 </pre></div>
 </div>
 <p>This script creates the following file(s):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">src_dir</span><span class="o">/</span><span class="n">atomic_configurations</span>
-<span class="o">|</span>       <span class="n">atomconfigs</span><span class="o">.</span><span class="n">cpp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;src_dir&gt;
+└── atomic_configurations
+    └── atomconfigs.cpp
 </pre></div>
 </div>
 </section>
@@ -171,7 +172,7 @@ script:</p>
 <td><p>Parse the given symbols file and add them to the existing atom</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_config_str" title="data_management.generate_elec_configs.parse_config_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_config_str</span></code></a>(→ dict)</p></td>
-<td><p>parse an electronic configuration and return dict containing number</p></td>
+<td><p>Parse an electronic configuration.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_nist_configs" title="data_management.generate_elec_configs.parse_nist_configs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_nist_configs</span></code></a>(→ None)</p></td>
 <td><p>Parses file containing ionization energy data from the NIST Atomic</p></td>
@@ -241,7 +242,7 @@ script:</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="data_management.generate_elec_configs.AtomicData.config_full">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config_full</span></span><a class="headerlink" href="#data_management.generate_elec_configs.AtomicData.config_full" title="Link to this definition"></a></dt>
-<dd><p>return full electronic configuration (number of electrons for each (l, n))</p>
+<dd><p>Full electronic configuration (number of electrons for each (l, n))</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>number of electrons for each (l, n); indexed by [l][n-(l+1)]</p>
@@ -255,7 +256,7 @@ script:</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="data_management.generate_elec_configs.AtomicData.config">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#data_management.generate_elec_configs.AtomicData.config" title="Link to this definition"></a></dt>
-<dd><p>return reduced config (number of electrons per l)</p>
+<dd><p>Reduced config (number of electrons per l)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(Ns, Np, Nd, …)</p>
@@ -287,15 +288,24 @@ either Z or Sym</p>
 <li><p><strong>atoms</strong> (<em>dict</em>) – Current collection of atoms. Loaded atoms will be added here.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Z value was not able to be parsed properly.</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_management.generate_elec_configs.parse_config_str">
 <span class="sig-prename descclassname"><span class="pre">data_management.generate_elec_configs.</span></span><span class="sig-name descname"><span class="pre">parse_config_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sconf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#data_management.generate_elec_configs.parse_config_str" title="Link to this definition"></a></dt>
-<dd><p>parse an electronic configuration and return dict containing number
-of electrons in each shell, indexed by (n,l)</p>
+<dd><p>Parse an electronic configuration.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sconf</strong> (<em>str</em>) – Electronic configuration string
+(TODO: specify exact format further)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Shell was unable to be parsed properly.</p>
+</dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dictionary with number of electrons in each shell, indexed by
 (n, l) where n is an int and l is a str with length 1</p>

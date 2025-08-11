@@ -108,7 +108,8 @@ atom class.</p>
 </div>
 <p>In order to run, this script needs to know the location of the data directory
 to read from and the <cite>src</cite> code directory to output the result into. One can
-also optionally provide a nondefault value for the electron mass to Dalton ratio.</p>
+also optionally provide a nondefault value for the electron mass to Dalton
+ratio.</p>
 <p>For readability and convenience we use a few abbreviations throughout this
 script:</p>
 <ul class="simple">
@@ -117,7 +118,7 @@ script:</p>
 </ul>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_atomicinfo</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">amu2me</span> <span class="n">AMU2ME</span><span class="p">]</span> <span class="n">data_dir</span> <span class="n">src_dir</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">generate_atomicinfo</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span><span class="o">...</span> <span class="n">data_dir</span> <span class="n">src_dir</span>
 
 <span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
   <span class="n">data_dir</span>         <span class="n">Data</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">atomic</span> <span class="n">information</span> <span class="n">files</span><span class="o">.</span>
@@ -125,19 +126,20 @@ script:</p>
 
 <span class="n">optional</span> <span class="n">arguments</span><span class="p">:</span>
   <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>       <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
-  <span class="o">--</span><span class="n">amu2me</span> <span class="n">AMU2ME</span>  <span class="n">Ratio</span> <span class="n">of</span> <span class="n">mass</span> <span class="n">of</span> <span class="n">electron</span> <span class="n">to</span> <span class="n">one</span> <span class="n">Dalton</span><span class="o">.</span> <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="mf">1822.888486192</span><span class="p">)</span>
+  <span class="o">--</span><span class="n">amu2me</span> <span class="n">AMU2ME</span>  <span class="n">Ratio</span> <span class="n">of</span> <span class="n">mass</span> <span class="n">of</span> <span class="n">electron</span> <span class="n">to</span> <span class="n">one</span> <span class="n">Dalton</span><span class="o">.</span>
+                   <span class="p">(</span><span class="n">Default</span><span class="p">:</span> <span class="mf">1822.888486192</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This script looks for the following file(s):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">data_dir</span>
-<span class="o">|</span>       <span class="n">ElementNames</span><span class="o">.</span><span class="n">txt</span>
-<span class="o">|</span>       <span class="n">CIAAW</span><span class="o">-</span><span class="n">ISOTOPEMASSES</span><span class="o">.</span><span class="n">txt</span>
-<span class="o">|</span>       <span class="n">CIAAW</span><span class="o">-</span><span class="n">MASSES</span><span class="o">.</span><span class="n">txt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;data_dir&gt;
+├── ElementNames.txt
+├── CIAAW-ISOTOPEMASSES.txt
+└── CIAAW-MASSES.txt
 </pre></div>
 </div>
 <p>This script creates the following file(s):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+---</span><span class="n">src_dir</span>
-<span class="o">|</span>       <span class="n">load_elements</span><span class="o">.</span><span class="n">hpp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;src_dir&gt;
+└── load_elements.hpp
 </pre></div>
 </div>
 </section>

@@ -12,18 +12,20 @@ data_management.generate_densities
 
    ::
 
-      usage: generate_densities.py [-h] [-r] [-a ATOMS_DIR] atomic_density_dir src_dir
+      usage: generate_densities.py [OPTIONS]... atomic_density_dir src_dir
 
       positional arguments:
-        atomic_density_dir    Source directory for basis set files. If combined with the "-r" flag, this directory will be recursively searched for basis sets.
+        atomic_density_dir    Source directory for basis set files. If combined
+                              with the "-r" flag, this directory will be
+                              recursively searched for basis sets.
         src_dir               Destination directory for generated source files.
-      
+
       options:
         -h, --help            show this help message and exit
-        -r, --recursive       Toggle on recursive search through the basis set source directory. Default OFF.
+        -r, --recursive       Toggle on recursive search through the basis set
+                              source directory. (Default: OFF)
         -a ATOMS_DIR, --atoms_dir ATOMS_DIR
                               The path to where ElementNames.txt can be found.
-          
 
 
 
@@ -64,7 +66,7 @@ Module Contents
 
 .. py:function:: _parse_densities_dat(filepaths, sym2Z) -> dict
 
-   Parse atomic density files in .dat format. 
+   Parse atomic density files in .dat format.
 
    :param filepaths: Full paths to atomic density files.
    :type filepaths: list of str

@@ -6,26 +6,26 @@ data_management.generate_basis
 .. autoapi-nested-parse::
 
    This script will loop over a series of basis sets and write out a file
-   that will fill them in. 
+   that will fill them in.
 
    Usage
    -----
 
    ::
 
-      usage: generate_basis.py [-h] [-r] [-a ATOMS_DIR] basis_set_source src_dir
+      usage: generate_basis.py [OPTIONS]... basis_set_source src_dir
 
       positional arguments:
-      basis_set_source      Source directory for basis set files. If combined with 
-                            the "-r" flag, this directory will be recursively 
+      basis_set_source      Source directory for basis set files. If combined with
+                            the "-r" flag, this directory will be recursively
                             searched for basis sets.
       src_dir               Destination directory for generated source files.
-      
+
       options:
       -h, --help            show this help message and exit
-      -r, --recursive       Toggle on recursive search through the basis set 
+      -r, --recursive       Toggle on recursive search through the basis set
                             source directory. Default OFF.
-      -a ATOMS_DIR, --atoms_dir ATOMS_DIR 
+      -a ATOMS_DIR, --atoms_dir ATOMS_DIR
                             The path to where ElementNames.txt can be found.
 
    This script creates the following files based on the include and source
@@ -34,11 +34,11 @@ data_management.generate_basis
 
    ::
 
-      +---src_dir
-      |   \---bases
-      |           <all_basis_set_files>
-      |       basis_set_list.hpp
-      |       load_basis_sets.cpp
+      <src_dir>
+      ├── bases
+      │   └── <all_basis_set_files>
+      ├── basis_set_list.hpp
+      └── load_basis_sets.cpp
 
 
 
@@ -71,7 +71,6 @@ Module Contents
 .. py:class:: Shell(ls: list, num_format: str = '.10e', is_pure=True)
 
    Class representing a shell for an element.
-       
 
 
    .. py:attribute:: ls
@@ -144,7 +143,7 @@ Module Contents
        :type tab: str, optional
 
 
-.. py:function:: _parse_bases_gbs(basis_set_filenames: list, sym2Z: dict, l2num: function) -> dict
+.. py:function:: _parse_bases_gbs(basis_set_filenames: list, sym2Z: dict, l2num: Callable[[str], int]) -> dict
 
    Parses basis set files from the filepaths given.
 
@@ -155,13 +154,13 @@ Module Contents
    :type sym2Z: dict
 
    :param l2num: Function associating orbital letters with a number
-   :type l2num: function
+   :type l2num: Callable[[str], int]
 
    :return: Collection of basis sets and the supported elements of each.
    :rtype: dict
 
 
-.. py:function:: _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: function) -> dict
+.. py:function:: _parse_bases_nw(basis_set_filepaths: list, sym2Z: dict, l2num: Callable[[str], int]) -> dict
 
    Parses basis set files from the filepaths given.
 
@@ -172,13 +171,13 @@ Module Contents
    :type sym2Z: dict
 
    :param l2num: Function associating orbital letters with a number
-   :type l2num: function
+   :type l2num: Callable[[str], int]
 
    :return: Collection of basis sets and the supported elements of each.
    :rtype: dict
 
 
-.. py:function:: _parse_bases(basis_set_filepaths: list, sym2Z: dict, l2num: function, format: str = 'nwchem') -> dict
+.. py:function:: _parse_bases(basis_set_filepaths: list, sym2Z: dict, l2num: Callable[[str], int], format: str = 'nwchem') -> dict
 
    Parse basis set files of the specified format.
 
@@ -201,7 +200,7 @@ Module Contents
 
    :param l2num: Conversion function from shell symbol (s, p, d, f, etc)
        to the corresponding number (0, 1, 2, 3, etc)
-   :type l2num: function
+   :type l2num: Callable[[str], int]
 
    :param format: File formatting to parse, defaults to "nwchem"
    :type format: str, optional

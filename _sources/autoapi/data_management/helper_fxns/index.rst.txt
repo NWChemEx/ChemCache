@@ -5,7 +5,7 @@ data_management.helper_fxns
 
 .. autoapi-nested-parse::
 
-   This file contains helper functions used throughout the various parsing 
+   This file contains helper functions used throughout the various parsing
    scripts in this directory.
 
 
@@ -40,7 +40,7 @@ Module Contents
        defaults to False
    :type recursive: bool
 
-   :return: Dictionary of file extensions mapping to lists of full paths to 
+   :return: Dictionary of file extensions mapping to lists of full paths to
        files found with the respective extension
    :rtype: dict of lists
 
@@ -52,13 +52,13 @@ Module Contents
    :param format: BSE basis set file format identifier.
    :type format: str
    :return: Extension for the file format.
-   :rtype: str 
+   :rtype: str
 
 
 .. py:function:: sanitize_basis_name(bs_name)
 
    Sanitizes the basis set name. For example, replace numbers with the
-   corresponding word and hyphens, plus-signs, and other symbols with 
+   corresponding word and hyphens, plus-signs, and other symbols with
    underscores.
 
    :param bs_name: Basis set name
@@ -92,7 +92,7 @@ Module Contents
    :type script_name: str
 
    :param prefix: An optional, additional prefix to be added to every line of
-       the warning comment. This is a quick an dirty fix to output this 
+       the warning comment. This is a quick an dirty fix to output this
        warning to non-C++ files, where comments may be different.
        Defaults to "".
    :type prefix: str

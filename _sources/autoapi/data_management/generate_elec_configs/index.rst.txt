@@ -20,7 +20,7 @@ data_management.generate_elec_configs
 
    ::
 
-      usage: generate_ptable_configs.py [-h] data_dir src_dir
+      usage: generate_ptable_configs.py [OPTIONS]... data_dir src_dir
 
       positional arguments:
         data_dir         Data directory for atomic information files.
@@ -31,14 +31,15 @@ data_management.generate_elec_configs
 
    This script looks for the following file(s)::
 
-      +---data_dir  
-      |       ElementNames.txt  
-      |       NIST-ATOMICION.txt  
+      <data_dir>
+      ├── ElementNames.txt
+      └── NIST-ATOMICION.txt
 
    This script creates the following file(s)::
 
-      +---src_dir/atomic_configurations  
-      |       atomconfigs.cpp  
+      <src_dir>
+      └── atomic_configurations
+          └── atomconfigs.cpp
 
 
 
@@ -118,20 +119,20 @@ Module Contents
 
    .. py:property:: config_full
 
-      return full electronic configuration (number of electrons for each (l, n))
+      Full electronic configuration (number of electrons for each (l, n))
 
       :return: number of electrons for each (l, n); indexed by [l][n-(l+1)]
       :rtype: list[list[int]]
 
 
 
-
    .. py:property:: config
 
-      return reduced config (number of electrons per l)
+      Reduced config (number of electrons per l)
 
       :return: (Ns, Np, Nd, ...)
       :rtype: tuple[int]
+
 
 
 
@@ -140,7 +141,7 @@ Module Contents
 
 .. py:function:: parse_symbols(name_file: str, atoms: dict) -> None
 
-   Parse the given symbols file and add them to the existing atom 
+   Parse the given symbols file and add them to the existing atom
    collection.
    Atoms will be added twice (same data with two keys) to allow access via
    either Z or Sym
@@ -151,11 +152,18 @@ Module Contents
    :param atoms: Current collection of atoms. Loaded atoms will be added here.
    :type atoms: dict
 
+   :raises RuntimeError: Z value was not able to be parsed properly.
+
 
 .. py:function:: parse_config_str(sconf: str) -> dict
 
-   parse an electronic configuration and return dict containing number
-   of electrons in each shell, indexed by (n,l)
+   Parse an electronic configuration.
+
+   :param sconf: Electronic configuration string
+                 (TODO: specify exact format further)
+   :type sconf: str
+
+   :raises RuntimeError: Shell was unable to be parsed properly.
 
    :return: dictionary with number of electrons in each shell, indexed by
             (n, l) where n is an int and l is a str with length 1
@@ -178,6 +186,7 @@ Module Contents
 
    :param atoms: Collection of atoms. Loaded configs will be added here.
    :type atoms: dict of AtomicData
+
 
 
 .. py:function:: _write_configs(out_dir: str, atoms: dict) -> None
