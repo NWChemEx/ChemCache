@@ -48,10 +48,11 @@ TEST_CASE("Atom Isotope") {
     SECTION("Out of Range") {
         SECTION("Z Out of Range") {
             input_t in{1000, 1};
-            REQUIRE_THROWS_MATCHES(atom_mod.run_as<isotope_pt>(in),
-                                   std::out_of_range,
-                                   Message("Isotopes not available for Z: " +
-                                           std::to_string(in.first)));
+            auto z_string = std::to_string(in.first);
+
+            REQUIRE_THROWS_MATCHES(
+              atom_mod.run_as<isotope_pt>(in), std::out_of_range,
+              Message("Isotopes not available for Z: " + z_string));
         }
         SECTION("N Out of Range") {
             input_t in{1, 10000};
