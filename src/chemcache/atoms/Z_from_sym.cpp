@@ -286,7 +286,7 @@ MODULE_RUN(Z_from_sym) {
     } else if(sym == "Og") {
         Z = 118;
     } else {
-        throw std::out_of_range("Z not available for Symbol");
+        throw std::out_of_range("Z not available for Symbol: " + sym);
     }
 
     auto rv = results();

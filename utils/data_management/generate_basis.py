@@ -178,11 +178,11 @@ MODULE_CTOR({s_name}_atom_basis) {{
 MODULE_RUN({s_name}_atom_basis) {{
     const auto& [Z] = atomic_basis_pt::unwrap_inputs(inputs);
     auto rv         = results();
-
+    auto z_string = std::to_string(Z);
     switch(Z) {{
 {cases}
         default: {{
-            throw std::out_of_range("Basis Set not available for Z");
+            throw std::out_of_range("Basis Set not available for Z: " + z_string);
         }}
     }}
 }}

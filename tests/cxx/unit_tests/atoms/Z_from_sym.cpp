@@ -38,8 +38,9 @@ TEST_CASE("Z from Symbol") {
     }
 
     SECTION("Out of Range") {
-        REQUIRE_THROWS_MATCHES(z_mod.run_as<z_pt>("Not a symbol"),
-                               std::out_of_range,
-                               Message("Z not available for Symbol"));
+        std::string not_symbol = "Not a symbol";
+        REQUIRE_THROWS_MATCHES(
+          z_mod.run_as<z_pt>(not_symbol), std::out_of_range,
+          Message("Z not available for Symbol: " + not_symbol));
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NWChemEx-Project
+ * Copyright 2025 NWChemEx-Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -217,7 +217,8 @@ MODULE_RUN(sto_dash_3g_atom_basis) {
             return atomic_basis_pt::wrap_results(rv, sto_dash_3g_54());
         }
         default: {
-            throw std::out_of_range("Basis Set not available for Z");
+            throw std::out_of_range("Basis Set not available for Z: " +
+                                    std::to_string(Z));
         }
     }
 }

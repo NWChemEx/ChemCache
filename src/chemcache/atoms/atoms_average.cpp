@@ -525,7 +525,8 @@ MODULE_RUN(atoms_average) {
             return atom_pt::wrap_results(rv, atom);
         }
         default: {
-            throw std::out_of_range("Atom not available for Z");
+            throw std::out_of_range("Atom not available for Z: " +
+                                    std::to_string(Z));
         }
     }
 }
