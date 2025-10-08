@@ -77,4 +77,4 @@ simde::type::atomic_basis_set sto_dash_3g_51();
 simde::type::atomic_basis_set sto_dash_3g_52();
 simde::type::atomic_basis_set sto_dash_3g_53();
 simde::type::atomic_basis_set sto_dash_3g_54();
-} // namespace chemcache
+}
