@@ -45,6 +45,7 @@ MODULE_CTOR(sym_from_Z) {
 
 MODULE_RUN(sym_from_Z) {
     const auto& [Z] = sym_pt::unwrap_inputs(inputs);
+    auto z_string   = std::to_string(Z);
 
     sym_t sym;
     if(Z == 0) {
@@ -286,7 +287,7 @@ MODULE_RUN(sym_from_Z) {
     } else if(Z == 118) {
         sym = "Og";
     } else {
-        throw std::out_of_range("Symbol not available for Z");
+        throw std::out_of_range("Symbol not available for Z: " + z_string);
     }
 
     auto rv = results();

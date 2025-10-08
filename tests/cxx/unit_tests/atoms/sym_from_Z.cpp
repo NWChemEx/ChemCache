@@ -42,8 +42,10 @@ TEST_CASE("Symbol from Z") {
     }
 
     SECTION("Out of Range") {
-        Z = 1000;
-        REQUIRE_THROWS_MATCHES(sym_mod.run_as<sym_pt>(Z), std::out_of_range,
-                               Message("Symbol not available for Z"));
+        Z             = 1000;
+        auto z_string = std::to_string(Z);
+        REQUIRE_THROWS_MATCHES(
+          sym_mod.run_as<sym_pt>(Z), std::out_of_range,
+          Message("Symbol not available for Z: " + z_string));
     }
 }

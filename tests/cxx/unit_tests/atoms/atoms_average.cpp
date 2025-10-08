@@ -46,8 +46,10 @@ TEST_CASE("Atom") {
     }
 
     SECTION("Out of Range") {
-        Z = 1000;
-        REQUIRE_THROWS_MATCHES(atom_mod.run_as<atom_pt>(Z), std::out_of_range,
-                               Message("Atom not available for Z"));
+        Z             = 1000;
+        auto z_string = std::to_string(Z);
+        REQUIRE_THROWS_MATCHES(
+          atom_mod.run_as<atom_pt>(Z), std::out_of_range,
+          Message("Atom not available for Z: " + z_string));
     }
 }

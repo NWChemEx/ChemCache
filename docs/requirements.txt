@@ -1,3 +1,4 @@
+astroid==3.3.11
 sphinx
 sphinx-autoapi
 sphinx_rtd_theme

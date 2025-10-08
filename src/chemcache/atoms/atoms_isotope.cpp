@@ -49,8 +49,11 @@ MODULE_RUN(atoms_isotope) {
     auto rv               = results();
 
     auto [Z, N]   = Z_and_N;
-    auto message1 = "Isotopes not available for Z";
-    auto message2 = "Isotope not available for Z and mass number";
+    auto z_string = std::to_string(Z);
+    auto n_string = std::to_string(N);
+    auto message1 = "Isotopes not available for Z: " + z_string;
+    auto message2 = "Isotope not available for Z and mass number: (" +
+                    z_string + ", " + n_string + ")";
     atom_t atom;
     if(Z == 1) {
         if(N == 1) {

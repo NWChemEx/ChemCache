@@ -70,9 +70,10 @@ TEST_CASE("Atomic Basis Set") {
 
     SECTION("Out of Range") {
         atomic_number_t Z = 1000;
-        REQUIRE_THROWS_MATCHES(atom_bs_mod.run_as<atomic_basis_pt>(Z),
-                               std::out_of_range,
-                               Message("Basis Set not available for Z"));
+        auto z_string     = std::to_string(Z);
+        REQUIRE_THROWS_MATCHES(
+          atom_bs_mod.run_as<atomic_basis_pt>(Z), std::out_of_range,
+          Message("Basis Set not available for Z: " + z_string));
     }
 }
 
