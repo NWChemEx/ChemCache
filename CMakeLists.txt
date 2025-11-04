@@ -30,7 +30,6 @@ include(nwx_cxx_api_docs)
 set(CHEMCACHE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(CHEMCACHE_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(CHEMCACHE_TESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tests")
-set(CHEMCACHE_EXP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/experimental")
 
 nwx_cxx_api_docs("${CHEMCACHE_SOURCE_DIR}" "${CHEMCACHE_INCLUDE_DIR}")
 
@@ -38,7 +37,6 @@ nwx_cxx_api_docs("${CHEMCACHE_SOURCE_DIR}" "${CHEMCACHE_INCLUDE_DIR}")
 cmaize_option_list(
     BUILD_TESTING OFF "Should we build the tests?"
     BUILD_PYBIND11_PYBINDINGS ON "Build pybind11 python3 bindings?"
-    ENABLE_EXPERIMENTAL_FEATURES OFF "Build features which are not 1.0-ed yet?"
 )
 
 cmaize_find_or_build_dependency(
@@ -48,7 +46,6 @@ cmaize_find_or_build_dependency(
     FIND_TARGET nwx::simde
     CMAKE_ARGS BUILD_TESTING=OFF
                BUILD_PYBIND11_PYBINDINGS=${BUILD_PYBIND11_PYBINDINGS}
-               ENABLE_EXPERIMENTAL_FEATURES=${ENABLE_EXPERIMENTAL_FEATURES}
 )
 
 cmaize_add_library(
@@ -57,19 +54,6 @@ cmaize_add_library(
     INCLUDE_DIRS "${CHEMCACHE_INCLUDE_DIR}/${PROJECT_NAME}"
     DEPENDS simde
 )
-
-if("${ENABLE_EXPERIMENTAL_FEATURES}")
-
-    cmaize_add_library(
-        experimental_${PROJECT_NAME}
-        SOURCE_DIR "${CHEMCACHE_EXP_DIR}/src/${PROJECT_NAME}"
-        INCLUDE_DIRS "${CHEMCACHE_EXP_DIR}/include/${PROJECT_NAME}"
-        DEPENDS ${PROJECT_NAME}
-    )
-
-else()
-    add_library(experimental_${PROJECT_NAME} INTERFACE)
-endif()
 
 # N.B. this is a no-op if BUILD_PYBIND11_PYBINDINGS is not turned on
 include(nwx_pybind11)
@@ -108,25 +92,8 @@ if("${BUILD_TESTING}")
         py_test_utils_test "${PYTHON_TEST_DIR}/utils_tests/test_utils.py"
     )
 
-    if("${ENABLE_EXPERIMENTAL_FEATURES}")
-
-        cmaize_add_tests(
-            test_unit_experimental_${PROJECT_NAME}
-            SOURCE_DIR "${CHEMCACHE_EXP_DIR}/tests/cxx/unit_tests"
-            INCLUDE_DIRS "${CHEMCACHE_EXP_DIR}/src/${PROJECT_NAME}"
-            DEPENDS Catch2::Catch2 experimental_${PROJECT_NAME}
-        )
-
-        nwx_pybind11_tests(
-            py_experimental_${PROJECT_NAME}
-            "${CHEMCACHE_EXP_DIR}/tests/python/unit_tests/test_python.py"
-            SUBMODULES pluginplay chemist parallelzone
-        )
-
-    endif()
-
 endif()
 
 cmaize_add_package(
-    ${PROJECT_NAME} experimental_${PROJECT_NAME} NAMESPACE nwx::
+    ${PROJECT_NAME} NAMESPACE nwx::
 )
