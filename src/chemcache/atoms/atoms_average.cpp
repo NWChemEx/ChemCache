@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NWChemEx-Project
+ * Copyright 2025 NWChemEx-Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,6 @@ MODULE_CTOR(atoms_average) {
 MODULE_RUN(atoms_average) {
     const auto& [Z] = atom_pt::unwrap_inputs(inputs);
     auto rv         = results();
-    auto z_string   = std::to_string(Z);
 
     switch(Z) {
         case(0): {
@@ -526,7 +525,7 @@ MODULE_RUN(atoms_average) {
             return atom_pt::wrap_results(rv, atom);
         }
         default: {
-            throw std::out_of_range("Atom not available for Z: " + z_string);
+            throw std::out_of_range("Atom not available for Z");
         }
     }
 }
