@@ -17,6 +17,8 @@
 ChemCache
 =========
 
+[![Nightly Workflow](https://github.com/NWChemEx/ChemCache/actions/workflows/nightly.yaml/badge.svg)](https://github.com/NWChemEx/ChemCache/actions/workflows/nightly.yaml)
+
 [Documentation](https://nwchemex.github.io/ChemCache)
 
 This repo contains chemical reference data, *e.g.*, atomic basis sets, physical
