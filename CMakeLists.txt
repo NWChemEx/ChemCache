@@ -85,7 +85,7 @@ if("${BUILD_TESTING}")
     # N.B. these are no-ops if BUILD_PYBIND11_PYBINDINGS is not turned on
     nwx_pybind11_tests(
         py_test_unit_${PROJECT_NAME} "${PYTHON_TEST_DIR}/unit_tests/test_chemcache.py"
-        SUBMODULES parallelzone pluginplay chemist simde
+        SUBMODULES parallelzone pluginplay chemist tensorwrapper simde
     )
 
     nwx_pybind11_tests(
