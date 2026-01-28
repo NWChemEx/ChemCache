@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 NWChemEx-Project
+ * Copyright 2026 NWChemEx-Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,8 @@ using shells_t  = std::vector<shell_t>;
 using doubles_t = std::vector<double>;
 using pure_t    = chemist::ShellType;
 
-abs_t sto_dash_3g_21() {
+abs_t sto_dash_3g_21(){
+
     // Basis Set name and origin point
     std::string name("sto-3g");
     center_t r0(0.0, 0.0, 0.0);
@@ -45,39 +46,39 @@ abs_t sto_dash_3g_21() {
     };
 
     shells_t shells;
-    shells.emplace_back(make_shell(
-      pure_t::pure, 0,
-      doubles_t{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01},
-      doubles_t{9.4166242500e+02, 1.7152498620e+02, 4.6421355160e+01}));
-    shells.emplace_back(make_shell(
-      pure_t::pure, 0,
-      doubles_t{-9.9967229190e-02, 3.9951282610e-01, 7.0011546890e-01},
-      doubles_t{6.7176687710e+01, 1.5610417540e+01, 5.0769922780e+00}));
-    shells.emplace_back(make_shell(
-      pure_t::pure, 1,
-      doubles_t{1.5591627500e-01, 6.0768371860e-01, 3.9195739310e-01},
-      doubles_t{6.7176687710e+01, 1.5610417540e+01, 5.0769922780e+00}));
-    shells.emplace_back(make_shell(
-      pure_t::pure, 0,
-      doubles_t{-2.2776350230e-01, 2.1754360440e-01, 9.1667696110e-01},
-      doubles_t{4.6981592310e+00, 1.4330883130e+00, 5.5293002350e-01}));
-    shells.emplace_back(make_shell(
-      pure_t::pure, 1,
-      doubles_t{4.9515111550e-03, 5.7776646910e-01, 4.8464603660e-01},
-      doubles_t{4.6981592310e+00, 1.4330883130e+00, 5.5293002350e-01}));
-    shells.emplace_back(make_shell(
-      pure_t::pure, 0,
-      doubles_t{-3.0884412140e-01, 1.9606411650e-02, 1.1310344420e+00},
-      doubles_t{6.3093283840e-01, 2.3285389760e-01, 1.0283073630e-01}));
-    shells.emplace_back(make_shell(
-      pure_t::pure, 1,
-      doubles_t{-1.2154686000e-01, 5.7152276040e-01, 5.4989494710e-01},
-      doubles_t{6.3093283840e-01, 2.3285389760e-01, 1.0283073630e-01}));
-    shells.emplace_back(make_shell(
-      pure_t::pure, 2,
-      doubles_t{2.1976795080e-01, 6.5554736270e-01, 2.8657325900e-01},
-      doubles_t{5.5170006790e-01, 1.6828610550e-01, 6.4930011200e-02}));
-    return abs_t(name, 21, r0, shells.begin(), shells.end());
+            shells.emplace_back(make_shell(
+              pure_t::pure, 0,
+              doubles_t{1.5432896730e-01, 5.3532814230e-01, 4.4463454220e-01},
+              doubles_t{9.4166242500e+02, 1.7152498620e+02, 4.6421355160e+01}));
+            shells.emplace_back(make_shell(
+              pure_t::pure, 0,
+              doubles_t{-9.9967229190e-02, 3.9951282610e-01, 7.0011546890e-01},
+              doubles_t{6.7176687710e+01, 1.5610417540e+01, 5.0769922780e+00}));
+            shells.emplace_back(make_shell(
+              pure_t::pure, 1,
+              doubles_t{1.5591627500e-01, 6.0768371860e-01, 3.9195739310e-01},
+              doubles_t{6.7176687710e+01, 1.5610417540e+01, 5.0769922780e+00}));
+            shells.emplace_back(make_shell(
+              pure_t::pure, 0,
+              doubles_t{-2.2776350230e-01, 2.1754360440e-01, 9.1667696110e-01},
+              doubles_t{4.6981592310e+00, 1.4330883130e+00, 5.5293002350e-01}));
+            shells.emplace_back(make_shell(
+              pure_t::pure, 1,
+              doubles_t{4.9515111550e-03, 5.7776646910e-01, 4.8464603660e-01},
+              doubles_t{4.6981592310e+00, 1.4330883130e+00, 5.5293002350e-01}));
+            shells.emplace_back(make_shell(
+              pure_t::pure, 0,
+              doubles_t{-3.0884412140e-01, 1.9606411650e-02, 1.1310344420e+00},
+              doubles_t{6.3093283840e-01, 2.3285389760e-01, 1.0283073630e-01}));
+            shells.emplace_back(make_shell(
+              pure_t::pure, 1,
+              doubles_t{-1.2154686000e-01, 5.7152276040e-01, 5.4989494710e-01},
+              doubles_t{6.3093283840e-01, 2.3285389760e-01, 1.0283073630e-01}));
+            shells.emplace_back(make_shell(
+              pure_t::pure, 2,
+              doubles_t{2.1976795080e-01, 6.5554736270e-01, 2.8657325900e-01},
+              doubles_t{5.5170006790e-01, 1.6828610550e-01, 6.4930011200e-02}));
+     return abs_t(name, 21, r0, shells.begin(), shells.end());
 } // sto_dash_3g_21
 
-} // namespace chemcache
+} // chemcache
