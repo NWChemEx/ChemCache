@@ -70,10 +70,9 @@ template<typename FloatType>
 simde::type::tensor {s_name}_atom_density_matrix_(
   simde::type::atomic_number Z, parallelzone::runtime::RuntimeView& rt) {{
     using shape_t     = tensorwrapper::shape::Smooth;
-    using allocator_t = tensorwrapper::allocator::Eigen<FloatType>;
-    using rank2_il_t  = typename allocator_t::rank2_il;
+    using vector_t    = std::vector<FloatType>;
+    using buffer_t    = tensorwrapper::buffer::Contiguous;
 
-    allocator_t d_a(rt);
     switch(Z) {{
 {cases}
         default: {{
@@ -127,8 +126,9 @@ MODULE_RUN({s_name}_atom_density_matrix) {{
 """
 
     cases_template = """{t}{t}case({Z}): {{
+{t}{t}{t}vector_t data = {{{values}}};
 {t}{t}{t}shape_t shape{{{n}, {n}}};
-{t}{t}{t}auto buffer = d_a.construct(rank2_il_t{{{values}}});
+{t}{t}{t}buffer_t buffer(std::move(data), shape);
 {t}{t}{t}return simde::type::tensor(shape, std::move(buffer));
 {t}{t}}}"""
 
@@ -136,8 +136,10 @@ MODULE_RUN({s_name}_atom_density_matrix) {{
     s_name = helpers.sanitize_basis_name(bs_name)
     cases = []
     for z in sorted([int(x) for x in basis_set.keys()]):
-        values = make_square_arr(
-            basis_set[str(z)].split(), spacer="\n" + tab * 4
+        values = (
+            make_square_arr(basis_set[str(z)].split(), spacer="\n" + tab * 4)
+            .replace("{", "")
+            .replace("}", "")
         )
         n = int(len(basis_set[str(z)].split()) ** 0.5)
         cases.append(cases_template.format(t=tab, Z=z, n=n, values=values))
