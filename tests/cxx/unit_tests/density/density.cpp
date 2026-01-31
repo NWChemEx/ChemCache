@@ -21,21 +21,17 @@
 #include <simde/density/initial_density.hpp>
 #include <simde/types.hpp>
 
-using atomic_dm_pt        = simde::AtomicDensityMatrixFromZ;
-using sad_rho_pt          = simde::InitialDensity;
-using molecular_basis_pt  = simde::MolecularBasisSet;
-using atomic_number_t     = simde::type::atomic_number;
-using molecule_t          = simde::type::molecule;
-using atom_t              = simde::type::atom;
-using hamiltonian_t       = simde::type::hamiltonian;
-using V_en_t              = simde::type::V_en_type;
-using aos_t               = simde::type::aos;
-using udouble_t           = tensorwrapper::types::udouble;
-using shape_t             = tensorwrapper::shape::Smooth;
-using double_allocator_t  = tensorwrapper::allocator::Eigen<double>;
-using double_il_t         = typename double_allocator_t::rank2_il;
-using udouble_allocator_t = tensorwrapper::allocator::Eigen<udouble_t>;
-using udouble_il_t        = typename udouble_allocator_t::rank2_il;
+using atomic_dm_pt       = simde::AtomicDensityMatrixFromZ;
+using sad_rho_pt         = simde::InitialDensity;
+using molecular_basis_pt = simde::MolecularBasisSet;
+using atomic_number_t    = simde::type::atomic_number;
+using molecule_t         = simde::type::molecule;
+using atom_t             = simde::type::atom;
+using hamiltonian_t      = simde::type::hamiltonian;
+using V_en_t             = simde::type::V_en_type;
+using aos_t              = simde::type::aos;
+using udouble_t          = tensorwrapper::types::udouble;
+using shape_t            = tensorwrapper::shape::Smooth;
 
 using Catch::Matchers::Message;
 
@@ -50,16 +46,16 @@ TEST_CASE("sto-3g atomic density matrix") {
         shape_t shape{1, 1};
         SECTION("Exact Values") {
             const auto& rv = atom_dm_mod.run_as<atomic_dm_pt>(Z);
-            double_allocator_t alloc(rt);
-            auto buffer = alloc.construct(double_il_t{{1.0}});
+            std::vector<double> data{1.0};
+            tensorwrapper::buffer::Contiguous buffer(std::move(data), shape);
             simde::type::tensor corr(shape, std::move(buffer));
             REQUIRE(rv == corr);
         }
         SECTION("Uncertain Values") {
             atom_dm_mod.change_input("With UQ?", true);
             const auto& rv = atom_dm_mod.run_as<atomic_dm_pt>(Z);
-            udouble_allocator_t alloc(rt);
-            auto buffer = alloc.construct(udouble_il_t{{1.0}});
+            std::vector<udouble_t> data{udouble_t{1.0}};
+            tensorwrapper::buffer::Contiguous buffer(std::move(data), shape);
             simde::type::tensor corr(shape, std::move(buffer));
             REQUIRE(rv == corr);
         }
@@ -88,8 +84,8 @@ TEST_CASE("SAD Density") {
 
     // Correct values: Density Matrix (2x2 identity) and AOs
     shape_t shape{2, 2};
-    double_allocator_t alloc(rt);
-    auto buffer = alloc.construct(double_il_t{{0.5, 0.0}, {0.0, 0.5}});
+    std::vector<double> data{0.5, 0.0, 0.0, 0.5};
+    tensorwrapper::buffer::Contiguous buffer(std::move(data), shape);
     simde::type::tensor corr_value(shape, std::move(buffer));
 
     auto& mol_bs_mod = mm.at("sto-3g");
