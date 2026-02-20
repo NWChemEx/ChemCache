@@ -59,7 +59,7 @@ MODULE_RUN(sad_density) {
     H.visit(visitor);
     if(visitor.m_pv == nullptr)
         throw std::runtime_error("No nuclear terms for SAD density generation");
-    const auto nuclei = visitor.m_pv->rhs_particle();
+    const auto nuclei = visitor.m_pv->get_rhs_particle();
 
     // Aggregate basis sets and tensors from centers
     aobs_t aobs;
