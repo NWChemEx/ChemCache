@@ -24,11 +24,7 @@ nwx_set_version(chemcache_version "${CMAKE_CURRENT_LIST_DIR}")
 project(chemcache VERSION "${chemcache_version}" LANGUAGES CXX)
 
 include(disable_in_source_builds)
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
-
-option(BUILD_TESTING           "Whether to build the unit tests"    OFF)
-option(BUILD_PYBIND11_BINDINGS "Build Python bindings via pybind11" ON)
+include(set_default_nwx_options)
 
 # Documentation target (no-op unless BUILD_DOCS is on)
 include(nwx_cxx_api_docs)
@@ -47,22 +43,20 @@ include(nwx_python_module)
 nwx_python_module(${PROJECT_NAME} "cxx/src")
 
 ### Tests ###
-if(BUILD_TESTING)
-    include(catch2_tests_from_dir)
-    catch2_tests_from_dir(
-        "test_unit_${PROJECT_NAME}"
-        "tests/cxx/unit_tests"
-        ${PROJECT_NAME}
-        PRIVATE_INCLUDES "cxx/src"
-    )
+include(catch2_tests_from_dir)
+catch2_tests_from_dir(
+    "test_unit_${PROJECT_NAME}"
+    "tests/cxx/unit_tests"
+    ${PROJECT_NAME}
+    PRIVATE_INCLUDES "cxx/src"
+)
 
-    include(nwx_python_test)
-    nwx_python_test(
-        py_unit_test_${PROJECT_NAME}
-        "${CMAKE_CURRENT_LIST_DIR}/tests/python/unit_tests/test_chemcache.py"
-    )
-    nwx_python_test(
-        py_utils_test_${PROJECT_NAME}
-        "${CMAKE_CURRENT_LIST_DIR}/tests/python/utils_tests/test_utils.py"
-    )
-endif()
+include(nwx_python_test)
+nwx_python_test(
+    py_unit_test_${PROJECT_NAME}
+    "${CMAKE_CURRENT_LIST_DIR}/tests/python/unit_tests/test_chemcache.py"
+)
+nwx_python_test(
+    py_utils_test_${PROJECT_NAME}
+    "${CMAKE_CURRENT_LIST_DIR}/tests/python/utils_tests/test_utils.py"
+)
