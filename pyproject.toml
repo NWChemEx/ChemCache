@@ -28,7 +28,7 @@ description = "Cached chemical reference data (atoms, bases, molecules) for the 
 license = { text = "Apache-2.0" }
 requires-python = ">=3.8"
 dependencies = [
-    "nwchemex-simde",
+    "nwchemex-simde @ git+https://github.com/ryanmrichard/SimDE",
 ]
 
 [project.optional-dependencies]
