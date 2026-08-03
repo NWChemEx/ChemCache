@@ -52,3 +52,5 @@ reference_data/basis_sets
 
 # MacOS files
 .DS_Store
+# Automatically installed in dev mode
+.pre-commit-config.yaml
