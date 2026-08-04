@@ -14,8 +14,19 @@
 # limitations under the License.
 #
 
+import pathlib
+import sys
+
 import parallelzone as pz
 import pytest
+
+# tests/python/utils_tests/test_scrape_bse.py imports "data_management" as a
+# top-level package, but it only exists under utils/ at the repo root (not
+# installed anywhere, not a pure-Python package under the wheel). Make it
+# importable here.
+_utils_dir = pathlib.Path(__file__).resolve().parents[2] / "utils"
+if _utils_dir.is_dir():
+    sys.path.insert(0, str(_utils_dir))
 
 
 @pytest.fixture(scope="session", autouse=True)
