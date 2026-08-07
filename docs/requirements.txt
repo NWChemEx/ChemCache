@@ -1,4 +1,5 @@
 astroid==3.3.11
+GitPython
 sphinx
 sphinx-autoapi
 sphinx_rtd_theme
