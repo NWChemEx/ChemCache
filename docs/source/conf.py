@@ -23,6 +23,8 @@
 import os
 import sys
 
+import git
+
 # Ensure that the Python scripts are in the Python path for autodoc
 sys.path.insert(0, os.path.abspath("../../"))
 sys.path.insert(0, os.path.abspath("../../reference_data"))
@@ -33,15 +35,33 @@ project = "ChemCache"
 copyright = "2020, NWChemEx Team"
 author = "NWChemEx Team"
 
-# Get the version from version.txt
-with open("../../version.txt", "r") as file:
-    version = file.read().replace("\n", "")
-# The full version, including alpha/beta/rc tags
-release = version
-
 ##############################################################################
 #           Shouldn't need to change anything below this point               #
 ##############################################################################
+
+# -- Project Paths -----------------------------------------------------------
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+doc_path = os.path.dirname(dir_path)
+root_path = os.path.dirname(doc_path)
+
+# -- Package Version ---------------------------------------------------------
+
+# Read the git tags, from ../../.git and find the most recent one
+repo = git.Repo(root_path)
+tags = sorted(repo.tags, key=lambda t: t.commit.committed_datetime)
+
+if len(tags):
+    last_tag = tags[-1]
+else:
+    last_tag = "0.0.0"
+
+# This is the strictly numeric version (e.g., no "beta" qualifier)
+version = str(last_tag)
+
+# This is the full version (includes qualifiers like "beta" or
+# "release candidate")
+release = version
 
 # -- General configuration ---------------------------------------------------
 

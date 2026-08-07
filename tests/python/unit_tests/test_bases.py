@@ -16,12 +16,11 @@
 
 import unittest
 
+from chemcache import load_modules
 from chemist import Atom, Molecule, PointD, ShellType
 from chemist.basis_set import AOBasisSetD, AtomicBasisSetD, ShellD
 from pluginplay import ModuleManager
 from simde import AtomicBasisSetFromZ, MolecularBasisSet
-
-from chemcache import load_modules
 
 
 class TestBases(unittest.TestCase):

@@ -32,6 +32,53 @@ jobs:
       generate_module_docs: true
     secrets: inherit
 
+  platform_matrix:
+    uses: NWChemEx/.github/.github/workflows/platform_matrix.yaml@master
+
+  build_pypi_dist:
+    needs: [tag-commit, platform_matrix]
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.platform_matrix.outputs.release_matrix) }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Build PyPI Distribution
+        uses: NWChemEx/.github/.github/actions/build_pypi_dist@master
+        with:
+          cibw_build: ${{ matrix.cibw_build }}
+          build_sdist: ${{ matrix.os == 'ubuntu-latest' && 'true' || 'false' }}
+          needs_mpi: "true"
+          needs_boost: "true"
+
+      - name: Upload Distribution Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ matrix.os }}
+          path: dist/
+
+  # A separate, ubuntu-only publish job (rather than a publish step per
+  # build_pypi_dist leg) because pypa/gh-action-pypi-publish only runs on
+  # Linux, and because PyPI trusted publishing does not support reusable
+  # workflows (this job must be defined directly here, not delegated).
+  deploy_to_pypi:
+    needs: build_pypi_dist
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - name: Download All Distributions
+        uses: actions/download-artifact@v4
+        with:
+          pattern: dist-*
+          path: dist
+          merge-multiple: true
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+
   download-and-generate-reference-data:
     runs-on: ubuntu-latest
     steps:
@@ -60,7 +107,7 @@ jobs:
       - name: Generate reference data source code
         run: .github/workflows/scripts/generate_reference_data.sh
       - name: Format generated code
-        run: find src/ -iname '*.cpp' | xargs clang-format --verbose -i
+        run: find cxx/src/ -iname '*.cpp' | xargs clang-format --verbose -i
       - name: Commit and push changes to data branch
         uses: github-actions-x/commit@v2.9
         with:

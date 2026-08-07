@@ -49,3 +49,8 @@ toolchain.cmake
 # Recommended directory for downloading basis sets
 reference_data/basis_sets
 !reference_data/basis_set/default
+
+# MacOS files
+.DS_Store
+# Automatically installed in dev mode
+.pre-commit-config.yaml

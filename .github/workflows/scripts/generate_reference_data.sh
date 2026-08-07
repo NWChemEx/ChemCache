@@ -19,12 +19,12 @@ DENSITIES="${REF_DATA}/atomic_densities/default"
 MOLECULES="${REF_DATA}/molecules"
 
 # Set source code output directories
-SRC="src/chemcache"
+SRC="cxx/src/chemcache"
 ATOM="${SRC}/atoms"
 BASES="${SRC}/bases"
 MOLES="${SRC}/molecules"
 ATOM_DEN="${SRC}/density"
-EXP_SRC="experimental/src/chemcache"
+EXP_SRC="experimental/cxx/src/chemcache"
 ELEC_CONFIGS="${EXP_SRC}/electronic_configurations"
 
 # Activate virtual environment
