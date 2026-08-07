@@ -27,8 +27,8 @@ license = { text = "Apache-2.0" }
 requires-python = ">=3.8"
 dependencies = [
     "pybind11",
-    "nwchemex-nwxcmake @ git+https://github.com/ryanmrichard/NWXCMake",
-    "nwchemex-simde @ git+https://github.com/ryanmrichard/SimDE",
+    "nwchemex-nwxcmake>=0.1.0",
+    "nwchemex-simde>=0.0.77",
 ]
 
 [project.optional-dependencies]
