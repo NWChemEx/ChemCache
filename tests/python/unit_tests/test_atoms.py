@@ -16,11 +16,10 @@
 
 import unittest
 
+from chemcache import load_modules
 from chemist import Atom
 from pluginplay import ModuleManager
 from simde import AtomFromZ, SymbolFromZ, ZFromSymbol
-
-from chemcache import load_modules
 
 
 class TestAtoms(unittest.TestCase):

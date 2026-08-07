@@ -16,11 +16,10 @@
 
 import unittest
 
+from chemcache import load_modules
 from chemist import Atom, Molecule
 from pluginplay import ModuleManager
 from simde import MoleculeFromString
-
-from chemcache import load_modules
 
 
 class TestMolecules(unittest.TestCase):
