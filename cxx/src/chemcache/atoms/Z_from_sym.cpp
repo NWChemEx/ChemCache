@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NWChemEx-Project
+ * Copyright 2026 NWChemEx-Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -286,7 +286,7 @@ MODULE_RUN(Z_from_sym) {
     } else if(sym == "Og") {
         Z = 118;
     } else {
-        throw std::out_of_range("Z not available for Symbol: " + sym);
+        throw std::out_of_range("Z not available for Symbol");
     }
 
     auto rv = results();
