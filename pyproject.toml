@@ -26,7 +26,10 @@ description = "Cached chemical reference data (atoms, bases, molecules) for the 
 license = { text = "Apache-2.0" }
 requires-python = ">=3.8"
 dependencies = [
-    "pybind11",
+    # Must match NWXCMake cmake/dependencies/pybind11.cmake GIT_TAG: a
+    # different PYBIND11_INTERNALS_VERSION gives extensions separate type
+    # registries and breaks cross-module type exchange.
+    "pybind11==3.1.0",
     "nwchemex-nwxcmake>=0.1.0",
     "nwchemex-simde>=0.0.77",
 ]
