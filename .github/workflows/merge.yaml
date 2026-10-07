@@ -26,10 +26,12 @@ jobs:
     secrets: inherit
 
   deploy_nwx_docs:
+    needs: [build_pypi_dist]
     uses: NWChemEx/.github/.github/workflows/deploy_nwx_docs.yaml@master
     with:
       doc_target: "chemcache_cxx_api"
       generate_module_docs: true
+      wheel_artifact_name: dist-ubuntu-latest
     secrets: inherit
 
   platform_matrix:
