@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 NWChemEx-Project
+ * Copyright 2026 NWChemEx-Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,6 +52,7 @@ MODULE_CTOR(sto_dash_3g_atom_basis) {
 MODULE_RUN(sto_dash_3g_atom_basis) {
     const auto& [Z] = atomic_basis_pt::unwrap_inputs(inputs);
     auto rv         = results();
+    auto z_string   = std::to_string(Z);
 
     switch(Z) {
         case(1): {
@@ -218,7 +219,7 @@ MODULE_RUN(sto_dash_3g_atom_basis) {
         }
         default: {
             throw std::out_of_range("Basis Set not available for Z: " +
-                                    std::to_string(Z));
+                                    z_string);
         }
     }
 }
