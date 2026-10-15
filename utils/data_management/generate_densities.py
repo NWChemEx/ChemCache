@@ -184,18 +184,16 @@ DECLARE_MODULE(sad_density);
 
 namespace density_mods {{
 
-inline void set_defaults(pluginplay::ModuleManager& mm) {{
+inline void set_defaults(pluginplay::ModuleMap& modules) {{
     // Default submodules within this subcollection will be set here
     {ao_submodules}
     {dm_submodules}
 }}
 
-inline void load_modules(pluginplay::ModuleManager& mm) {{
-    // Modules will be added to the ModuleManager here
+inline void load_modules(pluginplay::ModuleMap& modules) {{
+    // Modules will be added to the plugin here
     {guess_modules}
     {density_modules}
-
-    set_defaults(mm);
 }}
 
 }} // namespace density_mods
@@ -205,16 +203,17 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
 
     declaration_template = "DECLARE_MODULE({}_atom_density_matrix);"
     ao_submod_template = (
-        'mm.change_submod("{} SAD density", "Atomic Basis", '
+        'modules.change_submod("{} SAD density", "Atomic Basis", '
         '"{} atomic basis");'
     )
     dm_submod_template = (
-        'mm.change_submod("{} SAD density", '
+        'modules.change_submod("{} SAD density", '
         '"Atomic Density", "{} atomic density matrix");'
     )
-    guess_mod_template = 'mm.add_module<sad_density>("{} SAD density");'
+    guess_mod_template = 'modules.add_module<sad_density>("{} SAD density");'
     den_mod_template = (
-        'mm.add_module<{}_atom_density_matrix>("{} atomic density matrix");'
+        "modules.add_module<{}_atom_density_matrix>("
+        '"{} atomic density matrix");'
     )
 
     ntab = "\n" + tab

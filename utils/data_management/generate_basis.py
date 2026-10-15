@@ -306,17 +306,15 @@ DECLARE_MODULE(molecular_basis);
 
 namespace bases_mods {{
 
-inline void set_defaults(pluginplay::ModuleManager& mm) {{
+inline void set_defaults(pluginplay::ModuleMap& modules) {{
     // Default submodules within this subcollection will be set here
     {s}
 }}
 
-inline void load_modules(pluginplay::ModuleManager& mm) {{
-    // Modules will be added to the ModuleManager here
+inline void load_modules(pluginplay::ModuleMap& modules) {{
+    // Modules will be added to the plugin here
     {m}
     {b}
-
-    set_defaults(mm);
 }}
 
 }} // namespace bases_mods
@@ -325,9 +323,11 @@ inline void load_modules(pluginplay::ModuleManager& mm) {{
 """
 
     d_template = "DECLARE_MODULE({}_atom_basis);"
-    s_template = 'mm.change_submod("{}", "Atomic Basis", "{} atomic basis");'
-    m_template = 'mm.add_module<molecular_basis>("{}");'
-    a_template = 'mm.add_module<{}_atom_basis>("{} atomic basis");'
+    s_template = (
+        'modules.change_submod("{}", "Atomic Basis", "{} atomic basis");'
+    )
+    m_template = 'modules.add_module<molecular_basis>("{}");'
+    a_template = 'modules.add_module<{}_atom_basis>("{} atomic basis");'
 
     ntab = "\n" + tab
 

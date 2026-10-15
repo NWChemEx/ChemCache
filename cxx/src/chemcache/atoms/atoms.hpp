@@ -27,18 +27,16 @@ DECLARE_MODULE(Z_from_sym);
 
 namespace atom_mods {
 
-inline void set_defaults(pluginplay::ModuleManager& mm) {
+inline void set_defaults(pluginplay::ModuleMap& modules) {
     // Default submodules within this subcollection will be set here
 }
 
-inline void load_modules(pluginplay::ModuleManager& mm) {
-    // Modules will be added to the ModuleManager here
-    mm.add_module<atoms_average>("Atom");
-    mm.add_module<atoms_isotope>("Atom Isotope");
-    mm.add_module<sym_from_Z>("Symbol from Z");
-    mm.add_module<Z_from_sym>("Z from Symbol");
-
-    set_defaults(mm);
+inline void load_modules(pluginplay::ModuleMap& modules) {
+    // Modules will be added to the plugin here
+    modules.add_module<atoms_average>("Atom");
+    modules.add_module<atoms_isotope>("Atom Isotope");
+    modules.add_module<sym_from_Z>("Symbol from Z");
+    modules.add_module<Z_from_sym>("Z from Symbol");
 }
 
 } // namespace atom_mods

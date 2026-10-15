@@ -20,6 +20,6 @@
 
 namespace chemcache {
 
-EXPORT_PLUGIN(chemcache, m) {}
+EXPORT_PLUGIN(chemcache, ChemCache, m) {}
 
 } // namespace chemcache

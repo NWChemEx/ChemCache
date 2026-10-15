@@ -21,13 +21,12 @@ namespace chemcache::hydrocarbons {
 
 DECLARE_MODULE(StraightChainAlkane);
 
-inline void set_defaults(pluginplay::ModuleManager& mm) {
+inline void set_defaults(pluginplay::ModuleMap& modules) {
     // Default submodules within this subcollection will be set here
 }
 
-inline void load_modules(pluginplay::ModuleManager& mm) {
-    mm.add_module<StraightChainAlkane>("Straight Chain Alkane");
-    set_defaults(mm);
+inline void load_modules(pluginplay::ModuleMap& modules) {
+    modules.add_module<StraightChainAlkane>("Straight Chain Alkane");
 }
 
 } // namespace chemcache::hydrocarbons

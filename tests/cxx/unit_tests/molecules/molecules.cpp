@@ -29,7 +29,7 @@ using Catch::Matchers::Message;
 
 TEST_CASE("NWX Molecules") {
     pluginplay::ModuleManager mm;
-    chemcache::load_modules(mm);
+    mm.load_plugin<chemcache::ChemCache>();
     auto& mol_mod = mm.at("NWX Molecules");
 
     SECTION("Water") {

@@ -27,7 +27,7 @@ using Catch::Matchers::Message;
 
 TEST_CASE("Atom") {
     pluginplay::ModuleManager mm;
-    chemcache::load_modules(mm);
+    mm.load_plugin<chemcache::ChemCache>();
     auto& atom_mod = mm.at("Atom");
     atomic_number_t Z;
 

@@ -24,7 +24,7 @@ using Catch::Matchers::Message;
 
 TEST_CASE("Z from Symbol") {
     pluginplay::ModuleManager mm;
-    chemcache::load_modules(mm);
+    mm.load_plugin<chemcache::ChemCache>();
     auto& z_mod = mm.at("Z From Symbol");
 
     SECTION("sto-3g Hydrogen") {

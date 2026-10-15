@@ -16,7 +16,7 @@
 
 import unittest
 
-from chemcache import load_modules
+from chemcache import ChemCache
 from chemist import Atom
 from pluginplay import ModuleManager
 from simde import AtomFromZ, SymbolFromZ, ZFromSymbol
@@ -55,4 +55,4 @@ class TestAtoms(unittest.TestCase):
 
     def setUp(self):
         self.mm = ModuleManager()
-        load_modules(self.mm)
+        self.mm.load_plugin(ChemCache())
