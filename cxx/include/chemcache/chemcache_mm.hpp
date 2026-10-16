@@ -18,9 +18,13 @@
 #include <pluginplay/pluginplay.hpp>
 
 namespace chemcache {
-/** @brief Loads the modules contained in the ChemCache module collection into
- *         the provided ModuleManager instance.
+/** @brief The ChemCache plugin.
+ *
+ *  Load it into a ModuleManager with `mm.load_plugin<chemcache::ChemCache>()`
+ *  (`mm.load_plugin(chemcache.ChemCache())` from Python). The plugin's name is
+ *  "chemcache". All of the plugin's default submodules are provided by the
+ *  plugin itself, so it does not need other plugins to be loaded.
  */
-void load_modules(pluginplay::ModuleManager& mm);
+DECLARE_PLUGIN(ChemCache);
 
 } // namespace chemcache

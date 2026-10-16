@@ -37,7 +37,7 @@ using Catch::Matchers::Message;
 
 TEST_CASE("sto-3g atomic density matrix") {
     pluginplay::ModuleManager mm;
-    chemcache::load_modules(mm);
+    mm.load_plugin<chemcache::ChemCache>();
     auto& atom_dm_mod = mm.at("sto-3g atomic density matrix");
     auto rt           = mm.get_runtime();
 
@@ -71,7 +71,7 @@ TEST_CASE("sto-3g atomic density matrix") {
 
 TEST_CASE("SAD Density") {
     pluginplay::ModuleManager mm;
-    chemcache::load_modules(mm);
+    mm.load_plugin<chemcache::ChemCache>();
     auto& sad_mod = mm.at("sto-3g SAD density");
     auto rt       = mm.get_runtime();
 

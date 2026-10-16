@@ -32,21 +32,19 @@ DECLARE_MODULE(sto_dash_3g_atom_density_matrix);
 
 namespace density_mods {
 
-inline void set_defaults(pluginplay::ModuleManager& mm) {
+inline void set_defaults(pluginplay::ModuleMap& modules) {
     // Default submodules within this subcollection will be set here
-    mm.change_submod("sto-3g SAD density", "Atomic Basis",
-                     "sto-3g atomic basis");
-    mm.change_submod("sto-3g SAD density", "Atomic Density",
-                     "sto-3g atomic density matrix");
+    modules.change_submod("sto-3g SAD density", "Atomic Basis",
+                          "sto-3g atomic basis");
+    modules.change_submod("sto-3g SAD density", "Atomic Density",
+                          "sto-3g atomic density matrix");
 }
 
-inline void load_modules(pluginplay::ModuleManager& mm) {
-    // Modules will be added to the ModuleManager here
-    mm.add_module<sad_density>("sto-3g SAD density");
-    mm.add_module<sto_dash_3g_atom_density_matrix>(
+inline void load_modules(pluginplay::ModuleMap& modules) {
+    // Modules will be added to the plugin here
+    modules.add_module<sad_density>("sto-3g SAD density");
+    modules.add_module<sto_dash_3g_atom_density_matrix>(
       "sto-3g atomic density matrix");
-
-    set_defaults(mm);
 }
 
 } // namespace density_mods

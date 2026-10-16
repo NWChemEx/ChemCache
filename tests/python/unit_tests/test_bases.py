@@ -16,7 +16,7 @@
 
 import unittest
 
-from chemcache import load_modules
+from chemcache import ChemCache
 from chemist import Atom, Molecule, PointD, ShellType
 from chemist.basis_set import AOBasisSetD, AtomicBasisSetD, ShellD
 from pluginplay import ModuleManager
@@ -57,4 +57,4 @@ class TestBases(unittest.TestCase):
 
     def setUp(self):
         self.mm = ModuleManager()
-        load_modules(self.mm)
+        self.mm.load_plugin(ChemCache())

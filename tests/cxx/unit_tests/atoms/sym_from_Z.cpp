@@ -25,7 +25,7 @@ using Catch::Matchers::Message;
 
 TEST_CASE("Symbol from Z") {
     pluginplay::ModuleManager mm;
-    chemcache::load_modules(mm);
+    mm.load_plugin<chemcache::ChemCache>();
     auto& sym_mod = mm.at("Symbol from Z");
     atomic_number_t Z;
 

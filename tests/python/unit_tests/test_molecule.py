@@ -16,7 +16,7 @@
 
 import unittest
 
-from chemcache import load_modules
+from chemcache import ChemCache
 from chemist import Atom, Molecule
 from pluginplay import ModuleManager
 from simde import MoleculeFromString
@@ -45,4 +45,4 @@ class TestMolecules(unittest.TestCase):
 
     def setUp(self):
         self.mm = ModuleManager()
-        load_modules(self.mm)
+        self.mm.load_plugin(ChemCache())

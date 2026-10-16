@@ -33,7 +33,7 @@ using Catch::Matchers::Message;
 
 TEST_CASE("Atomic Basis Set") {
     pluginplay::ModuleManager mm;
-    chemcache::load_modules(mm);
+    mm.load_plugin<chemcache::ChemCache>();
     auto& atom_bs_mod = mm.at("sto-3g atomic basis");
 
     SECTION("sto-3g Hydrogen") {
@@ -79,7 +79,7 @@ TEST_CASE("Atomic Basis Set") {
 
 TEST_CASE("Molecular Basis Set") {
     pluginplay::ModuleManager mm;
-    chemcache::load_modules(mm);
+    mm.load_plugin<chemcache::ChemCache>();
     auto& mol_bs_mod = mm.at("sto-3g");
 
     atom_t h1{"H", 1, 0.0, 1.0, 1.0, 1.0};

@@ -28,7 +28,7 @@ using Catch::Matchers::Message;
 
 TEST_CASE("Atom Isotope") {
     pluginplay::ModuleManager mm;
-    chemcache::load_modules(mm);
+    mm.load_plugin<chemcache::ChemCache>();
     auto& atom_mod = mm.at("Atom Isotope");
 
     SECTION("Hydrogen-2") {

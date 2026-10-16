@@ -23,20 +23,23 @@
 
 namespace chemcache {
 
-inline void set_defaults(pluginplay::ModuleManager& mm) {
-    // Default submodules between collections can be set here
-    mm.change_submod("NWX Molecules", "Atoms", "Atom");
-}
+PLUGIN_CTOR(ChemCache) {
+    set_name("chemcache");
 
-void load_modules(pluginplay::ModuleManager& mm) {
-    // Add subcollection load calls here
-    atom_mods::load_modules(mm);
-    bases_mods::load_modules(mm);
-    density_mods::load_modules(mm);
-    hydrocarbons::load_modules(mm);
-    molecule_mods::load_modules(mm);
+    // The defaults refer to modules from more than one subcollection, so all
+    // modules are added before any defaults are set
+    atom_mods::load_modules(modules());
+    bases_mods::load_modules(modules());
+    density_mods::load_modules(modules());
+    hydrocarbons::load_modules(modules());
+    molecule_mods::load_modules(modules());
 
-    set_defaults(mm);
+    atom_mods::set_defaults(modules());
+    bases_mods::set_defaults(modules());
+    density_mods::set_defaults(modules());
+    hydrocarbons::set_defaults(modules());
+    molecule_mods::set_defaults(modules());
+    change_submod("NWX Molecules", "Atoms", "Atom");
 }
 
 } // namespace chemcache

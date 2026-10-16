@@ -24,15 +24,13 @@ DECLARE_MODULE(default_molecules);
 
 namespace molecule_mods {
 
-inline void set_defaults(pluginplay::ModuleManager& mm) {
+inline void set_defaults(pluginplay::ModuleMap& modules) {
     // Default submodules within this subcollection will be set here
 }
 
-inline void load_modules(pluginplay::ModuleManager& mm) {
-    // Modules will be added to the ModuleManager here
-    mm.add_module<default_molecules>("NWX Molecules");
-
-    set_defaults(mm);
+inline void load_modules(pluginplay::ModuleMap& modules) {
+    // Modules will be added to the plugin here
+    modules.add_module<default_molecules>("NWX Molecules");
 }
 
 } // namespace molecule_mods
