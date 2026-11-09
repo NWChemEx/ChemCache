@@ -22,8 +22,10 @@ namespace chemcache {
  *
  *  Load it into a ModuleManager with `mm.load_plugin<chemcache::ChemCache>()`
  *  (`mm.load_plugin(chemcache.ChemCache())` from Python). The plugin's name is
- *  "chemcache". All of the plugin's default submodules are provided by the
- *  plugin itself, so it does not need other plugins to be loaded.
+ *  "chemcache". The "UQ Initializer" submodule of the atomic density matrix
+ *  modules defaults to the Integrals plugin's "UQ Initializer". If Integrals is
+ *  not loaded, those modules (and the SAD densities using them) need one to be
+ *  supplied.
  */
 DECLARE_PLUGIN(ChemCache);
 

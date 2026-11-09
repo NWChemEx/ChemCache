@@ -25,4 +25,6 @@ class TestChemCachePlugin(unittest.TestCase):
         mm.load_plugin(chemcache.ChemCache())
         self.assertTrue(mm.has_plugin("chemcache"))
         self.assertTrue(mm.count("NWX Molecules"))
-        self.assertEqual(mm.get_plugin("chemcache").preferred_providers(), [])
+        self.assertEqual(
+            mm.get_plugin("chemcache").preferred_providers(), ["integrals"]
+        )

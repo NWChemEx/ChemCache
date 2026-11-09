@@ -40,6 +40,12 @@ PLUGIN_CTOR(ChemCache) {
     hydrocarbons::set_defaults(modules());
     molecule_mods::set_defaults(modules());
     change_submod("NWX Molecules", "Atoms", "Atom");
+
+    // Submodules ChemCache does not provide come from these plugins, if loaded
+    set_preferred_providers("integrals");
+
+    default_submod_from("integrals", "sto-3g atomic density matrix",
+                        "UQ Initializer", "UQ Initializer");
 }
 
 } // namespace chemcache
