@@ -145,28 +145,28 @@ be present before running it.</p>
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_basis._write_basis_files" title="data_management.generate_basis._write_basis_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_basis_files</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_basis._write_basis_files" title="data_management.generate_basis._write_basis_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_basis_files</span></code></a>(src_dir, bs_name, basis_set[, tab]) → None</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_basis._write_atomic_basis" title="data_management.generate_basis._write_atomic_basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_atomic_basis</span></code></a>(→ None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_basis._write_atomic_basis" title="data_management.generate_basis._write_atomic_basis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_atomic_basis</span></code></a>(src_dir, tab, d_name, s_name, z, ...) → None</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_basis._write_bases" title="data_management.generate_basis._write_bases"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_bases</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_basis._write_bases" title="data_management.generate_basis._write_bases"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_bases</span></code></a>(src_dir, bases[, tab]) → None</p></td>
 <td><p>Writes basis set data to C++ files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_basis._parse_bases_gbs" title="data_management.generate_basis._parse_bases_gbs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_bases_gbs</span></code></a>(→ dict)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_basis._parse_bases_gbs" title="data_management.generate_basis._parse_bases_gbs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_bases_gbs</span></code></a>(basis_set_filenames, sym2Z, l2num) → dict</p></td>
 <td><p>Parses basis set files from the filepaths given.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_basis._parse_bases_nw" title="data_management.generate_basis._parse_bases_nw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_bases_nw</span></code></a>(→ dict)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_basis._parse_bases_nw" title="data_management.generate_basis._parse_bases_nw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_bases_nw</span></code></a>(basis_set_filepaths, sym2Z, l2num) → dict</p></td>
 <td><p>Parses basis set files from the filepaths given.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_basis._parse_bases" title="data_management.generate_basis._parse_bases"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_bases</span></code></a>(→ dict)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_basis._parse_bases" title="data_management.generate_basis._parse_bases"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_bases</span></code></a>(basis_set_filepaths, sym2Z, l2num[, format]) → dict</p></td>
 <td><p>Parse basis set files of the specified format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_basis.main" title="data_management.generate_basis.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_basis.main" title="data_management.generate_basis.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(args) → None</p></td>
 <td><p>Entry point function to generate basis set files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_basis.parse_args" title="data_management.generate_basis.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>(→ argparse.Namespace)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_basis.parse_args" title="data_management.generate_basis.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>() → argparse.Namespace</p></td>
 <td><p>Parse command line arguments.</p></td>
 </tr>
 </tbody>

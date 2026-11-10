@@ -157,31 +157,31 @@ script:</p>
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.parse_symbols" title="data_management.generate_atomicinfo.parse_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_symbols</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.parse_symbols" title="data_management.generate_atomicinfo.parse_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_symbols</span></code></a>(name_file, atoms) → None</p></td>
 <td><p>Parse the given symbols file and add them to the existing atom</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._parse_ciaaw_isotopes" title="data_management.generate_atomicinfo._parse_ciaaw_isotopes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_ciaaw_isotopes</span></code></a>(→ None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._parse_ciaaw_isotopes" title="data_management.generate_atomicinfo._parse_ciaaw_isotopes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_ciaaw_isotopes</span></code></a>(iso_file, atoms) → None</p></td>
 <td><p>Parses an isotope mass file from the Commission on Isotopic Abundances</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._parse_ciaww_mass" title="data_management.generate_atomicinfo._parse_ciaww_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_ciaww_mass</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._parse_ciaww_mass" title="data_management.generate_atomicinfo._parse_ciaww_mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_ciaww_mass</span></code></a>(mass_file, atoms) → None</p></td>
 <td><p>Parses a mass file from the Commission on Isotopic Abundances</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_z_from_sym" title="data_management.generate_atomicinfo._write_z_from_sym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_z_from_sym</span></code></a>(→ None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_z_from_sym" title="data_management.generate_atomicinfo._write_z_from_sym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_z_from_sym</span></code></a>(out_dir, amu2me, atoms) → None</p></td>
 <td><p>Generate the Z_from_sym.cpp source file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_sym_from_z" title="data_management.generate_atomicinfo._write_sym_from_z"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_sym_from_z</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_sym_from_z" title="data_management.generate_atomicinfo._write_sym_from_z"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_sym_from_z</span></code></a>(out_dir, amu2me, atoms) → None</p></td>
 <td><p>Generate the sym_from_Z.cpp source file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_atoms_average" title="data_management.generate_atomicinfo._write_atoms_average"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_atoms_average</span></code></a>(→ None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_atoms_average" title="data_management.generate_atomicinfo._write_atoms_average"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_atoms_average</span></code></a>(out_dir, amu2me, atoms) → None</p></td>
 <td><p>Generate the atoms_average.cpp source file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_atoms_isotope" title="data_management.generate_atomicinfo._write_atoms_isotope"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_atoms_isotope</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo._write_atoms_isotope" title="data_management.generate_atomicinfo._write_atoms_isotope"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_atoms_isotope</span></code></a>(out_dir, amu2me, atoms) → None</p></td>
 <td><p>Generate the atoms_isotopes.cpp source file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.main" title="data_management.generate_atomicinfo.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(→ None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.main" title="data_management.generate_atomicinfo.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(args) → None</p></td>
 <td><p>Entry point function to generate atomic info files.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.parse_args" title="data_management.generate_atomicinfo.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>(→ argparse.Namespace)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_atomicinfo.parse_args" title="data_management.generate_atomicinfo.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>() → argparse.Namespace</p></td>
 <td><p>Parse command line arguments.</p></td>
 </tr>
 </tbody>

@@ -144,19 +144,19 @@ be present before running it.</p>
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_molecules._parse_molecules_xyz" title="data_management.generate_molecules._parse_molecules_xyz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_molecules_xyz</span></code></a>(→ Molecule)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_molecules._parse_molecules_xyz" title="data_management.generate_molecules._parse_molecules_xyz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_molecules_xyz</span></code></a>(filepaths, sym2Z, ang2au) → Molecule</p></td>
 <td><p>Parses an XYZ formatted molecule file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_molecules._parse_molecules" title="data_management.generate_molecules._parse_molecules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_molecules</span></code></a>(→ dict)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_molecules._parse_molecules" title="data_management.generate_molecules._parse_molecules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_parse_molecules</span></code></a>(filepaths, sym2Z, ang2au[, extension]) → dict</p></td>
 <td><p>Parse molecule files of the specified format.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_molecules._write_load_molecules" title="data_management.generate_molecules._write_load_molecules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_load_molecules</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_molecules._write_load_molecules" title="data_management.generate_molecules._write_load_molecules"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_load_molecules</span></code></a>(src_dir, mols[, tab]) → None</p></td>
 <td><p>Write the load_molecules.cpp file with all parsed molecules.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_molecules.main" title="data_management.generate_molecules.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(→ None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_molecules.main" title="data_management.generate_molecules.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(args) → None</p></td>
 <td><p>Entry point function to generate atomic density files.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_molecules.parse_args" title="data_management.generate_molecules.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>(→ argparse.Namespace)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_molecules.parse_args" title="data_management.generate_molecules.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>() → argparse.Namespace</p></td>
 <td><p>Parse command line arguments.</p></td>
 </tr>
 </tbody>

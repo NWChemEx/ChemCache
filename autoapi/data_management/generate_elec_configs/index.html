@@ -168,22 +168,22 @@ script:</p>
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_symbols" title="data_management.generate_elec_configs.parse_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_symbols</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_symbols" title="data_management.generate_elec_configs.parse_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_symbols</span></code></a>(name_file, atoms) → None</p></td>
 <td><p>Parse the given symbols file and add them to the existing atom</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_config_str" title="data_management.generate_elec_configs.parse_config_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_config_str</span></code></a>(→ dict)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_config_str" title="data_management.generate_elec_configs.parse_config_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_config_str</span></code></a>(sconf) → dict</p></td>
 <td><p>Parse an electronic configuration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_nist_configs" title="data_management.generate_elec_configs.parse_nist_configs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_nist_configs</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_nist_configs" title="data_management.generate_elec_configs.parse_nist_configs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_nist_configs</span></code></a>(ip_file, atoms) → None</p></td>
 <td><p>Parses file containing ionization energy data from the NIST Atomic</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_elec_configs._write_configs" title="data_management.generate_elec_configs._write_configs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_configs</span></code></a>(→ None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_elec_configs._write_configs" title="data_management.generate_elec_configs._write_configs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_write_configs</span></code></a>(out_dir, atoms) → None</p></td>
 <td><p>Generate the electronic_configurations.cpp source file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.main" title="data_management.generate_elec_configs.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(→ None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.main" title="data_management.generate_elec_configs.main"><code class="xref py py-obj docutils literal notranslate"><span class="pre">main</span></code></a>(args) → None</p></td>
 <td><p>Entry point function to generate atomic info files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_args" title="data_management.generate_elec_configs.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>(→ argparse.Namespace)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#data_management.generate_elec_configs.parse_args" title="data_management.generate_elec_configs.parse_args"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_args</span></code></a>() → argparse.Namespace</p></td>
 <td><p>Parse command line arguments.</p></td>
 </tr>
 </tbody>

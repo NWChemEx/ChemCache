@@ -87,8 +87,8 @@ properly build ChemCache.
 C++ Compiler
 ------------
 
-ChemCache relies on the C++17 standard and should work with any C++17
-compliant compiler (GCC 9.x or newer).
+ChemCache relies on the C++20 standard and should work with any C++20
+compliant compiler (GCC 10.x or newer).
 
 Optional Dependencies
 =====================
