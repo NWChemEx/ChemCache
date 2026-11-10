@@ -23,8 +23,9 @@ TEST_CASE("ChemCache plugin") {
 
     SECTION("Identity") {
         REQUIRE(plugin.name() == "chemcache");
-        // Every default comes from the plugin itself
-        REQUIRE(plugin.preferred_providers().empty());
+        // The UQ Initializer comes from Integrals
+        using provider_list = std::vector<std::string>;
+        REQUIRE(plugin.preferred_providers() == provider_list{"integrals"});
     }
 
     SECTION("Modules from each subcollection") {
@@ -40,6 +41,8 @@ TEST_CASE("ChemCache plugin") {
         REQUIRE(modules.has_submod("sto-3g SAD density", "Atomic Basis"));
         REQUIRE(modules.has_submod("sto-3g SAD density", "Atomic Density"));
         REQUIRE(modules.has_submod("NWX Molecules", "Atoms"));
+        REQUIRE_FALSE(
+          modules.has_submod("sto-3g atomic density matrix", "UQ Initializer"));
     }
 
     SECTION("Can be loaded into a ModuleManager") {

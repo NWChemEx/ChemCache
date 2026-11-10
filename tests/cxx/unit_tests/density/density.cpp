@@ -20,6 +20,7 @@
 #include <simde/chemical_system/atomic_density_matrix.hpp>
 #include <simde/density/initial_density.hpp>
 #include <simde/types.hpp>
+#include <simde/uncertainty/uncertainty.hpp>
 
 using atomic_dm_pt       = simde::AtomicDensityMatrixFromZ;
 using sad_rho_pt         = simde::InitialDensity;
@@ -35,9 +36,24 @@ using shape_t            = tensorwrapper::shape::Smooth;
 
 using Catch::Matchers::Message;
 
+namespace {
+
+// Binds a UQ Initializer making @p kind to the atomic density matrix of @p mm
+void bind_uq_initializer(pluginplay::ModuleManager& mm,
+                         simde::UQKind kind = simde::UQKind::none) {
+    auto uq_initializer = pluginplay::make_lambda<simde::UQInitializer>(
+      [kind]() { return simde::UQFactory(kind); });
+    mm.at("sto-3g atomic density matrix")
+      .change_submod("UQ Initializer", std::make_shared<pluginplay::Module>(
+                                         std::move(uq_initializer)));
+}
+
+} // namespace
+
 TEST_CASE("sto-3g atomic density matrix") {
     pluginplay::ModuleManager mm;
     mm.load_plugin<chemcache::ChemCache>();
+    bind_uq_initializer(mm);
     auto& atom_dm_mod = mm.at("sto-3g atomic density matrix");
     auto rt           = mm.get_runtime();
 
@@ -52,7 +68,7 @@ TEST_CASE("sto-3g atomic density matrix") {
             REQUIRE(rv == corr);
         }
         SECTION("Uncertain Values") {
-            atom_dm_mod.change_input("With UQ?", true);
+            bind_uq_initializer(mm, simde::UQKind::uncertain);
             const auto& rv = atom_dm_mod.run_as<atomic_dm_pt>(Z);
             std::vector<udouble_t> data{udouble_t{1.0}};
             tensorwrapper::buffer::Contiguous buffer(std::move(data), shape);
@@ -72,6 +88,7 @@ TEST_CASE("sto-3g atomic density matrix") {
 TEST_CASE("SAD Density") {
     pluginplay::ModuleManager mm;
     mm.load_plugin<chemcache::ChemCache>();
+    bind_uq_initializer(mm);
     auto& sad_mod = mm.at("sto-3g SAD density");
     auto rt       = mm.get_runtime();
 
