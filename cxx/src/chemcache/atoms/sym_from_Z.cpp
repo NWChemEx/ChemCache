@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NWChemEx-Project
+ * Copyright 2026 NWChemEx-Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,6 @@ MODULE_CTOR(sym_from_Z) {
 
 MODULE_RUN(sym_from_Z) {
     const auto& [Z] = sym_pt::unwrap_inputs(inputs);
-    auto z_string   = std::to_string(Z);
 
     sym_t sym;
     if(Z == 0) {
@@ -287,7 +286,7 @@ MODULE_RUN(sym_from_Z) {
     } else if(Z == 118) {
         sym = "Og";
     } else {
-        throw std::out_of_range("Symbol not available for Z: " + z_string);
+        throw std::out_of_range("Symbol not available for Z");
     }
 
     auto rv = results();
